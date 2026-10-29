@@ -143,7 +143,7 @@
                                                                 <DataTrigger Binding="{Binding IsRoom}" Value="True"><Setter Property="Effect" Value="{x:Null}"/><Setter Property="CornerRadius" Value="14"/></DataTrigger>
                                                                 <DataTrigger Binding="{Binding IsWall}" Value="True"><Setter Property="CornerRadius" Value="3"/></DataTrigger>
                                                                 <DataTrigger Binding="{Binding IsOpening}" Value="True"><Setter Property="CornerRadius" Value="2"/><Setter Property="BorderThickness" Value="3"/></DataTrigger>
-                                                                <DataTrigger Binding="{Binding IsPlant}" Value="True"><Setter Property="CornerRadius" Value="500"/></DataTrigger>
+                                                                <DataTrigger Binding="{Binding IsRound}" Value="True"><Setter Property="CornerRadius" Value="500"/></DataTrigger>
                                                                 <DataTrigger Binding="{Binding Needs}" Value="True"><Setter Property="BorderBrush" Value="#FFE3922B"/><Setter Property="BorderThickness" Value="5"/></DataTrigger>
                                                                 <DataTrigger Binding="{Binding Due}" Value="True"><Setter Property="BorderBrush" Value="#FFD6453A"/><Setter Property="BorderThickness" Value="5"/></DataTrigger>
                                                                 <DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="BorderBrush" Value="#FFC0562B"/><Setter Property="BorderThickness" Value="5"/></DataTrigger>

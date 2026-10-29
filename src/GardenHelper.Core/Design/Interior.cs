@@ -27,7 +27,7 @@ public sealed record InteriorKind(string Key, string Group, double Width, double
 
 public static class InteriorCatalog
 {
-    public static readonly string[] Groups = { "structure", "rooms", "furniture", "plants" };
+    public static readonly string[] Groups = { "structure", "rooms", "furniture", "greenhouse", "workshop", "shapes", "plants" };
     public static readonly int[] Floors = { -1, 0, 1, 2 };
     public const double WallThickness = 15;
 
@@ -43,12 +43,32 @@ public static class InteriorCatalog
         new("fridge", "furniture", 65, 65, "#D8DEE2", "❄", 1), new("sink", "furniture", 80, 50, "#A9CCD8", "◍", 1), new("wardrobe", "furniture", 120, 60, "#A98B66", "▭", 1),
         new("shelf", "furniture", 100, 30, "#A98B66", "▭", 1), new("radiator", "furniture", 100, 12, "#E0E0E0", "≋", 1), new("woodstove", "furniture", 70, 70, "#4F4F4F", "♨", 1),
 
+        new("bench", "greenhouse", 120, 50, "#EBD7AE", "▭", 1),
+        new("growbed", "greenhouse", 120, 60, "#D3EAC2", "❧", 1),
+        new("pots", "greenhouse", 90, 40, "#E4CFB4", "❀", 1),
+        new("seedtray", "greenhouse", 60, 40, "#CFE6A8", "⁘", 1),
+        new("channel", "greenhouse", 200, 20, "#BDE0F0", "≈", 1),
+        new("tank", "greenhouse", 80, 80, "#9FCFEA", "◍", 1),
+        new("heater", "greenhouse", 40, 40, "#F6C5B4", "♨", 1),
+        new("sensor", "greenhouse", 30, 30, "#FFE38A", "◉", 5),
+        new("light", "greenhouse", 80, 14, "#FFF1A8", "☀", 4),
+        new("fan", "greenhouse", 30, 30, "#D8E2EA", "✻", 4),
+        new("mister", "greenhouse", 30, 30, "#CFEAF2", "∴", 4),
+        new("vent", "greenhouse", 80, 14, "#DDE3E8", "⬆", 4),
+        new("pump", "greenhouse", 30, 30, "#D9CFEE", "↻", 5),
+        new("car", "workshop", 200, 450, "#B7C4D6", "▭", 1),
+        new("workbench", "workshop", 200, 70, "#C8A778", "▭", 1),
+        new("toolrack", "workshop", 150, 30, "#A98B66", "⚒", 1),
+        new("custom", "shapes", 200, 150, "#E6E0D2", "▢", 1),
+        new("customround", "shapes", 150, 150, "#E6E0D2", "○", 1),
+
         new("plant", "plants", 50, 50, "#4F9A4F", "❀", 5), new("planter", "plants", 120, 40, "#7BA05B", "▤", 5),
     };
 
     public static InteriorKind? Get(string key) => All.FirstOrDefault(k => k.Key == key);
     public static IEnumerable<InteriorKind> InGroup(string group) => All.Where(k => k.Group == group);
     public static (double Width, double Height) SizeOf(string key) => Get(key) is { } k ? (k.Width, k.Height) : (100, 100);
+    public static bool IsRound(string key) => key is "plant" or "customround";
     public static bool IsOpening(string key) => key is "window" or "door";
 
     public static string FloorKey(int floor) => floor switch { < 0 => "basement", 0 => "ground", 1 => "upper", _ => "attic" };

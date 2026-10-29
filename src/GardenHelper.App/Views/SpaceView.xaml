@@ -70,6 +70,7 @@
                             <WrapPanel Margin="0,12,0,0">
                                 <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveDetailsCommand}" Margin="0,0,8,0"/>
                                 <Button Content="{loc:L space_edit_map}" Command="{Binding EditOnMapCommand}" Margin="0,0,8,0"/>
+                                <Button Content="{loc:L int_from_greenhouse}" Command="{Binding OpenFloorPlanCommand}" Visibility="{Binding HasFloorPlan, Converter={StaticResource BoolToVis}}" Margin="0,0,8,0"/>
                             </WrapPanel>
                         </StackPanel>
                     </Border>

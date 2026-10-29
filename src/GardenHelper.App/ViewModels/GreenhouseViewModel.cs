@@ -58,15 +58,16 @@ public sealed partial class GreenhouseViewModel : PageViewModel
     private readonly LocalApiServer _api;
     private readonly SettingsService _settings;
     private readonly IDialogs _dialogs;
+    private readonly INavigator _nav;
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(5) };
     private Garden? _garden;
     private GreenhouseSetup? _setup;
     private bool _loading;
     private readonly ILogger _logger;
 
-    public GreenhouseViewModel(Repository repo, GreenhouseService svc, LocalApiServer api, SettingsService settings, IDialogs dialogs, ILogger<GreenhouseViewModel> log) : base(log)
+    public GreenhouseViewModel(Repository repo, GreenhouseService svc, LocalApiServer api, SettingsService settings, IDialogs dialogs, INavigator nav, ILogger<GreenhouseViewModel> log) : base(log)
     {
-        _logger = log; _repo = repo; _svc = svc; _api = api; _settings = settings; _dialogs = dialogs;
+        _nav = nav; _logger = log; _repo = repo; _svc = svc; _api = api; _settings = settings; _dialogs = dialogs;
         Systems = GreenhouseCatalog.Systems.Select(k => new AnimalOption(k, Loc.T("gh_sys_" + k))).ToList();
         ItemKinds = GreenhouseCatalog.ItemKinds.Select(k => new AnimalOption(k, Loc.T("gh_item_" + k))).ToList();
         _newKind = ItemKinds[0];
@@ -223,6 +224,8 @@ public sealed partial class GreenhouseViewModel : PageViewModel
         await _svc.SetActuatorAsync(HouseId, row.Key, row.IsOn, auto: true);
         await _svc.ApplyRulesAsync(HouseId); await RefreshLiveAsync();
     }, busy: false);
+
+    [RelayCommand] private void OpenLayout() { var id = HouseId; _nav.GoTo<InteriorViewModel>(vm => vm.FeatureId = id); }
 
     // ---- layout inside the greenhouse ----
     partial void OnSelectedItemChanged(LayoutItem? old, LayoutItem? value)

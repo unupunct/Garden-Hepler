@@ -38,6 +38,7 @@ public sealed partial class InteriorShape : ObservableObject
     public bool Due { get; }
     public bool Needs { get; }
     public bool IsPlant => Item.Kind == "plant";
+    public bool IsRound => InteriorCatalog.IsRound(Item.Kind);
     public bool IsWall => Item.Kind == "wall";
     public bool IsOpening => InteriorCatalog.IsOpening(Item.Kind);
     public bool IsRoom => Item.Kind == "room";
@@ -160,8 +161,21 @@ public sealed partial class InteriorViewModel : PageViewModel
         var oc = InteriorCatalog.OutlineCm(pts);
         Outline = new PointCollection(oc.Select(p => new Point(p.X, p.Y))); HasOutline = oc.Count >= 3;
         _all = await _repo.ListAsync<InteriorItem>(q => q.Where(i => i.FeatureId == BuildingId).OrderBy(i => i.Id));
+        if (_all.Count == 0 && feature?.Kind == "greenhouse") await ImportGreenhouseItemsAsync();
         _plants = await _repo.ListAsync<InventoryPlant>(q => q.Where(p => !p.IsTree && p.Status != "dead").OrderBy(p => p.Name));
         Rebuild(); FitView();
+    }
+
+    /// <summary>Layouts drawn on the old greenhouse page move over to the plan editor, once.</summary>
+    private async Task ImportGreenhouseItemsAsync()
+    {
+        var old = await _repo.ListAsync<GardenHelper.Core.Greenhouse.GreenhouseItem>(q => q.Where(i => i.FeatureId == BuildingId).OrderBy(i => i.Id));
+        foreach (var o in old)
+        {
+            var kind = InteriorCatalog.Get(o.Kind) is not null ? o.Kind : "custom";
+            _all.Add(await _repo.SaveAsync(new InteriorItem { FeatureId = BuildingId, Floor = 0, Kind = kind, Name = o.Name, X = o.X + 50, Y = o.Y + 50, Width = o.Width, Height = o.Height, Notes = o.Notes }));
+            await _repo.DeleteAsync(o);
+        }
     }
 
     private void Rebuild()

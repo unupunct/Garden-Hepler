@@ -58,7 +58,7 @@ public sealed partial class SpaceViewModel : PageViewModel
         if (_feature is null) { ErrorMessage = Loc.T("space_missing"); return; }
         Name = _feature.Name; Notes = _feature.Notes ?? "";
         KindLabel = Loc.T("feat_" + _feature.Kind);
-        IsStructure = FeatureCatalog.IsStructure(_feature.Kind);
+        IsStructure = FeatureCatalog.IsStructure(_feature.Kind); HasFloorPlan = IsStructure || _feature.Kind == "greenhouse";
         HoldsPlantings = FeatureCatalog.HoldsPlantings(_feature.Kind);
         var (area, perimeter) = GeoMath.Measure(GeoMath.FromJson(_feature.PointsJson));
         AreaText = Loc.F("space_area", area.ToString("N0", Loc.Instance.Culture), (area / 100).ToString("N1", Loc.Instance.Culture), perimeter.ToString("N0", Loc.Instance.Culture));
@@ -132,5 +132,7 @@ public sealed partial class SpaceViewModel : PageViewModel
     [RelayCommand] private void Back() => _nav.GoTo<PropertyViewModel>();
     [RelayCommand] private void EditOnMap() { var id = FeatureId; _nav.GoTo<MapViewModel>(vm => vm.PendingSelect = id); }
     [RelayCommand] private void PlanInDesigner() { var id = FeatureId; _nav.GoTo<DesignerViewModel>(vm => vm.PlanFeatureId = id); }
+    [ObservableProperty] private bool _hasFloorPlan;
+    [RelayCommand] private void OpenFloorPlan() { var id = FeatureId; _nav.GoTo<InteriorViewModel>(vm => vm.FeatureId = id); }
     [RelayCommand] private void OpenDesigner() => _nav.GoTo<DesignerViewModel>();
 }

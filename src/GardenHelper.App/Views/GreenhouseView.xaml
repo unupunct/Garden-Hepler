@@ -109,59 +109,7 @@
                     <StackPanel>
                         <TextBlock Text="{loc:L gh_layout}" Style="{StaticResource H2}"/>
                         <TextBlock Text="{loc:L gh_layout_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
-                        <Border Background="#FFF7F3E8" BorderBrush="#FFCDBF98" BorderThickness="1.5" CornerRadius="14" Margin="0,8,0,8" MaxHeight="420" Padding="10">
-                            <Viewbox Stretch="Uniform" StretchDirection="Both" MaxHeight="400">
-                                <Grid Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
-                                    <Border Background="#FFFFFDF6" BorderBrush="#FFB7A57A" BorderThickness="6" CornerRadius="10"/>
-                                    <ItemsControl ItemsSource="{Binding Items}">
-                                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemContainerStyle>
-                                            <Style TargetType="ContentPresenter">
-                                                <Setter Property="Canvas.Left" Value="{Binding X}"/>
-                                                <Setter Property="Canvas.Top" Value="{Binding Y}"/>
-                                            </Style>
-                                        </ItemsControl.ItemContainerStyle>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid Width="{Binding Width}" Height="{Binding Height}" AutomationProperties.Name="{Binding Label}" ToolTip="{Binding Label}">
-                                                    <Border Background="{Binding Fill}" BorderBrush="{Binding Edge}" BorderThickness="2" CornerRadius="9">
-                                                        <Border.Effect><DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.22"/></Border.Effect>
-                                                        <Border.Style>
-                                                            <Style TargetType="Border"><Style.Triggers><DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="BorderBrush" Value="#FFC0562B"/><Setter Property="BorderThickness" Value="5"/></DataTrigger></Style.Triggers></Style>
-                                                        </Border.Style>
-                                                    </Border>
-                                                    <Viewbox Stretch="Uniform" Margin="6" IsHitTestVisible="False" MaxHeight="{Binding Width}">
-                                                        <StackPanel>
-                                                            <TextBlock Text="{Binding Glyph}" HorizontalAlignment="Center" FontSize="26" Foreground="#99405036"/>
-                                                            <TextBlock Text="{Binding Label}" HorizontalAlignment="Center" Foreground="#FF2E3A2A" FontWeight="SemiBold" FontSize="10" TextTrimming="CharacterEllipsis"/>
-                                                        </StackPanel>
-                                                    </Viewbox>
-                                                    <Thumb Opacity="0" Cursor="SizeAll" DragStarted="OnItemDragStart" DragDelta="OnItemDrag" DragCompleted="OnItemDragDone"/>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </Grid>
-                            </Viewbox>
-                        </Border>
-                        <WrapPanel>
-                            <ComboBox ItemsSource="{Binding ItemKinds}" SelectedItem="{Binding NewKind}" MinWidth="160" Margin="0,0,8,0"/>
-                            <Button Content="{loc:L gh_add_item}" Command="{Binding AddItemCommand}"/>
-                        </WrapPanel>
-                        <StackPanel Visibility="{Binding HasItem, Converter={StaticResource BoolToVis}}" Margin="0,10,0,0">
-                            <Grid>
-                                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition Width="110"/><ColumnDefinition Width="10"/><ColumnDefinition Width="110"/></Grid.ColumnDefinitions>
-                                <StackPanel><TextBlock Text="{loc:L design_name}" Style="{StaticResource Label}"/><TextBox Text="{Binding ItemName}"/></StackPanel>
-                                <StackPanel Grid.Column="2"><TextBlock Text="{loc:L design_width}" Style="{StaticResource Label}"/><TextBox Text="{Binding ItemWidth}"/></StackPanel>
-                                <StackPanel Grid.Column="4"><TextBlock Text="{loc:L design_height}" Style="{StaticResource Label}"/><TextBox Text="{Binding ItemHeight}"/></StackPanel>
-                            </Grid>
-                            <TextBlock Text="{loc:L gh_item_notes}" Style="{StaticResource Label}"/>
-                            <TextBox Text="{Binding ItemNotes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="44"/>
-                            <WrapPanel Margin="0,8,0,0">
-                                <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveItemCommand}" Margin="0,0,8,0"/>
-                                <Button Style="{StaticResource DangerButton}" Content="{loc:L delete}" Command="{Binding DeleteItemCommand}"/>
-                            </WrapPanel>
-                        </StackPanel>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L int_open_layout}" Command="{Binding OpenLayoutCommand}" HorizontalAlignment="Left" Margin="0,10,0,0"/>
                     </StackPanel>
                 </Border>
 
