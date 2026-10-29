@@ -15,7 +15,10 @@
             <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding Selected}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
+                        <DockPanel>
+                          <Image DockPanel.Dock="Left" Source="{Binding Thumb}" Width="44" Height="44" Stretch="UniformToFill" Margin="0,0,10,0" VerticalAlignment="Top"
+                                 Visibility="{Binding Thumb, Converter={StaticResource HasValueVis}}"/>
+                          <StackPanel>
                             <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
                             <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" FontSize="12"/>
                             <Border Style="{StaticResource Badge}" HorizontalAlignment="Left" Margin="0,4,0,0" Visibility="{Binding Warning, Converter={StaticResource HasValueVis}}">
@@ -23,7 +26,8 @@
                                     <Run Text="⚠ "/><Run Text="{Binding Warning, Mode=OneWay}"/>
                                 </TextBlock>
                             </Border>
-                        </StackPanel>
+                          </StackPanel>
+                        </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -63,6 +67,39 @@
                     </Grid>
                     <TextBlock Text="{loc:L seed_notes}" Style="{StaticResource Label}"/>
                     <TextBox Text="{Binding EditNotes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="70"/>
+                    <TextBlock Text="{loc:L seed_photos}" Style="{StaticResource Label}"/>
+                    <TextBlock Text="{loc:L seed_photo_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                    <Grid Margin="0,6,0,0">
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="{loc:L seed_front}" FontWeight="SemiBold"/>
+                            <Button Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand" Command="{Binding OpenPhotoCommand}" CommandParameter="front" ToolTip="{loc:L seed_open_photo}" AutomationProperties.Name="{loc:L seed_front}">
+                                <Grid MinHeight="110" Background="#FFEEF3EA">
+                                    <Image Source="{Binding FrontImage}" MaxHeight="260" Stretch="Uniform"/>
+                                    <TextBlock Text="{loc:L seed_no_photo}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF5D6A58" Visibility="{Binding FrontImage, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>
+                                </Grid>
+                            </Button>
+                            <WrapPanel Margin="0,6,0,0">
+                                <Button Content="{loc:L seed_add_photo}" Command="{Binding AddPhotoCommand}" CommandParameter="front" Margin="0,0,6,4"/>
+                                <Button Content="{loc:L seed_paste_photo}" Command="{Binding PastePhotoCommand}" CommandParameter="front" Margin="0,0,6,4"/>
+                                <Button Content="{loc:L seed_remove_photo}" Command="{Binding RemovePhotoCommand}" CommandParameter="front" Margin="0,0,0,4"/>
+                            </WrapPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="{loc:L seed_back}" FontWeight="SemiBold"/>
+                            <Button Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand" Command="{Binding OpenPhotoCommand}" CommandParameter="back" ToolTip="{loc:L seed_open_photo}" AutomationProperties.Name="{loc:L seed_back}">
+                                <Grid MinHeight="110" Background="#FFEEF3EA">
+                                    <Image Source="{Binding BackImage}" MaxHeight="260" Stretch="Uniform"/>
+                                    <TextBlock Text="{loc:L seed_no_photo}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF5D6A58" Visibility="{Binding BackImage, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>
+                                </Grid>
+                            </Button>
+                            <WrapPanel Margin="0,6,0,0">
+                                <Button Content="{loc:L seed_add_photo}" Command="{Binding AddPhotoCommand}" CommandParameter="back" Margin="0,0,6,4"/>
+                                <Button Content="{loc:L seed_paste_photo}" Command="{Binding PastePhotoCommand}" CommandParameter="back" Margin="0,0,6,4"/>
+                                <Button Content="{loc:L seed_remove_photo}" Command="{Binding RemovePhotoCommand}" CommandParameter="back" Margin="0,0,0,4"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
                     <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
                         <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveCommand}" Margin="0,0,10,0"/>
                         <Button Style="{StaticResource DangerButton}" Content="{loc:L delete}" Command="{Binding DeleteCommand}" Visibility="{Binding IsExisting, Converter={StaticResource BoolToVis}}"/>

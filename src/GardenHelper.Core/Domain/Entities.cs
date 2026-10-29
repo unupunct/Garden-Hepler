@@ -212,6 +212,9 @@ public class SeedItem
     public decimal? GerminationPercent { get; set; }
     public decimal? Cost { get; set; }
     public string? Notes { get; set; }
+    /// <summary>File names (inside the seed-photos folder) of pictures of the packet: front, and back with the sowing instructions.</summary>
+    public string? FrontPhoto { get; set; }
+    public string? BackPhoto { get; set; }
 }
 
 public class GardenTask

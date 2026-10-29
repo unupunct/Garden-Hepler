@@ -28,8 +28,9 @@ public sealed partial class LibraryViewModel : PageViewModel
     private readonly INavigator _nav;
     private CancellationTokenSource? _searchCts;
 
-    public LibraryViewModel(LibraryService library, IDialogs dialogs, INavigator nav, ILogger<LibraryViewModel> log) : base(log)
+    public LibraryViewModel(LibraryService library, StarterLibrary starter, IDialogs dialogs, INavigator nav, ILogger<LibraryViewModel> log) : base(log)
     {
+        _starter = starter;
         _library = library; _dialogs = dialogs; _nav = nav;
     }
 
@@ -132,6 +133,24 @@ public sealed partial class LibraryViewModel : PageViewModel
         var files = _dialogs.PickBooks(BookFormats.DialogFilter);
         return files is null ? Task.CompletedTask : ImportAsync(files);
     }
+
+    private readonly StarterLibrary _starter;
+
+    /// <summary>Choose a folder and import every readable book in it (and its subfolders).</summary>
+    [RelayCommand]
+    private Task BrowseFolderAsync()
+    {
+        if (_dialogs.PickFolder() is not { } dir) return Task.CompletedTask;
+        var files = StarterLibrary.BooksIn(dir);
+        if (files.Count == 0) { ErrorMessage = Loc.T("lib_folder_empty"); return Task.CompletedTask; }
+        return ImportAsync(files);
+    }
+
+    /// <summary>Adds the books that come with the app (the ones already in the library are skipped).</summary>
+    [RelayCommand]
+    private Task AddStarterAsync() => ImportAsync(StarterLibrary.BooksIn(StarterFolder));
+
+    public static string StarterFolder => Path.Combine(AppContext.BaseDirectory, "StarterLibrary");
 
     /// <summary>Imports files (also used by drag and drop). Failures are listed; they never stop the rest of the batch.</summary>
     public Task ImportAsync(IEnumerable<string> files) => RunAsync(async () =>

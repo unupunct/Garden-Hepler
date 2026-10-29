@@ -1,3 +1,4 @@
+using GardenHelper.Core.Library;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -18,16 +19,20 @@ public sealed record WindowRow(PlantingWindow Window, string Activity, string Ra
 public sealed record CompanionRow(string OtherId, string OtherName, string Effect, string Evidence, string Category, string Explanation, string? Conditions);
 public sealed record DetailLine(string Label, string Value);
 
+public sealed record BookHitRow(int BookId, int Ordinal, string Book, string Section, string Snippet, string Term);
+
 public sealed partial class PlantsViewModel : PageViewModel
 {
     private readonly KnowledgeBase _kb;
     private readonly Repository _repo;
     private readonly INavigator _nav;
+    private readonly LibraryService _library;
+    private readonly ILogger _logger;
     private Garden? _garden;
 
-    public PlantsViewModel(KnowledgeBase kb, Repository repo, INavigator nav, ILogger<PlantsViewModel> log) : base(log)
+    public PlantsViewModel(KnowledgeBase kb, Repository repo, INavigator nav, LibraryService library, ILogger<PlantsViewModel> log) : base(log)
     {
-        _kb = kb; _repo = repo; _nav = nav;
+        _kb = kb; _repo = repo; _nav = nav; _library = library; _logger = log;
         Categories = new[] { new CategoryChip(null, Loc.T("all")) }
             .Concat(kb.Categories.Select(c => new CategoryChip(c, Loc.Enum("cat", c)))).ToList();
         SelectedCategory = Categories[0];
@@ -40,6 +45,8 @@ public sealed partial class PlantsViewModel : PageViewModel
     public ObservableCollection<CompanionRow> Companions { get; } = new();
     public ObservableCollection<string> Tips { get; } = new();
     public ObservableCollection<string> Roles { get; } = new();
+    public ObservableCollection<BookHitRow> BookHits { get; } = new();
+    [ObservableProperty] private bool _noBookHits;
 
     [ObservableProperty] private string _query = "";
     [ObservableProperty] private CategoryChip? _selectedCategory;
@@ -83,9 +90,10 @@ public sealed partial class PlantsViewModel : PageViewModel
 
     private void ShowDetail()
     {
-        Growing.Clear(); Tips.Clear(); Roles.Clear(); Companions.Clear();
+        Growing.Clear(); Tips.Clear(); Roles.Clear(); Companions.Clear(); BookHits.Clear(); NoBookHits = false;
         if (Selected is null) { Windows.Clear(); return; }
         var p = Selected.Plant; var lang = Loc.Instance.Language;
+        _ = LoadBookHitsAsync(p);
         Summary = p.SummaryText(lang);
         Caution = p.CautionText(lang);
         ConfidenceText = Loc.F("plant_confidence", Loc.Enum("conf", p.Confidence), p.Reviewed ?? "?");
@@ -164,6 +172,29 @@ public sealed partial class PlantsViewModel : PageViewModel
     {
         if (Selected is { } s) _nav.GoTo<SeedsViewModel>(vm => vm.PendingPlantId = s.Plant.Id);
     }
+
+    /// <summary>What the user's own books say about this plant: the best passages for its name (in the app language and in English).</summary>
+    private async Task LoadBookHitsAsync(PlantRecord p)
+    {
+        try
+        {
+            var names = new[] { p.Names.GetValueOrDefault(Loc.Instance.Language)?.FirstOrDefault(), p.Names.GetValueOrDefault("en")?.FirstOrDefault() }
+                .Where(n => !string.IsNullOrWhiteSpace(n)).Select(n => n!).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+            var rows = new List<BookHitRow>();
+            foreach (var name in names)
+                foreach (var h in await _library.SearchAsync(name, null, 4))
+                    if (!rows.Any(r => r.BookId == h.BookId && r.Ordinal == h.Ordinal))
+                        rows.Add(new BookHitRow(h.BookId, h.Ordinal, h.BookTitle, h.SectionTitle, h.Snippet.Replace("[[", "").Replace("]]", "").Replace('\n', ' ').Trim(), name));
+            if (Selected?.Plant.Id != p.Id) return;                      // the user moved on to another plant meanwhile
+            BookHits.Clear();
+            foreach (var r in rows.Take(5)) BookHits.Add(r);
+            NoBookHits = BookHits.Count == 0;
+        }
+        catch (Exception ex) { _logger.LogWarning(ex, "Library lookup for {Plant} failed", p.Id); }
+    }
+
+    [RelayCommand]
+    private void OpenBookHit(BookHitRow row) => _nav.GoTo<ReaderViewModel>(vm => vm.Open(row.BookId, row.Ordinal, row.Term));
 
     [RelayCommand]
     private void FindInLibrary()

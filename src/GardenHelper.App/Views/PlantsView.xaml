@@ -65,6 +65,21 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+                            <TextBlock Text="{loc:L plant_in_books}" Style="{StaticResource H2}" Margin="0,16,0,6"/>
+                            <TextBlock Text="{loc:L plant_in_books_none}" Style="{StaticResource Muted}" TextWrapping="Wrap" Visibility="{Binding NoBookHits, Converter={StaticResource BoolToVis}}"/>
+                            <ItemsControl ItemsSource="{Binding BookHits}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left" Padding="4,5" Cursor="Hand" AutomationProperties.Name="{Binding Book}"
+                                                Command="{Binding DataContext.OpenBookHitCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}">
+                                            <StackPanel MaxWidth="640">
+                                                <TextBlock FontWeight="SemiBold" TextWrapping="Wrap"><Run Text="{Binding Book, Mode=OneWay}"/><Run Text="  ·  " FontWeight="Normal"/><Run Text="{Binding Section, Mode=OneWay}" FontWeight="Normal"/></TextBlock>
+                                                <TextBlock Text="{Binding Snippet}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                             <WrapPanel Margin="0,18,0,0">
                                 <Button Content="{loc:L plant_add_seed}" Command="{Binding AddSeedCommand}" Margin="0,0,10,8"/>
                                 <Button Content="{loc:L plant_find_library}" Command="{Binding FindInLibraryCommand}" Margin="0,0,10,8"/>

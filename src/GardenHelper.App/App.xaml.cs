@@ -61,6 +61,8 @@ public partial class App : Application
             sc.AddSingleton<ClimateService>();
             sc.AddSingleton<GardenHelper.Core.Cameras.CameraClient>();
             sc.AddSingleton<CameraFeed>();
+            sc.AddSingleton<GardenHelper.Core.Library.StarterLibrary>();
+            sc.AddSingleton<GardenHelper.Core.Services.SeedPhotoStore>();
             sc.AddSingleton<GardenHelper.Core.Greenhouse.GreenhouseService>();
             sc.AddSingleton<GardenHelper.Core.Planning.RemoteService>();
             sc.AddSingleton<LocalApiServer>();
@@ -85,6 +87,11 @@ public partial class App : Application
             Services.GetRequiredService<ShellViewModel>().Start();
             _ = Services.GetRequiredService<LocalApiServer>().StartFromSettingsAsync();
 
+            _ = Task.Run(async () =>
+            {
+                try { await Services.GetRequiredService<GardenHelper.Core.Library.StarterLibrary>().ImportOnFirstRunAsync(ViewModels.LibraryViewModel.StarterFolder); }
+                catch (Exception ex) { _log.LogWarning(ex, "Adding the starter library failed"); }
+            });
             _ = Task.Run(async () =>
             {
                 try { await Services.GetRequiredService<BackupService>().AutoBackupIfDueAsync(TimeSpan.FromDays(7)); }

@@ -15,7 +15,11 @@
                 <TextBlock Text="{loc:L nav_library}" Style="{StaticResource H1}"/>
                 <TextBlock Text="{Binding StatsText}" Style="{StaticResource Muted}" Margin="0,2,0,12"/>
             </StackPanel>
-            <Button Grid.Column="1" Style="{StaticResource PrimaryButton}" Content="{loc:L lib_import}" Command="{Binding BrowseCommand}" VerticalAlignment="Top" IsEnabled="{Binding IsImporting, Converter={StaticResource Not}}"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" IsEnabled="{Binding IsImporting, Converter={StaticResource Not}}">
+                <Button Content="{loc:L lib_add_starter}" Command="{Binding AddStarterCommand}" Margin="0,0,8,0" ToolTip="{loc:L lib_add_starter_tip}"/>
+                <Button Content="{loc:L lib_import_folder}" Command="{Binding BrowseFolderCommand}" Margin="0,0,8,0"/>
+                <Button Style="{StaticResource PrimaryButton}" Content="{loc:L lib_import}" Command="{Binding BrowseCommand}"/>
+            </StackPanel>
         </Grid>
 
         <StackPanel Grid.Row="1">

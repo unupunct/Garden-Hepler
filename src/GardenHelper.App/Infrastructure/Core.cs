@@ -15,6 +15,7 @@ public interface IDialogs
 {
     string[]? PickBooks(string filter);
     string? PickFile(string filter);
+    string? PickFolder(string? title = null);
     bool Confirm(string message, string? title = null);
     void Info(string message, string? title = null);
     void OpenFolder(string path);
@@ -33,6 +34,12 @@ public sealed class WpfDialogs : IDialogs
     {
         var dlg = new OpenFileDialog { Filter = filter, CheckFileExists = true };
         return dlg.ShowDialog() == true ? dlg.FileName : null;
+    }
+
+    public string? PickFolder(string? title = null)
+    {
+        var dlg = new OpenFolderDialog { Title = title ?? Loc.T("lib_import_folder") };
+        return dlg.ShowDialog() == true ? dlg.FolderName : null;
     }
 
     public bool Confirm(string message, string? title = null) =>

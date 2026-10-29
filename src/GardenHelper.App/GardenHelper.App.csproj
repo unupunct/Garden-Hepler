@@ -38,6 +38,8 @@
     <Resource Include="Assets\GardenHelper.ico" />
     <!-- Knowledge-base content ships as plain JSON next to the executable (see docs/CONTENT.md). -->
     <!-- The phone web app is served by the local API (see docs/PHONE-AND-HOME-ASSISTANT.md). -->
+    <!-- Books that come with the app (only redistributable ones; see content/starter-library/SOURCES.md). -->
+    <Content Include="..\..\content\starter-library\*.pdf;..\..\content\starter-library\*.epub;..\..\content\starter-library\*.txt" Link="StarterLibrary\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\mobile\*" Link="Mobile\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\content\**\*.json" Link="Content\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

@@ -721,7 +721,13 @@ namespace GardenHelper.Core.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("BackPhoto")
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal?>("Cost")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FrontPhoto")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal?>("GerminationPercent")

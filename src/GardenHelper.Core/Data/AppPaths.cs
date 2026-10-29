@@ -19,6 +19,7 @@ public sealed class AppPaths
     public string BackupDir => Ensure(Path.Combine(Root, "backups"));
     public string LogDir => Ensure(Path.Combine(Root, "logs"));
     public string UserContentDir => Ensure(Path.Combine(Root, "content"));
+    public string SeedPhotosDir => Ensure(Path.Combine(Root, "seed-photos"));
     public string SiteDir => Ensure(Path.Combine(Root, "site"));
     public string WebViewDataDir => Ensure(Path.Combine(Root, "webview2"));
 

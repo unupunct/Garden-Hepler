@@ -1,3 +1,5 @@
+using System.Windows.Media;
+using System.IO;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -224,10 +226,13 @@ public sealed partial class SeedsViewModel : PageViewModel
     private readonly Repository _repo;
     private readonly KnowledgeBase _kb;
     private readonly IDialogs _dialogs;
+    private readonly SeedPhotoStore _photos;
+    private readonly List<string> _unsaved = new();      // pictures added to the form but not saved yet
+    private readonly List<string> _replaced = new();     // saved pictures the form no longer uses; deleted once the seed is saved
 
-    public SeedsViewModel(Repository repo, KnowledgeBase kb, IDialogs dialogs, ILogger<SeedsViewModel> log) : base(log)
+    public SeedsViewModel(Repository repo, KnowledgeBase kb, IDialogs dialogs, SeedPhotoStore photos, ILogger<SeedsViewModel> log) : base(log)
     {
-        _repo = repo; _kb = kb; _dialogs = dialogs;
+        _repo = repo; _kb = kb; _dialogs = dialogs; _photos = photos;
         Plants = new[] { new PlantOption(null, Loc.T("none")) }
             .Concat(kb.Plants.OrderBy(p => p.DisplayName(Loc.Instance.Language)).Select(p => new PlantOption(p.Id, p.DisplayName(Loc.Instance.Language)))).ToList();
         NewItem();
@@ -252,14 +257,23 @@ public sealed partial class SeedsViewModel : PageViewModel
     [ObservableProperty] private string _editCost = "";
     [ObservableProperty] private string _editNotes = "";
     [ObservableProperty] private bool _isExisting;
+    [ObservableProperty] private string? _editFront;
+    [ObservableProperty] private string? _editBack;
+    [ObservableProperty] private ImageSource? _frontImage;
+    [ObservableProperty] private ImageSource? _backImage;
+
+    partial void OnEditFrontChanged(string? value) => FrontImage = PhotoImage.Load(_photos.PathOf(value), 700);
+    partial void OnEditBackChanged(string? value) => BackImage = PhotoImage.Load(_photos.PathOf(value), 700);
 
     public string? PendingPlantId { get; set; }
     public int? PendingSelect { get; set; }
 
     partial void OnSelectedChanged(SeedRow? value)
     {
+        DiscardUnsaved();
         if (value is null) return;
         var s = value.Seed;
+        EditFront = s.FrontPhoto; EditBack = s.BackPhoto; _replaced.Clear();
         EditPlant = Plants.FirstOrDefault(p => p.Id == s.PlantId) ?? Plants[0];
         EditName = s.Name; EditVariety = s.Variety ?? ""; EditSupplier = s.Supplier ?? ""; EditLot = s.Lot ?? "";
         EditPurchase = Dates.ToDateTime(s.PurchaseDate); EditQuantity = Num(s.Quantity); EditRemaining = Num(s.QuantityRemaining);
@@ -285,7 +299,7 @@ public sealed partial class SeedsViewModel : PageViewModel
         {
             var warn = s.ReviewDate is { } d && d <= today ? Loc.T("seed_badge_review")
                 : s.Quantity > 0 && s.QuantityRemaining <= s.Quantity * 0.2m ? Loc.T("seed_badge_low") : null;
-            Items.Add(new SeedRow(s, warn));
+            Items.Add(new SeedRow(s, warn, PhotoImage.Load(_photos.PathOf(s.FrontPhoto), 90)));
         }
         if (PendingPlantId is { } pid)
         {
@@ -299,7 +313,7 @@ public sealed partial class SeedsViewModel : PageViewModel
     [RelayCommand]
     private void NewItem()
     {
-        Selected = null; IsExisting = false;
+        Selected = null; DiscardUnsaved(); _replaced.Clear(); EditFront = EditBack = null; IsExisting = false;
         EditPlant = Plants[0]; EditName = EditVariety = EditSupplier = EditLot = EditStorage = EditNotes = EditGermination = EditCost = "";
         EditQuantity = EditRemaining = ""; EditUnit = "seeds"; EditPurchase = DateTime.Today; EditReview = null;
     }
@@ -316,17 +330,69 @@ public sealed partial class SeedsViewModel : PageViewModel
         var s = Selected?.Seed ?? new SeedItem();
         s.PlantId = EditPlant?.Id; s.Name = EditName.Trim(); s.Variety = Blank(EditVariety); s.Supplier = Blank(EditSupplier); s.Lot = Blank(EditLot);
         s.PurchaseDate = Dates.ToDateOnly(EditPurchase); s.Quantity = quantity; s.QuantityRemaining = remaining; s.Unit = string.IsNullOrWhiteSpace(EditUnit) ? "seeds" : EditUnit.Trim();
+        s.FrontPhoto = EditFront; s.BackPhoto = EditBack;
         s.StorageLocation = Blank(EditStorage); s.ReviewDate = Dates.ToDateOnly(EditReview); s.GerminationPercent = germ; s.Cost = Parse(EditCost); s.Notes = Blank(EditNotes);
         var saved = await _repo.SaveAsync(s);
+        _unsaved.Clear();                                            // these are kept now
+        foreach (var old in _replaced) _photos.Delete(old);
+        _replaced.Clear();
         PendingSelect = saved.Id;
         await LoadAsync();
         StatusMessage = Loc.T("saved");
     }, busy: false);
 
+    private void DiscardUnsaved() { foreach (var f in _unsaved) _photos.Delete(f); _unsaved.Clear(); }
+
+    private const string ImageFilter = "Pictures|*.jpg;*.jpeg;*.png;*.gif;*.bmp;*.webp|*.*|*.*";
+
+    private void SetPhoto(string side, string? name)
+    {
+        var old = side == "front" ? EditFront : EditBack;
+        if (old is not null) { if (_unsaved.Remove(old)) _photos.Delete(old); else _replaced.Add(old); }
+        if (name is not null) _unsaved.Add(name);
+        if (side == "front") EditFront = name; else EditBack = name;
+    }
+
+    /// <summary>Choose a picture of the packet (side is "front" or "back").</summary>
+    [RelayCommand]
+    private Task AddPhotoAsync(string side) => RunAsync(async () =>
+    {
+        if (_dialogs.PickFile(ImageFilter) is not { } file) return;
+        if (await _photos.AddFileAsync(file) is not { } name) { ErrorMessage = Loc.T("seed_photo_bad"); return; }
+        SetPhoto(side, name);
+    }, busy: false);
+
+    /// <summary>Paste a picture from the clipboard: a copied image, a screenshot, or a copied picture file.</summary>
+    [RelayCommand]
+    private Task PastePhotoAsync(string side) => RunAsync(async () =>
+    {
+        string? name = null;
+        if (System.Windows.Clipboard.ContainsFileDropList() && System.Windows.Clipboard.GetFileDropList().Cast<string>().FirstOrDefault() is { } f) name = await _photos.AddFileAsync(f);
+        else if (System.Windows.Clipboard.ContainsImage() && System.Windows.Clipboard.GetImage() is { } img)
+        {
+            var enc = new System.Windows.Media.Imaging.PngBitmapEncoder();
+            enc.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(img));
+            using var ms = new MemoryStream(); enc.Save(ms);
+            name = await _photos.AddBytesAsync(ms.ToArray());
+        }
+        if (name is null) { ErrorMessage = Loc.T("seed_photo_none_clip"); return; }
+        SetPhoto(side, name);
+    }, busy: false);
+
+    [RelayCommand] private void RemovePhoto(string side) => SetPhoto(side, null);
+
+    [RelayCommand]
+    private void OpenPhoto(string side)
+    {
+        if (_photos.PathOf(side == "front" ? EditFront : EditBack) is { } p && File.Exists(p))
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(p) { UseShellExecute = true });
+    }
+
     [RelayCommand]
     private Task DeleteAsync() => RunAsync(async () =>
     {
         if (Selected is null || !_dialogs.Confirm(Loc.T("confirm_delete"))) return;
+        _photos.Delete(Selected.Seed.FrontPhoto); _photos.Delete(Selected.Seed.BackPhoto);
         await _repo.DeleteAsync(Selected.Seed);
         NewItem();
         await LoadAsync();
@@ -335,7 +401,7 @@ public sealed partial class SeedsViewModel : PageViewModel
     private static string? Blank(string s) => string.IsNullOrWhiteSpace(s) ? null : s.Trim();
 }
 
-public sealed record SeedRow(SeedItem Seed, string? Warning)
+public sealed record SeedRow(SeedItem Seed, string? Warning, ImageSource? Thumb)
 {
     public override string ToString() => Title;
     public string Title => Seed.Name + (string.IsNullOrWhiteSpace(Seed.Variety) ? "" : " – " + Seed.Variety);
