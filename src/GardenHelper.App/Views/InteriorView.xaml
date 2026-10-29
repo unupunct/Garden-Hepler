@@ -159,7 +159,15 @@
                                                 </Viewbox>
                                                 <TextBlock Text="{Binding Label}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,8,0,0" FontWeight="SemiBold" Foreground="#AA4A4130" IsHitTestVisible="False"
                                                            FontSize="{Binding DataContext.LabelSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Visibility="{Binding IsRoom, Converter={StaticResource BoolToVis}}"/>
-                                                <Thumb Opacity="0" Cursor="SizeAll" DragStarted="OnMoveStart" DragDelta="OnMove" DragCompleted="OnMoveDone"/>
+                                                <Thumb Opacity="0" Cursor="SizeAll" DragStarted="OnMoveStart" DragDelta="OnMove" DragCompleted="OnMoveDone">
+                                                    <Thumb.Style>
+                                                        <Style TargetType="Thumb">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsRoom}" Value="True"><Setter Property="VerticalAlignment" Value="Top"/><Setter Property="Height" Value="70"/></DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Thumb.Style>
+                                                </Thumb>
                                                 <Thumb HorizontalAlignment="Right" VerticalAlignment="Bottom" Cursor="SizeNWSE" Background="#FFC0562B" Visibility="{Binding IsSelected, Converter={StaticResource BoolToVis}}"
                                                        Width="{Binding DataContext.HandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="{Binding DataContext.HandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                        DragStarted="OnResizeStart" DragDelta="OnResize" DragCompleted="OnResizeDone">

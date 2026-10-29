@@ -163,11 +163,11 @@ public sealed class GreenhouseService
     }
 
     /// <summary>Saves readings from the Pi (unknown or impossible values are ignored) and updates the automatic switches. Returns how many values were kept.</summary>
-    public async Task<int> IngestAsync(int featureId, IReadOnlyDictionary<string, double> values, DateTime nowUtc, CancellationToken ct = default)
+    public async Task<int> IngestAsync(int featureId, IReadOnlyDictionary<string, double> values, DateTime nowUtc, CancellationToken ct = default, bool applyRules = true)
     {
         var kept = values.Where(kv => GreenhouseRules.Plausible(kv.Key, kv.Value)).ToList();
         foreach (var kv in kept) await _repo.SaveAsync(new GreenhouseReading { FeatureId = featureId, Metric = kv.Key, Value = kv.Value, AtUtc = nowUtc }, ct);
-        if (kept.Count > 0) await ApplyRulesAsync(featureId, ct);
+        if (kept.Count > 0 && applyRules) await ApplyRulesAsync(featureId, ct);
         return kept.Count;
     }
 

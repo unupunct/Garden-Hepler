@@ -415,6 +415,12 @@ await Money(1000, "infrastructure", 2200, "Roof repair and the chimney lining");
 await Money(700, "infrastructure", 1400, "Greenhouse: polycarbonate, concrete, hinges"); await Money(540, "plants", 380, "Hedge plants, 300 bare-root"); await Money(420, "sales", 520, "First honey and wax", true);
 await Money(380, "infrastructure", 350, "Pond liner and pump"); await Money(330, "sales", 1100, "Eggs, honey and vegetables over the year", true);
 
+// outdoor soil sensors: the vegetable garden is dry (red dot), the orchard is fine (green dot)
+foreach (var k in new[] { "rb1", "rb2", "rb3", "rb4", "herb", "gb1", "gb2", "gb3", "gb4", "gb5", "gb6" }) { beds[k].SensorFeatureId = features["veg"].Id; await repo.SaveAsync(beds[k]); }
+foreach (var t in trees) { beds[t.Key].SensorFeatureId = features["orchard"].Id; await repo.SaveAsync(beds[t.Key]); }
+await gh.IngestAsync(features["veg"].Id, new Dictionary<string, double> { ["soil_moisture"] = 21, ["air_temp"] = 11.2 }, DateTime.UtcNow.AddMinutes(-12), default, applyRules: false);
+await gh.IngestAsync(features["orchard"].Id, new Dictionary<string, double> { ["soil_moisture"] = 58, ["air_temp"] = 10.8 }, DateTime.UtcNow.AddMinutes(-9), default, applyRules: false);
+
 // ---------------------------------------------------------------- settings: the demo knows it is demo data
 var settings = new SettingsService(new ContextFactory(paths));
 await settings.SetAsync("language", "en");

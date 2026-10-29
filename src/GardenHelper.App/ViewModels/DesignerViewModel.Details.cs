@@ -12,7 +12,7 @@ public sealed partial class DesignerViewModel
     /// <summary>Lays the bed's plants out on the real spacing grid (one strip per planting) and prepares the hover summary.</summary>
     private void RebuildMarkers(BedItem item)
     {
-        var active = item.Bed.Plantings.Where(p => p.Status != PlantingStatus.Finished).ToList();
+        var active = VisiblePlantings(item.Bed).ToList();
         var lang = Loc.Instance.Language; var culture = Loc.Instance.Culture;
         var tip = new List<string> { $"{item.Name} · {item.SizeText}" };
         var markers = new List<PlantMarker>();

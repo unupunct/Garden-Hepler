@@ -102,7 +102,7 @@ public sealed partial class DesignerViewModel
         rows.Add(new(Loc.T("card_bed"), $"{bed.Name} · {bed.SizeText}"));
 
         var sensors = new List<CardRow>(); var sensorNote = Loc.T("card_no_sensors");
-        if (bed.Bed.FeatureId is { } fid)
+        if ((bed.Bed.SensorFeatureId ?? bed.Bed.FeatureId) is { } fid)
         {
             var latest = await _greenhouse.LatestAsync(fid);
             foreach (var met in GreenhouseCatalog.Metrics)

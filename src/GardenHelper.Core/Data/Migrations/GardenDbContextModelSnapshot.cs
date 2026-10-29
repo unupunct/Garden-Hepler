@@ -590,6 +590,9 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Property<double>("Rotation")
                         .HasColumnType("REAL");
 
+                    b.Property<int?>("SensorFeatureId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ShadePercent")
                         .HasColumnType("INTEGER");
 

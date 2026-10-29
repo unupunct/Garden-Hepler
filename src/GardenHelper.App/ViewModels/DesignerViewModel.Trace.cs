@@ -67,14 +67,15 @@ public sealed partial class DesignerViewModel
         if (GeoMath.SelfIntersects(geo)) { ErrorMessage = Loc.T("trace_crossing"); return; }
         var name = TraceName.Trim();
         await _repo.SaveAsync(new PropertyFeature { GardenId = _garden.Id, Name = name, Kind = (TraceKind ?? TraceKinds.First()).Key, PointsJson = GeoMath.ToJson(geo) });
-        var cx = _trace.Average(t => t.X); var cy = _trace.Average(t => t.Y); var keep = Scale;
+        var cx = _trace.Average(t => t.X); var cy = _trace.Average(t => t.Y);
+        var g0 = _frame.ToGeo(new Pt(0, 0));
         CancelTrace();
-        await LoadAsync();
-        Scale = keep; RequestCenter(cx, cy);          // stay where you were working
+        await ReloadKeepingViewAsync(g0);          // the plan origin may move: beds and cameras move with it
+        RequestCenter(cx, cy);
         StatusMessage = Loc.F("trace_saved", name);
     }, busy: false);
 
-    /// <summary>Double-clicking a traced place: buildings open their plan, garden spaces become a bed to plant.</summary>
+    /// <summary>Double-clicking a traced place: buildings open their plan, garden spaces become a bed to plant. A single click selects it for reshaping.</summary>
     [RelayCommand]
     private void OpenShape(FeatureShape shape)
     {

@@ -163,6 +163,8 @@ public class GardenBed
     public bool Locked { get; set; }
     /// <summary>The map feature (garden space) this bed was planned from, if any.</summary>
     public int? FeatureId { get; set; }
+    /// <summary>The place whose sensor readings (soil moisture, temperature) belong to this bed.</summary>
+    public int? SensorFeatureId { get; set; }
     /// <summary>Share of the day the spot is shaded by buildings or trees, 0-90 (user estimate).</summary>
     public int ShadePercent { get; set; }
     public string? Notes { get; set; }

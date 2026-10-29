@@ -39,6 +39,9 @@ public sealed partial class BedItem : ObservableObject
     [ObservableProperty] private bool _isSelected;
     [ObservableProperty] private bool _isHighlighted;
     [ObservableProperty] private string _plantsText = "";
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasSensorDot))] private Brush? _sensorBrush;
+    [ObservableProperty] private string _sensorTip = "";
+    public bool HasSensorDot => SensorBrush is not null;
 
     public string Label => (Locked ? "🔒 " : "") + Name;
     public string SizeText => $"{Width / 100:0.##} × {Height / 100:0.##} m";
@@ -104,6 +107,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     private readonly IDialogs _dialogs;
     private readonly INavigator _nav;
     private readonly ILogger _logger;
+    private readonly SettingsService _settings;
     private readonly GardenHelper.Core.Greenhouse.GreenhouseService _greenhouse;
     private Garden? _garden;
     private readonly Dictionary<int, BedState> _snapshots = new();
@@ -114,9 +118,9 @@ public sealed partial class DesignerViewModel : PageViewModel
 
     private readonly BackdropService _backdrops;
 
-    public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, BackdropService backdrops, CameraFeed camFeed, GardenHelper.Core.Greenhouse.GreenhouseService greenhouse, ILogger<DesignerViewModel> log) : base(log)
+    public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, BackdropService backdrops, CameraFeed camFeed, GardenHelper.Core.Greenhouse.GreenhouseService greenhouse, SettingsService settings, ILogger<DesignerViewModel> log) : base(log)
     {
-        _logger = log; _greenhouse = greenhouse; _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
+        _settings = settings; _logger = log; _greenhouse = greenhouse; _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
         Palette = PlanElements.Groups.Select(g => new PaletteGroup(Loc.T("pal_" + g),
             (g == "devices" ? new[] { new PaletteItem("camera", Loc.T("pal_camera"), "◉") }
                             : PlanElements.InGroup(g).Select(e => new PaletteItem(e.Key, Loc.T((e.IsStructure ? "feat_" : "kind_") + e.Key), e.Glyph)).ToArray()))).ToList();
@@ -310,7 +314,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     {
         if (oldValue is not null) oldValue.IsSelected = false;
         if (newValue is not null) { newValue.IsSelected = true; SelectedKind = Kinds.First(k => k.Key == newValue.Kind); PanelTab = 1; }
-        OnPropertyChanged(nameof(HasSelection)); OnPropertyChanged(nameof(StatusSelection));
+        OnPropertyChanged(nameof(HasSelection)); OnPropertyChanged(nameof(StatusSelection)); SyncSensorOption();
         UpdateOverlap();
         _ = RefreshPlantingsAsync();
     }
@@ -322,11 +326,12 @@ public sealed partial class DesignerViewModel : PageViewModel
 
     public override Task LoadAsync() => RunAsync(async () =>
     {
+        await LoadPrefsAsync();
         _garden = await _repo.ActiveGardenAsync();
         HasGarden = _garden is not null;
         if (_garden is null) return;
 
-        var featureEntities = await _repo.ListAsync<PropertyFeature>(q => q.Where(f => f.GardenId == _garden.Id));
+        var featureEntities = await _repo.ListAsync<PropertyFeature>(q => q.Where(f => f.GardenId == _garden.Id)); _features = featureEntities;
         var keep = Selected?.Id;
         var beds = await _repo.ListAsync<GardenBed>(q => q.Where(b => b.GardenId == _garden.Id).Include(b => b.Plantings).OrderBy(b => b.Id));
         var hidden = beds.Where(b => b.FeatureId is not null && FeatureCatalog.IsStructure(b.Kind)).Select(b => b.FeatureId!.Value).ToHashSet();
@@ -337,10 +342,12 @@ public sealed partial class DesignerViewModel : PageViewModel
         Beds.Clear(); _snapshots.Clear();
         foreach (var b in beds) { Beds.Add(Wrap(b)); _snapshots[b.Id] = Capture(b); }
         await LoadBadgesAsync();
+        await LoadSensorDotsAsync();
         Selected = Beds.FirstOrDefault(b => b.Id == keep);
         BuildCards();
         RebuildCalendar();
         await RefreshAlertsAsync();
+        if (_autoFit) FitView();      // frame everything again now that the beds are in
         if (PlanFeatureId is { } planId) { PlanFeatureId = null; await PlanFeatureCoreAsync(planId); }
     });
 

@@ -100,7 +100,7 @@ public sealed partial class GreenhouseViewModel : PageViewModel
     [ObservableProperty] private string _apiPort = LocalApiServer.DefaultPort.ToString();
     [ObservableProperty] private string _apiToken = "";
     [ObservableProperty] private string _apiStatus = "";
-    [ObservableProperty] private string _piExample = "";
+    [ObservableProperty] private string _piExample = "", _piCheckExample = "", _piRunExample = "", _pcAddress = "";
 
     private static double? Num(string s) => double.TryParse(s.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out var v) && double.IsFinite(v) ? v : null;
     private static string F(double v) => v.ToString("0.#", CultureInfo.InvariantCulture);
@@ -270,10 +270,28 @@ public sealed partial class GreenhouseViewModel : PageViewModel
     }
 
     // ---- Raspberry Pi connection ----
+    /// <summary>This PC's address on the home network (a private IPv4 address), so the Pi command can be copied as it is.</summary>
+    private static string? LocalAddress()
+    {
+        try
+        {
+            var found = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
+                .Where(n => n.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up && n.NetworkInterfaceType is not (System.Net.NetworkInformation.NetworkInterfaceType.Loopback or System.Net.NetworkInformation.NetworkInterfaceType.Tunnel))
+                .SelectMany(n => n.GetIPProperties().UnicastAddresses).Select(a => a.Address)
+                .Where(a => a.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).Select(a => a.ToString())
+                .Where(a => a.StartsWith("192.168.") || a.StartsWith("10.") || (a.StartsWith("172.") && int.TryParse(a.Split('.')[1], out var b) && b is >= 16 and <= 31)).ToList();
+            return found.FirstOrDefault(a => a.StartsWith("192.168.")) ?? found.FirstOrDefault();
+        }
+        catch { return null; }
+    }
+
     private void UpdateApiTexts()
     {
         ApiStatus = _api.Running ? Loc.F("gh_api_on", _api.Port) : Loc.T("gh_api_off");
-        PiExample = $"python3 greenhouse_agent.py --server http://<{Loc.T("gh_pc_address")}>:{ApiPort} --token {ApiToken} --greenhouse {HouseId}";
+        PcAddress = LocalAddress() ?? $"<{Loc.T("gh_pc_address")}>";
+        PiExample = $"python3 greenhouse_agent.py --server http://{PcAddress}:{ApiPort} --token {ApiToken} --greenhouse {HouseId}";
+        PiCheckExample = PiExample + " --check";
+        PiRunExample = PiExample + " --simulate";
     }
 
     partial void OnApiEnabledChanged(bool value) { if (!_loading) _ = ApplyApiAsync(); }
@@ -300,5 +318,12 @@ public sealed partial class GreenhouseViewModel : PageViewModel
         ApiToken = await _api.ResetTokenAsync(); UpdateApiTexts(); StatusMessage = Loc.T("gh_new_token_done");
     }, busy: false);
 
+    [RelayCommand] private void CopyText(string text) { try { System.Windows.Clipboard.SetText(text); StatusMessage = Loc.T("gh_copied"); } catch { ErrorMessage = Loc.T("gh_copy_fail"); } }
+    [RelayCommand] private void OpenGuideFolder()
+    {
+        var dir = System.IO.Path.Combine(AppContext.BaseDirectory, "tools", "raspberry-pi");
+        if (!System.IO.Directory.Exists(dir)) dir = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "tools", "raspberry-pi"));
+        if (System.IO.Directory.Exists(dir)) _dialogs.OpenFolder(dir); else ErrorMessage = Loc.T("gh_guide_missing");
+    }
     [RelayCommand] private void CopyExample() { try { System.Windows.Clipboard.SetText(PiExample); StatusMessage = Loc.T("gh_copied"); } catch { ErrorMessage = Loc.T("gh_copy_fail"); } }
 }

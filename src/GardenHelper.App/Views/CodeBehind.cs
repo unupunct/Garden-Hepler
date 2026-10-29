@@ -362,7 +362,7 @@ public partial class DesignerView : UserControl
 
     private void OnViewportSize(object sender, SizeChangedEventArgs e)
     {
-        if (Vm is { } vm) { vm.ViewportWidth = CanvasScroll.ViewportWidth > 0 ? CanvasScroll.ViewportWidth : e.NewSize.Width; vm.ViewportHeight = CanvasScroll.ViewportHeight > 0 ? CanvasScroll.ViewportHeight : e.NewSize.Height; vm.ViewportChanged(); }
+        if (Vm is { } vm) { vm.ViewportWidth = e.NewSize.Width; vm.ViewportHeight = e.NewSize.Height; vm.ViewportChanged(); }   // the real size of the plan window (scroll bars come and go and would make the numbers jump)
     }
 
     /// <summary>Zooms by a factor, keeping the point under the pointer (or the middle of the window) where it is.</summary>
@@ -395,7 +395,22 @@ public partial class DesignerView : UserControl
 
     private void OnShapeClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        if (e.ClickCount == 2 && (sender as FrameworkElement)?.DataContext is FeatureShape shape && Vm is { } vm) { vm.OpenShapeCommand.Execute(shape); e.Handled = true; }
+        if ((sender as FrameworkElement)?.DataContext is not FeatureShape shape || Vm is not { } vm || vm.Tracing) return;
+        if (e.ClickCount == 2) vm.OpenShapeCommand.Execute(shape); else vm.BeginEdit(shape);
+        e.Handled = true;
+    }
+
+    private static EditPin? Pin(object sender) => (sender as FrameworkElement)?.DataContext as EditPin;
+    private void OnEditPinDrag(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+    {
+        if (Pin(sender) is not { } p || p.IsMid || Vm is not { } vm) return;
+        p.X += e.HorizontalChange; p.Y += e.VerticalChange; vm.MoveEditPin(p);
+    }
+    private async void OnEditPinDone(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) { if (Pin(sender) is { IsMid: false } && Vm is { } vm) await vm.CommitEditAsync(); }
+    private async void OnEditMidClick(object sender, RoutedEventArgs e) { if (Pin(sender) is { IsMid: true } p && Vm is { } vm) await vm.AddCornerAsync(p); }
+    private async void OnEditPinRightClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (Pin(sender) is { IsMid: false } p && Vm is { } vm) { await vm.RemoveCornerAsync(p); e.Handled = true; }
     }
 
     private void OnPanStart(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -405,7 +420,7 @@ public partial class DesignerView : UserControl
         if (Vm is { CardOpen: true } open) open.CardOpen = false;   // any click on the plan closes the plant card (clicking a plant opens it again)
         var middle = e.ChangedButton == System.Windows.Input.MouseButton.Middle;
         var background = e.ChangedButton == System.Windows.Input.MouseButton.Left && e.OriginalSource is DependencyObject src && IsInside(src, World)
-                         && (src as FrameworkElement)?.DataContext is not BedItem;
+                         && (src as FrameworkElement)?.DataContext is not (BedItem or FeatureShape or EditPin);
         if (!middle && !background) return;
         _panning = true; _panStart = e.GetPosition(CanvasScroll); _panH = CanvasScroll.HorizontalOffset; _panV = CanvasScroll.VerticalOffset;
         CanvasScroll.CaptureMouse(); CanvasScroll.Cursor = System.Windows.Input.Cursors.Hand; e.Handled = middle;

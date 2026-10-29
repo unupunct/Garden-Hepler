@@ -153,9 +153,26 @@
                     </StackPanel>
                     <Button Content="{loc:L design_backdrop_load}" Command="{Binding LoadBackdropCommand}" Padding="10,5" Margin="0,0,0,4" ToolTip="{loc:L design_backdrop_tip}"/>
                     <Button Style="{StaticResource PrimaryButton}" Content="{loc:L trace_start}" Command="{Binding StartTraceCommand}" Padding="10,5" Margin="8,0,0,4" ToolTip="{loc:L trace_help}"/>
+                    <StackPanel Orientation="Horizontal" Margin="8,0,0,4" VerticalAlignment="Center">
+                        <DatePicker SelectedDate="{Binding ViewDate}" Width="140" ToolTip="{loc:L season_view}" AutomationProperties.Name="{loc:L season_view}"/>
+                        <Button Content="{loc:L season_now}" Command="{Binding BackToNowCommand}" Margin="6,0,0,0" Padding="10,5" Visibility="{Binding IsHistorical, Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
                 </WrapPanel>
             </Grid>
             <v:Banners Margin="0,6,0,0"/>
+            <Border Visibility="{Binding Editing, Converter={StaticResource BoolToVis}}" Background="#FFEAF3FA" BorderBrush="#FFBBD5E8" BorderThickness="1" CornerRadius="14" Padding="12,8" Margin="0,8,0,0">
+                <StackPanel>
+                    <TextBlock Text="{loc:L edit_help}" TextWrapping="Wrap" FontSize="12" Foreground="#FF3E5566"/>
+                    <WrapPanel Margin="0,6,0,0">
+                        <TextBox Text="{Binding EditName, UpdateSourceTrigger=PropertyChanged}" Width="220" AutomationProperties.Name="{loc:L trace_name}" Margin="0,0,8,4"/>
+                        <ComboBox ItemsSource="{Binding TraceKinds}" SelectedItem="{Binding EditKind}" MinWidth="170" AutomationProperties.Name="{loc:L trace_kind}" Margin="0,0,8,4"/>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveEditCommand}" Margin="0,0,6,4"/>
+                        <Button Content="{loc:L edit_open_plan}" Command="{Binding OpenEditPlanCommand}" Visibility="{Binding EditIsPlan, Converter={StaticResource BoolToVis}}" Margin="0,0,6,4"/>
+                        <Button Style="{StaticResource DangerButton}" Content="{loc:L delete}" Command="{Binding DeleteEditCommand}" Margin="0,0,6,4"/>
+                        <Button Content="{loc:L edit_done}" Command="{Binding DoneEditCommand}" Margin="0,0,0,4"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
             <Border Visibility="{Binding Tracing, Converter={StaticResource BoolToVis}}" Background="#FFFFF4E0" BorderBrush="#FFE7C98E" BorderThickness="1" CornerRadius="14" Padding="12,8" Margin="0,8,0,0">
                 <StackPanel>
                     <TextBlock Text="{loc:L trace_help}" TextWrapping="Wrap" FontSize="12" Foreground="#FF5B4A28"/>
@@ -239,6 +256,7 @@
                         <TextBlock Text="{Binding CursorText}" Style="{StaticResource Muted}" FontSize="12" MinWidth="170" Margin="0,0,16,0"/>
                         <TextBlock Text="{Binding BoundaryText}" FontSize="12" Margin="0,0,16,0" Visibility="{Binding HasBoundary, Converter={StaticResource BoolToVis}}"/>
                         <TextBlock Text="{Binding StatusSelection}" FontSize="12" Margin="0,0,16,0"/>
+                        <TextBlock Text="{Binding ViewDateInfo}" FontSize="12" Foreground="#FFB5742B" Margin="0,0,16,0" Visibility="{Binding IsHistorical, Converter={StaticResource BoolToVis}}"/>
                         <TextBlock FontSize="12" Foreground="{DynamicResource WarnBrush}" Visibility="{Binding OverlapText, Converter={StaticResource HasValueVis}}"><Run Text="⚠ "/><Run Text="{Binding OverlapText, Mode=OneWay}"/></TextBlock>
                     </WrapPanel>
                 </Border>
@@ -297,6 +315,9 @@
                                                 </Border.Style>
                                             </Border>
                                             <loc:BedPlantsLayer Markers="{Binding Markers}" Zoom="{Binding DataContext.Scale, RelativeSource={RelativeSource AncestorType=UserControl}}" ClipToBounds="True" IsHitTestVisible="False" Margin="3"/>
+                                            <Ellipse HorizontalAlignment="Right" VerticalAlignment="Top" Fill="{Binding SensorBrush}" Stroke="White" StrokeThickness="2" ToolTip="{Binding SensorTip}" Margin="6" IsHitTestVisible="True"
+                                                     Width="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                     Visibility="{Binding HasSensorDot, Converter={StaticResource BoolToVis}}"/>
                                     <Thumb Opacity="0" Cursor="SizeAll" DragStarted="OnMoveStart" DragDelta="OnMove" DragCompleted="OnMoveDone"/>
                                             <Canvas IsHitTestVisible="False"><Border Canvas.Bottom="{Binding Height}" Canvas.Left="0" Background="#F2FFFFFF" BorderBrush="#33000000" BorderThickness="1" CornerRadius="10" Padding="8,3" IsHitTestVisible="False">
                                                 <Border.Style>
@@ -411,6 +432,31 @@
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </Canvas>
+                            <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" Visibility="{Binding Editing, Converter={StaticResource BoolToVis}}">
+                                <Polygon Points="{Binding EditShape}" Fill="#2237A0D9" Stroke="#FF1F6F94" StrokeThickness="{Binding StrokeSize}" StrokeDashArray="3 2" IsHitTestVisible="False"/>
+                                <ItemsControl ItemsSource="{Binding EditPins}">
+                                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemContainerStyle><Style TargetType="ContentPresenter"><Setter Property="Canvas.Left" Value="{Binding X}"/><Setter Property="Canvas.Top" Value="{Binding Y}"/></Style></ItemsControl.ItemContainerStyle>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Thumb DragDelta="OnEditPinDrag" DragCompleted="OnEditPinDone" MouseRightButtonDown="OnEditPinRightClick" Cursor="SizeAll" ToolTip="{loc:L edit_corner_tip}"
+                                                       Width="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                       Margin="{Binding DataContext.CameraHandleMargin, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                                    <Thumb.Template><ControlTemplate TargetType="Thumb"><Ellipse Fill="White" Stroke="#FF1F6F94" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}"/></ControlTemplate></Thumb.Template>
+                                                    <Thumb.Style><Style TargetType="Thumb"><Style.Triggers><DataTrigger Binding="{Binding IsMid}" Value="True"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger></Style.Triggers></Style></Thumb.Style>
+                                                </Thumb>
+                                                <Button Click="OnEditMidClick" ToolTip="{loc:L edit_add_tip}" Cursor="Hand" Opacity="0.85"
+                                                        Width="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        Margin="{Binding DataContext.CameraHandleMargin, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                                    <Button.Template><ControlTemplate TargetType="Button"><Ellipse Fill="#AA1F6F94" Stroke="White" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" RenderTransformOrigin="0.5,0.5"><Ellipse.RenderTransform><ScaleTransform ScaleX="0.6" ScaleY="0.6"/></Ellipse.RenderTransform></Ellipse></ControlTemplate></Button.Template>
+                                                    <Button.Style><Style TargetType="Button"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsMid}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Button.Style>
+                                                </Button>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Canvas>
                         </Grid>
                     </ScrollViewer>
                 </Border>
@@ -487,6 +533,9 @@
                                         <TextBlock Style="{StaticResource Label}"><Run Text="{loc:L design_shade}"/><Run Text=": "/><Run Text="{Binding Selected.ShadePercent, Mode=OneWay}"/><Run Text=" %"/></TextBlock>
                                         <Slider Minimum="0" Maximum="90" TickFrequency="10" IsSnapToTickEnabled="True" Value="{Binding Selected.ShadePercent}" AutomationProperties.Name="{loc:L design_shade}"/>
                                         <TextBlock Text="{loc:L design_shade_help}" Style="{StaticResource Muted}" FontSize="12"/>
+                                        <TextBlock Text="{loc:L sensor_source}" Style="{StaticResource Label}" Margin="0,8,0,0"/>
+                                        <ComboBox ItemsSource="{Binding SensorOptions}" SelectedItem="{Binding SelectedSensor}" AutomationProperties.Name="{loc:L sensor_source}"/>
+                                        <TextBlock Text="{loc:L sensor_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
                                         <WrapPanel Margin="0,12,0,0">
                                             <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveSelectedCommand}" Margin="0,0,8,0"/>
                                             <Button Style="{StaticResource DangerButton}" Content="{loc:L delete}" Command="{Binding DeleteSelectedCommand}"/>

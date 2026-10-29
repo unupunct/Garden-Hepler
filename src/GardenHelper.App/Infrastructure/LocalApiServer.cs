@@ -154,9 +154,10 @@ public sealed class LocalApiServer
             Dictionary<string, double>? body;
             try { body = await req.ReadFromJsonAsync<Dictionary<string, double>>(); } catch { return Results.BadRequest(new { error = "Send a JSON object such as {\"air_temp\": 21.5}." }); }
             if (body is null || body.Count > 20) return Results.BadRequest(new { error = "Send between 1 and 20 values." });
-            if (!await IsGreenhouseAsync(id)) return Results.NotFound(new { error = "No greenhouse with that id." });
-            var stored = await _greenhouse.IngestAsync(id, body, DateTime.UtcNow);
-            return Results.Json(new { stored, commands = await _greenhouse.CommandsAsync(id) });
+            var isHouse = await IsGreenhouseAsync(id);
+            if (!isHouse && (await _repo.ListAsync<PropertyFeature>(q => q.Where(f => f.Id == id))).Count != 1) return Results.NotFound(new { error = "No place with that id." });
+            var stored = await _greenhouse.IngestAsync(id, body, DateTime.UtcNow, default, applyRules: isHouse);     // outdoor places only store readings
+            return Results.Json(new { stored, commands = isHouse ? await _greenhouse.CommandsAsync(id) : new Dictionary<string, bool>() });
         });
         app.MapGet("/api/v1/greenhouse/{id:int}/commands", async (int id) =>
             await IsGreenhouseAsync(id) ? Results.Json(new { commands = await _greenhouse.CommandsAsync(id) }) : Results.NotFound(new { error = "No greenhouse with that id." }));
