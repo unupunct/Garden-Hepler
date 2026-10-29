@@ -1,10 +1,11 @@
 using GardenHelper.Core.Domain;
 using GardenHelper.Core.Knowledge;
 using GardenHelper.Core.Library;
+using Microsoft.EntityFrameworkCore;
 
 namespace GardenHelper.Core.Services;
 
-public enum SearchKind { Plant, Book, Journal, Task, Seed }
+public enum SearchKind { Plant, Book, Journal, Task, Seed, Feature }
 
 public sealed record SearchResult(SearchKind Kind, string Title, string Subtitle, string Snippet, string TargetId, int? Ordinal = null);
 
@@ -40,6 +41,15 @@ public sealed class GlobalSearchService
         var seeds = await _repo.ListAsync<SeedItem>(null, ct);
         foreach (var s in seeds.Where(s => SubjectExtractor.Fold(s.Name + " " + s.Variety + " " + s.Supplier).Contains(f)).Take(10))
             results.Add(new SearchResult(SearchKind.Seed, s.Name + (s.Variety is null ? "" : " – " + s.Variety), s.Supplier ?? "", s.Notes ?? "", s.Id.ToString()));
+
+        // Places on the property (house, garden 1, compost pile…) by name, kind, notes or any log entry.
+        var features = await _repo.ListAsync<PropertyFeature>(q => q.Include(x => x.Logs), ct);
+        foreach (var x in features)
+        {
+            var log = x.Logs.FirstOrDefault(l => SubjectExtractor.Fold(l.Text).Contains(f));
+            if (SubjectExtractor.Fold(x.Name + " " + x.Kind.Replace('_', ' ') + " " + x.Notes).Contains(f) || log is not null)
+                results.Add(new SearchResult(SearchKind.Feature, x.Name, x.Kind.Replace('_', ' '), Trim(log?.Text ?? x.Notes ?? ""), x.Id.ToString()));
+        }
 
         foreach (var h in await _library.SearchAsync(query, null, 30, ct))
             results.Add(new SearchResult(SearchKind.Book, h.BookTitle, h.SectionTitle + (h.Author is null ? "" : " · " + h.Author), h.Snippet, h.BookId.ToString(), h.Ordinal));

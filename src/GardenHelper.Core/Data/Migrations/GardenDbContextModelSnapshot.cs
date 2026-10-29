@@ -199,6 +199,36 @@ namespace GardenHelper.Core.Data.Migrations
                     b.ToTable("BookSubjects");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Domain.FeatureLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("FeatureId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeatureId", "Date");
+
+                    b.ToTable("FeatureLogs");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.Garden", b =>
                 {
                     b.Property<int>("Id")
@@ -257,6 +287,9 @@ namespace GardenHelper.Core.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("FeatureId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("GardenId")
@@ -368,6 +401,42 @@ namespace GardenHelper.Core.Data.Migrations
                     b.ToTable("Journal");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Domain.PropertyFeature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GardenId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PointsJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GardenId");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("Features");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.SeedItem", b =>
                 {
                     b.Property<int>("Id")
@@ -458,6 +527,17 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Domain.FeatureLog", b =>
+                {
+                    b.HasOne("GardenHelper.Core.Domain.PropertyFeature", "Feature")
+                        .WithMany("Logs")
+                        .HasForeignKey("FeatureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Feature");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.Book", b =>
                 {
                     b.Navigation("Sections");
@@ -468,6 +548,11 @@ namespace GardenHelper.Core.Data.Migrations
             modelBuilder.Entity("GardenHelper.Core.Domain.GardenBed", b =>
                 {
                     b.Navigation("Plantings");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Domain.PropertyFeature", b =>
+                {
+                    b.Navigation("Logs");
                 });
 #pragma warning restore 612, 618
         }

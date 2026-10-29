@@ -44,6 +44,7 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
         Nav = new ObservableCollection<NavEntry>
         {
             new("home", "", null),
+            new("property", "⌖", typeof(PropertyViewModel)),
             new("dashboard", "⌂", typeof(DashboardViewModel)),
             new("tasks", "✔", typeof(TasksViewModel)),
             new("monitor", "◔", typeof(MonitorViewModel)),
@@ -70,7 +71,8 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
     [ObservableProperty] private NavEntry? _selectedNav;
     [ObservableProperty] private string _searchText = "";
 
-    public void Start() => GoTo<DashboardViewModel>();
+    /// <summary>The property command center is the home screen.</summary>
+    public void Start() => GoTo<PropertyViewModel>();
 
     partial void OnSelectedNavChanged(NavEntry? value)
     {

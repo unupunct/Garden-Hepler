@@ -48,6 +48,13 @@ public sealed partial class BedItem : ObservableObject
     });
 }
 
+public sealed record FeatureShape(int Id, string Name, string Kind, string KindLabel, bool IsStructure, PointCollection Points, double LabelX, double LabelY,
+    Brush Fill, Brush Stroke, string AreaText, List<Pt> Plan)
+{
+    public bool IsSpace => !IsStructure;
+    public override string ToString() => $"{Name}, {KindLabel}";
+}
+
 public sealed record KindOption(string Key, string Label)
 {
     public override string ToString() => Label;
@@ -153,23 +160,73 @@ public sealed partial class DesignerViewModel : PageViewModel
     [ObservableProperty] private string _boundaryText = "";
     public double StrokeSize => 2.5 / Scale;
 
-    private void BuildBoundary()
+    public ObservableCollection<FeatureShape> FeatureShapes { get; } = new();
+    public int? PlanFeatureId { get; set; }
+    private List<Pt> _planAll = new();
+
+    /// <summary>Places the property outline and every traced place on the plan, all on one plane so they keep their true positions.</summary>
+    private void BuildBoundary(IReadOnlyList<PropertyFeature> features)
     {
-        _boundary = new(); BoundaryPoints = new PointCollection(); HasBoundary = false; BoundaryText = "";
-        var pins = GeoMath.FromJson(_garden?.BoundaryJson);
-        if (_garden is null || pins.Count < GeoMath.MinBoundaryPins) return;
+        _boundary = new(); _planAll = new(); BoundaryPoints = new PointCollection(); HasBoundary = false; BoundaryText = ""; FeatureShapes.Clear();
+        if (_garden is null) return;
+        var outline = GeoMath.FromJson(_garden.BoundaryJson);
+        var hasOutline = outline.Count >= GeoMath.MinBoundaryPins;
+        var feats = features.Select(f => (Feature: f, Pins: GeoMath.FromJson(f.PointsJson))).Where(x => x.Pins.Count >= GeoMath.MinBoundaryPins).ToList();
+        var shapes = new List<IReadOnlyList<GeoPoint>>();
+        if (hasOutline) shapes.Add(outline);
+        shapes.AddRange(feats.Select(x => (IReadOnlyList<GeoPoint>)x.Pins));
+        if (shapes.Count == 0) return;
+
+        List<List<Pt>> plan;
         if (Satellite is not null && _garden.Latitude is { } la && _garden.Longitude is { } lo)
-            _boundary = GeoMath.ToPlan(pins, new GeoPoint(la, lo), CanvasWidth / 2, CanvasHeight / 2);   // picture is centred on these coordinates
+            plan = shapes.Select(s => GeoMath.ToPlan(s, new GeoPoint(la, lo), CanvasWidth / 2, CanvasHeight / 2)).ToList();   // picture is centred on these coordinates
         else
         {
-            var (pts, w, h) = GeoMath.ToPlanFitted(pins);
-            _boundary = pts; CanvasWidth = Math.Max(1600, w); CanvasHeight = Math.Max(1000, h);
+            var (p, w, h) = GeoMath.ToPlanFittedMany(shapes);
+            plan = p; CanvasWidth = Math.Max(1600, w); CanvasHeight = Math.Max(1000, h);
         }
-        BoundaryPoints = new PointCollection(_boundary.Select(p => new System.Windows.Point(p.X, p.Y)));
-        var (area, per) = GeoMath.Measure(pins);
-        BoundaryText = Loc.F("design_boundary", area.ToString("N0", Loc.Instance.Culture), per.ToString("N0", Loc.Instance.Culture));
-        HasBoundary = true;
+        _planAll = plan.SelectMany(s => s).ToList();
+        var i = 0;
+        if (hasOutline)
+        {
+            _boundary = plan[i++];
+            BoundaryPoints = new PointCollection(_boundary.Select(p => new System.Windows.Point(p.X, p.Y)));
+            var (area, per) = GeoMath.Measure(outline);
+            BoundaryText = Loc.F("design_boundary", area.ToString("N0", Loc.Instance.Culture), per.ToString("N0", Loc.Instance.Culture));
+            HasBoundary = true;
+        }
+        foreach (var (feature, pins) in feats)
+        {
+            var pts = plan[i++];
+            var col = FeatureColors.For(feature.Kind);
+            var fill = new SolidColorBrush(Color.FromArgb(FeatureCatalog.IsStructure(feature.Kind) ? (byte)150 : (byte)90, col.R, col.G, col.B)); fill.Freeze();
+            var line = new SolidColorBrush(col); line.Freeze();
+            FeatureShapes.Add(new FeatureShape(feature.Id, feature.Name, feature.Kind, Loc.T("feat_" + feature.Kind), FeatureCatalog.IsStructure(feature.Kind),
+                new PointCollection(pts.Select(p => new System.Windows.Point(p.X, p.Y))), pts.Average(p => p.X), pts.Average(p => p.Y), fill, line,
+                Loc.F("prop_area", GeoMath.Measure(pins).AreaM2.ToString("N0", Loc.Instance.Culture)), pts));
+        }
     }
+
+    [RelayCommand] private Task PlanSpaceAsync(FeatureShape f) => PlanFeatureCoreAsync(f.Id);
+
+    /// <summary>Turns a traced garden space into a bed (its bounding rectangle) linked to the place; reuses the bed if it already exists.</summary>
+    private Task PlanFeatureCoreAsync(int id) => RunAsync(async () =>
+    {
+        var fs = FeatureShapes.FirstOrDefault(x => x.Id == id);
+        if (fs is null || fs.IsStructure || _garden is null) return;
+        if (Beds.FirstOrDefault(b => b.Bed.FeatureId == id) is { } existing) { Selected = existing; return; }
+        var minX = fs.Plan.Min(p => p.X); var minY = fs.Plan.Min(p => p.Y);
+        var kind = fs.Kind switch { "greenhouse" => "greenhouse", "compost" => "compost", "pond" => "pond", "orchard" => "tree", _ => "bed" };
+        var bed = await _repo.SaveAsync(new GardenBed
+        {
+            GardenId = _garden.Id, Name = fs.Name, Kind = kind, FeatureId = id, X = minX, Y = minY,
+            Width = Math.Max(20, fs.Plan.Max(p => p.X) - minX), Height = Math.Max(20, fs.Plan.Max(p => p.Y) - minY),
+        });
+        var item = Wrap(bed);
+        Beds.Add(item); _snapshots[bed.Id] = Capture(bed); Selected = item;
+        History.Push(new UndoEntry(Loc.F("design_undo_add", item.Name), () => RemoveAsync(item), async () => item = await RecreateAsync(item)));
+        StatusMessage = Loc.T("design_space_planned");
+    }, busy: false);
 
     public double LabelSize => 13 / Scale;
     public double HandleSize => 16 / Scale;
@@ -217,12 +274,13 @@ public sealed partial class DesignerViewModel : PageViewModel
             Scale = 0.08;
         }
         else { Satellite = null; CanvasWidth = 1600; CanvasHeight = 1000; }
-        BuildBoundary();
-        if (HasBoundary && JustImportedBoundary)
+        var featureEntities = await _repo.ListAsync<PropertyFeature>(q => q.Where(f => f.GardenId == _garden.Id));
+        BuildBoundary(featureEntities);
+        if (_planAll.Count > 0 && JustImportedBoundary)
         {
-            // Frame the property so the imported outline is visible straight away.
-            var minX = _boundary.Min(p => p.X); var maxX = _boundary.Max(p => p.X);
-            var minY = _boundary.Min(p => p.Y); var maxY = _boundary.Max(p => p.Y);
+            // Frame the property so the imported outline and places are visible straight away.
+            var minX = _planAll.Min(p => p.X); var maxX = _planAll.Max(p => p.X);
+            var minY = _planAll.Min(p => p.Y); var maxY = _planAll.Max(p => p.Y);
             Scale = Math.Clamp(Math.Round(Math.Min(780 / (maxX - minX + 600), 560 / (maxY - minY + 600)), 3), 0.03, 3);
             StatusMessage = Loc.T("map_imported");
             JustImportedBoundary = false;
@@ -236,6 +294,7 @@ public sealed partial class DesignerViewModel : PageViewModel
         BuildCards();
         RebuildCalendar();
         await RefreshAlertsAsync();
+        if (PlanFeatureId is { } planId) { PlanFeatureId = null; await PlanFeatureCoreAsync(planId); }
     });
 
     private BedItem Wrap(GardenBed bed) => new(bed) { PlantsText = PlantsSummary(bed.Plantings) };
@@ -355,6 +414,9 @@ public sealed partial class DesignerViewModel : PageViewModel
         if (hit.Count > 0) parts.Add(Loc.F("design_overlap", string.Join(", ", hit)));
         // Only growing areas must stay inside the property; paths and structures may run to its edge.
         if (_boundary.Count >= 3 && !GeometryMath.PolygonInside(mine, _boundary)) parts.Add(Loc.T("design_outside"));
+        // Permanent structures (house, workshop…) are not movable: a bed on top of one is a mistake worth flagging.
+        var blocking = FeatureShapes.Where(f => f.IsStructure && Selected.Bed.FeatureId != f.Id && GeometryMath.RectOverlapsPolygon(mine, f.Plan)).Select(f => f.Name).ToList();
+        if (blocking.Count > 0) parts.Add(Loc.F("design_overlap_structure", string.Join(", ", blocking)));
         OverlapText = string.Join(" · ", parts);
     }
 

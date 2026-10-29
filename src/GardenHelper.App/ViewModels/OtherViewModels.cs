@@ -48,6 +48,7 @@ public sealed partial class SearchViewModel : PageViewModel
             case SearchKind.Journal: _nav.GoTo<JournalViewModel>(vm => vm.PendingSelect = int.Parse(r.TargetId)); break;
             case SearchKind.Seed: _nav.GoTo<SeedsViewModel>(vm => vm.PendingSelect = int.Parse(r.TargetId)); break;
             case SearchKind.Task: _nav.GoTo<TasksViewModel>(); break;
+            case SearchKind.Feature: _nav.GoTo<SpaceViewModel>(vm => vm.FeatureId = int.Parse(r.TargetId)); break;
         }
     }
 }

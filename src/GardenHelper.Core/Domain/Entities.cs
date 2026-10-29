@@ -30,6 +30,53 @@ public class Garden
     public string? BoundaryJson { get; set; }
 }
 
+/// <summary>A named place traced on the satellite map: a permanent structure (house, workshop…) or a garden space (garden 1, greenhouse, compost pile…).</summary>
+public class PropertyFeature
+{
+    public int Id { get; set; }
+    public int GardenId { get; set; }
+    public string Name { get; set; } = "";
+    /// <summary>A key from <see cref="FeatureCatalog"/>.</summary>
+    public string Kind { get; set; } = "garden";
+    /// <summary>Outline as JSON [{Lat,Lon},…] (WGS84).</summary>
+    public string PointsJson { get; set; } = "[]";
+    public string? Notes { get; set; }
+    public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
+    public List<FeatureLog> Logs { get; set; } = new();
+    public override string ToString() => Name;
+}
+
+/// <summary>A dated entry in a place's history: note, growth observation, soil or plant treatment.</summary>
+public class FeatureLog
+{
+    public int Id { get; set; }
+    public int FeatureId { get; set; }
+    public PropertyFeature? Feature { get; set; }
+    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+    /// <summary>note, growth, soil, plant, observation.</summary>
+    public string Kind { get; set; } = "note";
+    public string Text { get; set; } = "";
+    public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
+}
+
+public static class FeatureCatalog
+{
+    public static readonly string[] Structures = { "house", "workshop", "shed", "barn", "garage", "other_structure" };
+    public static readonly string[] Spaces = { "garden", "greenhouse", "compost", "orchard", "pond", "free_land", "other_space" };
+    public static readonly string[] LogKinds = { "note", "growth", "soil", "plant", "observation", "maintenance" };
+
+    /// <summary>Which kinds of log entry make sense for a place: growing spaces track growth and treatments, buildings track maintenance.</summary>
+    public static string[] LogKindsFor(string kind) =>
+        IsStructure(kind) ? new[] { "note", "maintenance", "observation" }
+        : kind == "compost" ? new[] { "note", "observation", "soil" }
+        : kind is "pond" ? new[] { "note", "observation", "maintenance" }
+        : new[] { "note", "growth", "soil", "plant", "observation" };
+
+    /// <summary>Spaces where crops are planned and tracked.</summary>
+    public static bool HoldsPlantings(string kind) => kind is "garden" or "greenhouse" or "orchard" or "other_space" or "free_land";
+    public static bool IsStructure(string kind) => Structures.Contains(kind);
+}
+
 public enum PlantingStatus { Planned = 0, Sown = 1, Growing = 2, Harvesting = 3, Finished = 4 }
 
 /// <summary>An object on the garden plan. Sizes are centimetres; X/Y is the top-left corner.</summary>
@@ -46,6 +93,8 @@ public class GardenBed
     public double Height { get; set; } = 300;
     /// <summary>Clockwise rotation in degrees about the object's centre.</summary>
     public double Rotation { get; set; }
+    /// <summary>The map feature (garden space) this bed was planned from, if any.</summary>
+    public int? FeatureId { get; set; }
     /// <summary>Share of the day the spot is shaded by buildings or trees, 0-90 (user estimate).</summary>
     public int ShadePercent { get; set; }
     public string? Notes { get; set; }

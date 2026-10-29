@@ -100,6 +100,26 @@ public static class GeometryMath
         foreach (var p in poly) { var d = p.X * ax + p.Y * ay; min = Math.Min(min, d); max = Math.Max(max, d); }
     }
 
+    /// <summary>
+    /// True if a rectangle (any rotation) overlaps an arbitrary, possibly concave polygon: a corner inside it,
+    /// a polygon vertex inside the rectangle, or crossing edges.
+    /// </summary>
+    public static bool RectOverlapsPolygon(IReadOnlyList<Pt> rect, IReadOnlyList<Pt> poly)
+    {
+        if (rect.Any(p => PointInPolygon(p, poly)) || poly.Any(p => PointInPolygon(p, rect))) return true;
+        for (var i = 0; i < rect.Count; i++)
+            for (var j = 0; j < poly.Count; j++)
+                if (SegmentsCross(rect[i], rect[(i + 1) % rect.Count], poly[j], poly[(j + 1) % poly.Count])) return true;
+        return false;
+    }
+
+    public static bool SegmentsCross(Pt a, Pt b, Pt c, Pt d)
+    {
+        static double Cross(Pt o, Pt p, Pt q) => (p.X - o.X) * (q.Y - o.Y) - (p.Y - o.Y) * (q.X - o.X);
+        var d1 = Cross(c, d, a); var d2 = Cross(c, d, b); var d3 = Cross(a, b, c); var d4 = Cross(a, b, d);
+        return ((d1 > 0 && d2 < 0) || (d1 < 0 && d2 > 0)) && ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0));
+    }
+
     public static bool PolygonInside(IReadOnlyList<Pt> inner, IReadOnlyList<Pt> boundary) => inner.All(p => PointInPolygon(p, boundary));
 }
 

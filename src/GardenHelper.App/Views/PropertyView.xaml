@@ -1,0 +1,97 @@
+<UserControl x:Class="GardenHelper.App.Views.PropertyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <Grid Margin="28,18,28,18">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="{loc:L prop_title}" Style="{StaticResource Muted}"/>
+            <TextBlock Text="{Binding GardenName}" Style="{StaticResource H1}" Margin="0,2,0,6"/>
+            <WrapPanel Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}" Margin="0,0,0,10">
+                <Border Style="{StaticResource Badge}" Padding="10,5" Margin="0,0,8,0"><TextBlock Text="{Binding PlacesText}" FontWeight="SemiBold"/></Border>
+                <Border Style="{StaticResource Badge}" Padding="10,5" Margin="0,0,8,0"><TextBlock Text="{Binding AreaText}" FontWeight="SemiBold"/></Border>
+                <Border Style="{StaticResource Badge}" Padding="10,5" Margin="0,0,8,0">
+                    <TextBlock FontWeight="SemiBold"><Run Text="{Binding AlertsText, Mode=OneWay}"/></TextBlock>
+                </Border>
+            </WrapPanel>
+        </StackPanel>
+        <v:Banners Grid.Row="1"/>
+
+        <!-- First run: nothing traced yet -->
+        <Border Grid.Row="2" Style="{StaticResource Card}" VerticalAlignment="Top" Padding="26" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}, ConverterParameter=invert}">
+            <StackPanel>
+                <TextBlock Text="{loc:L prop_empty_title}" Style="{StaticResource H2}"/>
+                <TextBlock Text="{loc:L prop_empty_text}" Style="{StaticResource Muted}" Margin="0,8,0,16" MaxWidth="680" HorizontalAlignment="Left"/>
+                <WrapPanel>
+                    <Button Style="{StaticResource PrimaryButton}" Content="{loc:L prop_open_map}" Command="{Binding OpenMapCommand}" Margin="0,0,8,0"/>
+                    <Button Content="{loc:L nav_designer}" Command="{Binding OpenDesignerCommand}"/>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="2" Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="380"/></Grid.ColumnDefinitions>
+
+            <!-- The property plan. Scales to fit; click a place to open its module. -->
+            <Border Style="{StaticResource Card}" Padding="10">
+                <Viewbox Stretch="Uniform" AutomationProperties.Name="{loc:L prop_plan}">
+                    <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" Background="#FFF4F1E6">
+                        <ItemsControl ItemsSource="{Binding Shapes}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
+                            <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Canvas>
+                                        <Polygon Points="{Binding Points}" Fill="{Binding Fill}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeWidth}" StrokeLineJoin="Round"
+                                                 IsHitTestVisible="{Binding Clickable}" ToolTip="{Binding Tip}" Cursor="Hand" MouseLeftButtonUp="OnShapeClick"/>
+                                        <Border Background="#D9FFFFFF" CornerRadius="6" Padding="8,2" IsHitTestVisible="False" SizeChanged="OnLabelSize" Visibility="{Binding Clickable, Converter={StaticResource BoolToVis}}">
+                                            <TextBlock Text="{Binding Name}" Foreground="#FF1B2418" FontWeight="SemiBold" TextWrapping="NoWrap"
+                                                       FontSize="{Binding DataContext.LabelSize, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                        </Border>
+                                    </Canvas>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Canvas>
+                </Viewbox>
+            </Border>
+
+            <!-- One card per place -->
+            <DockPanel Grid.Column="2">
+                <WrapPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                    <Button Content="{loc:L prop_open_map}" Command="{Binding OpenMapCommand}" Margin="0,0,6,6" Padding="10,5"/>
+                    <Button Content="{loc:L nav_designer}" Command="{Binding OpenDesignerCommand}" Margin="0,0,6,6" Padding="10,5"/>
+                    <Button Content="{loc:L nav_monitor}" Command="{Binding OpenMonitorCommand}" Margin="0,0,6,6" Padding="10,5"/>
+                </WrapPanel>
+                <TextBox DockPanel.Dock="Top" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" Tag="{loc:L prop_filter}" AutomationProperties.Name="{loc:L prop_filter}" Margin="0,0,0,8"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Cards}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button HorizontalContentAlignment="Stretch" Margin="0,0,0,8" Padding="0" AutomationProperties.Name="{Binding Name}"
+                                        Command="{Binding DataContext.OpenCardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="8"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                        <Border Background="{Binding Swatch}" CornerRadius="8,0,0,8"/>
+                                        <StackPanel Grid.Column="1" Margin="12,10,12,10">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="15" TextTrimming="CharacterEllipsis"/>
+                                                <Border Grid.Column="1" Style="{StaticResource Badge}" Margin="8,0,0,0" Visibility="{Binding HasAlerts, Converter={StaticResource BoolToVis}}">
+                                                    <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource WarnBrush}"><Run Text="⚠ "/><Run Text="{Binding Alerts, Mode=OneWay}"/></TextBlock>
+                                                </Border>
+                                            </Grid>
+                                            <TextBlock FontSize="12" Style="{StaticResource Muted}"><Run Text="{Binding KindLabel, Mode=OneWay}"/><Run Text="  ·  "/><Run Text="{Binding AreaText, Mode=OneWay}"/></TextBlock>
+                                            <TextBlock Text="{Binding Summary}" FontSize="12" Margin="0,5,0,0" TextAlignment="Left"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

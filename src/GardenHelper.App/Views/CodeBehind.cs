@@ -25,6 +25,19 @@ public partial class SettingsView : UserControl { public SettingsView() => Initi
 public partial class AboutView : UserControl { public AboutView() => InitializeComponent(); }
 
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }
+public partial class SpaceView : UserControl { public SpaceView() => InitializeComponent(); }
+
+public partial class PropertyView : UserControl
+{
+    public PropertyView() => InitializeComponent();
+    private void OnLabelSize(object sender, SizeChangedEventArgs e) => LabelPlacement.Centre(sender, e);
+
+    private void OnShapeClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if ((sender as FrameworkElement)?.DataContext is PlanShape shape && DataContext is PropertyViewModel vm) vm.OpenPlace(shape.FeatureId);
+        e.Handled = true;
+    }
+}
 
 public partial class MapView : UserControl
 {
@@ -81,12 +94,36 @@ public partial class MapView : UserControl
                 TileLayer.Children.Add(el);
             }
 
+        // Every saved shape, coloured by kind and labelled with its name; the one being edited is drawn bold with its pins.
+        foreach (var shape in _vm.Shapes)
+        {
+            var sp = shape.Points.Select(GeoToScreen).ToList();
+            if (sp.Count < 2) continue;
+            var col = FeatureColors.For(shape.Kind);
+            var selected = ReferenceEquals(shape, _vm.Selected);
+            var stroke = new SolidColorBrush(selected ? Color.FromRgb(0xE5, 0x8C, 0x62) : col);
+            if (sp.Count >= 3)
+                Overlay.Children.Add(new System.Windows.Shapes.Polygon
+                {
+                    Points = new PointCollection(sp), Stroke = stroke, StrokeThickness = selected ? 4 : 2, StrokeLineJoin = PenLineJoin.Round,
+                    StrokeDashArray = shape.IsOutline ? new DoubleCollection { 4, 2 } : null,
+                    Fill = new SolidColorBrush(Color.FromArgb(shape.IsOutline ? (byte)15 : (byte)(selected ? 85 : 70), col.R, col.G, col.B)),
+                });
+            else Overlay.Children.Add(new System.Windows.Shapes.Polyline { Points = new PointCollection(sp), Stroke = stroke, StrokeThickness = 3 });
+            if (sp.Count >= 3 && shape.Name.Length > 0)
+            {
+                var label = new Border
+                {
+                    Background = new SolidColorBrush(Color.FromArgb(215, 255, 255, 255)), CornerRadius = new CornerRadius(4), Padding = new Thickness(5, 1, 5, 1),
+                    Child = new TextBlock { Text = shape.Name, FontSize = 12, FontWeight = FontWeights.SemiBold, Foreground = new SolidColorBrush(Color.FromRgb(0x1F, 0x2A, 0x1C)) },
+                };
+                label.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                Canvas.SetLeft(label, sp.Average(p => p.X) - label.DesiredSize.Width / 2); Canvas.SetTop(label, sp.Average(p => p.Y) - label.DesiredSize.Height / 2);
+                Overlay.Children.Add(label);
+            }
+        }
+
         var pts = _vm.Points.Select(GeoToScreen).ToList();
-        var accent = new SolidColorBrush(Color.FromRgb(0xE5, 0x8C, 0x62));
-        if (pts.Count >= 3)
-            Overlay.Children.Add(new System.Windows.Shapes.Polygon { Points = new PointCollection(pts), Stroke = accent, StrokeThickness = 3, StrokeLineJoin = PenLineJoin.Round, Fill = new SolidColorBrush(Color.FromArgb(55, 0xE5, 0x8C, 0x62)) });
-        else if (pts.Count == 2)
-            Overlay.Children.Add(new System.Windows.Shapes.Polyline { Points = new PointCollection(pts), Stroke = accent, StrokeThickness = 3 });
         for (var i = 0; i < pts.Count; i++)
         {
             var dot = new System.Windows.Shapes.Ellipse { Width = 22, Height = 22, Fill = new SolidColorBrush(Color.FromRgb(0xC0, 0x56, 0x2B)), Stroke = Brushes.White, StrokeThickness = 2 };
@@ -172,6 +209,7 @@ public partial class DesignerView : UserControl
     private double _rawA, _rawB;
 
     public DesignerView() => InitializeComponent();
+    private void OnLabelSize(object sender, SizeChangedEventArgs e) => LabelPlacement.Centre(sender, e);
 
     private static BedItem? Bed(object sender) => (sender as FrameworkElement)?.DataContext as BedItem;
     private DesignerViewModel? Vm => DataContext as DesignerViewModel;
@@ -438,4 +476,17 @@ public partial class ReaderView : UserControl
           var m=document.querySelector('mark'); if(m) m.scrollIntoView({block:'center'});
         })(%TERM%);
         """;
+}
+
+internal static class LabelPlacement
+{
+    /// <summary>Centres a label on its place once its size is known.</summary>
+    public static void Centre(object sender, SizeChangedEventArgs e)
+    {
+        if (sender is not FrameworkElement el) return;
+        (double X, double Y)? c = el.DataContext switch { PlanShape p => (p.LabelX, p.LabelY), FeatureShape f => (f.LabelX, f.LabelY), _ => null };
+        if (c is null) return;
+        Canvas.SetLeft(el, c.Value.X - e.NewSize.Width / 2);
+        Canvas.SetTop(el, c.Value.Y - e.NewSize.Height / 2);
+    }
 }

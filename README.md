@@ -10,6 +10,8 @@ An offline Windows companion for growing your own food. Plan your beds on a scal
 
 ## What it does
 
+- **Command center** — the home screen is your property: a plan of the outline, buildings and garden spaces you traced on the map, plus a card for every place with its status, next actions and last entry. Click a place to open its own page.
+- **Places with their own pages** — trace and name houses, workshops, sheds, gardens, greenhouses, compost piles, orchards, ponds and free land on the satellite map. Each place has notes, a dated history (growth, soil treatments, plant treatments, maintenance, observations), what is planted there and what to do next. Everything is searchable (greenhouse, garden 1, compost…). Structures appear locked in the garden designer; garden spaces can be planned there as beds.
 - **Garden designer** — a scaled 2D plan with beds, raised beds, greenhouses, trees, ponds, compost areas and paths. Drag, resize, rotate, snap to 10 cm, undo/redo, zoom and pan. Overlap warnings. Three panels: year/month planner, canvas, plant library (drag a plant onto a bed; the quantity comes from the species' spacing).
 - **Crop rotation check** — every planting is checked against the bed's history using editable family rules (`content/rotation-rules.json`). Verdicts are *compatible*, *caution*, *conflict* or *not enough information*, each with the reason. You can always proceed; an override is recorded.
 - **Next actions** — transparent rules over your plantings, frost dates, sun and seeds (sowing window open or closing, harvest due, frost approaching for tender crops, too little sun, no seed left). Every suggestion shows the data it used.
@@ -81,6 +83,8 @@ Drop JSON files in `%LOCALAPPDATA%\GardenHelper\content\plants\` (same format as
 | Ebook library, reader, full-text and subject search | **Done** |
 | Multi-year rotation *planner* (generate future sequences), succession planting | Planned |
 | Property outline from map pins (3–20), live area/perimeter, import into the designer at true scale | **Done** |
+| Named places (structures and garden spaces) traced on the map, per-place page with notes, history, status and next actions, command-center home, search | **Done** |
+| Cameras on your network, motion detection, bird and animal identification by image and sound | Planned (not started) |
 | Georeferencing with control points and scale calibration, address search, projected CRS (UTM / Stereo 70), GeoJSON import | Planned |
 | Shade simulation from obstacles, sunlight heatmap, automated bed planning, seasonal simulator | Planned |
 | PNG/PDF plan export, labels, reports, GeoJSON import | Planned |

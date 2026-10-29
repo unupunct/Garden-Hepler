@@ -11,6 +11,15 @@ The product specification is large. This file records what is built and what is 
 - Site: offline solar calculator, opt-in climate and satellite fetch.
 - 111 automated tests; installer build, silent install/launch/uninstall verified on one machine.
 
+## Cameras, motion and wildlife identification (not started)
+
+Requested for the future. Nothing of it exists in the app yet, and there are deliberately no placeholder buttons. Proposed approach, to be validated on real hardware:
+
+- **Cameras**: link each camera to a place; read RTSP/ONVIF streams on the local network (LibVLCSharp or FFmpeg), credentials stored with Windows DPAPI, nothing leaves the computer.
+- **Motion tracking**: frame differencing and region masking in GardenHelper.Core (pure and unit-testable on recorded clips), with per-camera sensitivity and quiet zones; clips and snapshots saved into the place's history.
+- **Identification**: an on-device model run through ONNX Runtime. Birds by sound (BirdNET is licensed CC BY-NC-SA: acceptable only for non-commercial use, to be confirmed) and by image, animals by camera-trap style models. Results shown as *suggestions with a confidence value*, never as fact, and always correctable by you.
+- Needs: test cameras, a choice of models with compatible licenses, and storage and privacy settings. Estimated as its own phase.
+
 ## Next (in order)
 
 1. **Phase 1 completion** — multi-selection, align/distribute, layers, copy/paste, individual plant markers inside beds (positions from `PlantLayout.Positions` are already computed and tested), PNG/PDF export, print.

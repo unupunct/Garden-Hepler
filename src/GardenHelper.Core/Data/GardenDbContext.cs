@@ -17,6 +17,8 @@ public class GardenDbContext : DbContext
     public DbSet<BookSubject> BookSubjects => Set<BookSubject>();
     public DbSet<GardenBed> Beds => Set<GardenBed>();
     public DbSet<BedPlanting> Plantings => Set<BedPlanting>();
+    public DbSet<PropertyFeature> Features => Set<PropertyFeature>();
+    public DbSet<FeatureLog> FeatureLogs => Set<FeatureLog>();
 
     protected override void OnModelCreating(ModelBuilder b)
     {
@@ -38,6 +40,12 @@ public class GardenDbContext : DbContext
             e.HasMany(x => x.Plantings).WithOne(x => x.Bed).HasForeignKey(x => x.BedId).OnDelete(DeleteBehavior.Cascade);
         });
         b.Entity<BedPlanting>().HasIndex(x => new { x.BedId, x.Status });
+        b.Entity<PropertyFeature>(e =>
+        {
+            e.HasIndex(x => x.GardenId); e.HasIndex(x => x.Name);
+            e.HasMany(x => x.Logs).WithOne(x => x.Feature).HasForeignKey(x => x.FeatureId).OnDelete(DeleteBehavior.Cascade);
+        });
+        b.Entity<FeatureLog>().HasIndex(x => new { x.FeatureId, x.Date });
         b.Entity<BookSection>().HasIndex(x => new { x.BookId, x.Ordinal });
         b.Entity<BookSubject>().HasIndex(x => x.Term);
     }
