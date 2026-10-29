@@ -167,28 +167,17 @@ public sealed partial class TodayViewModel : PageViewModel
         var it = row.Item;
         switch (it.Action)
         {
-            case TodayAction.Done:
-                if ((await _repo.ListAsync<GardenTask>(q => q.Where(t => t.Id == it.RefId))).FirstOrDefault() is { } t) { t.Done = true; t.CompletedUtc = DateTime.UtcNow; await _repo.SaveAsync(t); }
-                break;
-            case TodayAction.Watered:
-                if ((await _repo.ListAsync<InventoryPlant>(q => q.Where(p => p.Id == it.RefId))).FirstOrDefault() is { } p)
+            case TodayAction.Done or TodayAction.Watered or TodayAction.WaterBed or TodayAction.LogProduction:
+            {
+                double? qty = null;
+                if (it.Action == TodayAction.LogProduction)
                 {
-                    p.LastWatered = Today; await _repo.SaveAsync(p);
-                    await _repo.SaveAsync(new InventoryLog { PlantId = p.Id, Date = Today, Kind = "watering", Text = "" });
+                    if (!double.TryParse(row.Input.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out var q) || q < 0) { ErrorMessage = Loc.T("animal_need_quantity"); return; }
+                    qty = q;
                 }
+                if (!await _todayService.PerformAsync(it.Action, it.RefId, it.RefIds, qty)) { ErrorMessage = Loc.T("today_failed"); return; }
                 break;
-            case TodayAction.WaterBed:
-                {
-                    var ids = it.RefIds ?? new[] { it.RefId };
-                    foreach (var bed in await _repo.ListAsync<GardenBed>(q => q.Where(b => ids.Contains(b.Id)).Include(b => b.Plantings)))
-                        foreach (var plantId in bed.Plantings.Where(x => x.Status is PlantingStatus.Sown or PlantingStatus.Growing or PlantingStatus.Harvesting).Select(x => x.PlantId).Distinct())
-                            await _repo.SaveAsync(new JournalEntry { Title = Loc.F("card_water_title", _kb.Get(plantId)?.DisplayName(Loc.Instance.Language) ?? plantId, bed.Name), Text = "", Tags = "watering", PlantId = plantId });
-                }
-                break;
-            case TodayAction.LogProduction:
-                if (!double.TryParse(row.Input.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out var qty) || qty < 0) { ErrorMessage = Loc.T("animal_need_quantity"); return; }
-                await _repo.SaveAsync(new AnimalLog { GroupId = it.RefId, Date = Today, Kind = "production", Quantity = qty, Text = "" });
-                break;
+            }
             case TodayAction.OpenAnimals: _nav.GoTo<AnimalsViewModel>(); return;
             case TodayAction.OpenGreenhouse: _nav.GoTo<GreenhouseViewModel>(); return;
             case TodayAction.OpenActions: _nav.GoTo<MonitorViewModel>(); return;

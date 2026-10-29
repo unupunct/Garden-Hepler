@@ -5,12 +5,12 @@ const T = {
     badToken: "The app did not accept that token.", offline: "Cannot reach Garden Helper. Is the PC on and the app open?", overdue: "overdue", dueToday: "due today", thisWeek: "this week", water: "to water", animalsN: "animals", eggs: "eggs today",
     month: "This month", income: "Income", expenses: "Expenses", withdrawal: "Treatment withdrawal active: do not use eggs, milk or meat.", comingUp: "Coming up", nothing: "Nothing due.", done: "Done", noTasks: "No open tasks.",
     add: "Add", quantity: "Number", until: "withdrawal until", none: "No data yet.", ago: "min ago", on: "On", off: "Off", auto: "Auto", manual: "by hand", vent: "Roof vent", fan: "Fan", water_: "Watering valve", pump: "Water pump", light: "Grow light",
-    air: "Air", humidity: "Humidity", soil: "Soil", alerts: "alerts", noCams: "No cameras set up.", refresh: "Refresh", sign: "Sign out", added: "Added", failed: "That did not work", noHouse: "No greenhouse yet." },
+    air: "Air", humidity: "Humidity", soil: "Soil", alerts: "alerts", noCams: "No cameras set up.", refresh: "Refresh", sign: "Sign out", added: "Added", failed: "That did not work", noHouse: "No greenhouse yet.", needsYou: "Needs you today", allClear: "Nothing needs you today.", photo: "Add a photo", caption: "Caption (optional)", saved: "Photo saved" },
   ro: { today: "Azi", tasks: "Sarcini", animals: "Animale", greenhouse: "Seră", cameras: "Camere", token: "Token secret", connect: "Conectare", tokenHelp: "Lipește tokenul din Garden Helper (pagina Conectare) sau deschide linkul pentru telefon afișat acolo.",
     badToken: "Aplicația nu a acceptat tokenul.", offline: "Nu pot ajunge la Garden Helper. PC-ul e pornit și aplicația deschisă?", overdue: "întârziate", dueToday: "scadente azi", thisWeek: "săptămâna aceasta", water: "de udat", animalsN: "animale", eggs: "ouă azi",
     month: "Luna aceasta", income: "Venituri", expenses: "Cheltuieli", withdrawal: "Pauză de tratament activă: nu folosi ouă, lapte sau carne.", comingUp: "Urmează", nothing: "Nimic scadent.", done: "Gata", noTasks: "Nicio sarcină deschisă.",
     add: "Adaugă", quantity: "Număr", until: "pauză până la", none: "Încă nu sunt date.", ago: "min în urmă", on: "Pornit", off: "Oprit", auto: "Auto", manual: "manual", vent: "Fereastra din acoperiș", fan: "Ventilator", water_: "Robinet irigare", pump: "Pompă de apă", light: "Lumină de creștere",
-    air: "Aer", humidity: "Umiditate", soil: "Sol", alerts: "alerte", noCams: "Nicio cameră configurată.", refresh: "Reîmprospătează", sign: "Deconectare", added: "Adăugat", failed: "Nu a mers", noHouse: "Nicio seră încă." },
+    air: "Aer", humidity: "Umiditate", soil: "Sol", alerts: "alerte", noCams: "Nicio cameră configurată.", refresh: "Reîmprospătează", sign: "Deconectare", added: "Adăugat", failed: "Nu a mers", noHouse: "Nicio seră încă.", needsYou: "Te așteaptă azi", allClear: "Nimic nu te așteaptă azi.", photo: "Adaugă o poză", caption: "Descriere (opțional)", saved: "Poză salvată" },
 };
 const L = T[(navigator.language || "en").toLowerCase().startsWith("ro") ? "ro" : "en"];
 document.documentElement.lang = (navigator.language || "en").slice(0, 2);
@@ -63,8 +63,41 @@ async function viewToday() {
   show(
     s.withdrawalActive ? h("div", { class: "warn" }, L.withdrawal) : null,
     h("div", { class: "tiles" }, tile(s.tasks.overdue, L.overdue, true), tile(s.tasks.today, L.dueToday), tile(s.tasks.week, L.thisWeek), tile(s.wateringDue, L.water), tile(s.animalsTotal, L.animalsN), tile(s.eggsToday, L.eggs)),
+    todayCard(await json("/api/v1/today")),
+    photoCard(),
     h("div", { class: "card" }, h("h2", {}, L.comingUp), s.upcoming.length ? s.upcoming.map(u => h("div", { class: "row" }, h("span", {}, u.title), h("span", { class: "muted" }, dateText(u.date)))) : h("div", { class: "muted" }, L.nothing)),
     h("div", { class: "card" }, h("h2", {}, L.month), h("div", { class: "row" }, L.income, h("b", {}, money(s.month.income))), h("div", { class: "row" }, L.expenses, h("b", {}, money(s.month.expenses)))));
+}
+
+function todayCard(items) {
+  const labels = { Done: L.done, Watered: L.done, WaterBed: L.done, LogProduction: L.add };
+  const acts = items.filter(i => labels[i.action] || i.action.startsWith("Open")).slice(0, 25);
+  return h("div", { class: "card" }, h("h2", {}, L.needsYou), acts.length ? acts.map(i => {
+    const row = h("div", { class: "row" });
+    const q = i.needsNumber ? h("input", { type: "number", inputmode: "decimal", min: "0", placeholder: L.quantity, "aria-label": L.quantity, style: "width:84px" }) : null;
+    const btn = labels[i.action] ? h("button", { class: i.severity === "urgent" ? "primary" : "", onclick: async e => {
+      const body = { action: i.action, refId: i.refId, refIds: i.refIds };
+      if (q) { const n = parseFloat(q.value.replace(",", ".")); if (!(n >= 0)) return; body.quantity = n; }
+      e.target.disabled = true;
+      try { await post("/api/v1/today/act", body); row.style.opacity = ".4"; } catch { e.target.disabled = false; alert(L.failed); }
+    } }, labels[i.action]) : null;
+    row.append(h("span", { class: i.severity === "urgent" ? "err" : "" }, i.glyph + " " + i.text), h("span", {}, q, btn));
+    return row;
+  }) : h("div", { class: "muted" }, L.allClear));
+}
+
+function photoCard() {
+  const file = h("input", { type: "file", accept: "image/*", capture: "environment", "aria-label": L.photo });
+  const cap = h("input", { type: "text", placeholder: L.caption, "aria-label": L.caption, maxlength: "200" });
+  const note = h("div", { class: "muted", role: "status" });
+  file.addEventListener("change", async () => {
+    const f = file.files[0]; if (!f) return;
+    try {
+      const r = await api("/api/v1/photos?kind=general&caption=" + encodeURIComponent(cap.value), { method: "POST", body: f, headers: { "Content-Type": "application/octet-stream" } });
+      note.textContent = r.ok ? L.saved : L.failed; if (r.ok) { cap.value = ""; file.value = ""; }
+    } catch { note.textContent = L.failed; }
+  });
+  return h("div", { class: "card" }, h("h2", {}, L.photo), cap, h("div", { class: "row" }, file), note);
 }
 
 async function viewTasks() {

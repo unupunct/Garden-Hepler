@@ -34,11 +34,13 @@ public sealed class LocalApiServer
     private readonly Dictionary<int, DateTime> _lastSensor = new();
     private readonly Repository _repo;
     private readonly SettingsService _settings;
+    private readonly TodayService _today;
+    private readonly SeedPhotoStore _photos;
     private readonly ILogger<LocalApiServer> _log;
     private WebApplication? _app;
 
-    public LocalApiServer(GreenhouseService greenhouse, RemoteService remote, CameraClient cameras, CameraEvents events, RecordingStore recordings, CameraMonitor monitor, Repository repo, SettingsService settings, ILogger<LocalApiServer> log)
-    { _events = events; _recordings = recordings; _monitor = monitor; _greenhouse = greenhouse; _remote = remote; _cameras = cameras; _repo = repo; _settings = settings; _log = log; }
+    public LocalApiServer(GreenhouseService greenhouse, RemoteService remote, CameraClient cameras, CameraEvents events, RecordingStore recordings, CameraMonitor monitor, Repository repo, SettingsService settings, TodayService today, SeedPhotoStore photos, ILogger<LocalApiServer> log)
+    { _today = today; _photos = photos; _events = events; _recordings = recordings; _monitor = monitor; _greenhouse = greenhouse; _remote = remote; _cameras = cameras; _repo = repo; _settings = settings; _log = log; }
 
     public bool Running => _app is not null;
     public int Port { get; private set; }
@@ -147,6 +149,36 @@ public sealed class LocalApiServer
         {
             var e = (await _repo.ListAsync<CameraEvent>(q => q.Where(x => x.Id == id))).FirstOrDefault();
             return _recordings.PathOf(e?.File) is { } path && File.Exists(path) ? Results.File(File.ReadAllBytes(path), path.EndsWith(".png") ? "image/png" : "image/jpeg") : Results.NotFound();
+        });
+        // what needs doing today, with the same one-tap actions as the desktop screen
+        app.MapGet("/api/v1/today", async () =>
+        {
+            var garden = await _repo.ActiveGardenAsync();
+            var items = await _today.BuildAsync(garden, await _today.CachedForecastAsync());
+            return Results.Json(items.Select(i => new { section = i.Section, severity = i.Severity, glyph = i.Glyph, text = TodayService.TitleOf(i), action = i.Action.ToString(), refId = i.RefId, refIds = i.RefIds, needsNumber = i.NeedsNumber, unit = i.Unit }));
+        });
+        app.MapPost("/api/v1/today/act", async (HttpRequest req) =>
+        {
+            Dictionary<string, System.Text.Json.JsonElement>? body;
+            try { body = await req.ReadFromJsonAsync<Dictionary<string, System.Text.Json.JsonElement>>(); } catch { return Results.BadRequest(new { error = "Bad request." }); }
+            if (body is null || !body.TryGetValue("action", out var a) || !Enum.TryParse<GardenHelper.Core.Planning.TodayAction>(a.GetString(), out var action)) return Results.BadRequest(new { error = "Unknown action." });
+            var refId = body.TryGetValue("refId", out var r) && r.TryGetInt32(out var rid) ? rid : 0;
+            int[]? refIds = body.TryGetValue("refIds", out var rs) && rs.ValueKind == System.Text.Json.JsonValueKind.Array ? rs.EnumerateArray().Where(x => x.TryGetInt32(out _)).Select(x => x.GetInt32()).Take(50).ToArray() : null;
+            double? qty = body.TryGetValue("quantity", out var q) && q.TryGetDouble(out var qd) ? qd : null;
+            return await _today.PerformAsync(action, refId, refIds, qty) ? Results.Ok(new { done = true }) : Results.NotFound(new { error = "Nothing to do." });
+        });
+        // a picture from the phone's camera: the body is the picture itself; ?caption=...&kind=general|bed|animal|place&ownerId=...
+        app.MapPost("/api/v1/photos", async (HttpRequest req) =>
+        {
+            if (req.HttpContext.Features.Get<Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>() is { IsReadOnly: false } limit) limit.MaxRequestBodySize = 22L * 1024 * 1024;   // phone pictures: the rest of the API keeps its small limit
+            using var ms = new MemoryStream();
+            await req.Body.CopyToAsync(ms);
+            var stored = await _photos.AddBytesAsync(ms.ToArray());
+            if (stored is null) return Results.BadRequest(new { error = "That is not a picture, or it is larger than 20 MB." });
+            var kind = req.Query["kind"].ToString(); if (kind is not ("general" or "bed" or "animal" or "place" or "plant")) kind = "general";
+            var caption = req.Query["caption"].ToString().Trim(); if (caption.Length > 200) caption = caption[..200];
+            await _repo.SaveAsync(new GardenHelper.Core.Domain.Photo { File = stored, Caption = caption.Length == 0 ? null : caption, OwnerKind = kind, OwnerId = int.TryParse(req.Query["ownerId"], out var oid) ? oid : null });
+            return Results.Ok(new { saved = true });
         });
         app.MapGet("/api/v1/status", () => Results.Json(new { app = "Garden Helper", timeUtc = DateTime.UtcNow }));
         app.MapPost("/api/v1/greenhouse/{id:int}/readings", async (int id, HttpRequest req) =>

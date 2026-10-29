@@ -1,4 +1,5 @@
 using GardenHelper.Core.Animals;
+using GardenHelper.Core.Knowledge;
 using GardenHelper.Core.Domain;
 using GardenHelper.Core.Greenhouse;
 using GardenHelper.Core.Planning;
@@ -18,9 +19,10 @@ public sealed class TodayService
     private readonly GreenhouseService _greenhouse;
     private readonly SettingsService _settings;
     private readonly ILogger<TodayService> _log;
+    private readonly KnowledgeBase _kb;
 
-    public TodayService(Repository repo, AlertService alerts, GreenhouseService greenhouse, SettingsService settings, ILogger<TodayService> log)
-    { _repo = repo; _alerts = alerts; _greenhouse = greenhouse; _settings = settings; _log = log; }
+    public TodayService(Repository repo, AlertService alerts, GreenhouseService greenhouse, SettingsService settings, KnowledgeBase kb, ILogger<TodayService> log)
+    { _kb = kb; _repo = repo; _alerts = alerts; _greenhouse = greenhouse; _settings = settings; _log = log; }
 
     public async Task<WeatherForecast?> CachedForecastAsync() => WeatherForecast.FromJson(await _settings.GetAsync(WeatherKey));
 
@@ -78,6 +80,32 @@ public sealed class TodayService
             return WateringAdvisor.Evaluate(rows, forecast?.Days ?? new List<WeatherDay>(), today, Loc.Instance.Culture);
         }
         catch (Exception ex) { _log.LogWarning(ex, "Bed watering check failed"); return new(); }
+    }
+
+    /// <summary>Does what the button says for the actions that change records (task done, plant or bed watered, eggs or milk logged). Returns false when it could not.</summary>
+    public async Task<bool> PerformAsync(TodayAction action, int refId, int[]? refIds, double? quantity)
+    {
+        var today = DateOnly.FromDateTime(DateTime.Today);
+        switch (action)
+        {
+            case TodayAction.Done:
+                if ((await _repo.ListAsync<GardenTask>(q => q.Where(t => t.Id == refId))).FirstOrDefault() is not { } t) return false;
+                t.Done = true; t.CompletedUtc = DateTime.UtcNow; await _repo.SaveAsync(t); return true;
+            case TodayAction.Watered:
+                if ((await _repo.ListAsync<InventoryPlant>(q => q.Where(p => p.Id == refId))).FirstOrDefault() is not { } plant) return false;
+                plant.LastWatered = today; await _repo.SaveAsync(plant);
+                await _repo.SaveAsync(new InventoryLog { PlantId = plant.Id, Date = today, Kind = "watering", Text = "" }); return true;
+            case TodayAction.WaterBed:
+                var ids = refIds ?? new[] { refId };
+                foreach (var bed in await _repo.ListAsync<GardenBed>(q => q.Where(b => ids.Contains(b.Id)).Include(b => b.Plantings)))
+                    foreach (var plantId in bed.Plantings.Where(x => x.Status is PlantingStatus.Sown or PlantingStatus.Growing or PlantingStatus.Harvesting).Select(x => x.PlantId).Distinct())
+                        await _repo.SaveAsync(new JournalEntry { Title = Loc.F("card_water_title", _kb.Get(plantId)?.DisplayName(Loc.Instance.Language) ?? plantId, bed.Name), Text = "", Tags = "watering", PlantId = plantId });
+                return true;
+            case TodayAction.LogProduction:
+                if (quantity is not { } q || q < 0 || q > 100000) return false;
+                await _repo.SaveAsync(new AnimalLog { GroupId = refId, Date = today, Kind = "production", Quantity = q, Text = "" }); return true;
+            default: return false;
+        }
     }
 
     public static string TitleOf(TodayItem i) => Loc.F(i.Key, i.Args.Cast<object>().ToArray());

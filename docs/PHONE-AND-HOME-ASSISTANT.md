@@ -57,3 +57,8 @@ rest_command:
     headers:
       Authorization: "Bearer <TOKEN>"
 ```
+
+## Today and photos from the phone (0.4.0)
+- `GET /api/v1/today` lists what needs you today, the same list as the desktop **Today** screen (late tasks, thirsty plants and beds, eggs and milk to log, greenhouse and weather advice).
+- `POST /api/v1/today/act` with `{"action": "Done|Watered|WaterBed|LogProduction", "refId": 1, "refIds": [..], "quantity": 12}` does what the button on the desktop does.
+- `POST /api/v1/photos?caption=...&kind=general|bed|animal|place&ownerId=1` takes the picture itself as the request body (up to 20 MB) and adds it to the Photos timeline. The phone page has an **Add a photo** button that opens the camera.
