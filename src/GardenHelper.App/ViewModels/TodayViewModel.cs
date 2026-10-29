@@ -167,7 +167,7 @@ public sealed partial class TodayViewModel : PageViewModel
         var it = row.Item;
         switch (it.Action)
         {
-            case TodayAction.Done or TodayAction.Watered or TodayAction.WaterBed or TodayAction.LogProduction:
+            case TodayAction.Done or TodayAction.Watered or TodayAction.WaterBed or TodayAction.AddTask or TodayAction.LogProduction:
             {
                 double? qty = null;
                 if (it.Action == TodayAction.LogProduction)
@@ -175,7 +175,7 @@ public sealed partial class TodayViewModel : PageViewModel
                     if (!double.TryParse(row.Input.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out var q) || q < 0) { ErrorMessage = Loc.T("animal_need_quantity"); return; }
                     qty = q;
                 }
-                if (!await _todayService.PerformAsync(it.Action, it.RefId, it.RefIds, qty)) { ErrorMessage = Loc.T("today_failed"); return; }
+                if (!await _todayService.PerformAsync(it.Action, it.RefId, it.RefIds, qty, row.Title, it.Due, it.PlantId)) { ErrorMessage = Loc.T("today_failed"); return; }
                 break;
             }
             case TodayAction.OpenAnimals: _nav.GoTo<AnimalsViewModel>(); return;

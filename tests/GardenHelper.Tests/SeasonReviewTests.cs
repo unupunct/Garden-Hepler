@@ -91,3 +91,35 @@ public class PlantingCalendarTests
         Assert.True(harvest.StartDay > indoor.StartDay);
     }
 }
+
+public class LookAheadTests
+{
+    private static readonly GardenHelper.Core.Knowledge.KnowledgeBase Kb = GardenHelper.Core.Knowledge.KnowledgeBase.Load(new[] { Fixtures.RepoContent() });
+    private static readonly System.Globalization.CultureInfo C = System.Globalization.CultureInfo.InvariantCulture;
+    private static List<GardenHelper.Core.Planning.TodayItem> Run(DateOnly today, GardenHelper.Core.Domain.Garden g, IEnumerable<GardenHelper.Core.Knowledge.PlantRecord> crops, IEnumerable<GardenHelper.Core.Domain.InventoryPlant> trees, IEnumerable<GardenHelper.Core.Domain.GardenTask>? tasks = null) =>
+        GardenHelper.Core.Planning.LookAhead.Build(today, g, crops, trees, tasks ?? Array.Empty<GardenHelper.Core.Domain.GardenTask>(), p => p.Id, a => a.ToString(), C);
+
+    [Fact]
+    public void A_sowing_window_opening_this_week_is_suggested_once_and_not_when_already_planned()
+    {
+        var garden = new GardenHelper.Core.Domain.Garden { LastSpringFrost = new DateOnly(2026, 5, 10), FirstAutumnFrost = new DateOnly(2026, 10, 5) };
+        var tomato = Kb.Get("tomato")!;
+        var plan = GardenHelper.Core.Knowledge.PlantingCalculator.Calculate(tomato, garden, 2026).Windows.First(w => w.Activity == GardenHelper.Core.Knowledge.PlantingActivity.SowIndoors);
+        var day = plan.Start.AddDays(-3);
+        var items = Run(day, garden, new[] { tomato }, Array.Empty<GardenHelper.Core.Domain.InventoryPlant>());
+        var one = Assert.Single(items, i => i.Key == "look_sow_opens"); Assert.Equal("tomato", one.PlantId); Assert.Equal(plan.Start, one.Due);
+        var planned = Run(day, garden, new[] { tomato }, Array.Empty<GardenHelper.Core.Domain.InventoryPlant>(), new[] { new GardenHelper.Core.Domain.GardenTask { PlantId = "tomato", DueDate = plan.Start } });
+        Assert.DoesNotContain(planned, i => i.Key == "look_sow_opens");
+    }
+
+    [Fact]
+    public void Fruit_trees_get_seasonal_care_and_winter_prep_follows_the_first_frost_date()
+    {
+        var garden = new GardenHelper.Core.Domain.Garden { FirstAutumnFrost = new DateOnly(2026, 10, 5) };
+        var trees = new[] { new GardenHelper.Core.Domain.InventoryPlant { IsTree = true, TreeType = "fruit", SpeciesId = "plum", Name = "Plum" } };
+        Assert.Contains(Run(new DateOnly(2026, 1, 20), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key == "look_tree_prune_winter");
+        Assert.Contains(Run(new DateOnly(2026, 8, 10), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key == "look_tree_summer_prune");
+        Assert.Contains(Run(new DateOnly(2026, 9, 25), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key == "look_winter_protect");
+        Assert.DoesNotContain(Run(new DateOnly(2026, 7, 1), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key.StartsWith("look_winter"));
+    }
+}

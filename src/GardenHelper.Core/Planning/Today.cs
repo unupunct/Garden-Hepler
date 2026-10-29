@@ -3,15 +3,15 @@ using GardenHelper.Core.Domain;
 
 namespace GardenHelper.Core.Planning;
 
-public enum TodayAction { Done, Watered, WaterBed, LogProduction, OpenAnimals, OpenGreenhouse, OpenActions, OpenInventory }
+public enum TodayAction { Done, Watered, WaterBed, AddTask, LogProduction, OpenAnimals, OpenGreenhouse, OpenActions, OpenInventory }
 
 /// <summary>One thing that needs the owner today. The text is a localisation key plus arguments; <see cref="RefId"/> says which task, plant, animal group or greenhouse it is about.</summary>
-public sealed record TodayItem(string Section, string Severity, string Glyph, string Key, string[] Args, TodayAction Action, int RefId, bool NeedsNumber = false, string? Unit = null, int[]? RefIds = null);
+public sealed record TodayItem(string Section, string Severity, string Glyph, string Key, string[] Args, TodayAction Action, int RefId, bool NeedsNumber = false, string? Unit = null, int[]? RefIds = null, string? PlantId = null, DateOnly? Due = null);
 
 /// <summary>Turns tasks, plants and animals into today's list: what is late, what is due, what has not been logged yet.</summary>
 public static class TodayPlanner
 {
-    public static readonly string[] Sections = { "tasks", "plants", "animals", "greenhouse", "advice" };
+    public static readonly string[] Sections = { "tasks", "plants", "animals", "greenhouse", "advice", "ahead" };
 
     public static List<TodayItem> Build(DateOnly today, IEnumerable<GardenTask> tasks, IEnumerable<InventoryPlant> plants, IEnumerable<AnimalGroup> groups, string cultureDateFormat = "d MMM")
     {

@@ -36,6 +36,7 @@ public sealed class TodayService
 
         if (forecast is not null) items.AddRange(WeatherAdvice.Evaluate(forecast.Days, today, Loc.Instance.Culture));
         if (garden is not null) items.AddRange(await BedWateringAsync(garden, forecast, today));
+        if (garden is not null) items.AddRange(await LookAheadAsync(garden, today));
         foreach (var row in await _alerts.LoadAsync())
             if (row.Alert.Severity is AlertSeverity.Urgent or AlertSeverity.Soon)
                 items.Add(new TodayItem("advice", row.Alert.Severity == AlertSeverity.Urgent ? "urgent" : "soon", row.Glyph, "today_advice", new[] { row.Message }, TodayAction.OpenActions, row.Alert.PlantingId ?? 0));
@@ -52,6 +53,24 @@ public sealed class TodayService
                 catch (Exception ex) { _log.LogWarning(ex, "Greenhouse alerts failed"); }
             }
         return items.OrderBy(i => TodayPlanner.SeverityRank(i.Severity)).ThenBy(i => Array.IndexOf(TodayPlanner.Sections, i.Section)).ToList();
+    }
+
+    /// <summary>Things to get ready for: sowings about to open for your crops, fruit tree care for the season, winter preparation near the first frost.</summary>
+    private async Task<List<TodayItem>> LookAheadAsync(Garden garden, DateOnly today)
+    {
+        try
+        {
+            var seeds = await _repo.ListAsync<SeedItem>(null);
+            var beds = await _repo.ListAsync<GardenBed>(q => q.Where(b => b.GardenId == garden.Id).Include(b => b.Plantings));
+            var ids = new HashSet<string>(seeds.Where(s => s.PlantId is not null).Select(s => s.PlantId!));
+            foreach (var p in beds.SelectMany(b => b.Plantings).Where(p => p.PlantedDate?.Year == today.Year || p.Status == PlantingStatus.Planned)) ids.Add(p.PlantId);
+            var crops = ids.Select(i => _kb.Get(i)).Where(p => p is not null).Cast<PlantRecord>().Where(p => p.Category is "vegetable" or "herb" or "flower").ToList();
+            var trees = await _repo.ListAsync<InventoryPlant>(q => q.Where(p => p.IsTree));
+            var tasks = await _repo.ListAsync<GardenTask>(null);
+            var lang = Loc.Instance.Language;
+            return LookAhead.Build(today, garden, crops, trees, tasks, p => p.DisplayName(lang), a => Loc.T("act_" + a), Loc.Instance.Culture);
+        }
+        catch (Exception ex) { _log.LogWarning(ex, "Look-ahead failed"); return new(); }
     }
 
     /// <summary>Beds that need water today: from the soil sensor when there is one, otherwise from hot weather and the last watering; rain that is coming cancels it.</summary>
@@ -83,7 +102,7 @@ public sealed class TodayService
     }
 
     /// <summary>Does what the button says for the actions that change records (task done, plant or bed watered, eggs or milk logged). Returns false when it could not.</summary>
-    public async Task<bool> PerformAsync(TodayAction action, int refId, int[]? refIds, double? quantity)
+    public async Task<bool> PerformAsync(TodayAction action, int refId, int[]? refIds, double? quantity, string? title = null, DateOnly? due = null, string? plantId = null)
     {
         var today = DateOnly.FromDateTime(DateTime.Today);
         switch (action)
@@ -98,9 +117,12 @@ public sealed class TodayService
             case TodayAction.WaterBed:
                 var ids = refIds ?? new[] { refId };
                 foreach (var bed in await _repo.ListAsync<GardenBed>(q => q.Where(b => ids.Contains(b.Id)).Include(b => b.Plantings)))
-                    foreach (var plantId in bed.Plantings.Where(x => x.Status is PlantingStatus.Sown or PlantingStatus.Growing or PlantingStatus.Harvesting).Select(x => x.PlantId).Distinct())
-                        await _repo.SaveAsync(new JournalEntry { Title = Loc.F("card_water_title", _kb.Get(plantId)?.DisplayName(Loc.Instance.Language) ?? plantId, bed.Name), Text = "", Tags = "watering", PlantId = plantId });
+                    foreach (var pid in bed.Plantings.Where(x => x.Status is PlantingStatus.Sown or PlantingStatus.Growing or PlantingStatus.Harvesting).Select(x => x.PlantId).Distinct())
+                        await _repo.SaveAsync(new JournalEntry { Title = Loc.F("card_water_title", _kb.Get(pid)?.DisplayName(Loc.Instance.Language) ?? pid, bed.Name), Text = "", Tags = "watering", PlantId = pid });
                 return true;
+            case TodayAction.AddTask:
+                if (string.IsNullOrWhiteSpace(title)) return false;
+                await _repo.SaveAsync(new GardenTask { Title = title.Trim(), Activity = "General", DueDate = due ?? today, PlantId = plantId }); return true;
             case TodayAction.LogProduction:
                 if (quantity is not { } q || q < 0 || q > 100000) return false;
                 await _repo.SaveAsync(new AnimalLog { GroupId = refId, Date = today, Kind = "production", Quantity = q, Text = "" }); return true;
