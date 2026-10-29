@@ -44,6 +44,18 @@
 
             <Border Style="{StaticResource Card}" Margin="0,0,0,16">
                 <StackPanel>
+                    <TextBlock Text="{loc:L export_title}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                    <TextBlock Text="{loc:L export_text}" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
+                    <CheckBox Content="{loc:L export_library}" IsChecked="{Binding IncludeLibrary}" Margin="0,10,0,8"/>
+                    <WrapPanel>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L export_button}" Command="{Binding ExportAllCommand}" Margin="0,0,8,0"/>
+                        <Button Content="{loc:L import_button}" Command="{Binding ImportAllCommand}"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
                     <TextBlock Text="{loc:L set_data}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
                     <TextBlock Text="{loc:L set_data_text}" Style="{StaticResource Muted}"/>
                     <TextBox Text="{Binding DataFolder, Mode=OneWay}" IsReadOnly="True" Margin="0,10,0,10" AutomationProperties.Name="{loc:L set_data}"/>

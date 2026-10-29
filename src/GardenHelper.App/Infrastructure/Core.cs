@@ -15,6 +15,7 @@ public interface IDialogs
 {
     string[]? PickBooks(string filter);
     string? PickFile(string filter);
+    string? SaveFile(string filter, string defaultName);
     string? PickFolder(string? title = null);
     bool Confirm(string message, string? title = null);
     void Info(string message, string? title = null);
@@ -33,6 +34,12 @@ public sealed class WpfDialogs : IDialogs
     public string? PickFile(string filter)
     {
         var dlg = new OpenFileDialog { Filter = filter, CheckFileExists = true };
+        return dlg.ShowDialog() == true ? dlg.FileName : null;
+    }
+
+    public string? SaveFile(string filter, string defaultName)
+    {
+        var dlg = new SaveFileDialog { Filter = filter, FileName = defaultName, OverwritePrompt = true };
         return dlg.ShowDialog() == true ? dlg.FileName : null;
     }
 

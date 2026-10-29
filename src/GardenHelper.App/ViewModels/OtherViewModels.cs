@@ -60,12 +60,13 @@ public sealed partial class SettingsViewModel : PageViewModel
     private readonly AppPaths _paths;
     private readonly IDialogs _dialogs;
     private readonly GardenHelper.Core.Services.SettingsService _settings;
+    private readonly GardenHelper.Core.Services.ExportService _exporter;
     private readonly GardenHelper.App.Infrastructure.ReminderService _reminders;
     private bool _loading;
 
-    public SettingsViewModel(Preferences prefs, BackupService backups, AppPaths paths, IDialogs dialogs, GardenHelper.Core.Services.SettingsService settings, GardenHelper.App.Infrastructure.ReminderService reminders, ILogger<SettingsViewModel> log) : base(log)
+    public SettingsViewModel(Preferences prefs, BackupService backups, AppPaths paths, IDialogs dialogs, GardenHelper.Core.Services.SettingsService settings, GardenHelper.App.Infrastructure.ReminderService reminders, GardenHelper.Core.Services.ExportService exporter, ILogger<SettingsViewModel> log) : base(log)
     {
-        _settings = settings; _reminders = reminders; _prefs = prefs; _backups = backups; _paths = paths; _dialogs = dialogs;
+        _exporter = exporter; _settings = settings; _reminders = reminders; _prefs = prefs; _backups = backups; _paths = paths; _dialogs = dialogs;
         _loading = true;
         Language = prefs.Language; Theme = prefs.Theme; Units = prefs.Units;
         _loading = false;
@@ -105,6 +106,28 @@ public sealed partial class SettingsViewModel : PageViewModel
         Backups.Clear();
         foreach (var b in _backups.List()) Backups.Add(b);
     }
+
+    [ObservableProperty] private bool _includeLibrary;
+
+    [RelayCommand]
+    private Task ExportAllAsync() => RunAsync(async () =>
+    {
+        var file = _dialogs.SaveFile("Garden Helper export|*.zip", $"GardenHelper-export-{DateTime.Now:yyyyMMdd}.zip");
+        if (file is null) return;
+        var info = await _exporter.ExportAsync(file, IncludeLibrary);
+        StatusMessage = Loc.F("export_done", Path.GetFileName(info.Path), (info.Bytes / 1048576.0).ToString("0.#", Loc.Instance.Culture));
+    });
+
+    [RelayCommand]
+    private Task ImportAllAsync() => RunAsync(async () =>
+    {
+        var file = _dialogs.PickFile("Garden Helper export|*.zip");
+        if (file is null || !_dialogs.Confirm(Loc.T("import_confirm"))) return;
+        try { await _backups.CreateAsync("before-import"); await _exporter.ImportAsync(file); }
+        catch (InvalidOperationException ex) { ErrorMessage = Loc.F("import_failed", ex.Message); return; }
+        RestorePending = true;
+        StatusMessage = Loc.T("import_done");
+    });
 
     [RelayCommand]
     private Task BackupNowAsync() => RunAsync(async () =>

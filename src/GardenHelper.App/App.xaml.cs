@@ -53,6 +53,7 @@ public partial class App : Application
             sc.AddSingleton<Preferences>();
             sc.AddSingleton<AlertService>();
             sc.AddSingleton<TodayService>();
+            sc.AddSingleton<GardenHelper.Core.Services.ExportService>();
             sc.AddSingleton<ReminderService>();
             sc.AddSingleton(_ =>
             {
