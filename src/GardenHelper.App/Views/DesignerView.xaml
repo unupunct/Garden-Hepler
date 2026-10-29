@@ -170,6 +170,7 @@
                     <Button Content="{loc:L design_backdrop_load}" Command="{Binding LoadBackdropCommand}" Padding="10,5" Margin="0,0,0,4" ToolTip="{loc:L design_backdrop_tip}"/>
                     <Button Content="{loc:L print_button}" Click="OnPrintPlan" Padding="10,5" Margin="8,0,0,4" ToolTip="{loc:L print_tip}"/>
                     <Button Style="{StaticResource PrimaryButton}" Content="{loc:L trace_start}" Command="{Binding StartTraceCommand}" Padding="10,5" Margin="8,0,0,4" ToolTip="{loc:L trace_help}"/>
+                    <Button Content="{loc:L mark_start}" Command="{Binding StartAnnotateCommand}" Padding="10,5" Margin="8,0,0,4" ToolTip="{loc:L mark_help}"/>
                     <Border Width="1" Height="26" Background="#33000000" Margin="2,0,12,4" VerticalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" Margin="8,0,0,4" VerticalAlignment="Center">
                         <DatePicker SelectedDate="{Binding ViewDate}" Width="140" ToolTip="{loc:L season_view}" AutomationProperties.Name="{loc:L season_view}"/>
@@ -178,6 +179,20 @@
                 </WrapPanel>
             </StackPanel>
             <v:Banners Margin="0,6,0,0"/>
+            <Border Visibility="{Binding Annotating, Converter={StaticResource BoolToVis}}" Background="#FFF1F6EA" BorderBrush="#FFCFE2BC" BorderThickness="1" CornerRadius="14" Padding="12,8" Margin="0,8,0,0">
+                <StackPanel>
+                    <TextBlock Text="{loc:L mark_help}" TextWrapping="Wrap" FontSize="12" Foreground="#FF40552F"/>
+                    <WrapPanel Margin="0,6,0,0">
+                        <ComboBox ItemsSource="{Binding MarkTools}" SelectedItem="{Binding MarkTool}" MinWidth="170" AutomationProperties.Name="{loc:L mark_tool}" Margin="0,0,8,4"/>
+                        <TextBox Text="{Binding MarkText, UpdateSourceTrigger=PropertyChanged}" Width="240" Tag="{loc:L mark_text}" AutomationProperties.Name="{loc:L mark_text}" Margin="0,0,8,4"
+                                 Visibility="{Binding MarkNeedsText, Converter={StaticResource BoolToVis}}"/>
+                        <TextBlock Text="{Binding MarkInfo}" VerticalAlignment="Center" Margin="0,0,10,4"/>
+                        <Button Content="{loc:L trace_undo}" Command="{Binding UndoMarkPointCommand}" Margin="0,0,6,4"/>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L mark_finish}" Command="{Binding FinishMarkCommand}" Margin="0,0,6,4"/>
+                        <Button Content="{loc:L trace_cancel}" Command="{Binding CancelAnnotateCommand}" Margin="0,0,0,4"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
             <Border Visibility="{Binding Editing, Converter={StaticResource BoolToVis}}" Background="#FFEAF3FA" BorderBrush="#FFBBD5E8" BorderThickness="1" CornerRadius="14" Padding="12,8" Margin="0,8,0,0">
                 <StackPanel>
                     <TextBlock Text="{loc:L edit_help}" TextWrapping="Wrap" FontSize="12" Foreground="#FF3E5566"/>
@@ -366,6 +381,21 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+                            <ItemsControl ItemsSource="{Binding Marks}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
+                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Canvas>
+                                            <Polyline Points="{Binding Points}" Stroke="{Binding Stroke}" StrokeThickness="{Binding Thickness}" StrokeDashArray="{Binding Dashes}" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                                                      Opacity="0.85" Cursor="Hand" ToolTip="{Binding Tip}" MouseRightButtonDown="OnMarkRightClick" Visibility="{Binding IsLabel, Converter={StaticResource BoolToVis}, ConverterParameter=invert}"/>
+                                            <Border Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" Background="#F2FFFDE8" BorderBrush="#FF8A7A55" BorderThickness="1" CornerRadius="8" Padding="8,3" ToolTip="{Binding Tip}" MouseRightButtonDown="OnMarkRightClick"
+                                                    Visibility="{Binding IsLabel, Converter={StaticResource BoolToVis}}">
+                                                <TextBlock Text="{Binding Text}" FontWeight="SemiBold" Foreground="#FF2E3A2A" FontSize="{Binding DataContext.LabelSize, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                            </Border>
+                                        </Canvas>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                             <ItemsControl ItemsSource="{Binding Badges}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
                                 <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemContainerStyle>
@@ -471,6 +501,20 @@
                                                     <Button.Style><Style TargetType="Button"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsMid}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Button.Style>
                                                 </Button>
                                             </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Canvas>
+                            <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" Background="#01000000" Cursor="Cross" Visibility="{Binding Annotating, Converter={StaticResource BoolToVis}}" MouseLeftButtonDown="OnMarkDown">
+                                <Polyline Points="{Binding MarkShape}" Stroke="#FF2F7FB5" StrokeThickness="{Binding StrokeSize}" StrokeDashArray="3 2" IsHitTestVisible="False"/>
+                                <ItemsControl ItemsSource="{Binding MarkPins}" IsHitTestVisible="False">
+                                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemContainerStyle><Style TargetType="ContentPresenter"><Setter Property="Canvas.Left" Value="{Binding X}"/><Setter Property="Canvas.Top" Value="{Binding Y}"/></Style></ItemsControl.ItemContainerStyle>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Ellipse Fill="White" Stroke="#FF2F7FB5" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                     Width="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                     Margin="{Binding DataContext.CameraHandleMargin, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

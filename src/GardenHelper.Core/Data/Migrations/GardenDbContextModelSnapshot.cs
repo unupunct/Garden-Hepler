@@ -870,6 +870,32 @@ namespace GardenHelper.Core.Data.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Domain.PlanMark", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GardenId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PointsJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlanMarks");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.PropertyFeature", b =>
                 {
                     b.Property<int>("Id")

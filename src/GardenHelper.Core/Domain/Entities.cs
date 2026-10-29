@@ -38,6 +38,17 @@ public class Garden
     public double? PlanAnchorLon { get; set; }
 }
 
+/// <summary>A note or line drawn on the garden plan: a text label, an irrigation line, a path or a cable run. Points are plan coordinates in centimetres, as JSON [{X,Y},…].</summary>
+public class PlanMark
+{
+    public int Id { get; set; }
+    public int GardenId { get; set; }
+    /// <summary>label, irrigation, path or cable.</summary>
+    public string Kind { get; set; } = "label";
+    public string Text { get; set; } = "";
+    public string PointsJson { get; set; } = "[]";
+}
+
 /// <summary>One harvest: when, what, from which bed, and how much (optional).</summary>
 public class Harvest
 {

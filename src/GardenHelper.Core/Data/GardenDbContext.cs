@@ -29,6 +29,7 @@ public class GardenDbContext : DbContext
     public DbSet<Design.InteriorItem> InteriorItems => Set<Design.InteriorItem>();
     public DbSet<Photo> Photos => Set<Photo>();
     public DbSet<Harvest> Harvests => Set<Harvest>();
+    public DbSet<PlanMark> PlanMarks => Set<PlanMark>();
     public DbSet<Planning.BudgetEntry> Budget => Set<Planning.BudgetEntry>();
     public DbSet<Animals.AnimalGroup> AnimalGroups => Set<Animals.AnimalGroup>();
     public DbSet<Animals.AnimalLog> AnimalLogs => Set<Animals.AnimalLog>();

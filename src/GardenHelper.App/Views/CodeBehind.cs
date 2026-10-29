@@ -433,6 +433,16 @@ public partial class DesignerView : UserControl
 
     private void OnPrintPlan(object sender, RoutedEventArgs e) => Printing.PrintPicture(CanvasScroll, Loc.T("nav_designer"), Loc.T("print_plan_hint"));
 
+    private void OnMarkDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (Vm is { } vm && sender is IInputElement el) { vm.AddMarkPoint(e.GetPosition(el)); e.Handled = true; }
+    }
+
+    private async void OnMarkRightClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if ((sender as FrameworkElement)?.DataContext is MarkShape m && Vm is { } vm) { e.Handled = true; await vm.DeleteMarkAsync(m); }
+    }
+
     private void OnTraceDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (Vm is { } vm && sender is IInputElement el) { vm.AddTracePoint(e.GetPosition(el)); e.Handled = true; }
@@ -460,7 +470,7 @@ public partial class DesignerView : UserControl
 
     private void OnPanStart(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        if (Vm is { Tracing: true } && e.ChangedButton == System.Windows.Input.MouseButton.Left) return;   // clicks place pins while tracing
+        if (Vm is { } pv && (pv.Tracing || pv.Annotating) && e.ChangedButton == System.Windows.Input.MouseButton.Left) return;   // clicks place pins while tracing
         if (Vm is { AnimalCardOpen: true } ac) ac.AnimalCardOpen = false;
         if (Vm is { CardOpen: true } open) open.CardOpen = false;   // any click on the plan closes the plant card (clicking a plant opens it again)
         var middle = e.ChangedButton == System.Windows.Input.MouseButton.Middle;

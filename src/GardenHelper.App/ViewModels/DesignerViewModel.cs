@@ -345,6 +345,7 @@ public sealed partial class DesignerViewModel : PageViewModel
         foreach (var b in beds) { Beds.Add(Wrap(b)); _snapshots[b.Id] = Capture(b); }
         await LoadBadgesAsync();
         await LoadSensorDotsAsync();
+        await LoadMarksAsync();
         Selected = Beds.FirstOrDefault(b => b.Id == keep);
         BuildCards();
         RebuildCalendar();
