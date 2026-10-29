@@ -159,6 +159,12 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("TEXT");
 
+                    b.Property<double?>("PlanX")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("PlanY")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("SecretProtected")
                         .HasColumnType("TEXT");
 

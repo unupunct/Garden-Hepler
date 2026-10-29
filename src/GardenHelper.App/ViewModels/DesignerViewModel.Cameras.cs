@@ -31,15 +31,17 @@ public sealed partial class DesignerViewModel
     public ObservableCollection<CameraMarker> CameraMarkers { get; } = new();
     private CameraFeed? _camFeed;
 
-    /// <summary>Puts every camera that has a position on the plan (cameras without one wait in the Cameras tab).</summary>
+    /// <summary>Puts every camera that has a position on the plan. A map position wins when the plan has one; otherwise the camera's own plan position is used.</summary>
     private async Task LoadCameraMarkersAsync()
     {
         CameraMarkers.Clear();
-        if (_garden is null || _frame is null) return;
+        if (_garden is null) return;
         var cams = await _repo.ListAsync<Camera>(q => q.Where(c => c.GardenId == _garden.Id && c.Enabled));
-        foreach (var c in cams.Where(c => c.Lat is not null && c.Lon is not null))
+        foreach (var c in cams)
         {
-            var p = _frame.ToPlan(new GeoPoint(c.Lat!.Value, c.Lon!.Value));
+            Pt? at = _frame is not null && c.Lat is { } la && c.Lon is { } lo ? _frame.ToPlan(new GeoPoint(la, lo))
+                   : c.PlanX is { } px && c.PlanY is { } py ? new Pt(px, py) : null;
+            if (at is not { } p) continue;
             // Wedge: apex at the camera, opening FovDeg wide, centred on the heading (0 = north = up on the plan).
             var pts = new PointCollection { new Point(0, 0) };
             for (var i = 0; i <= 12; i++)
@@ -66,21 +68,23 @@ public sealed partial class DesignerViewModel
 
     public async Task MoveCameraAsync(CameraMarker m, double x, double y)
     {
-        if (_frame is null) return;
         m.X = x; m.Y = y;
-        var g = _frame.ToGeo(new Pt(x, y));
-        m.Camera.Lat = g.Lat; m.Camera.Lon = g.Lon;
+        m.Camera.PlanX = x; m.Camera.PlanY = y;
+        if (_frame is not null) { var g = _frame.ToGeo(new Pt(x, y)); m.Camera.Lat = g.Lat; m.Camera.Lon = g.Lon; }
         await _repo.SaveAsync(m.Camera);
         StatusMessage = Loc.T("cam_moved");
     }
 
-    /// <summary>Adds a camera in the middle of what is visible and opens it so the address can be filled in.</summary>
+    /// <summary>Adds a camera in the middle of the plan and opens its page (live view and settings) so the address can be filled in. Works with or without a map position.</summary>
     [CommunityToolkit.Mvvm.Input.RelayCommand]
     private Task AddCameraHereAsync() => RunAsync(async () =>
     {
-        if (_garden is null || _frame is null) { ErrorMessage = Loc.T("design_need_coords"); return; }
-        var g = _frame.ToGeo(_planAll.Count > 0 ? new Pt(_planAll.Average(p => p.X), _planAll.Average(p => p.Y)) : new Pt(CanvasWidth / 2, CanvasHeight / 2));
-        var cam = await _repo.SaveAsync(new Camera { GardenId = _garden.Id, Name = Loc.T("cam_default_name"), Lat = g.Lat, Lon = g.Lon });
+        if (_garden is null) return;
+        var centre = _planAll.Count > 0 ? new Pt(_planAll.Average(p => p.X), _planAll.Average(p => p.Y)) : new Pt(CanvasWidth / 2, CanvasHeight / 2);
+        var cam = new Camera { GardenId = _garden.Id, Name = $"{Loc.T("cam_default_name")} {CameraMarkers.Count + 1}", PlanX = centre.X, PlanY = centre.Y };
+        if (_frame is not null) { var g = _frame.ToGeo(centre); cam.Lat = g.Lat; cam.Lon = g.Lon; }
+        cam = await _repo.SaveAsync(cam);
         _nav.GoTo<CamerasViewModel>(vm => vm.PendingSelect = cam.Id);
+        StatusMessage = Loc.T("cam_added_plan");
     }, busy: false);
 }

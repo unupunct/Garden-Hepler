@@ -17,6 +17,9 @@ public class Camera
     public string? SecretProtected { get; set; }
     public double? Lat { get; set; }
     public double? Lon { get; set; }
+    /// <summary>Position on the garden plan in centimetres, used when the plan has no map position (and kept in step with it when it has).</summary>
+    public double? PlanX { get; set; }
+    public double? PlanY { get; set; }
     /// <summary>Direction the camera points, degrees clockwise from north.</summary>
     public double HeadingDeg { get; set; }
     public double FovDeg { get; set; } = 90;

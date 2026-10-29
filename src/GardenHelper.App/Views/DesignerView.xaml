@@ -53,14 +53,16 @@
                     <Button Margin="0,0,4,4" Padding="10,5" Command="{Binding AddStructureCommand}" CommandParameter="shed"><TextBlock Text="{loc:L feat_shed}"/></Button>
                     <Button Margin="0,0,4,4" Padding="10,5" Command="{Binding AddStructureCommand}" CommandParameter="barn"><TextBlock Text="{loc:L feat_barn}"/></Button>
                     <Button Margin="0,0,4,4" Padding="10,5" Command="{Binding AddStructureCommand}" CommandParameter="garage"><TextBlock Text="{loc:L feat_garage}"/></Button>
-                    <Button Margin="0,0,12,4" Padding="10,5" Command="{Binding AddStructureCommand}" CommandParameter="other_structure"><TextBlock Text="{loc:L feat_other_structure}"/></Button>
+                    <Button Margin="0,0,4,4" Padding="10,5" Command="{Binding AddStructureCommand}" CommandParameter="other_structure"><TextBlock Text="{loc:L feat_other_structure}"/></Button>
+                    <Button Margin="0,0,12,4" Padding="10,5" Command="{Binding AddCameraHereCommand}" ToolTip="{loc:L design_add_camera_tip}" AutomationProperties.Name="{loc:L design_add_camera}">
+                        <StackPanel Orientation="Horizontal"><TextBlock Text="◉ " Foreground="#FF1F6F94" FontWeight="Bold"/><TextBlock Text="{loc:L design_add_camera}"/></StackPanel>
+                    </Button>
                     <Button Content="−" Command="{Binding ZoomOutCommand}" ToolTip="{loc:L design_zoom_out}" AutomationProperties.Name="{loc:L design_zoom_out}" Margin="0,0,2,4" Padding="11,5"/>
                     <TextBlock Text="{Binding ScaleText}" VerticalAlignment="Center" Width="44" TextAlignment="Center" Margin="0,0,0,4"/>
                     <Button Content="+" Command="{Binding ZoomInCommand}" ToolTip="{loc:L design_zoom_in}" AutomationProperties.Name="{loc:L design_zoom_in}" Margin="2,0,4,4" Padding="11,5"/>
                     <Button Content="{loc:L design_fit}" Command="{Binding FitCommand}" ToolTip="{loc:L design_fit_tip}" Margin="0,0,10,4" Padding="10,5"/>
                     <CheckBox Content="{loc:L design_snap}" IsChecked="{Binding Snap}" VerticalAlignment="Center" Margin="0,0,14,4"/>
                     <CheckBox Content="{loc:L design_backdrop}" IsChecked="{Binding ShowBackdrop}" IsEnabled="{Binding HasBackdrop}" VerticalAlignment="Center" Margin="0,0,6,4" ToolTip="{loc:L design_backdrop_tip}"/>
-                    <Button Content="{loc:L design_add_camera}" Command="{Binding AddCameraHereCommand}" Padding="10,5" Margin="0,0,6,4"/>
                     <Button Content="{loc:L design_backdrop_load}" Command="{Binding LoadBackdropCommand}" Padding="10,5" Margin="0,0,0,4" ToolTip="{loc:L design_backdrop_tip}"/>
                 </WrapPanel>
             </Grid>

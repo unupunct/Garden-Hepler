@@ -117,7 +117,7 @@ public sealed partial class CamerasViewModel : PageViewModel
             Id = Selected.Id, GardenId = Selected.GardenId, Name = EditName.Trim(), Kind = kind, Url = EditUrl.Trim(),
             Username = string.IsNullOrWhiteSpace(EditUser) ? null : EditUser.Trim(),
             SecretProtected = string.IsNullOrEmpty(EditPassword) ? Selected.SecretProtected : CameraSecrets.Protect(EditPassword),
-            Lat = lat, Lon = lon, HeadingDeg = ((heading % 360) + 360) % 360, FovDeg = fov, HeightCm = height,
+            Lat = lat, Lon = lon, PlanX = Selected.PlanX, PlanY = Selected.PlanY, HeadingDeg = ((heading % 360) + 360) % 360, FovDeg = fov, HeightCm = height,
             FeatureId = int.TryParse(EditPlace?.Id, out var fid) ? fid : null, Enabled = EditEnabled, Notes = string.IsNullOrWhiteSpace(EditNotes) ? null : EditNotes,
         };
         return string.IsNullOrWhiteSpace(c.Name) ? (null, Loc.T("cam_name_required")) : (c, null);
@@ -153,6 +153,7 @@ public sealed partial class CamerasViewModel : PageViewModel
         var (cam, problem) = ReadForm();
         if (problem is not null) { if (!quiet) ErrorMessage = problem; return; }
         if (cam is null) return;
+        if (string.IsNullOrWhiteSpace(cam.Url)) { FrameNote = Loc.T("cam_need_address"); Live = false; return; }     // a new camera: guide, do not scold
         _grabbing = true;
         try
         {
