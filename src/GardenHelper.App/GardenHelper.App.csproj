@@ -9,7 +9,7 @@
     <AssemblyName>GardenHelper</AssemblyName>
     <RootNamespace>GardenHelper.App</RootNamespace>
     <ApplicationIcon>Assets\GardenHelper.ico</ApplicationIcon>
-    <Version>0.3.0</Version>
+    <Version>0.4.0</Version>
     <Product>Garden Helper</Product>
     <Company>Garden Helper contributors</Company>
     <Description>Offline gardening, permaculture and self-sufficiency helper with a personal ebook knowledge base.</Description>

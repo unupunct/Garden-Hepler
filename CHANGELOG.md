@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0
+- **Yield tracking**: record how much you harvested (kg or pieces) from the plant card; the season review shows yield per crop and the best bed.
+- **Weather-aware watering** on Today: dry beds from soil sensors (grouped when one sensor serves a whole garden), hot spells, and rain that is coming cancels the chore; one tap logs the watering.
+- **Photos** on plant cards (recent pictures of the bed) and a photo gallery in the season review.
+- **Planting calendar**: sow, plant out and harvest windows for your crops, from your frost dates; printable.
+- **Export / import everything** to one ZIP (records, photos, satellite pictures, your own content, optional book library) to move to another computer.
+- **Phone page**: today's list with one-tap actions and photo upload from the phone camera.
+- Tidier designer toolbar; "1 day", "1 photo" and similar singular forms.
+
 ## 0.3.0
 - **Welcome setup** on first start: name and place the homestead (optional online place search), frost dates, animals and crops; the crops become dated sowing to-dos.
 - **Photos**: a timeline of pictures of beds, plants, animals and places, with quick add from plant and animal cards on the plan.

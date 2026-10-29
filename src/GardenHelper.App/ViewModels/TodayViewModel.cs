@@ -132,7 +132,7 @@ public sealed partial class TodayViewModel : PageViewModel
             var name = _kb.Get(r.PlantId)?.DisplayName(Loc.Instance.Language) ?? r.PlantId;
             var when = r.ReadyNow ? Loc.T("today_ready_now")
                 : r.DaysToEarliest >= 14 ? Loc.F("today_ready_weeks", (int)Math.Round(r.DaysToEarliest / 7.0), r.Earliest.ToString("d MMM", culture))
-                : Loc.F("today_ready_days", r.DaysToEarliest, r.Earliest.ToString("d MMM", culture));
+                : Loc.FN("today_ready_days", r.DaysToEarliest, r.DaysToEarliest, r.Earliest.ToString("d MMM", culture));
             Ripenings.Add(new RipeningRow($"{name} · {r.BedName}", when, r.ReadyNow));
         }
         HasRipenings = Ripenings.Count > 0;
@@ -158,7 +158,7 @@ public sealed partial class TodayViewModel : PageViewModel
         var urgent = open.Count(r => r.IsUrgent);
         IsCalm = open.Count == 0; UrgentCount = urgent; OpenCount = open.Count;
         WaterCount = open.Count(r => r.Item.Action == TodayAction.Watered); RipeningCount = Ripenings.Count(r => r.Ready);
-        Summary = open.Count == 0 ? Loc.T("today_calm") : Loc.F("today_summary", open.Count, urgent);
+        Summary = open.Count == 0 ? Loc.T("today_calm") : Loc.FN("today_summary", open.Count, open.Count, urgent);
     }
 
     [RelayCommand]

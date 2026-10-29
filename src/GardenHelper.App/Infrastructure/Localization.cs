@@ -19,6 +19,10 @@ public sealed class Loc : INotifyPropertyChanged
     public static string T(string key) => Instance.Lookup(key);
     public static string F(string key, params object[] args) => string.Format(Instance.Culture, Instance.Lookup(key), args);
 
+    /// <summary>Like F, but uses the "key_1" text when the number is 1 ("1 day ago" instead of "1 days ago") and that text exists.</summary>
+    public static string FN(string key, int n, params object[] args) =>
+        n == 1 && Strings.TryGet(Instance.Language, key + "_1", out var one) ? string.Format(Instance.Culture, one, args) : F(key, args);
+
     /// <summary>Translates an enum-like content value such as sun=full-partial; unknown values are shown as written.</summary>
     public static string Enum(string group, string? value)
     {

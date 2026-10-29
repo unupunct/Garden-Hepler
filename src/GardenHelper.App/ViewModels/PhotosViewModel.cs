@@ -92,7 +92,7 @@ public sealed partial class PhotosViewModel : PageViewModel
         foreach (var month in shown.GroupBy(p => new DateOnly(p.Date.Year, p.Date.Month, 1)).OrderByDescending(g => g.Key))
             Groups.Add(new PhotoMonthGroup(month.Key.ToString("MMMM yyyy", culture),
                 month.Select(p => new PhotoTile(p, PhotoImage.Load(_store.PathOf(p.File), 260), AboutOf(p), p.Date.ToString("d MMM yyyy", culture), p.Caption ?? "")).ToList()));
-        CountText = Loc.F("photos_count", shown.Count);
+        CountText = Loc.FN("photos_count", shown.Count, shown.Count);
         IsEmpty = _all.Count == 0;
     }
 

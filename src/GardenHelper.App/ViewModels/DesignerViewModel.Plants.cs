@@ -81,7 +81,7 @@ public sealed partial class DesignerViewModel
 
     private static string Ago(DateOnly d, DateOnly today) => (today.DayNumber - d.DayNumber) switch
     {
-        0 => Loc.T("card_today"), 1 => Loc.T("card_yesterday"), < 0 => Loc.F("card_in_days", d.DayNumber - today.DayNumber), var n => Loc.F("card_days_ago", n),
+        0 => Loc.T("card_today"), 1 => Loc.T("card_yesterday"), < 0 => Loc.FN("card_in_days", d.DayNumber - today.DayNumber, d.DayNumber - today.DayNumber), var n => Loc.FN("card_days_ago", n, n),
     };
 
     private async Task<PlantDetailCard> BuildCardAsync(BedItem bed, BedPlanting p, PlantMarker m)
