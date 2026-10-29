@@ -42,7 +42,7 @@ Needs JDK 17 and the Android SDK (platform 34, build-tools 34.0.0). In the `andr
 ## Cameras: setup, movement and recordings
 On the **Cameras** page: *Quick setup* builds the picture address from the camera type and IP address (Hikvision, Dahua/Amcrest, Axis, Android IP Webcam, ESP32-CAM, Raspberry Pi mjpg-streamer, other), *Find cameras on my network* looks at common ports on your own network after asking, and a QR code (from a picture or the clipboard) can fill the address and login when it holds one. Many cameras' QR codes hold only a serial number for the maker's app: the app says so.
 
-Movement: tick *Watch for movement* and the app compares the picture every few seconds while it is open and keeps a picture when something moves (sensitivity, time-lapse interval and days to keep are set per camera). Pictures live in `%LOCALAPPDATA%\GardenHelperecordings`. Cameras that can turn (Hikvision, Dahua/Amcrest, Axis) get arrow and zoom buttons; drag the handle at the tip of a camera's view wedge on the garden plan to set the direction it points.
+Movement: tick *Watch for movement* and the app compares the picture every few seconds while it is open and keeps a picture when something moves (sensitivity, time-lapse interval and days to keep are set per camera). Pictures live in `%LOCALAPPDATA%\GardenHelper\recordings`. Cameras that can turn (Hikvision, Dahua/Amcrest, Axis) get arrow and zoom buttons; drag the handle at the tip of a camera's view wedge on the garden plan to set the direction it points.
 
 Not built in: video recording (it needs an RTSP player), and recording while the app is closed.
 
