@@ -52,6 +52,8 @@ public partial class App : Application
             sc.AddSingleton<GlobalSearchService>();
             sc.AddSingleton<Preferences>();
             sc.AddSingleton<AlertService>();
+            sc.AddSingleton<TodayService>();
+            sc.AddSingleton<ReminderService>();
             sc.AddSingleton(_ =>
             {
                 var http = new System.Net.Http.HttpClient { Timeout = TimeSpan.FromSeconds(40) };
@@ -90,6 +92,7 @@ public partial class App : Application
             Services.GetRequiredService<ShellViewModel>().Start();
             _ = Services.GetRequiredService<LocalApiServer>().StartFromSettingsAsync();
             Services.GetRequiredService<CameraMonitor>().Start();
+            Services.GetRequiredService<ReminderService>().Start();
 
             _ = Task.Run(async () =>
             {
@@ -119,6 +122,7 @@ public partial class App : Application
 
     protected override void OnExit(ExitEventArgs e)
     {
+        try { Services.GetService<ReminderService>()?.Dispose(); } catch { /* shutting down */ }
         Log.CloseAndFlush();
         base.OnExit(e);
     }

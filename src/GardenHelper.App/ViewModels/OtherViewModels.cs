@@ -59,11 +59,13 @@ public sealed partial class SettingsViewModel : PageViewModel
     private readonly BackupService _backups;
     private readonly AppPaths _paths;
     private readonly IDialogs _dialogs;
+    private readonly GardenHelper.Core.Services.SettingsService _settings;
+    private readonly GardenHelper.App.Infrastructure.ReminderService _reminders;
     private bool _loading;
 
-    public SettingsViewModel(Preferences prefs, BackupService backups, AppPaths paths, IDialogs dialogs, ILogger<SettingsViewModel> log) : base(log)
+    public SettingsViewModel(Preferences prefs, BackupService backups, AppPaths paths, IDialogs dialogs, GardenHelper.Core.Services.SettingsService settings, GardenHelper.App.Infrastructure.ReminderService reminders, ILogger<SettingsViewModel> log) : base(log)
     {
-        _prefs = prefs; _backups = backups; _paths = paths; _dialogs = dialogs;
+        _settings = settings; _reminders = reminders; _prefs = prefs; _backups = backups; _paths = paths; _dialogs = dialogs;
         _loading = true;
         Language = prefs.Language; Theme = prefs.Theme; Units = prefs.Units;
         _loading = false;
@@ -77,16 +79,25 @@ public sealed partial class SettingsViewModel : PageViewModel
     [ObservableProperty] private string _theme = "light";
     [ObservableProperty] private string _units = "metric";
     [ObservableProperty] private bool _restorePending;
+    [ObservableProperty] private bool _remindersOn = true;
+    [ObservableProperty] private string _summaryTime = "08:00";
+
+    partial void OnRemindersOnChanged(bool value) { if (!_loading) _ = _settings.SetAsync(GardenHelper.App.Infrastructure.ReminderService.EnabledKey, value ? "1" : "0"); }
+    partial void OnSummaryTimeChanged(string value) { if (!_loading && TimeOnly.TryParse(value, out var t)) _ = _settings.SetAsync(GardenHelper.App.Infrastructure.ReminderService.SummaryKey, t.ToString("HH:mm")); }
+    [RelayCommand] private Task TestReminderAsync() => _reminders.TestAsync();
 
     partial void OnLanguageChanged(string value) { if (!_loading) _ = _prefs.SetAsync(language: value); }
     partial void OnThemeChanged(string value) { if (!_loading) _ = _prefs.SetAsync(theme: value); }
     partial void OnUnitsChanged(string value) { if (!_loading) _ = _prefs.SetAsync(units: value); }
 
-    public override Task LoadAsync() => RunAsync(() =>
+    public override Task LoadAsync() => RunAsync(async () =>
     {
+        _loading = true;
+        RemindersOn = await _settings.GetAsync(GardenHelper.App.Infrastructure.ReminderService.EnabledKey) != "0";
+        SummaryTime = await _settings.GetAsync(GardenHelper.App.Infrastructure.ReminderService.SummaryKey) ?? "08:00";
+        _loading = false;
         RefreshBackups();
         RestorePending = File.Exists(_paths.PendingRestoreFile);
-        return Task.CompletedTask;
     }, busy: false);
 
     private void RefreshBackups()

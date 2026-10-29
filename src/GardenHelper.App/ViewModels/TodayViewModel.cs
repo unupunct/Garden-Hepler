@@ -39,20 +39,19 @@ public sealed record TodayGroup(string Title, ObservableCollection<TodayRow> Row
 public sealed partial class TodayViewModel : PageViewModel
 {
     private readonly Repository _repo;
-    private readonly AlertService _alerts;
-    private readonly GreenhouseService _greenhouse;
+    private readonly TodayService _todayService;
     private readonly INavigator _nav;
     private readonly ILogger _logger;
     private readonly SettingsService _settings;
     private readonly KnowledgeBase _kb;
     private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(15) };
-    private const string WeatherKey = "weather_cache";
+    private const string WeatherKey = TodayService.WeatherKey;
     private Garden? _garden;
     private WeatherForecast? _forecast;
 
-    public TodayViewModel(Repository repo, AlertService alerts, GreenhouseService greenhouse, SettingsService settings, KnowledgeBase kb, INavigator nav, ILogger<TodayViewModel> log) : base(log)
+    public TodayViewModel(Repository repo, TodayService todayService, SettingsService settings, KnowledgeBase kb, INavigator nav, ILogger<TodayViewModel> log) : base(log)
     {
-        _settings = settings; _kb = kb; _logger = log; _repo = repo; _alerts = alerts; _greenhouse = greenhouse; _nav = nav;
+        _settings = settings; _kb = kb; _logger = log; _repo = repo; _todayService = todayService; _nav = nav;
     }
 
     public ObservableCollection<TodayGroup> Groups { get; } = new();
@@ -75,30 +74,7 @@ public sealed partial class TodayViewModel : PageViewModel
         _forecast = WeatherForecast.FromJson(await _settings.GetAsync(WeatherKey));
         var beds = garden is null ? new List<GardenBed>() : await _repo.ListAsync<GardenBed>(q => q.Where(b => b.GardenId == garden.Id).Include(b => b.Plantings));
         BuildGlance(garden, beds);
-        var tasks = await _repo.ListAsync<GardenTask>(q => q.Where(t => !t.Done && t.DueDate <= Today));
-        var plants = await _repo.ListAsync<InventoryPlant>(q => q.Where(p => !p.IsTree));
-        var groups = await _repo.ListAsync<AnimalGroup>(q => q.Include(g => g.Logs).Include(g => g.Rations));
-        var items = TodayPlanner.Build(Today, tasks, plants, groups, "d MMM");
-
-        // what the garden rules, the forecast and the greenhouse sensors say
-        if (_forecast is not null) items.AddRange(WeatherAdvice.Evaluate(_forecast.Days, Today, Loc.Instance.Culture));
-        foreach (var row in await _alerts.LoadAsync())
-            if (row.Alert.Severity is AlertSeverity.Urgent or AlertSeverity.Soon)
-                items.Add(new TodayItem("advice", row.Alert.Severity == AlertSeverity.Urgent ? "urgent" : "soon", row.Glyph, "today_advice", new[] { row.Message }, TodayAction.OpenActions, row.Alert.PlantingId ?? 0));
-        if (garden is not null)
-            foreach (var f in await _repo.ListAsync<PropertyFeature>(q => q.Where(x => x.GardenId == garden.Id && x.Kind == "greenhouse")))
-            {
-                try
-                {
-                    var setup = await _greenhouse.SetupAsync(f.Id); var latest = await _greenhouse.LatestAsync(f.Id);
-                    DateTime? last = latest.Count == 0 ? null : latest.Values.Max(v => v.AtUtc);
-                    foreach (var a in GreenhouseRules.Evaluate(setup, latest.ToDictionary(kv => kv.Key, kv => kv.Value.Value), last, DateTime.UtcNow).Where(a => a.Severity is "critical" or "warning"))
-                        items.Add(new TodayItem("greenhouse", a.Severity == "critical" ? "urgent" : "soon", a.Severity == "critical" ? "⛔" : "⚠", "today_greenhouse", new[] { f.Name, Loc.F(a.Key, a.Args) }, TodayAction.OpenGreenhouse, f.Id));
-                }
-                catch (Exception ex) { _logger.LogWarning(ex, "Greenhouse alerts failed"); }
-            }
-
-        items = items.OrderBy(i => TodayPlanner.SeverityRank(i.Severity)).ThenBy(i => Array.IndexOf(TodayPlanner.Sections, i.Section)).ToList();
+        var items = await _todayService.BuildAsync(garden, _forecast);
         Groups.Clear();
         foreach (var sec in TodayPlanner.Sections)
         {

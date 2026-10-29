@@ -31,6 +31,19 @@
 
             <Border Style="{StaticResource Card}" Margin="0,0,0,16">
                 <StackPanel>
+                    <TextBlock Text="{loc:L rem_title}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                    <TextBlock Text="{loc:L rem_text}" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
+                    <CheckBox Content="{loc:L rem_on}" IsChecked="{Binding RemindersOn}" Margin="0,10,0,6"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                        <TextBlock Text="{loc:L rem_summary_at}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox Text="{Binding SummaryTime, UpdateSourceTrigger=LostFocus}" Width="80" AutomationProperties.Name="{loc:L rem_summary_at}"/>
+                    </StackPanel>
+                    <Button Content="{loc:L rem_test}" Command="{Binding TestReminderCommand}" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
                     <TextBlock Text="{loc:L set_data}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
                     <TextBlock Text="{loc:L set_data_text}" Style="{StaticResource Muted}"/>
                     <TextBox Text="{Binding DataFolder, Mode=OneWay}" IsReadOnly="True" Margin="0,10,0,10" AutomationProperties.Name="{loc:L set_data}"/>
