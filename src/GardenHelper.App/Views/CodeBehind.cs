@@ -57,6 +57,7 @@ public partial class GreenhouseView : UserControl
         if (Item(sender) is { } li && Vm is { } vm) await vm.ItemMovedAsync(li);
     }
 }
+public partial class TodayView : UserControl { public TodayView() => InitializeComponent(); }
 public partial class ConnectView : UserControl { public ConnectView() => InitializeComponent(); }
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }
 public partial class SpaceView : UserControl { public SpaceView() => InitializeComponent(); }
@@ -400,6 +401,7 @@ public partial class DesignerView : UserControl
     private void OnPanStart(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (Vm is { Tracing: true } && e.ChangedButton == System.Windows.Input.MouseButton.Left) return;   // clicks place pins while tracing
+        if (Vm is { AnimalCardOpen: true } ac) ac.AnimalCardOpen = false;
         if (Vm is { CardOpen: true } open) open.CardOpen = false;   // any click on the plan closes the plant card (clicking a plant opens it again)
         var middle = e.ChangedButton == System.Windows.Input.MouseButton.Middle;
         var background = e.ChangedButton == System.Windows.Input.MouseButton.Left && e.OriginalSource is DependencyObject src && IsInside(src, World)

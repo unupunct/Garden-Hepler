@@ -44,6 +44,7 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
         Nav = new ObservableCollection<NavEntry>
         {
             new("home", "", null),
+            new("today", "☼", typeof(TodayViewModel)),
             new("property", "⌖", typeof(PropertyViewModel)),
             new("dashboard", "⌂", typeof(DashboardViewModel)),
             new("tasks", "✔", typeof(TasksViewModel)),

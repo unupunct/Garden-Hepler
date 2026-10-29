@@ -18,7 +18,7 @@ public sealed record CardRow(string Label, string Value);
 public sealed record PlantDetailCard(string Title, string Subtitle, string Glyph, IReadOnlyList<CardRow> Rows, IReadOnlyList<CardRow> Sensors, string SensorsNote, int PlantingId, string PlantId, string BedName);
 
 /// <summary>A small icon on a building or space for what lives there (chickens in the coop, goats in the barn…).</summary>
-public sealed record FeatureBadge(int FeatureId, double X, double Y, string Glyph, string Count, string Tip);
+public sealed record FeatureBadge(int FeatureId, int GroupId, string Place, double X, double Y, string Glyph, string Count, string Tip);
 
 public sealed partial class DesignerViewModel
 {
@@ -45,13 +45,12 @@ public sealed partial class DesignerViewModel
             {
                 // side by side, centred on the building
                 var step = 90.0; var x = cx + (i - (n - 1) / 2.0) * step; i++;
-                Badges.Add(new FeatureBadge(byFeature.Key, x, cy, SpeciesGlyph(g.Species), g.Count.ToString(),
+                Badges.Add(new FeatureBadge(byFeature.Key, g.Id, place, x, cy, SpeciesGlyph(g.Species), g.Count.ToString(),
                     $"{g.Name} ×{g.Count}" + (string.IsNullOrWhiteSpace(g.Breed) ? "" : $" ({g.Breed})") + $"\n{Loc.T("animal_" + g.Species)} · {place}"));
             }
         }
     }
 
-    [RelayCommand] private void OpenBadge(FeatureBadge b) => _nav.GoTo<AnimalsViewModel>();
 
     private const double LayerMargin = 3;      // the plant layer sits inside the bed's 3 px border
 
@@ -120,14 +119,66 @@ public sealed partial class DesignerViewModel
 
     [RelayCommand] private void CloseCard() => CardOpen = false;
 
-    /// <summary>Writes today's watering into the journal for the plant in the open card.</summary>
+    [ObservableProperty] private string _cardNote = "";
+
+    /// <summary>Records what you did or saw about the plant in the open card: watering, harvest, a problem, or a note. It goes into the journal against that plant.</summary>
     [RelayCommand]
-    private Task LogWateringAsync() => RunAsync(async () =>
+    private Task LogCardAsync(string kind) => RunAsync(async () =>
     {
         if (Card is not { } c) return;
         var name = _kb.Get(c.PlantId)?.DisplayName(Loc.Instance.Language) ?? c.PlantId;
-        await _repo.SaveAsync(new JournalEntry { Title = Loc.F("card_water_title", name, c.BedName), Text = "", Tags = "watering", PlantId = c.PlantId });
-        StatusMessage = Loc.F("card_water_done", name);
-        CardOpen = false;
+        if (kind is "problem" or "note" && string.IsNullOrWhiteSpace(CardNote)) { ErrorMessage = Loc.T("card_need_note"); return; }
+        var (title, tags) = kind switch
+        {
+            "water" => (Loc.F("card_water_title", name, c.BedName), "watering"),
+            "harvest" => (Loc.F("card_harvest_title", name, c.BedName), "harvest"),
+            "problem" => (Loc.F("card_problem_title", name, c.BedName), "pests"),
+            _ => (Loc.F("card_note_title", name, c.BedName), "note"),
+        };
+        await _repo.SaveAsync(new JournalEntry { Title = title, Text = CardNote.Trim(), Tags = tags, PlantId = c.PlantId });
+        if (kind == "harvest" && Beds.SelectMany(x => x.Bed.Plantings).FirstOrDefault(x => x.Id == c.PlantingId) is { } bp && bp.Status < PlantingStatus.Harvesting)
+        { bp.Status = PlantingStatus.Harvesting; await _repo.SaveAsync(bp); }
+        CardNote = ""; CardOpen = false;
+        StatusMessage = Loc.F(kind == "water" ? "card_water_done" : "card_logged", name);
+    }, busy: false);
+
+    // ---- animals: click the icon on a coop, pen or barn
+    public sealed record AnimalCardInfo(int GroupId, string Title, IReadOnlyList<CardRow> Rows, string? Unit, string? UnitLabel);
+    [ObservableProperty] private AnimalCardInfo? _animalCard;
+    [ObservableProperty] private bool _animalCardOpen;
+    [ObservableProperty] private string _animalQty = "";
+
+    [RelayCommand]
+    private async Task OpenBadgeAsync(FeatureBadge b)
+    {
+        try
+        {
+            var g = (await _repo.ListAsync<AnimalGroup>(q => q.Where(x => x.Id == b.GroupId).Include(x => x.Logs).Include(x => x.Rations))).FirstOrDefault(); if (g is null) return;
+            var today = DateOnly.FromDateTime(DateTime.Today); var sum = AnimalRules.Summarize(g, today); var culture = Loc.Instance.Culture;
+            var unit = g.Species switch { "chicken" or "duck" => "eggs", "goat" => "milk", _ => null };
+            var rows = new List<CardRow> { new(Loc.T("card_a_count"), $"{g.Count}" + (string.IsNullOrWhiteSpace(g.Breed) ? "" : $" · {g.Breed}")) };
+            if (unit is not null)
+            {
+                var todays = g.Logs.Where(l => l.Kind == "production" && l.Date == today && l.Quantity is not null).Sum(l => l.Quantity!.Value);
+                rows.Add(new(Loc.T("card_a_today"), g.Logs.Any(l => l.Kind == "production" && l.Date == today) ? todays.ToString("0.#", culture) : Loc.T("card_not_logged")));
+                if (sum.AveragePerDay is { } avg) rows.Add(new(Loc.T("card_a_avg"), avg.ToString("0.#", culture) + (sum.LayingPercent is { } lp ? $" ({lp:0}%)" : "")));
+            }
+            if (sum.WithdrawalUntil is { } w) rows.Add(new(Loc.T("card_a_withdrawal"), w.ToString("d MMM yyyy", culture)));
+            rows.Add(new(Loc.T("card_a_feed"), $"{sum.FeedKgPerDay:0.#} kg · {sum.FeedCostPerDay:0.00}"));
+            AnimalQty = ""; AnimalCard = new AnimalCardInfo(g.Id, $"{g.Name} · {b.Place}", rows, unit, unit is null ? null : Loc.T("today_unit_" + unit)); AnimalCardOpen = true;
+        }
+        catch (Exception ex) { _logger.LogWarning(ex, "Animal card failed"); }
+    }
+
+    [RelayCommand] private void CloseAnimalCard() => AnimalCardOpen = false;
+    [RelayCommand] private void OpenAnimals() { AnimalCardOpen = false; _nav.GoTo<AnimalsViewModel>(); }
+
+    [RelayCommand]
+    private Task LogAnimalProductionAsync() => RunAsync(async () =>
+    {
+        if (AnimalCard is not { } c) return;
+        if (!double.TryParse(AnimalQty.Trim().Replace(',', '.'), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var qty) || qty < 0) { ErrorMessage = Loc.T("animal_need_quantity"); return; }
+        await _repo.SaveAsync(new AnimalLog { GroupId = c.GroupId, Date = DateOnly.FromDateTime(DateTime.Today), Kind = "production", Quantity = qty, Text = "" });
+        AnimalCardOpen = false; StatusMessage = Loc.F("card_logged", c.Title);
     }, busy: false);
 }

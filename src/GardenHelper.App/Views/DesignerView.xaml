@@ -51,7 +51,38 @@
                             <TextBlock Text="{Binding Card.SensorsNote}" FontSize="12" Foreground="#FF6C7A62" TextWrapping="Wrap"/>
                         </StackPanel>
                     </Border>
-                    <Button Style="{StaticResource PrimaryButton}" Content="{loc:L card_log_water}" Command="{Binding LogWateringCommand}" HorizontalAlignment="Left" Margin="0,12,0,0"/>
+                    <TextBox Text="{Binding CardNote, UpdateSourceTrigger=PropertyChanged}" Tag="{loc:L card_note_ph}" AutomationProperties.Name="{loc:L card_note_ph}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="40" Margin="0,12,0,0"/>
+                    <WrapPanel Margin="0,8,0,0">
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L card_log_water}" Command="{Binding LogCardCommand}" CommandParameter="water" Margin="0,0,6,6"/>
+                        <Button Content="{loc:L card_harvested}" Command="{Binding LogCardCommand}" CommandParameter="harvest" Margin="0,0,6,6"/>
+                        <Button Content="{loc:L card_problem}" Command="{Binding LogCardCommand}" CommandParameter="problem" Margin="0,0,6,6"/>
+                        <Button Content="{loc:L card_add_note}" Command="{Binding LogCardCommand}" CommandParameter="note" Margin="0,0,6,6"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </Popup>
+
+        <Popup IsOpen="{Binding AnimalCardOpen, Mode=TwoWay}" Placement="MousePoint" StaysOpen="True" AllowsTransparency="True" PopupAnimation="Fade" HorizontalOffset="16" VerticalOffset="12">
+            <Border Background="White" CornerRadius="16" BorderBrush="#FFDCD3BC" BorderThickness="1" Padding="16,14" Margin="14" MinWidth="290" MaxWidth="360">
+                <Border.Effect><DropShadowEffect BlurRadius="18" ShadowDepth="4" Opacity="0.28"/></Border.Effect>
+                <StackPanel>
+                    <DockPanel>
+                        <Button DockPanel.Dock="Right" Content="✕" Command="{Binding CloseAnimalCardCommand}" Style="{StaticResource LinkButton}" VerticalAlignment="Top" AutomationProperties.Name="Close"/>
+                        <TextBlock Text="{Binding AnimalCard.Title}" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="#FF1F2A1B"/>
+                    </DockPanel>
+                    <ItemsControl ItemsSource="{Binding AnimalCard.Rows}" Margin="0,8,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2"><Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Label}" Foreground="#FF6C7A62" FontSize="12" TextWrapping="Wrap"/><TextBlock Grid.Column="1" Text="{Binding Value}" TextWrapping="Wrap" FontSize="13"/></Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Visibility="{Binding AnimalCard.Unit, Converter={StaticResource HasValueVis}}">
+                        <TextBox Text="{Binding AnimalQty, UpdateSourceTrigger=PropertyChanged}" Width="70" Margin="0,0,8,0" ToolTip="{Binding AnimalCard.UnitLabel}" AutomationProperties.Name="{Binding AnimalCard.UnitLabel}"/>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L today_a_LogProduction}" Command="{Binding LogAnimalProductionCommand}"/>
+                    </StackPanel>
+                    <Button Content="{loc:L today_a_OpenAnimals}" Command="{Binding OpenAnimalsCommand}" HorizontalAlignment="Left" Margin="0,8,0,0"/>
                 </StackPanel>
             </Border>
         </Popup>
