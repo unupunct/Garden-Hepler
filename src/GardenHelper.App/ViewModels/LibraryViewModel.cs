@@ -166,16 +166,20 @@ public sealed partial class LibraryViewModel : PageViewModel
         try
         {
             var results = await _library.ImportAsync(files, progress);
-            foreach (var r in results.Where(r => r.Error is not null))
+            // A file that is already in the library is not a problem: it is counted, not listed.
+            foreach (var r in results.Where(r => r.Error is not null && !r.Duplicate))
                 ImportProblems.Add($"{Path.GetFileName(r.File)}: {r.Error}");
             var ok = results.Count(r => r.Book is not null);
-            StatusMessage = ok > 0 ? Loc.F("lib_imported", ok) : null;
+            var skipped = results.Count(r => r.Duplicate);
+            StatusMessage = skipped > 0 ? Loc.F("lib_import_summary", ok, skipped) : ok > 0 ? Loc.F("lib_imported", ok) : null;
             await LoadAsync();
             if (results.FirstOrDefault(r => r.Book is not null) is { } first)
                 Selected = Books.FirstOrDefault(b => b.Book.Id == first.Book!.Id);
         }
         finally { IsImporting = false; Progress = 0; ProgressText = ""; }
     }, busy: false);
+
+    [RelayCommand] private void DismissProblems() => ImportProblems.Clear();
 
     [RelayCommand]
     private void Read(BookRow? row)

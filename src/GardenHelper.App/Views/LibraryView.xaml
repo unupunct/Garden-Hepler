@@ -29,12 +29,17 @@
                 <TextBlock Text="{Binding ProgressText}" Style="{StaticResource Muted}" FontSize="12" Margin="0,4,0,0"/>
             </StackPanel>
             <Border Visibility="{Binding ImportProblems.Count, Converter={StaticResource HasValueVis}}" BorderBrush="{DynamicResource WarnBrush}" BorderThickness="1" CornerRadius="8" Padding="12,8" Margin="0,0,0,10" Background="{DynamicResource SurfaceBrush}">
-                <StackPanel>
-                    <TextBlock Text="{loc:L lib_import_problems}" FontWeight="SemiBold" Foreground="{DynamicResource WarnBrush}"/>
-                    <ItemsControl ItemsSource="{Binding ImportProblems}">
-                        <ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding}" Margin="0,3,0,0"/></DataTemplate></ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Content="✕" VerticalAlignment="Top" Padding="9,2" Command="{Binding DismissProblemsCommand}" ToolTip="{loc:L lib_dismiss}" AutomationProperties.Name="{loc:L lib_dismiss}"/>
+                    <StackPanel>
+                        <TextBlock Text="{loc:L lib_import_problems}" FontWeight="SemiBold" Foreground="{DynamicResource WarnBrush}"/>
+                        <ScrollViewer MaxHeight="130" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding ImportProblems}">
+                                <ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding}" Margin="0,3,0,0" TextWrapping="Wrap"/></DataTemplate></ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </StackPanel>
+                </DockPanel>
             </Border>
         </StackPanel>
 
