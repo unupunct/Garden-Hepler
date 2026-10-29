@@ -17,6 +17,107 @@ namespace GardenHelper.Core.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
 
+            modelBuilder.Entity("GardenHelper.Core.Animals.AnimalGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Breed")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("FeatureId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GardenId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Species")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GardenId");
+
+                    b.ToTable("AnimalGroups");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Animals.AnimalLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal?>("Cost")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("Quantity")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly?>("WithdrawalUntil")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId", "Date");
+
+                    b.ToTable("AnimalLogs");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Animals.FeedRation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("GramsPerAnimalPerDay")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PricePerKg")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("FeedRations");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Cameras.Camera", b =>
                 {
                     b.Property<int>("Id")
@@ -650,6 +751,28 @@ namespace GardenHelper.Core.Data.Migrations
                     b.ToTable("Seeds");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Animals.AnimalLog", b =>
+                {
+                    b.HasOne("GardenHelper.Core.Animals.AnimalGroup", "Group")
+                        .WithMany("Logs")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Animals.FeedRation", b =>
+                {
+                    b.HasOne("GardenHelper.Core.Animals.AnimalGroup", "Group")
+                        .WithMany("Rations")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.BedPlanting", b =>
                 {
                     b.HasOne("GardenHelper.Core.Domain.GardenBed", "Bed")
@@ -703,6 +826,13 @@ namespace GardenHelper.Core.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Plant");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Animals.AnimalGroup", b =>
+                {
+                    b.Navigation("Logs");
+
+                    b.Navigation("Rations");
                 });
 
             modelBuilder.Entity("GardenHelper.Core.Domain.Book", b =>

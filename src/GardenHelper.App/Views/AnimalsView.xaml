@@ -1,0 +1,117 @@
+<UserControl x:Class="GardenHelper.App.Views.AnimalsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <Grid Margin="28,20,28,20">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+        <Grid.ColumnDefinitions><ColumnDefinition Width="280"/><ColumnDefinition Width="18"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <TextBlock Text="{loc:L nav_animals}" Style="{StaticResource H1}" Grid.ColumnSpan="3"/>
+        <v:Banners Grid.Row="1" Grid.ColumnSpan="3" Margin="0,8,0,0"/>
+
+        <DockPanel Grid.Row="2">
+            <Button DockPanel.Dock="Top" Style="{StaticResource PrimaryButton}" Content="{loc:L animal_add}" Command="{Binding AddCommand}" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+            <TextBlock DockPanel.Dock="Top" Text="{loc:L animal_empty}" Style="{StaticResource Muted}" TextWrapping="Wrap" Visibility="{Binding Groups.Count, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>
+            <TextBlock DockPanel.Dock="Bottom" Text="{Binding Totals}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <ListBox ItemsSource="{Binding Groups}" SelectedItem="{Binding Selected}" AutomationProperties.Name="{loc:L nav_animals}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+                            <TextBlock Style="{StaticResource Muted}" FontSize="11"><Run Text="{Binding Count, Mode=OneWay}"/><Run Text=" · "/><Run Text="{Binding Species, Mode=OneWay}"/></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+        <ScrollViewer Grid.Row="2" Grid.Column="2" VerticalScrollBarVisibility="Auto" Visibility="{Binding HasSelection, Converter={StaticResource BoolToVis}}">
+            <StackPanel>
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Summary}" TextWrapping="Wrap" FontSize="15"/>
+                        <Border Background="#FFFCE8C8" CornerRadius="6" Padding="10,6" Margin="0,8,0,0" Visibility="{Binding Withdrawal, Converter={StaticResource HasValueVis}}">
+                            <TextBlock Text="{Binding Withdrawal}" TextWrapping="Wrap" Foreground="#FF5A3A00" FontWeight="SemiBold"/>
+                        </Border>
+                        <TextBlock Text="{Binding Spent}" Style="{StaticResource Muted}" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L animal_group}" Style="{StaticResource H2}"/>
+                        <TextBlock Text="{loc:L design_name}" Style="{StaticResource Label}"/>
+                        <TextBox Text="{Binding EditName, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{loc:L design_name}"/>
+                        <Grid Margin="0,4,0,0">
+                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="12"/><ColumnDefinition/><ColumnDefinition Width="12"/><ColumnDefinition Width="110"/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L animal_species}" Style="{StaticResource Label}"/><ComboBox ItemsSource="{Binding Species}" SelectedItem="{Binding EditSpecies}"/></StackPanel>
+                            <StackPanel Grid.Column="2"><TextBlock Text="{loc:L animal_breed}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditBreed}"/></StackPanel>
+                            <StackPanel Grid.Column="4"><TextBlock Text="{loc:L animal_count}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditCount}" AutomationProperties.Name="{loc:L animal_count}"/></StackPanel>
+                        </Grid>
+                        <TextBlock Text="{loc:L animal_lives_in}" Style="{StaticResource Label}"/>
+                        <ComboBox ItemsSource="{Binding Places}" SelectedItem="{Binding EditPlace}"/>
+                        <TextBlock Text="{loc:L space_notes}" Style="{StaticResource Label}"/>
+                        <TextBox Text="{Binding EditNotes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="50"/>
+                        <WrapPanel Margin="0,12,0,0">
+                            <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveCommand}" Margin="0,0,8,0"/>
+                            <Button Style="{StaticResource DangerButton}" Content="{loc:L delete}" Command="{Binding DeleteCommand}"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L animal_feed}" Style="{StaticResource H2}"/>
+                        <TextBlock Text="{loc:L animal_feed_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                        <ItemsControl ItemsSource="{Binding Rations}" Margin="0,6,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel Margin="0,2">
+                                        <Button DockPanel.Dock="Right" Content="✕" Padding="8,2" AutomationProperties.Name="{loc:L delete}"
+                                                Command="{Binding DataContext.RemoveRationCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                                        <TextBlock VerticalAlignment="Center"><Run Text="{Binding Name, Mode=OneWay}" FontWeight="SemiBold"/><Run Text="  "/><Run Text="{Binding GramsPerAnimalPerDay, Mode=OneWay, StringFormat={}{0:0.#} g}"/><Run Text="  ·  "/><Run Text="{Binding PricePerKg, Mode=OneWay, StringFormat={}{0:0.00}/kg}"/></TextBlock>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Grid Margin="0,8,0,0">
+                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="8"/><ColumnDefinition Width="110"/><ColumnDefinition Width="8"/><ColumnDefinition Width="110"/><ColumnDefinition Width="8"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L animal_feed_name}" Style="{StaticResource Label}"/><TextBox Text="{Binding RationName}"/></StackPanel>
+                            <StackPanel Grid.Column="2"><TextBlock Text="{loc:L animal_grams}" Style="{StaticResource Label}"/><TextBox Text="{Binding RationGrams}"/></StackPanel>
+                            <StackPanel Grid.Column="4"><TextBlock Text="{loc:L animal_price_kg}" Style="{StaticResource Label}"/><TextBox Text="{Binding RationPrice}"/></StackPanel>
+                            <Button Grid.Column="6" Content="{loc:L add}" Command="{Binding AddRationCommand}" VerticalAlignment="Bottom"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L animal_log_title}" Style="{StaticResource H2}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="8"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L design_kind}" Style="{StaticResource Label}"/><ComboBox ItemsSource="{Binding LogKinds}" SelectedItem="{Binding LogKind}"/></StackPanel>
+                            <StackPanel Grid.Column="2"><TextBlock Text="{loc:L animal_log_text}" Style="{StaticResource Label}"/><TextBox Text="{Binding LogText}"/></StackPanel>
+                        </Grid>
+                        <Grid Margin="0,4,0,0">
+                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="8"/><ColumnDefinition/><ColumnDefinition Width="8"/><ColumnDefinition/><ColumnDefinition Width="8"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L animal_quantity}" Style="{StaticResource Label}"/><TextBox Text="{Binding LogQuantity}" ToolTip="{loc:L animal_quantity_tip}"/></StackPanel>
+                            <StackPanel Grid.Column="2"><TextBlock Text="{loc:L animal_cost}" Style="{StaticResource Label}"/><TextBox Text="{Binding LogCost}"/></StackPanel>
+                            <StackPanel Grid.Column="4"><TextBlock Text="{loc:L animal_withdraw_days}" Style="{StaticResource Label}"/><TextBox Text="{Binding LogWithdrawDays}" ToolTip="{loc:L animal_withdraw_tip}"/></StackPanel>
+                            <Button Grid.Column="6" Style="{StaticResource PrimaryButton}" Content="{loc:L add}" Command="{Binding AddLogCommand}" VerticalAlignment="Bottom"/>
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding Logs}" Margin="0,12,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,0,0,6">
+                                        <TextBlock><Run Text="{Binding Date, Mode=OneWay}" FontWeight="SemiBold"/><Run Text="  "/><Run Text="{Binding Kind, Mode=OneWay}"/><Run Text="  "/><Run Text="{Binding Detail, Mode=OneWay}"/></TextBlock>
+                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Style="{StaticResource Muted}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
