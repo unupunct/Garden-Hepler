@@ -25,4 +25,4 @@ The product specification is large. This file records what is built and what is 
 - Rotation rules cover eight families and are general guidance; crop-specific exceptions are not modelled yet.
 - Sun hours use day length and a user shade percentage; there is no obstacle geometry yet, so results are for an unobstructed horizon.
 - The canvas uses WPF elements per object, which is fine for hundreds of objects but has not been tested with thousands.
-- Plant records are starter content (38 species); see `content/SOURCES.md`.
+- Plant records are starter content (106 species, Romania-focused; varieties and regional adjustments are not modelled); see `content/SOURCES.md`.

@@ -1,0 +1,247 @@
+[
+  {
+    "id": "shiitake",
+    "names": {
+      "en": [
+        "Shiitake"
+      ],
+      "ro": [
+        "Shiitake"
+      ]
+    },
+    "scientific": "Lentinula edodes",
+    "family": "Omphalotaceae",
+    "category": "mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": "high",
+    "frostTolerance": null,
+    "summary": {
+      "en": "Grown on hardwood logs (oak, beech, hornbeam are widely available in Romania) or on sawdust blocks; logs fruit for several years.",
+      "ro": "Se cultivă pe bușteni de foioase (stejarul, fagul și carpenul sunt ușor de găsit în România) sau pe blocuri de rumeguș; buștenii rodesc câțiva ani."
+    },
+    "tips": {
+      "en": [
+        "Use freshly cut logs, inoculate with plug spawn, keep logs shaded and moist, and soak them to trigger fruiting."
+      ],
+      "ro": [
+        "Folosește bușteni proaspăt tăiați, inoculează cu miceliu pe dopuri, ține buștenii la umbră și umezi și scufundă-i în apă pentru a declanșa fructificarea."
+      ]
+    },
+    "rotationFamily": "Omphalotaceae",
+    "roles": [
+      "food",
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Cultivation only: this entry never helps identify wild mushrooms. Buy spawn from a reputable supplier, discard any batch with green, black or foul-smelling mould, and cook before eating.",
+      "ro": "Doar cultivare: această fișă nu ajută niciodată la identificarea ciupercilor sălbatice. Cumpără miceliu de la un furnizor de încredere, aruncă orice lot cu mucegai verde, negru sau cu miros neplăcut și gătește înainte de consum."
+    }
+  },
+  {
+    "id": "button-mushroom",
+    "names": {
+      "en": [
+        "Button mushroom"
+      ],
+      "ro": [
+        "Ciupercă de cultură",
+        "Champignon"
+      ]
+    },
+    "scientific": "Agaricus bisporus",
+    "family": "Agaricaceae",
+    "category": "mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": "high",
+    "frostTolerance": null,
+    "summary": {
+      "en": "The common cultivated mushroom, grown on composted straw-and-manure substrate in cool, humid, dark conditions; more demanding than oyster mushroom.",
+      "ro": "Ciuperca de cultură obișnuită, crescută pe substrat compostat din paie și gunoi, în condiții răcoroase, umede și întunecoase; mai pretențioasă decât ciuperca stridie."
+    },
+    "tips": {
+      "en": [
+        "Needs good hygiene and a casing layer; consider a ready-made kit for a first attempt."
+      ],
+      "ro": [
+        "Cere igienă bună și un strat de acoperire; ia în calcul un kit gata făcut pentru prima încercare."
+      ]
+    },
+    "rotationFamily": "Agaricaceae",
+    "roles": [
+      "food",
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Cultivation only: this entry never helps identify wild mushrooms. Buy spawn from a reputable supplier, discard any batch with green, black or foul-smelling mould, and cook before eating.",
+      "ro": "Doar cultivare: această fișă nu ajută niciodată la identificarea ciupercilor sălbatice. Cumpără miceliu de la un furnizor de încredere, aruncă orice lot cu mucegai verde, negru sau cu miros neplăcut și gătește înainte de consum."
+    }
+  },
+  {
+    "id": "king-oyster",
+    "names": {
+      "en": [
+        "King oyster mushroom"
+      ],
+      "ro": [
+        "Ciupercă stridie regală",
+        "Pleurotus eryngii"
+      ]
+    },
+    "scientific": "Pleurotus eryngii",
+    "family": "Pleurotaceae",
+    "category": "mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": "high",
+    "frostTolerance": null,
+    "summary": {
+      "en": "Thick-stemmed, firm oyster relative grown on straw or sawdust with good fresh-air exchange.",
+      "ro": "Rudă a ciupercii stridie, cu picior gros și carne fermă, crescută pe paie sau rumeguș, cu schimb bun de aer proaspăt."
+    },
+    "tips": {
+      "en": [
+        "Thick stems form when carbon dioxide is kept low: ventilate well."
+      ],
+      "ro": [
+        "Piciorul gros se formează când dioxidul de carbon este menținut scăzut: aerisește bine."
+      ]
+    },
+    "rotationFamily": "Pleurotaceae",
+    "roles": [
+      "food",
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Cultivation only: this entry never helps identify wild mushrooms. Buy spawn from a reputable supplier, discard any batch with green, black or foul-smelling mould, and cook before eating.",
+      "ro": "Doar cultivare: această fișă nu ajută niciodată la identificarea ciupercilor sălbatice. Cumpără miceliu de la un furnizor de încredere, aruncă orice lot cu mucegai verde, negru sau cu miros neplăcut și gătește înainte de consum."
+    }
+  },
+  {
+    "id": "wine-cap",
+    "names": {
+      "en": [
+        "Wine cap",
+        "Garden giant"
+      ],
+      "ro": [
+        "Stropharia",
+        "Ciupercă de grădină"
+      ]
+    },
+    "scientific": "Stropharia rugosoannulata",
+    "family": "Strophariaceae",
+    "category": "mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": "high",
+    "frostTolerance": null,
+    "summary": {
+      "en": "Grown outdoors on hardwood wood chips in a shaded bed; spreads through the chips and fruits in late spring to autumn.",
+      "ro": "Se cultivă în aer liber pe așchii de lemn de foioase, într-un strat umbrit; se extinde prin așchii și rodește de la sfârșitul primăverii până toamna."
+    },
+    "tips": {
+      "en": [
+        "Layer spawn between wood chips, keep the bed moist, and top up the chips each year."
+      ],
+      "ro": [
+        "Pune miceliul între straturi de așchii, ține stratul umed și adaugă așchii în fiecare an."
+      ]
+    },
+    "rotationFamily": "Strophariaceae",
+    "roles": [
+      "food",
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Cultivation only: this entry never helps identify wild mushrooms. Buy spawn from a reputable supplier, discard any batch with green, black or foul-smelling mould, and cook before eating.",
+      "ro": "Doar cultivare: această fișă nu ajută niciodată la identificarea ciupercilor sălbatice. Cumpără miceliu de la un furnizor de încredere, aruncă orice lot cu mucegai verde, negru sau cu miros neplăcut și gătește înainte de consum."
+    }
+  },
+  {
+    "id": "lions-mane",
+    "names": {
+      "en": [
+        "Lion's mane"
+      ],
+      "ro": [
+        "Coama leului",
+        "Hericium"
+      ]
+    },
+    "scientific": "Hericium erinaceus",
+    "family": "Hericiaceae",
+    "category": "mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": "high",
+    "frostTolerance": null,
+    "summary": {
+      "en": "Distinctive white, shaggy mushroom grown on hardwood sawdust blocks or logs in cool, humid air.",
+      "ro": "Ciupercă albă, caracteristică, cu aspect zburlit, crescută pe blocuri de rumeguș de foioase sau pe bușteni, în aer răcoros și umed."
+    },
+    "tips": {
+      "en": [
+        "Harvest while the spines are short and white; they yellow with age."
+      ],
+      "ro": [
+        "Recoltează cât țepii sunt scurți și albi; îngălbenesc odată cu vârsta."
+      ]
+    },
+    "rotationFamily": "Hericiaceae",
+    "roles": [
+      "food",
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Cultivation only: this entry never helps identify wild mushrooms. Buy spawn from a reputable supplier, discard any batch with green, black or foul-smelling mould, and cook before eating.",
+      "ro": "Doar cultivare: această fișă nu ajută niciodată la identificarea ciupercilor sălbatice. Cumpără miceliu de la un furnizor de încredere, aruncă orice lot cu mucegai verde, negru sau cu miros neplăcut și gătește înainte de consum."
+    }
+  }
+]

@@ -16,7 +16,10 @@ public class KnowledgeTests
     public void Shipped_content_passes_validation()
     {
         var kb = Kb();
-        Assert.True(kb.Plants.Count >= 30);
+        Assert.True(kb.Plants.Count >= 100);
+        Assert.Equal(kb.Plants.Count, kb.Plants.Select(p => p.Id).Distinct().Count());
+        // Mushrooms must carry a "cultivation only" caution in both languages.
+        Assert.All(kb.Plants.Where(p => p.Category == "mushroom"), p => { Assert.NotNull(p.CautionText("en")); Assert.NotNull(p.CautionText("ro")); });
         Assert.Empty(kb.Validate());
     }
 
@@ -37,6 +40,15 @@ public class KnowledgeTests
     [InlineData("topinambur", "jerusalem-artichoke")]
     [InlineData("zucchini", "courgette")]
     [InlineData("nitrogen-fixer", "pea")]
+    [InlineData("prun", "plum")]                    // Romanian names, accents optional
+    [InlineData("catina", "sea-buckthorn")]         // cătină
+    [InlineData("vanata", "eggplant")]              // vânătă
+    [InlineData("lubenita", "watermelon")]          // lubeniță
+    [InlineData("macris", "sorrel")]                // măcriș
+    [InlineData("leustean", "lovage")]              // leuștean
+    [InlineData("viță de vie", "grape")]
+    [InlineData("stropharia", "wine-cap")]
+    [InlineData("gutui", "quince")]
     public void Search_finds_by_any_name_language_or_role(string query, string expectedId) =>
         Assert.Contains(Kb().Search(query), m => m.Plant.Id == expectedId);
 

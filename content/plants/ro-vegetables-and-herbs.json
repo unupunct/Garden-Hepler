@@ -1,0 +1,2189 @@
+[
+  {
+    "id": "cabbage",
+    "names": {
+      "en": [
+        "Cabbage"
+      ],
+      "ro": [
+        "Varză",
+        "Varză albă"
+      ]
+    },
+    "scientific": "Brassica oleracea var. capitata",
+    "family": "Brassicaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Staple of Romanian kitchens, grown for fresh use and for sauerkraut (varză murată). Needs steady moisture and firm, fertile soil.",
+      "ro": "Cultură de bază în bucătăria românească, pentru consum proaspăt și pentru varză murată. Cere umiditate constantă și sol fertil, bine tasat."
+    },
+    "tips": {
+      "en": [
+        "Protect with fine mesh against cabbage white caterpillars, and rotate away from other brassicas to limit clubroot."
+      ],
+      "ro": [
+        "Protejează cu plasă fină împotriva omizilor fluturelui alb și fă rotația față de alte brasicacee pentru a limita hernia."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -8,
+        "max": -6
+      },
+      "transplant": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "daysToMaturity": {
+      "min": 70,
+      "max": 120
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 50,
+      "max": 70
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 50
+    }
+  },
+  {
+    "id": "cauliflower",
+    "names": {
+      "en": [
+        "Cauliflower"
+      ],
+      "ro": [
+        "Conopidă"
+      ]
+    },
+    "scientific": "Brassica oleracea var. botrytis",
+    "family": "Brassicaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full",
+    "water": "high",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Fussy brassica that heads best in cool, even weather; stress from heat or drought causes small, loose curds.",
+      "ro": "Brasicacee pretențioasă, care formează căpățâni bune pe vreme răcoroasă și constantă; căldura sau seceta dau căpățâni mici și afânate."
+    },
+    "tips": {
+      "en": [
+        "Keep watering even and shade the curd from sun by folding leaves over it."
+      ],
+      "ro": [
+        "Udă constant și umbrește căpățâna îndoind frunzele peste ea."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -8,
+        "max": -6
+      },
+      "transplant": {
+        "min": -2,
+        "max": 2
+      }
+    },
+    "daysToMaturity": {
+      "min": 60,
+      "max": 100
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 60,
+      "max": 70
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 60
+    }
+  },
+  {
+    "id": "broccoli",
+    "names": {
+      "en": [
+        "Broccoli"
+      ],
+      "ro": [
+        "Broccoli",
+        "Broccoli"
+      ]
+    },
+    "scientific": "Brassica oleracea var. italica",
+    "family": "Brassicaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Cool-season brassica; after the main head is cut, side shoots keep coming for weeks.",
+      "ro": "Brasicacee de sezon răcoros; după tăierea căpățânii principale, lăstarii laterali continuă să producă săptămâni la rând."
+    },
+    "tips": {
+      "en": [
+        "Cut the head while buds are tight, before the yellow flowers open."
+      ],
+      "ro": [
+        "Taie căpățâna cât mugurii sunt strânși, înainte să se deschidă florile galbene."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -8,
+        "max": -6
+      },
+      "transplant": {
+        "min": -2,
+        "max": 2
+      }
+    },
+    "daysToMaturity": {
+      "min": 60,
+      "max": 90
+    },
+    "spacingCm": {
+      "min": 45,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 50,
+      "max": 70
+    },
+    "heightCm": {
+      "min": 50,
+      "max": 80
+    }
+  },
+  {
+    "id": "kohlrabi",
+    "names": {
+      "en": [
+        "Kohlrabi"
+      ],
+      "ro": [
+        "Gulie"
+      ]
+    },
+    "scientific": "Brassica oleracea var. gongylodes",
+    "family": "Brassicaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Fast brassica grown for its swollen stem; tender when harvested at tennis-ball size.",
+      "ro": "Brasicacee rapidă, cultivată pentru tulpina îngroșată; fragedă când este recoltată cam de mărimea unei mingi de tenis."
+    },
+    "tips": {
+      "en": [
+        "Sow in succession; large, old bulbs turn woody."
+      ],
+      "ro": [
+        "Seamănă eșalonat; bulbii mari și bătrâni se lemnifică."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 8
+      }
+    },
+    "daysToMaturity": {
+      "min": 50,
+      "max": 70
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 25
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 35
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 50
+    }
+  },
+  {
+    "id": "leek",
+    "names": {
+      "en": [
+        "Leek"
+      ],
+      "ro": [
+        "Praz"
+      ]
+    },
+    "scientific": "Allium porrum",
+    "family": "Amaryllidaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Very hardy allium that can stay in the ground through winter; long white shafts come from planting deep.",
+      "ro": "Alium foarte rezistent, care poate rămâne în pământ peste iarnă; tulpina albă și lungă se obține plantând adânc."
+    },
+    "tips": {
+      "en": [
+        "Transplant pencil-thick seedlings into deep holes and earth up as they grow."
+      ],
+      "ro": [
+        "Repică răsaduri cât un creion în găuri adânci și bilonează pe măsură ce cresc."
+      ]
+    },
+    "rotationFamily": "Amaryllidaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -12,
+        "max": -10
+      },
+      "transplant": {
+        "min": 0,
+        "max": 4
+      }
+    },
+    "daysToMaturity": {
+      "min": 120,
+      "max": 180
+    },
+    "spacingCm": {
+      "min": 10,
+      "max": 15
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 35
+    },
+    "heightCm": {
+      "min": 50,
+      "max": 80
+    }
+  },
+  {
+    "id": "celery",
+    "names": {
+      "en": [
+        "Celery"
+      ],
+      "ro": [
+        "Țelină de frunze",
+        "Țelină de pețiol"
+      ]
+    },
+    "scientific": "Apium graveolens var. dulce",
+    "family": "Apiaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Thirsty, slow crop that needs rich, moist soil and a long, even season.",
+      "ro": "Cultură însetată și lentă, care are nevoie de sol bogat și umed și de un sezon lung și constant."
+    },
+    "tips": {
+      "en": [
+        "Never let it dry out; start early indoors because seed is slow to germinate."
+      ],
+      "ro": [
+        "Nu o lăsa să sece; pornește devreme în interior, deoarece semințele germinează încet."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -10,
+        "max": -8
+      },
+      "transplant": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 100,
+      "max": 130
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 40
+    },
+    "rowSpacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 70
+    }
+  },
+  {
+    "id": "celeriac",
+    "names": {
+      "en": [
+        "Celeriac"
+      ],
+      "ro": [
+        "Țelină de rădăcină",
+        "Țelină"
+      ]
+    },
+    "scientific": "Apium graveolens var. rapaceum",
+    "family": "Apiaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Root celery used in soups and salads, a common Romanian winter vegetable that stores well.",
+      "ro": "Țelina de rădăcină, folosită în ciorbe și salate, o legumă de iarnă frecventă în România, care se păstrează bine."
+    },
+    "tips": {
+      "en": [
+        "Plant with the crown at soil level and mulch to hold moisture."
+      ],
+      "ro": [
+        "Plantează cu coletul la nivelul solului și mulcește pentru a păstra umiditatea."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -10,
+        "max": -8
+      },
+      "transplant": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 150,
+      "max": 200
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "rowSpacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 60
+    }
+  },
+  {
+    "id": "parsnip",
+    "names": {
+      "en": [
+        "Parsnip"
+      ],
+      "ro": [
+        "Păstârnac"
+      ]
+    },
+    "scientific": "Pastinaca sativa",
+    "family": "Apiaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy root that sweetens after frost; seed loses viability fast, so sow fresh seed each year.",
+      "ro": "Rădăcinoasă rezistentă, care devine mai dulce după îngheț; semințele își pierd repede viabilitatea, deci seamănă semințe proaspete în fiecare an."
+    },
+    "tips": {
+      "en": [
+        "Slow to germinate: mark the row with radishes."
+      ],
+      "ro": [
+        "Germinează încet: marchează rândul cu ridichi."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "daysToMaturity": {
+      "min": 120,
+      "max": 180
+    },
+    "spacingCm": {
+      "min": 8,
+      "max": 15
+    },
+    "rowSpacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 80
+    }
+  },
+  {
+    "id": "turnip",
+    "names": {
+      "en": [
+        "Turnip"
+      ],
+      "ro": [
+        "Nap"
+      ]
+    },
+    "scientific": "Brassica rapa subsp. rapa",
+    "family": "Brassicaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Quick root and leaf crop for spring and autumn; roots are best small and tender.",
+      "ro": "Rădăcinoasă rapidă, pentru primăvară și toamnă; rădăcinile sunt cele mai bune mici și fragede."
+    },
+    "tips": {
+      "en": [
+        "A late-summer sowing gives an autumn crop with fewer pest problems."
+      ],
+      "ro": [
+        "O semănare de la sfârșitul verii dă o recoltă de toamnă, cu mai puține probleme cu dăunătorii."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 4
+      }
+    },
+    "daysToMaturity": {
+      "min": 45,
+      "max": 70
+    },
+    "spacingCm": {
+      "min": 8,
+      "max": 15
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 40
+    }
+  },
+  {
+    "id": "eggplant",
+    "names": {
+      "en": [
+        "Aubergine",
+        "Eggplant"
+      ],
+      "ro": [
+        "Vânătă",
+        "Pătlăgică vânătă"
+      ]
+    },
+    "scientific": "Solanum melongena",
+    "family": "Solanaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Heat-loving fruiting vegetable, widely grown in Romanian gardens for grilled and roasted dishes (salată de vinete).",
+      "ro": "Legumă iubitoare de căldură, foarte cultivată în grădinile din România pentru preparate la grătar (salată de vinete)."
+    },
+    "tips": {
+      "en": [
+        "Needs a long, warm season: start indoors early and plant out only when nights are warm."
+      ],
+      "ro": [
+        "Are nevoie de un sezon lung și cald: pornește devreme în interior și plantează în câmp doar când nopțile sunt calde."
+      ]
+    },
+    "rotationFamily": "Solanaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -10,
+        "max": -8
+      },
+      "transplant": {
+        "min": 2,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 70,
+      "max": 100
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 70,
+      "max": 90
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 100
+    }
+  },
+  {
+    "id": "hot-pepper",
+    "names": {
+      "en": [
+        "Hot pepper",
+        "Chilli"
+      ],
+      "ro": [
+        "Ardei iute"
+      ]
+    },
+    "scientific": "Capsicum annuum",
+    "family": "Solanaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Ardei iute is grown for fresh use and drying; heat varies strongly between varieties.",
+      "ro": "Ardeiul iute se cultivă pentru consum proaspăt și uscat; gradul de iuțeală variază mult între soiuri."
+    },
+    "tips": {
+      "en": [
+        "Wear gloves when harvesting hot varieties and keep them away from sweet peppers to avoid cross-pollination of seed you save."
+      ],
+      "ro": [
+        "Poartă mănuși la recoltarea soiurilor iuți și ține-le departe de ardeii dulci dacă păstrezi semințe, pentru a evita încrucișarea."
+      ]
+    },
+    "rotationFamily": "Solanaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -10,
+        "max": -8
+      },
+      "transplant": {
+        "min": 2,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 70,
+      "max": 110
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 50
+    },
+    "rowSpacingCm": {
+      "min": 60,
+      "max": 75
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 90
+    }
+  },
+  {
+    "id": "pumpkin",
+    "names": {
+      "en": [
+        "Pumpkin",
+        "Winter squash"
+      ],
+      "ro": [
+        "Dovleac",
+        "Dovleac de copt"
+      ]
+    },
+    "scientific": "Cucurbita maxima / C. pepo",
+    "family": "Cucurbitaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "high",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Sprawling vine for autumn harvest; fruits store for months in a cool, dry place. Dovleac is a traditional Romanian crop for pies and baking.",
+      "ro": "Plantă târâtoare pentru recolta de toamnă; fructele se păstrează luni întregi într-un loc răcoros și uscat. Dovleacul este o cultură tradițională în România, pentru plăcinte și copt."
+    },
+    "tips": {
+      "en": [
+        "Give each plant a lot of room and rich soil; harvest before hard frost, with a piece of stalk attached."
+      ],
+      "ro": [
+        "Oferă fiecărei plante mult spațiu și sol bogat; recoltează înainte de înghețul puternic, cu o bucată de codiță."
+      ]
+    },
+    "rotationFamily": "Cucurbitaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -4,
+        "max": -3
+      },
+      "direct": {
+        "min": 1,
+        "max": 3
+      },
+      "transplant": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "daysToMaturity": {
+      "min": 90,
+      "max": 130
+    },
+    "spacingCm": {
+      "min": 100,
+      "max": 150
+    },
+    "rowSpacingCm": {
+      "min": 150,
+      "max": 200
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "melon",
+    "names": {
+      "en": [
+        "Melon"
+      ],
+      "ro": [
+        "Pepene galben"
+      ]
+    },
+    "scientific": "Cucumis melo",
+    "family": "Cucurbitaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Warmth-demanding vine; ripens reliably in the south and east of Romania and with protection (low tunnel, black mulch) elsewhere.",
+      "ro": "Plantă care cere multă căldură; se coace sigur în sudul și estul României, iar în alte zone cu protecție (tunel jos, mulci negru)."
+    },
+    "tips": {
+      "en": [
+        "Reduce watering as fruits ripen for sweeter flavour."
+      ],
+      "ro": [
+        "Redu udarea pe măsură ce fructele se coc, pentru un gust mai dulce."
+      ]
+    },
+    "rotationFamily": "Cucurbitaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -4,
+        "max": -3
+      },
+      "transplant": {
+        "min": 2,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 80,
+      "max": 110
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 100
+    },
+    "rowSpacingCm": {
+      "min": 150,
+      "max": 200
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 50
+    }
+  },
+  {
+    "id": "watermelon",
+    "names": {
+      "en": [
+        "Watermelon"
+      ],
+      "ro": [
+        "Pepene verde",
+        "Lubeniță"
+      ]
+    },
+    "scientific": "Citrullus lanatus",
+    "family": "Cucurbitaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "A classic of Romanian summers, best on light, warm soils (the Dăbuleni sands are famous for it).",
+      "ro": "Un clasic al verilor românești, cel mai bun pe soluri ușoare și calde (nisipurile de la Dăbuleni sunt faimoase pentru el)."
+    },
+    "tips": {
+      "en": [
+        "Needs high heat and space; sow or plant out only after the soil is warm."
+      ],
+      "ro": [
+        "Are nevoie de multă căldură și spațiu; seamănă sau plantează doar după încălzirea solului."
+      ]
+    },
+    "rotationFamily": "Cucurbitaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -4,
+        "max": -3
+      },
+      "transplant": {
+        "min": 2,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 80,
+      "max": 110
+    },
+    "spacingCm": {
+      "min": 100,
+      "max": 150
+    },
+    "rowSpacingCm": {
+      "min": 200,
+      "max": 250
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 50
+    }
+  },
+  {
+    "id": "sweetcorn",
+    "names": {
+      "en": [
+        "Sweetcorn"
+      ],
+      "ro": [
+        "Porumb zaharat",
+        "Porumb"
+      ]
+    },
+    "scientific": "Zea mays",
+    "family": "Poaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Wind-pollinated, so plant in blocks rather than single rows to get full cobs.",
+      "ro": "Se polenizează cu vântul, deci plantează în blocuri, nu în rânduri singulare, pentru știuleți plini."
+    },
+    "tips": {
+      "en": [
+        "Pick when silks are brown and a kernel squirts milky juice."
+      ],
+      "ro": [
+        "Recoltează când mătasea este brună, iar un bob stropește un suc lăptos."
+      ]
+    },
+    "rotationFamily": "Poaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 70,
+      "max": 100
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "rowSpacingCm": {
+      "min": 60,
+      "max": 75
+    },
+    "heightCm": {
+      "min": 150,
+      "max": 250
+    }
+  },
+  {
+    "id": "chard",
+    "names": {
+      "en": [
+        "Swiss chard"
+      ],
+      "ro": [
+        "Sfeclă de frunze",
+        "Mangold"
+      ]
+    },
+    "scientific": "Beta vulgaris subsp. cicla",
+    "family": "Amaranthaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Tough, productive leaf crop that tolerates heat better than spinach; cut outer leaves repeatedly.",
+      "ro": "Cultură de frunze robustă și productivă, care suportă căldura mai bine decât spanacul; taie frunzele exterioare de mai multe ori."
+    },
+    "tips": {
+      "en": [
+        "Harvest outer leaves and let the centre keep growing."
+      ],
+      "ro": [
+        "Recoltează frunzele exterioare și lasă centrul să crească în continuare."
+      ]
+    },
+    "rotationFamily": "Amaranthaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -2,
+        "max": 8
+      }
+    },
+    "daysToMaturity": {
+      "min": 50,
+      "max": 70
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "rowSpacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "rocket",
+    "names": {
+      "en": [
+        "Rocket",
+        "Arugula"
+      ],
+      "ro": [
+        "Rucola"
+      ]
+    },
+    "scientific": "Eruca vesicaria",
+    "family": "Brassicaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Fast, peppery salad leaf; bolts in heat, so sow in spring and autumn.",
+      "ro": "Frunză de salată rapidă și iute; înflorește la căldură, deci seamănă primăvara și toamna."
+    },
+    "tips": {
+      "en": [
+        "Sow little and often; cover with mesh against flea beetles."
+      ],
+      "ro": [
+        "Seamănă puțin și des; acoperă cu plasă împotriva puricilor de pământ."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 8
+      }
+    },
+    "daysToMaturity": {
+      "min": 25,
+      "max": 40
+    },
+    "spacingCm": {
+      "min": 5,
+      "max": 10
+    },
+    "rowSpacingCm": {
+      "min": 15,
+      "max": 25
+    },
+    "heightCm": {
+      "min": 15,
+      "max": 30
+    }
+  },
+  {
+    "id": "horseradish",
+    "names": {
+      "en": [
+        "Horseradish"
+      ],
+      "ro": [
+        "Hrean"
+      ]
+    },
+    "scientific": "Armoracia rusticana",
+    "family": "Brassicaceae",
+    "category": "perennial-vegetable",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy perennial grown for its pungent root, a traditional Easter condiment in Romania. Spreads from root pieces.",
+      "ro": "Perenă rezistentă, cultivată pentru rădăcina iute, un condiment tradițional de Paște în România. Se răspândește din bucăți de rădăcină."
+    },
+    "tips": {
+      "en": [
+        "Plant in a contained spot: any root left in the soil regrows."
+      ],
+      "ro": [
+        "Plantează într-un loc delimitat: orice rădăcină rămasă în sol crește din nou."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food",
+      "pest-confuser"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": 2
+      }
+    },
+    "daysToMaturity": {
+      "min": 180,
+      "max": 365
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 60,
+      "max": 90
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    }
+  },
+  {
+    "id": "globe-artichoke",
+    "names": {
+      "en": [
+        "Globe artichoke"
+      ],
+      "ro": [
+        "Anghinare"
+      ]
+    },
+    "scientific": "Cynara cardunculus var. scolymus",
+    "family": "Asteraceae",
+    "category": "perennial-vegetable",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Large ornamental perennial grown for its flower buds; needs winter protection in colder parts of Romania.",
+      "ro": "Perenă decorativă mare, cultivată pentru mugurii florali; are nevoie de protecție la iarnă în zonele mai reci ale României."
+    },
+    "tips": {
+      "en": [
+        "Mulch the crown thickly before winter."
+      ],
+      "ro": [
+        "Mulcește gros coletul înainte de iarnă."
+      ]
+    },
+    "rotationFamily": "Asteraceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 80,
+      "max": 100
+    },
+    "rowSpacingCm": {
+      "min": 100,
+      "max": 120
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 150
+    }
+  },
+  {
+    "id": "sorrel",
+    "names": {
+      "en": [
+        "Sorrel"
+      ],
+      "ro": [
+        "Măcriș"
+      ]
+    },
+    "scientific": "Rumex acetosa",
+    "family": "Polygonaceae",
+    "category": "perennial-vegetable",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy perennial with sharp, lemony leaves used in the Romanian spring soup (ciorbă de măcriș).",
+      "ro": "Perenă rezistentă, cu frunze acrișoare folosite în ciorba de primăvară (ciorbă de măcriș)."
+    },
+    "tips": {
+      "en": [
+        "Cut flower stalks to keep leaves tender. Eat in moderation: sorrel contains oxalic acid."
+      ],
+      "ro": [
+        "Taie tulpinile florale pentru ca frunzele să rămână fragede. Consumă cu măsură: măcrișul conține acid oxalic."
+      ]
+    },
+    "rotationFamily": "Polygonaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 35
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "sunflower",
+    "names": {
+      "en": [
+        "Sunflower"
+      ],
+      "ro": [
+        "Floarea-soarelui"
+      ]
+    },
+    "scientific": "Helianthus annuus",
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Tall annual loved by bees and birds; seeds are edible and the stalks give shelter and support.",
+      "ro": "Plantă anuală înaltă, iubită de albine și păsări; semințele sunt comestibile, iar tulpinile oferă adăpost și suport."
+    },
+    "tips": {
+      "en": [
+        "Sow direct; protect seedlings from slugs and birds."
+      ],
+      "ro": [
+        "Seamănă direct; protejează plăntuțele de melci și păsări."
+      ]
+    },
+    "rotationFamily": "Asteraceae",
+    "roles": [
+      "food",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 0,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 90,
+      "max": 130
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 60,
+      "max": 75
+    },
+    "heightCm": {
+      "min": 150,
+      "max": 300
+    }
+  },
+  {
+    "id": "dill",
+    "names": {
+      "en": [
+        "Dill"
+      ],
+      "ro": [
+        "Mărar"
+      ]
+    },
+    "scientific": "Anethum graveolens",
+    "family": "Apiaceae",
+    "category": "herb",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Essential in Romanian cooking, especially with pickles and soups. Self-seeds readily and attracts hoverflies.",
+      "ro": "Esențial în bucătăria românească, mai ales la murături și ciorbe. Se autosemănă ușor și atrage sirfidele."
+    },
+    "tips": {
+      "en": [
+        "Sow directly every few weeks; it dislikes transplanting."
+      ],
+      "ro": [
+        "Seamănă direct la câteva săptămâni; nu suportă transplantarea."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food",
+      "pollinator",
+      "beneficial-insects"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 8
+      }
+    },
+    "daysToMaturity": {
+      "min": 40,
+      "max": 60
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 20
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    }
+  },
+  {
+    "id": "coriander",
+    "names": {
+      "en": [
+        "Coriander",
+        "Cilantro"
+      ],
+      "ro": [
+        "Coriandru"
+      ]
+    },
+    "scientific": "Coriandrum sativum",
+    "family": "Apiaceae",
+    "category": "herb",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Quick herb that bolts in heat; leaves in cool weather, seeds (coriander) if left to flower.",
+      "ro": "Plantă aromatică rapidă, care înflorește la căldură; frunze pe vreme răcoroasă, semințe dacă o lași să înflorească."
+    },
+    "tips": {
+      "en": [
+        "Sow thinly and often, and keep soil moist."
+      ],
+      "ro": [
+        "Seamănă rar și des și menține solul umed."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -2,
+        "max": 6
+      }
+    },
+    "daysToMaturity": {
+      "min": 30,
+      "max": 50
+    },
+    "spacingCm": {
+      "min": 10,
+      "max": 15
+    },
+    "rowSpacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "lovage",
+    "names": {
+      "en": [
+        "Lovage"
+      ],
+      "ro": [
+        "Leuștean"
+      ]
+    },
+    "scientific": "Levisticum officinale",
+    "family": "Apiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall perennial with strong celery-like leaves, indispensable in Romanian soups (ciorbe). Comes back every year.",
+      "ro": "Perenă înaltă, cu frunze puternic aromate, asemănătoare țelinei, indispensabilă în ciorbele românești. Revine în fiecare an."
+    },
+    "tips": {
+      "en": [
+        "One plant is enough for a household; cut back to renew leaves."
+      ],
+      "ro": [
+        "O singură plantă este suficientă pentru o gospodărie; taie scurt pentru a reînnoi frunzele."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 4
+      },
+      "plant": {
+        "min": -4,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 90
+    },
+    "heightCm": {
+      "min": 120,
+      "max": 200
+    }
+  },
+  {
+    "id": "thyme",
+    "names": {
+      "en": [
+        "Thyme"
+      ],
+      "ro": [
+        "Cimbru",
+        "Cimbrișor"
+      ]
+    },
+    "scientific": "Thymus vulgaris",
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Low evergreen shrublet for dry, sunny, well-drained spots; a favourite of bees when in flower.",
+      "ro": "Subarbust verde mic, pentru locuri uscate, însorite și bine drenate; foarte iubit de albine când înflorește."
+    },
+    "tips": {
+      "en": [
+        "Trim after flowering and avoid wet, heavy soil."
+      ],
+      "ro": [
+        "Taie după înflorire și evită solurile grele și ude."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food",
+      "pollinator",
+      "ground-cover"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -2,
+        "max": 8
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 15,
+      "max": 30
+    }
+  },
+  {
+    "id": "sage",
+    "names": {
+      "en": [
+        "Sage"
+      ],
+      "ro": [
+        "Salvie"
+      ]
+    },
+    "scientific": "Salvia officinalis",
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy aromatic shrublet for sunny, well-drained soil. Flowers attract bees.",
+      "ro": "Subarbust aromatic rezistent, pentru sol însorit și bine drenat. Florile atrag albinele."
+    },
+    "tips": {
+      "en": [
+        "Prune lightly each spring and replace plants every few years when woody."
+      ],
+      "ro": [
+        "Taie ușor în fiecare primăvară și înlocuiește plantele la câțiva ani, când se lemnifică."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -2,
+        "max": 8
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 70
+    }
+  },
+  {
+    "id": "rosemary",
+    "names": {
+      "en": [
+        "Rosemary"
+      ],
+      "ro": [
+        "Rozmarin"
+      ]
+    },
+    "scientific": "Salvia rosmarinus",
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Mediterranean shrub that usually needs winter protection, or a pot brought indoors, in most of Romania.",
+      "ro": "Arbust mediteranean care are de obicei nevoie de protecție la iarnă sau de un ghiveci adus în interior, în cea mai mare parte a României."
+    },
+    "tips": {
+      "en": [
+        "Grow in very well-drained soil; wet cold kills it faster than frost alone."
+      ],
+      "ro": [
+        "Cultivă în sol foarte bine drenat; frigul umed îl omoară mai repede decât gerul singur."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": 1,
+        "max": 6
+      }
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 90
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 150
+    }
+  },
+  {
+    "id": "oregano",
+    "names": {
+      "en": [
+        "Oregano"
+      ],
+      "ro": [
+        "Oregano",
+        "Sovârf"
+      ]
+    },
+    "scientific": "Origanum vulgare",
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy, spreading perennial herb, very attractive to pollinators; drought tolerant once established.",
+      "ro": "Plantă aromatică perenă, rezistentă și care se extinde, foarte atractivă pentru polenizatori; tolerantă la secetă odată instalată."
+    },
+    "tips": {
+      "en": [
+        "Cut back hard after flowering for fresh leaves."
+      ],
+      "ro": [
+        "Taie scurt după înflorire pentru frunze proaspete."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food",
+      "pollinator",
+      "ground-cover"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -2,
+        "max": 8
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "tarragon",
+    "names": {
+      "en": [
+        "Tarragon"
+      ],
+      "ro": [
+        "Tarhon"
+      ]
+    },
+    "scientific": "Artemisia dracunculus",
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "French tarragon is propagated by division, not seed. A classic with chicken, eggs and in soups in Romania.",
+      "ro": "Tarhonul francez se înmulțește prin divizare, nu din semințe. Un clasic pentru pui, ouă și ciorbe în România."
+    },
+    "tips": {
+      "en": [
+        "Divide the clump every three years."
+      ],
+      "ro": [
+        "Împarte tufa la fiecare trei ani."
+      ]
+    },
+    "rotationFamily": "Asteraceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -2,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 50,
+      "max": 90
+    }
+  },
+  {
+    "id": "lemon-balm",
+    "names": {
+      "en": [
+        "Lemon balm"
+      ],
+      "ro": [
+        "Roiniță",
+        "Melisa"
+      ]
+    },
+    "scientific": "Melissa officinalis",
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Vigorous perennial with lemon-scented leaves for tea; bees love the flowers. Self-seeds freely.",
+      "ro": "Perenă viguroasă, cu frunze cu miros de lămâie pentru ceai; albinele iubesc florile. Se autosemănă ușor."
+    },
+    "tips": {
+      "en": [
+        "Cut before it seeds to limit spread."
+      ],
+      "ro": [
+        "Taie înainte să facă semințe pentru a-i limita răspândirea."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food",
+      "pollinator",
+      "beneficial-insects"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -2,
+        "max": 4
+      },
+      "plant": {
+        "min": -2,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 80
+    }
+  },
+  {
+    "id": "hyssop",
+    "names": {
+      "en": [
+        "Hyssop"
+      ],
+      "ro": [
+        "Isop"
+      ]
+    },
+    "scientific": "Hyssopus officinalis",
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy aromatic shrublet with blue flowers that bees and butterflies visit.",
+      "ro": "Subarbust aromatic rezistent, cu flori albastre vizitate de albine și fluturi."
+    },
+    "tips": {
+      "en": [
+        "Clip lightly in spring to keep it compact."
+      ],
+      "ro": [
+        "Taie ușor primăvara pentru a-l menține compact."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food",
+      "pollinator",
+      "beneficial-insects"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -2,
+        "max": 6
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 60
+    }
+  },
+  {
+    "id": "savory",
+    "names": {
+      "en": [
+        "Summer savory"
+      ],
+      "ro": [
+        "Cimbru de grădină",
+        "Cimbru de vară"
+      ]
+    },
+    "scientific": "Satureja hortensis",
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Annual herb traditionally used with beans and in mici (grilled sausages).",
+      "ro": "Plantă aromatică anuală, folosită tradițional la fasole și la mici."
+    },
+    "tips": {
+      "en": [
+        "Sow directly once the soil has warmed."
+      ],
+      "ro": [
+        "Seamănă direct după încălzirea solului."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 1,
+        "max": 6
+      }
+    },
+    "daysToMaturity": {
+      "min": 60,
+      "max": 90
+    },
+    "spacingCm": {
+      "min": 10,
+      "max": 15
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 25,
+      "max": 40
+    }
+  },
+  {
+    "id": "fennel",
+    "names": {
+      "en": [
+        "Fennel"
+      ],
+      "ro": [
+        "Fenicul"
+      ]
+    },
+    "scientific": "Foeniculum vulgare",
+    "family": "Apiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall aromatic umbellifer; the bulb type is grown as an annual. Attracts hoverflies and parasitic wasps.",
+      "ro": "Plantă aromatică înaltă din familia umbeliferelor; tipul cu bulb se cultivă ca anual. Atrage sirfide și viespi parazite."
+    },
+    "tips": {
+      "en": [
+        "Fennel is often kept apart from other crops in the bed; sow bulb types after midsummer to reduce bolting."
+      ],
+      "ro": [
+        "Feniculul se ține adesea separat de alte culturi în strat; seamănă tipurile cu bulb după mijlocul verii pentru a reduce înflorirea."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food",
+      "pollinator",
+      "beneficial-insects"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "daysToMaturity": {
+      "min": 80,
+      "max": 110
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "rowSpacingCm": {
+      "min": 45,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 200
+    }
+  }
+]

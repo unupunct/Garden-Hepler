@@ -1,0 +1,340 @@
+[
+  {
+    "id": "crimson-clover",
+    "names": {
+      "en": [
+        "Crimson clover"
+      ],
+      "ro": [
+        "Trifoi stacojiu",
+        "Trifoi incarnat"
+      ]
+    },
+    "scientific": "Trifolium incarnatum",
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Annual legume sown in late summer as a winter cover or in spring as green manure; bees love the red flowers.",
+      "ro": "Leguminoasă anuală semănată la sfârșitul verii ca acoperire pentru iarnă sau primăvara ca îngrășământ verde; albinele iubesc florile roșii."
+    },
+    "tips": {
+      "en": [
+        "Cut or dig in at flowering, before seed set."
+      ],
+      "ro": [
+        "Taie sau încorporează în sol la înflorire, înainte de formarea semințelor."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "green-manure",
+      "nitrogen-fixer",
+      "pollinator"
+    ],
+    "nitrogenFixing": true,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -2,
+        "max": 8
+      }
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "red-clover",
+    "names": {
+      "en": [
+        "Red clover"
+      ],
+      "ro": [
+        "Trifoi roșu"
+      ]
+    },
+    "scientific": "Trifolium pratense",
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Short-lived perennial legume for green manure and leys; fixes nitrogen and feeds bumblebees.",
+      "ro": "Leguminoasă perenă de scurtă durată, pentru îngrășământ verde și pajiști; fixează azot și hrănește bondarii."
+    },
+    "tips": {
+      "en": [
+        "Mow before flowering to build biomass, then dig in."
+      ],
+      "ro": [
+        "Cosește înainte de înflorire pentru a obține biomasă, apoi încorporează în sol."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "green-manure",
+      "nitrogen-fixer",
+      "pollinator"
+    ],
+    "nitrogenFixing": true,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 8
+      }
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 80
+    }
+  },
+  {
+    "id": "hairy-vetch",
+    "names": {
+      "en": [
+        "Hairy vetch"
+      ],
+      "ro": [
+        "Măzăriche"
+      ]
+    },
+    "scientific": "Vicia villosa",
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy winter legume sown in autumn, often with rye for support; fixes nitrogen and smothers weeds.",
+      "ro": "Leguminoasă rezistentă de iarnă, semănată toamna, adesea împreună cu secara ca suport; fixează azot și înăbușă buruienile."
+    },
+    "tips": {
+      "en": [
+        "Terminate by cutting at flowering and wait about two weeks before sowing small seeds."
+      ],
+      "ro": [
+        "Termină-o prin tăiere la înflorire și așteaptă circa două săptămâni înainte de a semăna semințe mici."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "green-manure",
+      "nitrogen-fixer",
+      "weed-suppression"
+    ],
+    "nitrogenFixing": true,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "firstFrost",
+      "direct": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "heightCm": {
+      "min": 50,
+      "max": 100
+    }
+  },
+  {
+    "id": "winter-rye",
+    "names": {
+      "en": [
+        "Winter rye"
+      ],
+      "ro": [
+        "Secară"
+      ]
+    },
+    "scientific": "Secale cereale",
+    "family": "Poaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Very hardy autumn cover crop that scavenges nutrients, suppresses weeds and builds organic matter.",
+      "ro": "Cultură de acoperire de toamnă, foarte rezistentă, care reține nutrienții, suprimă buruienile și îmbogățește solul în materie organică."
+    },
+    "tips": {
+      "en": [
+        "Cut and dig in by spring before it sets seed; leave a few weeks before sowing."
+      ],
+      "ro": [
+        "Taie și încorporează în sol primăvara înainte să facă semințe; lasă câteva săptămâni înainte de semănat."
+      ]
+    },
+    "rotationFamily": "Poaceae",
+    "roles": [
+      "green-manure",
+      "weed-suppression",
+      "biomass"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "firstFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 180
+    }
+  },
+  {
+    "id": "white-mustard",
+    "names": {
+      "en": [
+        "White mustard"
+      ],
+      "ro": [
+        "Muștar alb"
+      ]
+    },
+    "scientific": "Sinapis alba",
+    "family": "Brassicaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Very fast green manure that covers soil in weeks; a brassica, so avoid it before cabbages.",
+      "ro": "Îngrășământ verde foarte rapid, care acoperă solul în câteva săptămâni; fiind brasicacee, evită-l înaintea verzei."
+    },
+    "tips": {
+      "en": [
+        "Dig in before it flowers to avoid self-seeding."
+      ],
+      "ro": [
+        "Încorporează în sol înainte să înflorească, pentru a evita autosemănarea."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "green-manure",
+      "weed-suppression",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 0,
+        "max": 12
+      }
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    }
+  },
+  {
+    "id": "alfalfa",
+    "names": {
+      "en": [
+        "Alfalfa",
+        "Lucerne"
+      ],
+      "ro": [
+        "Lucernă"
+      ]
+    },
+    "scientific": "Medicago sativa",
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Deep-rooted perennial legume; a widespread field crop in Romania that also serves as a green manure and mulch source.",
+      "ro": "Leguminoasă perenă cu rădăcină adâncă; o cultură de câmp răspândită în România, folosită și ca îngrășământ verde și sursă de mulci."
+    },
+    "tips": {
+      "en": [
+        "Needs well-drained, neutral to slightly alkaline soil."
+      ],
+      "ro": [
+        "Are nevoie de sol bine drenat, neutru spre ușor alcalin."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "green-manure",
+      "nitrogen-fixer",
+      "biomass"
+    ],
+    "nitrogenFixing": true,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 8
+      }
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 90
+    }
+  }
+]

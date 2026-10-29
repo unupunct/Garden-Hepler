@@ -1,0 +1,1552 @@
+[
+  {
+    "id": "plum",
+    "names": {
+      "en": [
+        "Plum"
+      ],
+      "ro": [
+        "Prun"
+      ]
+    },
+    "scientific": "Prunus domestica",
+    "family": "Rosaceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Romania's most characteristic orchard fruit, eaten fresh, dried and distilled into țuică. Many varieties are self-fertile; others need a partner.",
+      "ro": "Pomul fructifer cel mai caracteristic pentru România, consumat proaspăt, uscat și distilat în țuică. Multe soiuri sunt autofertile; altele au nevoie de un partener."
+    },
+    "tips": {
+      "en": [
+        "Prune in summer or early autumn rather than winter to reduce silver leaf disease."
+      ],
+      "ro": [
+        "Taie vara sau la începutul toamnei, nu iarna, pentru a reduce boala frunzei argintii."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 350,
+      "max": 600
+    },
+    "heightCm": {
+      "min": 350,
+      "max": 600
+    }
+  },
+  {
+    "id": "sweet-cherry",
+    "names": {
+      "en": [
+        "Sweet cherry"
+      ],
+      "ro": [
+        "Cireș"
+      ]
+    },
+    "scientific": "Prunus avium",
+    "family": "Rosaceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Large, long-lived tree; most varieties need a compatible pollinator. Fruit splits in wet weather and birds take the crop.",
+      "ro": "Pom mare și longeviv; majoritatea soiurilor au nevoie de un polenizator compatibil. Fructele crapă pe vreme ploioasă, iar păsările iau recolta."
+    },
+    "tips": {
+      "en": [
+        "Choose a dwarfing rootstock for garden size and net the crop."
+      ],
+      "ro": [
+        "Alege un portaltoi pitic pentru dimensiunea grădinii și protejează recolta cu plasă."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 400,
+      "max": 800
+    },
+    "heightCm": {
+      "min": 400,
+      "max": 900
+    }
+  },
+  {
+    "id": "sour-cherry",
+    "names": {
+      "en": [
+        "Sour cherry"
+      ],
+      "ro": [
+        "Vișin"
+      ]
+    },
+    "scientific": "Prunus cerasus",
+    "family": "Rosaceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy, mostly self-fertile tree for jam, compote and liqueur (vișinată); more tolerant of poor weather than sweet cherry.",
+      "ro": "Pom rezistent, în mare parte autofertil, pentru dulceață, compot și lichior (vișinată); mai tolerant la vreme proastă decât cireșul."
+    },
+    "tips": {
+      "en": [
+        "Remove old fruited wood regularly: it fruits on one-year-old shoots."
+      ],
+      "ro": [
+        "Elimină periodic lemnul vechi: rodește pe lăstari de un an."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 500
+    }
+  },
+  {
+    "id": "pear",
+    "names": {
+      "en": [
+        "Pear"
+      ],
+      "ro": [
+        "Păr"
+      ]
+    },
+    "scientific": "Pyrus communis",
+    "family": "Rosaceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Long-lived fruit tree; most varieties need a pollination partner flowering at the same time.",
+      "ro": "Pom fructifer longeviv; majoritatea soiurilor au nevoie de un partener de polenizare care înflorește în același timp."
+    },
+    "tips": {
+      "en": [
+        "Pick pears slightly early and let them ripen indoors for the best texture."
+      ],
+      "ro": [
+        "Culege perele puțin mai devreme și lasă-le să se coacă în casă pentru cea mai bună textură."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 400,
+      "max": 700
+    },
+    "heightCm": {
+      "min": 400,
+      "max": 800
+    }
+  },
+  {
+    "id": "apricot",
+    "names": {
+      "en": [
+        "Apricot"
+      ],
+      "ro": [
+        "Cais"
+      ]
+    },
+    "scientific": "Prunus armeniaca",
+    "family": "Rosaceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Early-flowering tree: blossom is often lost to late spring frosts, so site matters. Self-fertile in most varieties.",
+      "ro": "Pom care înflorește devreme: florile se pierd adesea la înghețurile târzii de primăvară, deci amplasarea contează. Autofertil la majoritatea soiurilor."
+    },
+    "tips": {
+      "en": [
+        "Plant on a sunny, sheltered slope with good air drainage, not in a frost pocket."
+      ],
+      "ro": [
+        "Plantează pe o pantă însorită și adăpostită, cu scurgerea aerului rece, nu într-o depresiune de îngheț."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 400,
+      "max": 600
+    },
+    "heightCm": {
+      "min": 400,
+      "max": 600
+    }
+  },
+  {
+    "id": "peach",
+    "names": {
+      "en": [
+        "Peach"
+      ],
+      "ro": [
+        "Piersic"
+      ]
+    },
+    "scientific": "Prunus persica",
+    "family": "Rosaceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Warm-site fruit, widely grown in the south and west; self-fertile, but prone to peach leaf curl.",
+      "ro": "Fruct pentru locuri calde, cultivat mult în sud și vest; autofertil, dar predispus la bășicarea frunzelor."
+    },
+    "tips": {
+      "en": [
+        "Keep rain off in spring if you can, and prune in spring, not winter."
+      ],
+      "ro": [
+        "Ferește de ploaie primăvara dacă poți și taie primăvara, nu iarna."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 350,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 500
+    }
+  },
+  {
+    "id": "walnut",
+    "names": {
+      "en": [
+        "Walnut"
+      ],
+      "ro": [
+        "Nuc"
+      ]
+    },
+    "scientific": "Juglans regia",
+    "family": "Juglandaceae",
+    "category": "nut-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Very large, long-lived tree grown across Romania for nuts and shade; slow to start cropping.",
+      "ro": "Pom foarte mare și longeviv, cultivat în toată România pentru nuci și umbră; intră lent pe rod."
+    },
+    "tips": {
+      "en": [
+        "Give it plenty of space: it casts heavy shade."
+      ],
+      "ro": [
+        "Oferă-i mult spațiu: face umbră deasă."
+      ]
+    },
+    "rotationFamily": "Juglandaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Walnut roots and leaves release juglone, which harms some plants (tomato, apple, birch among them). Keep vegetable beds well away.",
+      "ro": "Rădăcinile și frunzele nucului eliberează juglonă, care dăunează unor plante (printre ele roșia, mărul). Ține straturile de legume departe."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 800,
+      "max": 1200
+    },
+    "heightCm": {
+      "min": 1000,
+      "max": 2500
+    }
+  },
+  {
+    "id": "quince",
+    "names": {
+      "en": [
+        "Quince"
+      ],
+      "ro": [
+        "Gutui"
+      ]
+    },
+    "scientific": "Cydonia oblonga",
+    "family": "Rosaceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Small, self-fertile, fragrant fruit for jam and baking; fruit is hard and eaten cooked.",
+      "ro": "Pom mic, autofertil, cu fructe parfumate pentru dulceață și copt; fructele sunt tari și se consumă gătite."
+    },
+    "tips": {
+      "en": [
+        "Harvest when fully yellow, before hard frosts, and handle gently."
+      ],
+      "ro": [
+        "Culege când sunt complet galbene, înainte de înghețurile puternice, și manipulează cu grijă."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 500
+    }
+  },
+  {
+    "id": "fig",
+    "names": {
+      "en": [
+        "Fig"
+      ],
+      "ro": [
+        "Smochin"
+      ]
+    },
+    "scientific": "Ficus carica",
+    "family": "Moraceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Warmth-loving, self-fertile fruit; in most of Romania it needs a sheltered wall and winter protection of the branches.",
+      "ro": "Fruct iubitor de căldură, autofertil; în cea mai mare parte a României are nevoie de un perete adăpostit și de protecția ramurilor la iarnă."
+    },
+    "tips": {
+      "en": [
+        "Wrap or bend down and cover the branches before hard frost; choose cold-hardy varieties."
+      ],
+      "ro": [
+        "Înfășoară sau apleacă și acoperă ramurile înainte de gerul puternic; alege soiuri rezistente la frig."
+      ]
+    },
+    "rotationFamily": "Moraceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 400
+    }
+  },
+  {
+    "id": "mulberry",
+    "names": {
+      "en": [
+        "Mulberry"
+      ],
+      "ro": [
+        "Dud"
+      ]
+    },
+    "scientific": "Morus alba / M. nigra",
+    "family": "Moraceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy, productive tree with sweet berries that stain; long a village tree in Romania.",
+      "ro": "Pom rezistent și productiv, cu fructe dulci care pătează; de mult timp un pom de sat în România."
+    },
+    "tips": {
+      "en": [
+        "Do not plant over paths or parking: fallen fruit stains."
+      ],
+      "ro": [
+        "Nu planta deasupra aleilor sau a locurilor de parcare: fructele căzute pătează."
+      ]
+    },
+    "rotationFamily": "Moraceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 500,
+      "max": 800
+    },
+    "heightCm": {
+      "min": 500,
+      "max": 1200
+    }
+  },
+  {
+    "id": "sweet-chestnut",
+    "names": {
+      "en": [
+        "Sweet chestnut"
+      ],
+      "ro": [
+        "Castan comestibil"
+      ]
+    },
+    "scientific": "Castanea sativa",
+    "family": "Fagaceae",
+    "category": "nut-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Large nut tree for acidic to neutral, well-drained soils; avoid chalky soil.",
+      "ro": "Pom mare cu nuci, pentru soluri acide spre neutre, bine drenate; evită solurile calcaroase."
+    },
+    "tips": {
+      "en": [
+        "Plant two or more varieties for good nut set."
+      ],
+      "ro": [
+        "Plantează două sau mai multe soiuri pentru o bună legare a nucilor."
+      ]
+    },
+    "rotationFamily": "Fagaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 800,
+      "max": 1000
+    },
+    "heightCm": {
+      "min": 1000,
+      "max": 2500
+    }
+  },
+  {
+    "id": "almond",
+    "names": {
+      "en": [
+        "Almond"
+      ],
+      "ro": [
+        "Migdal"
+      ]
+    },
+    "scientific": "Prunus dulcis",
+    "family": "Rosaceae",
+    "category": "nut-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Very early blossom; late frosts often destroy the crop, so only suited to warm, sheltered sites.",
+      "ro": "Înflorește foarte devreme; înghețurile târzii distrug adesea recolta, deci se potrivește doar locurilor calde și adăpostite."
+    },
+    "tips": {
+      "en": [
+        "Choose late-flowering, self-fertile varieties."
+      ],
+      "ro": [
+        "Alege soiuri cu înflorire târzie și autofertile."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 400,
+      "max": 600
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 600
+    }
+  },
+  {
+    "id": "cornelian-cherry",
+    "names": {
+      "en": [
+        "Cornelian cherry"
+      ],
+      "ro": [
+        "Corn"
+      ]
+    },
+    "scientific": "Cornus mas",
+    "family": "Cornaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Very hardy large shrub or small tree with early yellow flowers for bees and tart red fruit (used for compote, jam and liqueur).",
+      "ro": "Arbust mare sau pom mic, foarte rezistent, cu flori galbene timpurii pentru albine și fructe roșii acrișoare (pentru compot, dulceață și lichior)."
+    },
+    "tips": {
+      "en": [
+        "Slow to start fruiting but very long-lived; also makes a good hedge."
+      ],
+      "ro": [
+        "Intră lent pe rod, dar este foarte longeviv; formează și un gard viu bun."
+      ]
+    },
+    "rotationFamily": "Cornaceae",
+    "roles": [
+      "food",
+      "hedge",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 600
+    }
+  },
+  {
+    "id": "sea-buckthorn",
+    "names": {
+      "en": [
+        "Sea buckthorn"
+      ],
+      "ro": [
+        "Cătină",
+        "Cătină albă"
+      ]
+    },
+    "scientific": "Hippophae rhamnoides",
+    "family": "Elaeagnaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy, thorny, nitrogen-fixing shrub with vitamin-rich orange berries. Male and female plants are separate; one male serves several females.",
+      "ro": "Arbust rezistent, spinos, care fixează azot, cu fructe portocalii bogate în vitamine. Plantele sunt separate pe sexe; un mascul servește mai multe femele."
+    },
+    "tips": {
+      "en": [
+        "Plant at least one male for every five to eight females; wear gloves when picking. Spreads by suckers."
+      ],
+      "ro": [
+        "Plantează cel puțin un mascul la cinci-opt femele; poartă mănuși la cules. Se extinde prin drajoni."
+      ]
+    },
+    "rotationFamily": "Elaeagnaceae",
+    "roles": [
+      "food",
+      "hedge",
+      "nitrogen-fixer",
+      "wildlife",
+      "windbreak"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 200,
+      "max": 300
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 400
+    }
+  },
+  {
+    "id": "elder",
+    "names": {
+      "en": [
+        "Elder"
+      ],
+      "ro": [
+        "Soc"
+      ]
+    },
+    "scientific": "Sambucus nigra",
+    "family": "Adoxaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Very hardy shrub; flowers make the Romanian socată (elderflower drink) and cooked berries make syrup and jam.",
+      "ro": "Arbust foarte rezistent; din flori se face socata, iar din fructele fierte sirop și dulceață."
+    },
+    "tips": {
+      "en": [
+        "Cut hard in late winter to keep it manageable."
+      ],
+      "ro": [
+        "Taie scurt la sfârșitul iernii pentru a-l ține în limite."
+      ]
+    },
+    "rotationFamily": "Adoxaceae",
+    "roles": [
+      "food",
+      "hedge",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Raw berries, leaves and stems are mildly toxic: cook the berries; do not eat other parts.",
+      "ro": "Fructele crude, frunzele și tulpinile sunt ușor toxice: fierbe fructele; nu consuma alte părți."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 250,
+      "max": 400
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 600
+    }
+  },
+  {
+    "id": "rose-hip",
+    "names": {
+      "en": [
+        "Dog rose"
+      ],
+      "ro": [
+        "Măceș"
+      ]
+    },
+    "scientific": "Rosa canina",
+    "family": "Rosaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Very hardy thorny shrub with vitamin-rich hips used for tea and marmalade; good for hedges and wildlife.",
+      "ro": "Arbust spinos foarte rezistent, cu fructe bogate în vitamine, folosite pentru ceai și marmeladă; bun pentru garduri vii și faună."
+    },
+    "tips": {
+      "en": [
+        "Harvest after the first frost for sweeter hips and remove the hairy seeds."
+      ],
+      "ro": [
+        "Culege după primul îngheț pentru fructe mai dulci și îndepărtează semințele păroase."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "hedge",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 100,
+      "max": 200
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 300
+    }
+  },
+  {
+    "id": "blueberry",
+    "names": {
+      "en": [
+        "Highbush blueberry"
+      ],
+      "ro": [
+        "Afin american",
+        "Afin"
+      ]
+    },
+    "scientific": "Vaccinium corymbosum",
+    "family": "Ericaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Needs acidic soil (pH about 4.5–5.5) and moisture; grows well in pots of ericaceous compost where garden soil is neutral or alkaline.",
+      "ro": "Are nevoie de sol acid (pH în jur de 4,5–5,5) și umiditate; crește bine în ghivece cu substrat acid acolo unde solul din grădină este neutru sau alcalin."
+    },
+    "tips": {
+      "en": [
+        "Test soil pH first and mulch with pine bark or sawdust; use rainwater if tap water is hard."
+      ],
+      "ro": [
+        "Testează mai întâi pH-ul solului și mulcește cu scoarță de pin sau rumeguș; folosește apă de ploaie dacă apa de la robinet este dură."
+      ]
+    },
+    "rotationFamily": "Ericaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 100,
+      "max": 150
+    },
+    "heightCm": {
+      "min": 120,
+      "max": 200
+    }
+  },
+  {
+    "id": "blackberry",
+    "names": {
+      "en": [
+        "Blackberry"
+      ],
+      "ro": [
+        "Mur",
+        "Mur cultivat"
+      ]
+    },
+    "scientific": "Rubus fruticosus agg.",
+    "family": "Rosaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Vigorous cane fruit; thornless cultivars are easier. Fruits on last year's canes.",
+      "ro": "Arbust cu lăstari viguroși; soiurile fără spini sunt mai ușor de lucrat. Rodește pe lăstarii din anul precedent."
+    },
+    "tips": {
+      "en": [
+        "Train canes on wires and cut fruited canes to the ground after harvest."
+      ],
+      "ro": [
+        "Leagă lăstarii pe sârmă și taie la nivelul solului lăstarii care au rodit, după recoltare."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 150,
+      "max": 250
+    },
+    "heightCm": {
+      "min": 150,
+      "max": 300
+    }
+  },
+  {
+    "id": "gooseberry",
+    "names": {
+      "en": [
+        "Gooseberry"
+      ],
+      "ro": [
+        "Agriș"
+      ]
+    },
+    "scientific": "Ribes uva-crispa",
+    "family": "Grossulariaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy, thorny fruit bush that tolerates partial shade; fruit can be picked green for cooking or ripe for eating.",
+      "ro": "Arbust fructifer rezistent, spinos, care tolerează semiumbra; fructele se pot culege verzi pentru gătit sau coapte pentru consum."
+    },
+    "tips": {
+      "en": [
+        "Prune to an open centre to improve airflow against American gooseberry mildew."
+      ],
+      "ro": [
+        "Taie pentru un centru deschis, ca să crești circulația aerului împotriva făinării."
+      ]
+    },
+    "rotationFamily": "Grossulariaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 120,
+      "max": 150
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 150
+    }
+  },
+  {
+    "id": "redcurrant",
+    "names": {
+      "en": [
+        "Redcurrant"
+      ],
+      "ro": [
+        "Coacăz roșu"
+      ]
+    },
+    "scientific": "Ribes rubrum",
+    "family": "Grossulariaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy, reliable bush that fruits on older wood and tolerates partial shade.",
+      "ro": "Arbust rezistent și sigur, care rodește pe lemn mai vechi și tolerează semiumbra."
+    },
+    "tips": {
+      "en": [
+        "Net against birds as the fruit colours."
+      ],
+      "ro": [
+        "Protejează cu plasă împotriva păsărilor când fructele se colorează."
+      ]
+    },
+    "rotationFamily": "Grossulariaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 120,
+      "max": 150
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 150
+    }
+  },
+  {
+    "id": "aronia",
+    "names": {
+      "en": [
+        "Chokeberry",
+        "Aronia"
+      ],
+      "ro": [
+        "Aronia"
+      ]
+    },
+    "scientific": "Aronia melanocarpa",
+    "family": "Rosaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Very hardy, undemanding shrub with dark, astringent berries used for juice and jam; also decorative in autumn.",
+      "ro": "Arbust foarte rezistent și nepretențios, cu fructe închise la culoare și astringente, folosite pentru suc și dulceață; decorativ și toamna."
+    },
+    "tips": {
+      "en": [
+        "Fruit sweetens when left to hang until fully ripe; birds usually leave it alone."
+      ],
+      "ro": [
+        "Fructele devin mai dulci dacă rămân pe arbust până la coacerea deplină; păsările îl ocolesc de obicei."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 100,
+      "max": 150
+    },
+    "heightCm": {
+      "min": 150,
+      "max": 250
+    }
+  },
+  {
+    "id": "haskap",
+    "names": {
+      "en": [
+        "Honeyberry",
+        "Haskap"
+      ],
+      "ro": [
+        "Caprifoi comestibil",
+        "Haskap"
+      ]
+    },
+    "scientific": "Lonicera caerulea",
+    "family": "Caprifoliaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Extremely hardy, very early blue berries; needs two different varieties for pollination.",
+      "ro": "Extrem de rezistent, cu fructe albastre foarte timpurii; are nevoie de două soiuri diferite pentru polenizare."
+    },
+    "tips": {
+      "en": [
+        "Net the crop: birds find it first in early summer."
+      ],
+      "ro": [
+        "Protejează recolta cu plasă: păsările o găsesc prima la începutul verii."
+      ]
+    },
+    "rotationFamily": "Caprifoliaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 120,
+      "max": 150
+    },
+    "heightCm": {
+      "min": 120,
+      "max": 200
+    }
+  },
+  {
+    "id": "hardy-kiwi",
+    "names": {
+      "en": [
+        "Hardy kiwi",
+        "Kiwiberry"
+      ],
+      "ro": [
+        "Kiwi rezistent",
+        "Mini-kiwi"
+      ]
+    },
+    "scientific": "Actinidia arguta",
+    "family": "Actinidiaceae",
+    "category": "vine",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Vigorous climber with small smooth-skinned kiwi fruit, hardy enough for most of Romania; needs a male for pollination unless self-fertile.",
+      "ro": "Cățărătoare viguroasă, cu mici fructe de kiwi cu coajă netedă, suficient de rezistentă pentru cea mai mare parte a României; are nevoie de un mascul pentru polenizare, dacă soiul nu este autofertil."
+    },
+    "tips": {
+      "en": [
+        "Build a strong trellis and protect young shoots from late frost."
+      ],
+      "ro": [
+        "Construiește un spalier solid și protejează lăstarii tineri de înghețul târziu."
+      ]
+    },
+    "rotationFamily": "Actinidiaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 400
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 600
+    }
+  },
+  {
+    "id": "grape",
+    "names": {
+      "en": [
+        "Grape"
+      ],
+      "ro": [
+        "Viță de vie",
+        "Struguri"
+      ]
+    },
+    "scientific": "Vitis vinifera",
+    "family": "Vitaceae",
+    "category": "vine",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "A long Romanian tradition, from table grapes to wine; needs sun, a trellis, annual pruning and, in cold areas, hardy varieties or winter protection.",
+      "ro": "O tradiție românească veche, de la struguri de masă la vin; are nevoie de soare, spalier, tăiere anuală și, în zonele reci, de soiuri rezistente sau protecție la iarnă."
+    },
+    "tips": {
+      "en": [
+        "Prune hard each winter: the vine fruits on new shoots from last year's wood. Choose varieties resistant to mildew if you avoid spraying."
+      ],
+      "ro": [
+        "Taie mult în fiecare iarnă: via rodește pe lăstari noi crescuți din lemnul anului trecut. Alege soiuri rezistente la mană dacă vrei să eviți tratamentele."
+      ]
+    },
+    "rotationFamily": "Vitaceae",
+    "roles": [
+      "food",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 150,
+      "max": 250
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 400
+    }
+  }
+]

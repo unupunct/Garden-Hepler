@@ -228,7 +228,7 @@ public static class Strings
         // Enum-like content values
         ["season_winter"] = "Winter", ["season_spring"] = "Spring", ["season_summer"] = "Summer", ["season_autumn"] = "Autumn",
         ["cat_vegetable"] = "Vegetable", ["cat_perennial_vegetable"] = "Perennial vegetable", ["cat_herb"] = "Herb", ["cat_flower"] = "Flower",
-        ["cat_cover_crop"] = "Cover crop", ["cat_fruit_tree"] = "Fruit tree", ["cat_berry"] = "Berry", ["cat_nut_tree"] = "Nut tree", ["cat_mushroom"] = "Mushroom",
+        ["cat_vine"] = "Vine or climber", ["cat_cover_crop"] = "Cover crop", ["cat_fruit_tree"] = "Fruit tree", ["cat_berry"] = "Berry", ["cat_nut_tree"] = "Nut tree", ["cat_mushroom"] = "Mushroom",
         ["sun_full"] = "Full sun", ["sun_full_partial"] = "Full sun to partial shade", ["sun_partial"] = "Partial shade", ["sun_shade"] = "Shade",
         ["water_low"] = "Low", ["water_moderate"] = "Moderate", ["water_high"] = "High",
         ["frost_tender"] = "Tender (damaged by frost)", ["frost_half_hardy"] = "Half-hardy", ["frost_hardy"] = "Hardy",
@@ -444,7 +444,7 @@ public static class Strings
 
         ["season_winter"] = "Iarna", ["season_spring"] = "Primăvara", ["season_summer"] = "Vara", ["season_autumn"] = "Toamna",
         ["cat_vegetable"] = "Legumă", ["cat_perennial_vegetable"] = "Legumă perenă", ["cat_herb"] = "Plantă aromatică", ["cat_flower"] = "Floare",
-        ["cat_cover_crop"] = "Cultură de acoperire", ["cat_fruit_tree"] = "Pom fructifer", ["cat_berry"] = "Fructe de pădure", ["cat_nut_tree"] = "Pom cu nuci", ["cat_mushroom"] = "Ciupercă",
+        ["cat_vine"] = "Viță sau cățărătoare", ["cat_cover_crop"] = "Cultură de acoperire", ["cat_fruit_tree"] = "Pom fructifer", ["cat_berry"] = "Fructe de pădure", ["cat_nut_tree"] = "Pom cu nuci", ["cat_mushroom"] = "Ciupercă",
         ["sun_full"] = "Soare deplin", ["sun_full_partial"] = "Soare deplin până la semiumbră", ["sun_partial"] = "Semiumbră", ["sun_shade"] = "Umbră",
         ["water_low"] = "Puțină", ["water_moderate"] = "Moderată", ["water_high"] = "Multă",
         ["frost_tender"] = "Sensibilă (afectată de îngheț)", ["frost_half_hardy"] = "Semirezistentă", ["frost_hardy"] = "Rezistentă",
