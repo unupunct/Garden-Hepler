@@ -1,0 +1,56 @@
+<UserControl x:Class="GardenHelper.App.Views.JournalView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <Grid Margin="32,26,32,26">
+        <Grid.ColumnDefinitions><ColumnDefinition Width="340"/><ColumnDefinition Width="24"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+        <TextBlock Text="{loc:L nav_journal}" Style="{StaticResource H1}" Grid.ColumnSpan="3" Margin="0,0,0,12"/>
+        <v:Banners Grid.Row="1" Grid.ColumnSpan="3"/>
+
+        <DockPanel Grid.Row="2">
+            <TextBox DockPanel.Dock="Top" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{loc:L journal_filter}" Tag="{loc:L journal_filter}" Margin="0,0,0,10"/>
+            <Button DockPanel.Dock="Top" Content="{loc:L journal_new}" Command="{Binding NewEntryCommand}" Margin="0,0,0,10" HorizontalAlignment="Left"/>
+            <ListBox ItemsSource="{Binding Entries}" SelectedItem="{Binding Selected}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding Date, Converter={StaticResource DateConv}}" Style="{StaticResource Muted}" FontSize="12"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+        <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource Card}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="{loc:L journal_title}" Style="{StaticResource Label}" Margin="0,0,0,3"/>
+                    <TextBox Text="{Binding EditTitle, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="{loc:L journal_date}" Style="{StaticResource Label}"/>
+                            <DatePicker SelectedDate="{Binding EditDate}" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="{loc:L journal_plant}" Style="{StaticResource Label}"/>
+                            <ComboBox ItemsSource="{Binding Plants}" SelectedItem="{Binding EditPlant}" DisplayMemberPath="Name"/>
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Text="{loc:L journal_text}" Style="{StaticResource Label}"/>
+                    <TextBox Text="{Binding EditText, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="220" VerticalScrollBarVisibility="Auto"
+                             AutomationProperties.Name="{loc:L journal_text}"/>
+                    <TextBlock Text="{loc:L journal_tags}" Style="{StaticResource Label}"/>
+                    <TextBox Text="{Binding EditTags, UpdateSourceTrigger=PropertyChanged}"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveCommand}" Margin="0,0,10,0"/>
+                        <Button Style="{StaticResource DangerButton}" Content="{loc:L delete}" Command="{Binding DeleteCommand}" Visibility="{Binding IsExisting, Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

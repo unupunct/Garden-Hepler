@@ -1,0 +1,70 @@
+<UserControl x:Class="GardenHelper.App.Views.MonitorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,26,32,26" MaxWidth="900" HorizontalAlignment="Left">
+            <TextBlock Text="{loc:L nav_monitor}" Style="{StaticResource H1}" Margin="0,0,0,4"/>
+            <TextBlock Text="{Binding Summary}" Style="{StaticResource Muted}" Margin="0,0,0,14"/>
+            <v:Banners/>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16" Visibility="{Binding HasGarden, Converter={StaticResource BoolToVis}, ConverterParameter=invert}">
+                <StackPanel>
+                    <TextBlock Text="{loc:L design_need_garden_text}" Style="{StaticResource Muted}"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="{loc:L onboard_garden}" Command="{Binding OpenGardenCommand}" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16" Visibility="{Binding HasGarden, Converter={StaticResource BoolToVis}}">
+                <StackPanel>
+                    <TextBlock Text="{loc:L monitor_next}" Style="{StaticResource H2}"/>
+                    <TextBlock Text="{loc:L monitor_rules}" Style="{StaticResource Muted}" FontSize="12" Margin="0,2,0,10"/>
+                    <StackPanel Visibility="{Binding Alerts.Count, Converter={StaticResource HasValueVis}, ConverterParameter=invert}">
+                        <TextBlock Text="{loc:L monitor_none}" Style="{StaticResource Muted}"/>
+                        <Button Style="{StaticResource LinkButton}" Content="{loc:L monitor_open_designer}" Command="{Binding OpenDesignerCommand}" HorizontalAlignment="Left" Margin="0,8,0,0"/>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding Alerts}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1" Padding="0,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="34"/><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Glyph}" FontFamily="{StaticResource SymbolFont}" FontSize="18" VerticalAlignment="Top"/>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock><Run Text="{Binding SeverityLabel, Mode=OneWay}" FontWeight="Bold"/><Run Text=" · "/><Run Text="{Binding Message, Mode=OneWay}"/></TextBlock>
+                                            <TextBlock Text="{Binding Why}" Style="{StaticResource Muted}" FontSize="12" Margin="0,2,0,0"/>
+                                        </StackPanel>
+                                        <Button Grid.Column="2" Content="{loc:L cal_add_task}" VerticalAlignment="Top" Margin="12,0,0,0"
+                                                Command="{Binding DataContext.AddTaskCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Visibility="{Binding Overview.Count, Converter={StaticResource HasValueVis}}">
+                <StackPanel>
+                    <TextBlock Text="{loc:L monitor_overview}" Style="{StaticResource H2}" Margin="0,0,0,8"/>
+                    <ItemsControl ItemsSource="{Binding Overview}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,4">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="170"/><ColumnDefinition Width="50"/><ColumnDefinition Width="110"/><ColumnDefinition Width="110"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Bed}" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Plant}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Quantity, StringFormat=×{0}}"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding Status}"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding Planted}" Style="{StaticResource Muted}"/>
+                                    <TextBlock Grid.Column="5" Text="{Binding Expected}" Style="{StaticResource Muted}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

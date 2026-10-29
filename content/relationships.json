@@ -1,0 +1,216 @@
+[
+  {
+    "a": "tomato",
+    "b": "potato",
+    "effect": "negative",
+    "category": "shared-pest-disease",
+    "evidence": "recommendation",
+    "explanation": {
+      "en": "Both are nightshades and are attacked by the same late blight pathogen and some of the same pests, so a close planting gives blight an easy path.",
+      "ro": "Ambele sunt solanacee și sunt atacate de același patogen al manei și de unele dintre aceleași dăunătoare, deci o plantare apropiată ușurează răspândirea bolii."
+    },
+    "conditions": {
+      "en": "Matters most in cool, wet summers. Rotate beds and avoid following one with the other.",
+      "ro": "Contează cel mai mult în veri răcoroase și ploioase. Fă rotația straturilor și nu planta una după cealaltă."
+    }
+  },
+  {
+    "a": "tomato",
+    "b": "basil",
+    "effect": "uncertain",
+    "category": "commonly-used",
+    "evidence": "traditional",
+    "explanation": {
+      "en": "A popular pairing: they enjoy the same sun and similar watering, and basil is often said to deter pests. Controlled evidence for pest reduction is limited.",
+      "ro": "O asociere populară: au nevoie de același soare și udare asemănătoare, iar busuiocul este adesea considerat că îndepărtează dăunătorii. Dovezile controlate sunt limitate."
+    }
+  },
+  {
+    "a": "carrot",
+    "b": "onion",
+    "effect": "mixed",
+    "category": "pest-confusion",
+    "evidence": "traditional",
+    "explanation": {
+      "en": "The strong smell of onions is thought to mask carrots from carrot fly, and the reverse. Field results are mixed, and fine insect mesh is a more reliable control.",
+      "ro": "Mirosul puternic al cepei ar masca morcovii față de musca morcovului și invers. Rezultatele din câmp sunt mixte, iar plasa fină anti-insecte este un control mai sigur."
+    }
+  },
+  {
+    "a": "carrot",
+    "b": "parsley",
+    "effect": "negative",
+    "category": "shared-pest-disease",
+    "evidence": "recommendation",
+    "explanation": {
+      "en": "Both are in the carrot family (Apiaceae) and are attacked by carrot fly and share some diseases, so they concentrate the same problems if grown together.",
+      "ro": "Ambele fac parte din familia morcovului (Apiaceae) și sunt atacate de musca morcovului și au boli comune, deci concentrează aceleași probleme dacă sunt cultivate împreună."
+    }
+  },
+  {
+    "a": "marigold",
+    "b": "tomato",
+    "effect": "mixed",
+    "category": "allelopathy",
+    "evidence": "research",
+    "explanation": {
+      "en": "Some Tagetes cultivars grown as a dense, dedicated crop have reduced certain root-knot nematodes in studies. A few marigolds planted between tomatoes are not a reliable nematode control.",
+      "ro": "Unele soiuri de Tagetes cultivate dens, ca cultură dedicată, au redus anumiți nematozi în studii. Câteva flori plantate între roșii nu sunt un control sigur al nematozilor."
+    },
+    "conditions": {
+      "en": "Effects depend on nematode species and the Tagetes cultivar. Flowers also support beneficial insects.",
+      "ro": "Efectele depind de specia de nematod și de soiul de Tagetes. Florile susțin și insectele utile."
+    }
+  },
+  {
+    "a": "nasturtium",
+    "b": "kale",
+    "effect": "uncertain",
+    "category": "trap-crop",
+    "evidence": "anecdotal",
+    "explanation": {
+      "en": "Nasturtium is sometimes grown as a sacrificial plant that draws caterpillars and aphids away from brassicas. The benefit is mainly anecdotal and the pest can still reach the crop.",
+      "ro": "Condurul doamnei este uneori cultivat ca plantă-capcană care atrage omizi și afide departe de brasicacee. Beneficiul este mai ales anecdotic, iar dăunătorul poate ajunge totuși la cultură."
+    }
+  },
+  {
+    "a": "white-clover",
+    "b": "kale",
+    "effect": "mixed",
+    "category": "ground-cover",
+    "evidence": "research",
+    "explanation": {
+      "en": "In several trials, clover grown as a living mulch under brassicas reduced pest colonisation. It can also compete with the crop for water and nutrients if not managed.",
+      "ro": "În mai multe studii, trifoiul cultivat ca mulci viu sub brasicacee a redus colonizarea cu dăunători. Poate concura însă cultura pentru apă și nutrienți dacă nu este gestionat."
+    },
+    "conditions": {
+      "en": "Works best when the crop is transplanted into established clover that is mown or cut back.",
+      "ro": "Funcționează cel mai bine când cultura este transplantată într-un trifoi instalat, cosit sau tuns."
+    }
+  },
+  {
+    "a": "onion",
+    "b": "pea",
+    "effect": "negative",
+    "category": "competition",
+    "evidence": "anecdotal",
+    "explanation": {
+      "en": "Gardeners often advise keeping alliums away from peas and beans. The reason is not well established and may simply reflect different growing needs.",
+      "ro": "Grădinarii recomandă adesea să ții alliumurile departe de mazăre și fasole. Motivul nu este bine stabilit și poate reflecta doar nevoi diferite de cultivare."
+    }
+  },
+  {
+    "a": "phacelia",
+    "b": "apple",
+    "effect": "positive",
+    "category": "pollinator-support",
+    "evidence": "recommendation",
+    "explanation": {
+      "en": "Phacelia flowers attract bees and hoverflies, supporting orchard pollination and aphid predators when sown in the grass strip or between trees.",
+      "ro": "Florile de facelie atrag albine și sirfide, susținând polenizarea în livadă și prădătorii afidelor când este semănată în fâșia înierbată sau între pomi."
+    },
+    "conditions": {
+      "en": "Sow after the fruit trees finish flowering if you want a second flush of nectar, and keep it away from the trunks of young trees.",
+      "ro": "Seamănă după înflorirea pomilor dacă vrei un al doilea val de nectar și ține-o departe de trunchiul pomilor tineri."
+    }
+  },
+  {
+    "a": "borage",
+    "b": "strawberry",
+    "effect": "uncertain",
+    "category": "pollinator-support",
+    "evidence": "traditional",
+    "explanation": {
+      "en": "Borage is traditionally planted near strawberries to bring in bees. Evidence that it raises strawberry yield is limited.",
+      "ro": "Boragina se plantează tradițional lângă căpșuni pentru a atrage albinele. Dovezile că ar crește producția de căpșuni sunt limitate."
+    }
+  },
+  {
+    "a": "comfrey",
+    "b": "apple",
+    "effect": "mixed",
+    "category": "nutrient",
+    "evidence": "traditional",
+    "explanation": {
+      "en": "Comfrey leaves are widely used as mulch and compost activator around fruit trees. Planted too close it can compete for water and is hard to remove later.",
+      "ro": "Frunzele de tătăneasă sunt folosite pe scară largă ca mulci și activator de compost în jurul pomilor. Plantată prea aproape poate concura pentru apă și este greu de eliminat ulterior."
+    }
+  },
+  {
+    "a": "white-clover",
+    "b": "apple",
+    "effect": "mixed",
+    "category": "ground-cover",
+    "evidence": "recommendation",
+    "explanation": {
+      "en": "Clover under established fruit trees fixes nitrogen and supports pollinators. Around young trees it competes strongly, so keep a clear circle at the base.",
+      "ro": "Trifoiul sub pomi maturi fixează azot și susține polenizatorii. În jurul pomilor tineri concurează puternic, deci menține un cerc liber la bază."
+    }
+  },
+  {
+    "a": "lettuce",
+    "b": "radish",
+    "effect": "positive",
+    "category": "complementary-growth",
+    "evidence": "traditional",
+    "explanation": {
+      "en": "Radish matures in weeks, lettuce takes longer: intercropping uses the same bed in sequence and the radish marks the row.",
+      "ro": "Ridichea se coace în câteva săptămâni, salata durează mai mult: culturile intercalate folosesc același strat succesiv, iar ridichea marchează rândul."
+    }
+  },
+  {
+    "a": "calendula",
+    "b": "tomato",
+    "effect": "positive",
+    "category": "habitat-support",
+    "evidence": "recommendation",
+    "explanation": {
+      "en": "Open flowers near vegetables feed hoverflies and parasitic wasps, whose larvae or offspring control aphids and other pests. Calendula-specific evidence is limited, but flower strips in general are well studied.",
+      "ro": "Florile deschise lângă legume hrănesc sirfidele și viespile parazite, ale căror larve sau descendenți controlează afidele și alți dăunători. Dovezile specifice pentru gălbenele sunt limitate, dar benzile cu flori în general sunt bine studiate."
+    }
+  },
+  {
+    "a": "raspberry",
+    "b": "potato",
+    "effect": "negative",
+    "category": "shared-pest-disease",
+    "evidence": "recommendation",
+    "explanation": {
+      "en": "Verticillium wilt persists in soil and affects raspberries, potatoes, tomatoes and strawberries. Avoid planting raspberries where these crops grew recently.",
+      "ro": "Verticiloza persistă în sol și afectează zmeurul, cartofii, roșiile și căpșunii. Evită plantarea zmeurului unde au crescut recent aceste culturi."
+    }
+  },
+  {
+    "a": "strawberry",
+    "b": "tomato",
+    "effect": "negative",
+    "category": "shared-pest-disease",
+    "evidence": "recommendation",
+    "explanation": {
+      "en": "Both are hosts of verticillium wilt, which survives in soil for years. Do not plant strawberries in a bed that recently grew tomatoes (or the reverse).",
+      "ro": "Ambele sunt gazde pentru verticiloză, care supraviețuiește în sol ani de zile. Nu planta căpșuni într-un strat care a avut recent roșii (sau invers)."
+    }
+  },
+  {
+    "a": "pea",
+    "b": "carrot",
+    "effect": "uncertain",
+    "category": "complementary-growth",
+    "evidence": "anecdotal",
+    "explanation": {
+      "en": "Sometimes recommended as neighbours because their roots and canopy occupy different spaces. Evidence is anecdotal; both like cool soil.",
+      "ro": "Uneori recomandate ca vecini, deoarece rădăcinile și coronamentul ocupă spații diferite. Dovezile sunt anecdotice; ambele preferă sol răcoros."
+    }
+  },
+  {
+    "a": "bean",
+    "b": "potato",
+    "effect": "uncertain",
+    "category": "pest-confusion",
+    "evidence": "anecdotal",
+    "explanation": {
+      "en": "Often suggested as a pairing, but trials on pest reduction are inconclusive. Legumes can improve nitrogen for the following crop after being cut.",
+      "ro": "Sugerate adesea ca asociere, dar studiile privind reducerea dăunătorilor sunt neconcludente. Leguminoasele pot îmbunătăți azotul pentru cultura următoare după tăiere."
+    }
+  }
+]

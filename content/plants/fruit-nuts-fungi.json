@@ -1,0 +1,411 @@
+[
+  {
+    "id": "strawberry",
+    "names": {
+      "en": [
+        "Strawberry"
+      ],
+      "ro": [
+        "Căpșun",
+        "Căpșuni"
+      ]
+    },
+    "scientific": "Fragaria × ananassa",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Low perennial fruit that spreads by runners. Productivity declines after a few years, so beds are renewed from runners.",
+      "ro": "Fruct perenn scund, care se extinde prin stoloni. Productivitatea scade după câțiva ani, de aceea straturile se reînnoiesc din stoloni."
+    },
+    "tips": {
+      "en": [
+        "Plant with the crown at soil level, neither buried nor raised.",
+        "Mulch with straw to keep fruit clean.",
+        "Renew beds every 3–4 years with healthy runners."
+      ],
+      "ro": [
+        "Plantează cu coroana la nivelul solului, nici îngropată, nici ridicată.",
+        "Mulcește cu paie pentru a ține fructele curate.",
+        "Reînnoiește straturile la 3–4 ani cu stoloni sănătoși."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "ground-cover"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "rowSpacingCm": {
+      "min": 60,
+      "max": 90
+    },
+    "heightCm": {
+      "min": 15,
+      "max": 30
+    }
+  },
+  {
+    "id": "apple",
+    "names": {
+      "en": [
+        "Apple"
+      ],
+      "ro": [
+        "Măr"
+      ]
+    },
+    "scientific": "Malus domestica",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "fruit-tree",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Long-lived fruit tree. Final size depends on the rootstock; most varieties need a compatible pollination partner flowering at the same time.",
+      "ro": "Pom fructifer longeviv. Mărimea finală depinde de portaltoi; majoritatea soiurilor au nevoie de un partener de polenizare compatibil, care înflorește în același timp."
+    },
+    "tips": {
+      "en": [
+        "Choose rootstock for the space you have: dwarf stocks give small trees, standards become very large.",
+        "Check pollination groups before buying a single tree.",
+        "Keep a weed-free circle around young trees."
+      ],
+      "ro": [
+        "Alege portaltoiul în funcție de spațiu: portaltoii pitici dau pomi mici, cei vigurosi devin foarte mari.",
+        "Verifică grupele de polenizare înainte de a cumpăra un singur pom.",
+        "Menține un cerc fără buruieni în jurul pomilor tineri."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "canopy",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Apple seeds contain amygdalin; do not eat them in quantity.",
+      "ro": "Semințele de măr conțin amigdalină; nu le consuma în cantitate."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 250,
+      "max": 800
+    },
+    "heightCm": {
+      "min": 250,
+      "max": 900
+    }
+  },
+  {
+    "id": "blackcurrant",
+    "names": {
+      "en": [
+        "Blackcurrant"
+      ],
+      "ro": [
+        "Coacăz negru"
+      ]
+    },
+    "scientific": "Ribes nigrum",
+    "synonyms": [],
+    "family": "Grossulariaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy, productive berry bush that tolerates partial shade and heavy soils; crops on young wood.",
+      "ro": "Arbust fructifer rezistent și productiv, care tolerează semiumbra și solurile grele; rodește pe lemn tânăr."
+    },
+    "tips": {
+      "en": [
+        "Plant slightly deeper than it grew in the pot to encourage new shoots.",
+        "Prune out some of the oldest stems each winter.",
+        "Mulch to keep roots cool and moist."
+      ],
+      "ro": [
+        "Plantează puțin mai adânc decât în ghiveci pentru a stimula lăstarii noi.",
+        "Taie în fiecare iarnă o parte din cele mai vechi tulpini.",
+        "Mulcește pentru a ține rădăcinile răcoroase și umede."
+      ]
+    },
+    "rotationFamily": "Grossulariaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 150,
+      "max": 180
+    },
+    "heightCm": {
+      "min": 120,
+      "max": 180
+    }
+  },
+  {
+    "id": "raspberry",
+    "names": {
+      "en": [
+        "Raspberry"
+      ],
+      "ro": [
+        "Zmeur"
+      ]
+    },
+    "scientific": "Rubus idaeus",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Cane fruit in summer-fruiting and autumn-fruiting types, which are pruned differently. Spreads by suckers.",
+      "ro": "Arbust cu lăstari anuali, în tipuri cu rod de vară și de toamnă, tăiate diferit. Se extinde prin drajoni."
+    },
+    "tips": {
+      "en": [
+        "Know which type you have before pruning.",
+        "Support canes on wires.",
+        "Avoid planting where tomatoes, potatoes or strawberries grew recently because of verticillium wilt."
+      ],
+      "ro": [
+        "Află tipul de zmeur înainte de tăiere.",
+        "Susține lăstarii pe sârmă.",
+        "Evită plantarea unde au crescut recent roșii, cartofi sau căpșuni, din cauza verticilozei."
+      ]
+    },
+    "rotationFamily": "Rosaceae",
+    "roles": [
+      "food",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 45,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 180,
+      "max": 200
+    },
+    "heightCm": {
+      "min": 150,
+      "max": 200
+    }
+  },
+  {
+    "id": "hazel",
+    "names": {
+      "en": [
+        "Hazel",
+        "Hazelnut"
+      ],
+      "ro": [
+        "Alun",
+        "Alun de pădure"
+      ]
+    },
+    "scientific": "Corylus avellana",
+    "synonyms": [],
+    "family": "Betulaceae",
+    "category": "nut-tree",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Multi-stemmed nut shrub or small tree that suits hedges and woodland edges. Wind-pollinated; most need a second, compatible hazel nearby.",
+      "ro": "Arbust sau pom mic cu mai multe tulpini, potrivit pentru garduri vii și margini de pădure. Polenizat de vânt; majoritatea au nevoie de un al doilea alun compatibil în apropiere."
+    },
+    "tips": {
+      "en": [
+        "Plant at least two compatible varieties for reliable nuts.",
+        "Can be coppiced for stakes and pea sticks.",
+        "Squirrels often take the crop before you do."
+      ],
+      "ro": [
+        "Plantează cel puțin două soiuri compatibile pentru nuci sigure.",
+        "Poate fi tăiat la cioată pentru araci și suporți.",
+        "Veverițele iau adesea recolta înaintea ta."
+      ]
+    },
+    "rotationFamily": "Betulaceae",
+    "roles": [
+      "food",
+      "hedge",
+      "windbreak",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -12,
+        "max": -4
+      },
+      "note": {
+        "en": "Plant bare-root trees and shrubs while dormant, from late autumn to early spring, when the soil is not frozen or waterlogged.",
+        "ro": "Plantează pomii și arbuștii cu rădăcina liberă în repaus vegetativ, de la sfârșitul toamnei până la începutul primăverii, când solul nu este înghețat sau îmbibat."
+      }
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 600
+    }
+  },
+  {
+    "id": "oyster-mushroom",
+    "names": {
+      "en": [
+        "Oyster mushroom"
+      ],
+      "ro": [
+        "Ciuperca stridie",
+        "Hribi stridie",
+        "Pleurotus"
+      ]
+    },
+    "scientific": "Pleurotus ostreatus",
+    "synonyms": [],
+    "family": "Pleurotaceae",
+    "category": "mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": "high",
+    "frostTolerance": null,
+    "summary": {
+      "en": "One of the easiest cultivated mushrooms, grown from purchased spawn on straw, sawdust or logs. Cultivation only: this entry does not help identify wild mushrooms.",
+      "ro": "Una dintre cele mai ușor de cultivat ciuperci, crescută din miceliu cumpărat pe paie, rumeguș sau buștean. Doar cultivare: această fișă nu ajută la identificarea ciupercilor sălbatice."
+    },
+    "tips": {
+      "en": [
+        "Buy spawn from a reputable supplier and note the strain and batch.",
+        "Pasteurise straw (heat or alkaline treatment) to reduce competing moulds.",
+        "Fruiting needs fresh air and high humidity; poor air exchange gives long stems and small caps."
+      ],
+      "ro": [
+        "Cumpără miceliu de la un furnizor de încredere și notează tulpina și lotul.",
+        "Pasteurizează paiele (căldură sau tratament alcalin) pentru a reduce mucegaiurile concurente.",
+        "Fructificarea cere aer proaspăt și umiditate mare; aerisirea slabă dă tulpini lungi și pălării mici."
+      ]
+    },
+    "rotationFamily": "Pleurotaceae",
+    "roles": [
+      "food",
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Never eat wild mushrooms based on a picture or a description. Discard any batch with green, black or foul-smelling mould, and cook oyster mushrooms before eating.",
+      "ro": "Nu consuma niciodată ciuperci sălbatice pe baza unei imagini sau descrieri. Aruncă orice lot cu mucegai verde, negru sau cu miros neplăcut și gătește ciupercile stridie înainte de consum."
+    }
+  }
+]

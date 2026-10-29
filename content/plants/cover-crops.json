@@ -1,0 +1,257 @@
+[
+  {
+    "id": "white-clover",
+    "names": {
+      "en": [
+        "White clover"
+      ],
+      "ro": [
+        "Trifoi alb"
+      ]
+    },
+    "scientific": "Trifolium repens",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Low perennial legume used as a living mulch, path cover and under fruit trees. Fixes nitrogen and supports pollinators.",
+      "ro": "Leguminoasă perenă scundă, folosită ca mulci viu, acoperire pentru alei și sub pomi fructiferi. Fixează azot și susține polenizatorii."
+    },
+    "tips": {
+      "en": [
+        "Sow on firm, weed-free soil.",
+        "Compete with newly planted young trees and crops unless kept mown or well established.",
+        "Mow to keep it short and release nutrients."
+      ],
+      "ro": [
+        "Seamănă pe sol tasat și curat de buruieni.",
+        "Concurează pomii tineri și culturile nou plantate, dacă nu este cosită sau bine instalată.",
+        "Coase pentru a o menține scundă și a elibera nutrienți."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "ground-cover",
+      "nitrogen-fixer",
+      "pollinator",
+      "living-mulch"
+    ],
+    "nitrogenFixing": true,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 8
+      }
+    },
+    "heightCm": {
+      "min": 5,
+      "max": 20
+    }
+  },
+  {
+    "id": "phacelia",
+    "names": {
+      "en": [
+        "Phacelia",
+        "Lacy phacelia"
+      ],
+      "ro": [
+        "Facelia"
+      ]
+    },
+    "scientific": "Phacelia tanacetifolia",
+    "synonyms": [],
+    "family": "Hydrophyllaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Fast-growing annual green manure whose flowers are exceptionally attractive to bees and hoverflies.",
+      "ro": "Îngrășământ verde anual cu creștere rapidă, ale cărui flori sunt foarte atractive pentru albine și sirfide."
+    },
+    "tips": {
+      "en": [
+        "Sow thickly for green manure; cut before seed set unless you want it to self-seed.",
+        "Leaves a loose, easily worked soil surface.",
+        "Not a legume: it does not fix nitrogen."
+      ],
+      "ro": [
+        "Seamănă des pentru îngrășământ verde; taie înainte de formarea semințelor dacă nu vrei autosemănare.",
+        "Lasă un sol afânat, ușor de lucrat.",
+        "Nu este leguminoasă: nu fixează azot."
+      ]
+    },
+    "rotationFamily": "Hydrophyllaceae",
+    "roles": [
+      "green-manure",
+      "pollinator",
+      "beneficial-insects"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 10
+      }
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    }
+  },
+  {
+    "id": "buckwheat",
+    "names": {
+      "en": [
+        "Buckwheat"
+      ],
+      "ro": [
+        "Hrișcă"
+      ]
+    },
+    "scientific": "Fagopyrum esculentum",
+    "synonyms": [],
+    "family": "Polygonaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Very fast, frost-tender summer cover crop that smothers weeds and flowers within weeks, feeding pollinators.",
+      "ro": "Cultură de acoperire de vară foarte rapidă și sensibilă la îngheț, care înăbușă buruienile și înflorește în câteva săptămâni, hrănind polenizatorii."
+    },
+    "tips": {
+      "en": [
+        "Sow after the last frost on bare soil between crops.",
+        "Cut or incorporate at flowering, before seed set.",
+        "Useful for filling short gaps."
+      ],
+      "ro": [
+        "Seamănă după ultimul îngheț pe sol liber între culturi.",
+        "Taie sau încorporează la înflorire, înainte de formarea semințelor.",
+        "Util pentru a umple goluri scurte."
+      ]
+    },
+    "rotationFamily": "Polygonaceae",
+    "roles": [
+      "green-manure",
+      "pollinator",
+      "weed-suppression"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 2,
+        "max": 10
+      }
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    }
+  },
+  {
+    "id": "comfrey",
+    "names": {
+      "en": [
+        "Comfrey"
+      ],
+      "ro": [
+        "Tătăneasă",
+        "Consolida"
+      ]
+    },
+    "scientific": "Symphytum × uplandicum",
+    "synonyms": [],
+    "family": "Boraginaceae",
+    "category": "cover-crop",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Deep-rooted perennial grown for biomass: leaves are cut several times a year as mulch or compost material. Sterile cultivars such as 'Bocking 14' do not self-seed.",
+      "ro": "Perenă cu rădăcină adâncă, cultivată pentru biomasă: frunzele se taie de mai multe ori pe an ca mulci sau material pentru compost. Soiurile sterile, precum „Bocking 14”, nu se autosemănă."
+    },
+    "tips": {
+      "en": [
+        "Plant where it can stay: roots are very persistent.",
+        "Leaves are often described as nutrient-rich, especially in potassium; claims of 'dynamic accumulation' vary with soil.",
+        "Bees visit the flowers."
+      ],
+      "ro": [
+        "Plantează unde poate rămâne: rădăcinile sunt foarte persistente.",
+        "Frunzele sunt descrise adesea ca bogate în nutrienți, mai ales potasiu; afirmațiile despre „acumulare dinamică” variază cu solul.",
+        "Albinele vizitează florile."
+      ]
+    },
+    "rotationFamily": "Boraginaceae",
+    "roles": [
+      "biomass",
+      "pollinator",
+      "compost-activator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Contains pyrrolizidine alkaloids: do not eat it or use it as a herbal remedy.",
+      "ro": "Conține alcaloizi pirolizidinici: nu o consuma și nu o folosi ca remediu pe bază de plante."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": 8
+      }
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 90
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    }
+  }
+]

@@ -1,0 +1,1216 @@
+[
+  {
+    "id": "tomato",
+    "names": {
+      "en": [
+        "Tomato"
+      ],
+      "ro": [
+        "Roșie",
+        "Tomată"
+      ]
+    },
+    "scientific": "Solanum lycopersicum",
+    "synonyms": [],
+    "family": "Solanaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Warm-season fruiting vegetable. Needs a long, warm season, so it is usually started indoors and planted out after frost.",
+      "ro": "Legumă de sezon cald, care are nevoie de o vară lungă. De obicei se pornește în interior și se plantează după ultimele înghețuri."
+    },
+    "tips": {
+      "en": [
+        "Plant deep: roots form along the buried stem.",
+        "Water at the base and evenly; irregular watering is linked to split fruit and blossom-end rot.",
+        "Support indeterminate types with stakes or strings."
+      ],
+      "ro": [
+        "Plantează adânc: pe tulpina îngropată se formează rădăcini.",
+        "Udă la bază și constant; udarea neregulată favorizează crăparea fructelor și putrezirea apicală.",
+        "Susține soiurile nedeterminate cu araci sau sfoară."
+      ]
+    },
+    "rotationFamily": "Solanaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -8,
+        "max": -6
+      },
+      "transplant": {
+        "min": 1,
+        "max": 2
+      },
+      "note": {
+        "en": "Transplant only when nights stay reliably above about 10 °C.",
+        "ro": "Plantează în câmp doar când nopțile rămân constant peste aproximativ 10 °C."
+      }
+    },
+    "daysToMaturity": {
+      "min": 60,
+      "max": 100
+    },
+    "spacingCm": {
+      "min": 45,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 75,
+      "max": 100
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 200
+    }
+  },
+  {
+    "id": "pepper",
+    "names": {
+      "en": [
+        "Sweet pepper",
+        "Pepper"
+      ],
+      "ro": [
+        "Ardei gras",
+        "Ardei"
+      ]
+    },
+    "scientific": "Capsicum annuum",
+    "synonyms": [],
+    "family": "Solanaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Heat-loving fruiting vegetable with a long season; slower to start than tomato.",
+      "ro": "Legumă iubitoare de căldură, cu sezon lung; pornește mai lent decât roșia."
+    },
+    "tips": {
+      "en": [
+        "Start seed early and keep it warm for germination.",
+        "Harden seedlings off for about a week before planting out.",
+        "Mulch to keep moisture even."
+      ],
+      "ro": [
+        "Începe semințele devreme și ține-le la căldură pentru germinare.",
+        "Călește răsadurile aproximativ o săptămână înainte de plantare.",
+        "Mulcește pentru umiditate constantă."
+      ]
+    },
+    "rotationFamily": "Solanaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -10,
+        "max": -8
+      },
+      "transplant": {
+        "min": 2,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 60,
+      "max": 90
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 50
+    },
+    "rowSpacingCm": {
+      "min": 60,
+      "max": 75
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 90
+    }
+  },
+  {
+    "id": "lettuce",
+    "names": {
+      "en": [
+        "Lettuce"
+      ],
+      "ro": [
+        "Salată verde",
+        "Salată"
+      ]
+    },
+    "scientific": "Lactuca sativa",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Quick cool-season leaf crop. Heat and long days make it bolt, so sow in succession and favour spring and autumn.",
+      "ro": "Frunzoasă de sezon răcoros, cu creștere rapidă. Căldura și zilele lungi o fac să înflorească, deci se seamănă eșalonat, mai ales primăvara și toamna."
+    },
+    "tips": {
+      "en": [
+        "Sow thinly and often for a steady supply.",
+        "Light shade in midsummer delays bolting.",
+        "Seed needs light to germinate: cover only lightly."
+      ],
+      "ro": [
+        "Seamănă rar și des, pentru recoltă continuă.",
+        "Umbra ușoară în plină vară întârzie înflorirea.",
+        "Semințele au nevoie de lumină pentru a germina: acoperă-le foarte puțin."
+      ]
+    },
+    "rotationFamily": "Asteraceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 4
+      },
+      "note": {
+        "en": "Sow again in late summer for an autumn crop.",
+        "ro": "Seamănă din nou la sfârșitul verii pentru o recoltă de toamnă."
+      }
+    },
+    "daysToMaturity": {
+      "min": 45,
+      "max": 70
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 35
+    },
+    "heightCm": {
+      "min": 15,
+      "max": 30
+    }
+  },
+  {
+    "id": "carrot",
+    "names": {
+      "en": [
+        "Carrot"
+      ],
+      "ro": [
+        "Morcov"
+      ]
+    },
+    "scientific": "Daucus carota subsp. sativus",
+    "synonyms": [],
+    "family": "Apiaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Root crop that prefers deep, loose, stone-free soil and is sown directly because it dislikes root disturbance.",
+      "ro": "Rădăcinoasă care preferă sol adânc, afânat și fără pietre; se seamănă direct, deoarece nu suportă deranjarea rădăcinii."
+    },
+    "tips": {
+      "en": [
+        "Germination is slow; keep the surface moist until seedlings appear.",
+        "Thin early, and avoid leaving thinnings on the bed, as the smell can attract carrot fly.",
+        "Fine insect mesh is a reliable barrier against carrot fly."
+      ],
+      "ro": [
+        "Germinarea este lentă; menține suprafața umedă până apar plantulele.",
+        "Rărește devreme și nu lăsa resturile pe strat: mirosul poate atrage musca morcovului.",
+        "Plasa fină anti-insecte este o barieră sigură împotriva muștei morcovului."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -3,
+        "max": 2
+      }
+    },
+    "daysToMaturity": {
+      "min": 70,
+      "max": 100
+    },
+    "spacingCm": {
+      "min": 5,
+      "max": 8
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 40
+    }
+  },
+  {
+    "id": "pea",
+    "names": {
+      "en": [
+        "Pea",
+        "Garden pea"
+      ],
+      "ro": [
+        "Mazăre"
+      ]
+    },
+    "scientific": "Pisum sativum",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Cool-season legume sown early. Like other legumes it hosts nitrogen-fixing bacteria in root nodules.",
+      "ro": "Leguminoasă de sezon răcoros, semănată devreme. Ca alte leguminoase, găzduiește bacterii fixatoare de azot în nodozitățile rădăcinilor."
+    },
+    "tips": {
+      "en": [
+        "Provide supports for climbing types.",
+        "Sow as soon as soil can be worked; seed may rot in cold, waterlogged soil.",
+        "Cut plants at ground level after cropping and leave roots in the soil."
+      ],
+      "ro": [
+        "Oferă suport soiurilor urcătoare.",
+        "Seamănă imediat ce solul poate fi lucrat; semințele pot putrezi în sol rece și îmbibat.",
+        "După recoltare taie plantele la nivelul solului și lasă rădăcinile în pământ."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "food",
+      "nitrogen-fixer"
+    ],
+    "nitrogenFixing": true,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": -2
+      }
+    },
+    "daysToMaturity": {
+      "min": 60,
+      "max": 80
+    },
+    "spacingCm": {
+      "min": 5,
+      "max": 8
+    },
+    "rowSpacingCm": {
+      "min": 45,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 180
+    }
+  },
+  {
+    "id": "bean",
+    "names": {
+      "en": [
+        "Common bean",
+        "French bean"
+      ],
+      "ro": [
+        "Fasole verde",
+        "Fasole"
+      ]
+    },
+    "scientific": "Phaseolus vulgaris",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Frost-tender legume in bush and climbing forms. Sown after soil has warmed.",
+      "ro": "Leguminoasă sensibilă la îngheț, cu forme pitice și urcătoare. Se seamănă după încălzirea solului."
+    },
+    "tips": {
+      "en": [
+        "Pick pods young and often to prolong cropping.",
+        "Climbing types need tall, sturdy supports.",
+        "Dry beans must be fully cooked; raw or undercooked dry beans are toxic."
+      ],
+      "ro": [
+        "Recoltează păstăile tinere și des, pentru a prelungi producția.",
+        "Soiurile urcătoare au nevoie de araci înalți și rezistenți.",
+        "Boabele uscate trebuie fierte complet; crude sau insuficient fierte sunt toxice."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "food",
+      "nitrogen-fixer"
+    ],
+    "nitrogenFixing": true,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Raw or undercooked dry beans contain lectins and must be boiled thoroughly.",
+      "ro": "Boabele uscate crude conțin lectine și trebuie fierte bine."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 1,
+        "max": 4
+      }
+    },
+    "daysToMaturity": {
+      "min": 50,
+      "max": 70
+    },
+    "spacingCm": {
+      "min": 8,
+      "max": 10
+    },
+    "rowSpacingCm": {
+      "min": 45,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 250
+    }
+  },
+  {
+    "id": "courgette",
+    "names": {
+      "en": [
+        "Courgette",
+        "Zucchini"
+      ],
+      "ro": [
+        "Dovlecel"
+      ]
+    },
+    "scientific": "Cucurbita pepo",
+    "synonyms": [],
+    "family": "Cucurbitaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "high",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Vigorous summer squash that crops heavily from a few plants. Needs rich soil and regular water.",
+      "ro": "Dovleac de vară viguros, care produce mult din puține plante. Are nevoie de sol bogat și apă regulată."
+    },
+    "tips": {
+      "en": [
+        "Two or three plants feed most households.",
+        "Harvest fruit small and often.",
+        "Hand-pollinate if early fruit drops, when few pollinators are active."
+      ],
+      "ro": [
+        "Două-trei plante sunt suficiente pentru majoritatea gospodăriilor.",
+        "Recoltează fructele mici și des.",
+        "Poleniază manual dacă fructele timpurii se usucă, când sunt puțini polenizatori."
+      ]
+    },
+    "rotationFamily": "Cucurbitaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -4,
+        "max": -3
+      },
+      "direct": {
+        "min": 1,
+        "max": 3
+      },
+      "transplant": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "daysToMaturity": {
+      "min": 45,
+      "max": 65
+    },
+    "spacingCm": {
+      "min": 90,
+      "max": 100
+    },
+    "rowSpacingCm": {
+      "min": 100,
+      "max": 120
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "cucumber",
+    "names": {
+      "en": [
+        "Cucumber"
+      ],
+      "ro": [
+        "Castravete"
+      ]
+    },
+    "scientific": "Cucumis sativus",
+    "synonyms": [],
+    "family": "Cucurbitaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "high",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Warm-season climbing or trailing vine; trellising saves space and keeps fruit clean.",
+      "ro": "Plantă de sezon cald, urcătoare sau târâtoare; spalierul economisește spațiu și ține fructele curate."
+    },
+    "tips": {
+      "en": [
+        "Even moisture reduces bitterness.",
+        "Pick regularly; ripe fruit left on the plant slows further cropping.",
+        "Avoid wetting leaves late in the day to limit mildew."
+      ],
+      "ro": [
+        "Umiditatea constantă reduce amăreala.",
+        "Recoltează regulat; fructele coapte lăsate pe plantă încetinesc producția.",
+        "Evită udarea frunzelor spre seară pentru a limita mana."
+      ]
+    },
+    "rotationFamily": "Cucurbitaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -4,
+        "max": -3
+      },
+      "transplant": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    "daysToMaturity": {
+      "min": 50,
+      "max": 70
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "rowSpacingCm": {
+      "min": 90,
+      "max": 120
+    },
+    "heightCm": {
+      "min": 150,
+      "max": 250
+    }
+  },
+  {
+    "id": "potato",
+    "names": {
+      "en": [
+        "Potato"
+      ],
+      "ro": [
+        "Cartof"
+      ]
+    },
+    "scientific": "Solanum tuberosum",
+    "synonyms": [],
+    "family": "Solanaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Staple tuber crop grown from seed potatoes. Earthing up protects tubers from light.",
+      "ro": "Cultură de bază, cultivată din tuberculi-sămânță. Bilonatul protejează tuberculii de lumină."
+    },
+    "tips": {
+      "en": [
+        "Use certified seed potatoes: saved supermarket potatoes can carry disease.",
+        "Earth up as shoots grow to prevent green tubers.",
+        "Do not follow tomatoes or potatoes in the same bed."
+      ],
+      "ro": [
+        "Folosește cartofi de sămânță certificați: cei de la supermarket pot purta boli.",
+        "Bilonează pe măsură ce lăstarii cresc, pentru a preveni înverzirea tuberculilor.",
+        "Nu planta după roșii sau cartofi în același strat."
+      ]
+    },
+    "rotationFamily": "Solanaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Green tubers and potato leaves, stems and berries contain solanine and should not be eaten.",
+      "ro": "Tuberculii verzi, frunzele, tulpinile și bobițele conțin solanină și nu trebuie consumate."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": 1
+      }
+    },
+    "daysToMaturity": {
+      "min": 90,
+      "max": 140
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "rowSpacingCm": {
+      "min": 60,
+      "max": 75
+    },
+    "heightCm": {
+      "min": 50,
+      "max": 90
+    }
+  },
+  {
+    "id": "onion",
+    "names": {
+      "en": [
+        "Onion"
+      ],
+      "ro": [
+        "Ceapă"
+      ]
+    },
+    "scientific": "Allium cepa",
+    "synonyms": [],
+    "family": "Amaryllidaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Bulb crop grown from seed, sets or transplants. Shallow roots mean weeds compete strongly.",
+      "ro": "Plantă bulboasă cultivată din semințe, arpagic sau răsad. Rădăcinile superficiale fac buruienile foarte concurente."
+    },
+    "tips": {
+      "en": [
+        "Keep beds weed-free; onions compete poorly.",
+        "Stop watering as tops fall over, then cure bulbs in a dry airy place.",
+        "Sets are easier for beginners than seed."
+      ],
+      "ro": [
+        "Ține stratul curat de buruieni; ceapa concurează slab.",
+        "Oprește udarea când frunzele se culcă, apoi usucă bulbii într-un loc aerisit.",
+        "Arpagicul este mai ușor pentru începători decât semințele."
+      ]
+    },
+    "rotationFamily": "Amaryllidaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -10,
+        "max": -8
+      },
+      "direct": {
+        "min": -4,
+        "max": 0
+      },
+      "transplant": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "daysToMaturity": {
+      "min": 100,
+      "max": 150
+    },
+    "spacingCm": {
+      "min": 8,
+      "max": 12
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "garlic",
+    "names": {
+      "en": [
+        "Garlic"
+      ],
+      "ro": [
+        "Usturoi"
+      ]
+    },
+    "scientific": "Allium sativum",
+    "synonyms": [],
+    "family": "Amaryllidaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Planted in autumn in most temperate gardens so it can establish roots before winter; harvested the following summer.",
+      "ro": "În majoritatea grădinilor temperate se plantează toamna, pentru a-și forma rădăcini înainte de iarnă; se recoltează în vara următoare."
+    },
+    "tips": {
+      "en": [
+        "Plant individual cloves pointed end up.",
+        "Choose bulbs from a reliable source to avoid white rot and nematodes.",
+        "Harvest when lower leaves yellow, then cure in shade."
+      ],
+      "ro": [
+        "Plantează căței separați, cu vârful în sus.",
+        "Alege bulbi din surse de încredere, pentru a evita putregaiul alb și nematozii.",
+        "Recoltează când frunzele de jos îngălbenesc, apoi usucă la umbră."
+      ]
+    },
+    "rotationFamily": "Amaryllidaceae",
+    "roles": [
+      "food",
+      "pest-confuser"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "firstFrost",
+      "plant": {
+        "min": -2,
+        "max": 4
+      },
+      "note": {
+        "en": "Timing varies with climate: the aim is roots, not leaves, before the ground freezes.",
+        "ro": "Momentul depinde de climă: scopul este să se formeze rădăcini, nu frunze, înainte de înghețul solului."
+      }
+    },
+    "daysToMaturity": {
+      "min": 220,
+      "max": 280
+    },
+    "spacingCm": {
+      "min": 10,
+      "max": 15
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 80
+    }
+  },
+  {
+    "id": "kale",
+    "names": {
+      "en": [
+        "Kale"
+      ],
+      "ro": [
+        "Varză kale",
+        "Kale"
+      ]
+    },
+    "scientific": "Brassica oleracea var. sabellica",
+    "synonyms": [],
+    "family": "Brassicaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy leafy brassica that crops through autumn and winter; flavour often improves after frost.",
+      "ro": "Brasicacee frunzoasă rezistentă, care produce toamna și iarna; gustul se îmbunătățește adesea după îngheț."
+    },
+    "tips": {
+      "en": [
+        "Cover with fine mesh against cabbage white caterpillars and pigeons.",
+        "Pick lower leaves first and let the top keep growing.",
+        "Firm soil gives sturdier plants."
+      ],
+      "ro": [
+        "Acoperă cu plasă fină împotriva omizilor fluturelui alb și a porumbeilor.",
+        "Culege întâi frunzele de jos și lasă vârful să crească.",
+        "Solul bine tasat dă plante mai robuste."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -6,
+        "max": -4
+      },
+      "direct": {
+        "min": -2,
+        "max": 8
+      },
+      "transplant": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "daysToMaturity": {
+      "min": 55,
+      "max": 75
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 50,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 100
+    }
+  },
+  {
+    "id": "spinach",
+    "names": {
+      "en": [
+        "Spinach"
+      ],
+      "ro": [
+        "Spanac"
+      ]
+    },
+    "scientific": "Spinacia oleracea",
+    "synonyms": [],
+    "family": "Amaranthaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Fast cool-season leaf crop that bolts in heat and long days.",
+      "ro": "Frunzoasă rapidă de sezon răcoros, care înflorește la căldură și zile lungi."
+    },
+    "tips": {
+      "en": [
+        "Sow early in spring or late summer.",
+        "Harvest outer leaves or whole plants young.",
+        "Keep soil moist to slow bolting."
+      ],
+      "ro": [
+        "Seamănă primăvara devreme sau la sfârșitul verii.",
+        "Culege frunzele exterioare sau plantele întregi tinere.",
+        "Menține solul umed pentru a întârzia înflorirea."
+      ]
+    },
+    "rotationFamily": "Amaranthaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 0
+      }
+    },
+    "daysToMaturity": {
+      "min": 40,
+      "max": 55
+    },
+    "spacingCm": {
+      "min": 8,
+      "max": 10
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 15,
+      "max": 30
+    }
+  },
+  {
+    "id": "radish",
+    "names": {
+      "en": [
+        "Radish"
+      ],
+      "ro": [
+        "Ridiche de lună",
+        "Ridichi"
+      ]
+    },
+    "scientific": "Raphanus sativus",
+    "synonyms": [],
+    "family": "Brassicaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Very fast root crop, useful for marking slow rows and filling gaps.",
+      "ro": "Rădăcinoasă foarte rapidă, utilă pentru a marca rândurile cu germinare lentă și a umple spațiile libere."
+    },
+    "tips": {
+      "en": [
+        "Sow little and often.",
+        "Pull promptly; old roots turn woody and hot.",
+        "Flea beetle damage is common: mesh helps."
+      ],
+      "ro": [
+        "Seamănă puțin și des.",
+        "Recoltează la timp; rădăcinile bătrâne devin lemnoase și iuți.",
+        "Puricii de pământ sunt frecvenți: plasa ajută."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 4
+      }
+    },
+    "daysToMaturity": {
+      "min": 25,
+      "max": 40
+    },
+    "spacingCm": {
+      "min": 3,
+      "max": 5
+    },
+    "rowSpacingCm": {
+      "min": 15,
+      "max": 20
+    },
+    "heightCm": {
+      "min": 15,
+      "max": 25
+    }
+  },
+  {
+    "id": "beetroot",
+    "names": {
+      "en": [
+        "Beetroot",
+        "Beet"
+      ],
+      "ro": [
+        "Sfeclă roșie"
+      ]
+    },
+    "scientific": "Beta vulgaris subsp. vulgaris",
+    "synonyms": [],
+    "family": "Amaranthaceae",
+    "category": "vegetable",
+    "lifecycle": "biennial grown as annual",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Easy root crop; each 'seed' is a cluster that produces several seedlings, so thinning is needed. Leaves are edible too.",
+      "ro": "Rădăcinoasă ușor de cultivat; fiecare „sămânță” este un glomerul care dă mai multe plantule, deci este necesară rărirea. Frunzele sunt comestibile."
+    },
+    "tips": {
+      "en": [
+        "Soak seed briefly before sowing to speed germination.",
+        "Thin to the final spacing early.",
+        "Lift before hard frosts for storage."
+      ],
+      "ro": [
+        "Înmoaie semințele scurt înainte de semănat pentru germinare mai rapidă.",
+        "Rărește devreme la distanța finală.",
+        "Scoate din sol înainte de înghețuri puternice pentru depozitare."
+      ]
+    },
+    "rotationFamily": "Amaranthaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -2,
+        "max": 6
+      }
+    },
+    "daysToMaturity": {
+      "min": 55,
+      "max": 80
+    },
+    "spacingCm": {
+      "min": 8,
+      "max": 10
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 25,
+      "max": 45
+    }
+  },
+  {
+    "id": "broad-bean",
+    "names": {
+      "en": [
+        "Broad bean",
+        "Fava bean"
+      ],
+      "ro": [
+        "Bob",
+        "Fasole mare"
+      ]
+    },
+    "scientific": "Vicia faba",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "vegetable",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy legume sown in early spring or, in mild climates, in autumn. Also used as a green manure.",
+      "ro": "Leguminoasă rezistentă, semănată primăvara devreme sau, în climate blânde, toamna. Folosită și ca îngrășământ verde."
+    },
+    "tips": {
+      "en": [
+        "Pinch out growing tips when pods set to discourage blackfly.",
+        "Support tall varieties.",
+        "Cut at soil level after harvest to leave nitrogen-rich roots."
+      ],
+      "ro": [
+        "Ciupește vârfurile când se formează păstăile pentru a descuraja afidele negre.",
+        "Susține soiurile înalte.",
+        "Taie la nivelul solului după recoltare, lăsând rădăcinile bogate în azot."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "food",
+      "nitrogen-fixer",
+      "green-manure"
+    ],
+    "nitrogenFixing": true,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Some people with G6PD deficiency react severely to fava beans (favism).",
+      "ro": "Unele persoane cu deficit de G6PD pot avea reacții severe la bob (favism)."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -8,
+        "max": -4
+      }
+    },
+    "daysToMaturity": {
+      "min": 90,
+      "max": 120
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 20
+    },
+    "rowSpacingCm": {
+      "min": 45,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 80,
+      "max": 150
+    }
+  }
+]

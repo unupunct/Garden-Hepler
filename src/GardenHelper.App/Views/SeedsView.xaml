@@ -1,0 +1,74 @@
+<UserControl x:Class="GardenHelper.App.Views.SeedsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <Grid Margin="32,26,32,26">
+        <Grid.ColumnDefinitions><ColumnDefinition Width="340"/><ColumnDefinition Width="24"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+        <TextBlock Text="{loc:L nav_seeds}" Style="{StaticResource H1}" Grid.ColumnSpan="3" Margin="0,0,0,12"/>
+        <v:Banners Grid.Row="1" Grid.ColumnSpan="3"/>
+
+        <DockPanel Grid.Row="2">
+            <Button DockPanel.Dock="Top" Content="{loc:L seed_new}" Command="{Binding NewItemCommand}" Margin="0,0,0,10" HorizontalAlignment="Left"/>
+            <TextBlock DockPanel.Dock="Top" Text="{loc:L seed_empty}" Style="{StaticResource Muted}" Visibility="{Binding Items.Count, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>
+            <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding Selected}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" FontSize="12"/>
+                            <Border Style="{StaticResource Badge}" HorizontalAlignment="Left" Margin="0,4,0,0" Visibility="{Binding Warning, Converter={StaticResource HasValueVis}}">
+                                <TextBlock FontSize="12" Foreground="{DynamicResource WarnBrush}">
+                                    <Run Text="⚠ "/><Run Text="{Binding Warning, Mode=OneWay}"/>
+                                </TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+        <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource Card}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="{loc:L seed_plant}" Style="{StaticResource Label}" Margin="0,0,0,3"/>
+                    <ComboBox ItemsSource="{Binding Plants}" SelectedItem="{Binding EditPlant}" DisplayMemberPath="Name"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel><TextBlock Text="{loc:L seed_name}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditName, UpdateSourceTrigger=PropertyChanged}"/></StackPanel>
+                        <StackPanel Grid.Column="2"><TextBlock Text="{loc:L seed_variety}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditVariety}"/></StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel><TextBlock Text="{loc:L seed_supplier}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditSupplier}"/></StackPanel>
+                        <StackPanel Grid.Column="2"><TextBlock Text="{loc:L seed_lot}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditLot}"/></StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="12"/><ColumnDefinition/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel><TextBlock Text="{loc:L seed_quantity}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditQuantity}"/></StackPanel>
+                        <StackPanel Grid.Column="2"><TextBlock Text="{loc:L seed_remaining}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditRemaining}"/></StackPanel>
+                        <StackPanel Grid.Column="4"><TextBlock Text="{loc:L seed_unit}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditUnit}"/></StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel><TextBlock Text="{loc:L seed_purchase}" Style="{StaticResource Label}"/><DatePicker SelectedDate="{Binding EditPurchase}" HorizontalAlignment="Left"/></StackPanel>
+                        <StackPanel Grid.Column="2"><TextBlock Text="{loc:L seed_review}" Style="{StaticResource Label}"/><DatePicker SelectedDate="{Binding EditReview}" HorizontalAlignment="Left"/></StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="12"/><ColumnDefinition/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel><TextBlock Text="{loc:L seed_storage}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditStorage}"/></StackPanel>
+                        <StackPanel Grid.Column="2"><TextBlock Text="{loc:L seed_germination}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditGermination}"/></StackPanel>
+                        <StackPanel Grid.Column="4"><TextBlock Text="{loc:L seed_cost}" Style="{StaticResource Label}"/><TextBox Text="{Binding EditCost}"/></StackPanel>
+                    </Grid>
+                    <TextBlock Text="{loc:L seed_notes}" Style="{StaticResource Label}"/>
+                    <TextBox Text="{Binding EditNotes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="70"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveCommand}" Margin="0,0,10,0"/>
+                        <Button Style="{StaticResource DangerButton}" Content="{loc:L delete}" Command="{Binding DeleteCommand}" Visibility="{Binding IsExisting, Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

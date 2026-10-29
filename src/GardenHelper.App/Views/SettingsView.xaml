@@ -1,0 +1,80 @@
+<UserControl x:Class="GardenHelper.App.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,26,32,26" MaxWidth="760" HorizontalAlignment="Left">
+            <TextBlock Text="{loc:L nav_settings}" Style="{StaticResource H1}" Margin="0,0,0,14"/>
+            <v:Banners/>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{loc:L set_appearance}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                    <TextBlock Text="{loc:L set_language}" Style="{StaticResource Label}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Style="{StaticResource Segment}" GroupName="lang" Content="English" IsChecked="{Binding Language, Converter={StaticResource EqualsConv}, ConverterParameter=en}"/>
+                        <RadioButton Style="{StaticResource Segment}" GroupName="lang" Content="Română" IsChecked="{Binding Language, Converter={StaticResource EqualsConv}, ConverterParameter=ro}"/>
+                    </StackPanel>
+                    <TextBlock Text="{loc:L set_theme}" Style="{StaticResource Label}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Style="{StaticResource Segment}" GroupName="theme" Content="{loc:L set_light}" IsChecked="{Binding Theme, Converter={StaticResource EqualsConv}, ConverterParameter=light}"/>
+                        <RadioButton Style="{StaticResource Segment}" GroupName="theme" Content="{loc:L set_dark}" IsChecked="{Binding Theme, Converter={StaticResource EqualsConv}, ConverterParameter=dark}"/>
+                    </StackPanel>
+                    <TextBlock Text="{loc:L set_units}" Style="{StaticResource Label}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Style="{StaticResource Segment}" GroupName="units" Content="{loc:L set_metric}" IsChecked="{Binding Units, Converter={StaticResource EqualsConv}, ConverterParameter=metric}"/>
+                        <RadioButton Style="{StaticResource Segment}" GroupName="units" Content="{loc:L set_imperial}" IsChecked="{Binding Units, Converter={StaticResource EqualsConv}, ConverterParameter=imperial}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{loc:L set_data}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                    <TextBlock Text="{loc:L set_data_text}" Style="{StaticResource Muted}"/>
+                    <TextBox Text="{Binding DataFolder, Mode=OneWay}" IsReadOnly="True" Margin="0,10,0,10" AutomationProperties.Name="{loc:L set_data}"/>
+                    <WrapPanel>
+                        <Button Content="{loc:L set_open_data}" Command="{Binding OpenDataCommand}" Margin="0,0,8,0"/>
+                        <Button Content="{loc:L set_open_content}" Command="{Binding OpenContentCommand}" ToolTip="{loc:L set_open_content_tip}"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{loc:L set_backup}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                    <TextBlock Text="{loc:L set_backup_text}" Style="{StaticResource Muted}"/>
+                    <Border Visibility="{Binding RestorePending, Converter={StaticResource BoolToVis}}" BorderBrush="{DynamicResource WarnBrush}" BorderThickness="1" CornerRadius="8" Padding="12,8" Margin="0,10,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="⚠" FontFamily="{StaticResource SymbolFont}" Foreground="{DynamicResource WarnBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="{loc:L restore_pending}"/>
+                        </StackPanel>
+                    </Border>
+                    <WrapPanel Margin="0,12,0,8">
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L set_backup_now}" Command="{Binding BackupNowCommand}" Margin="0,0,8,0"/>
+                        <Button Content="{loc:L set_open_backups}" Command="{Binding OpenBackupsCommand}"/>
+                    </WrapPanel>
+                    <TextBlock Text="{loc:L set_no_backups}" Style="{StaticResource Muted}" Visibility="{Binding Backups.Count, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>
+                    <ItemsControl ItemsSource="{Binding Backups}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,6">
+                                    <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Created, Converter={StaticResource DateConv}, ConverterParameter='d MMM yyyy HH:mm'}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding SizeBytes, Converter={StaticResource BytesConv}}" Style="{StaticResource Muted}" FontSize="12"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <Button Content="{loc:L set_verify}" Margin="0,0,6,0" Command="{Binding DataContext.VerifyCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                                        <Button Content="{loc:L set_restore}" Command="{Binding DataContext.RestoreCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

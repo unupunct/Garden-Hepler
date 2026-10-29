@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>GardenHelper</AssemblyName>
+    <RootNamespace>GardenHelper.App</RootNamespace>
+    <ApplicationIcon>Assets\GardenHelper.ico</ApplicationIcon>
+    <Version>0.1.0</Version>
+    <Product>Garden Helper</Product>
+    <Company>Garden Helper contributors</Company>
+    <Description>Offline gardening, permaculture and self-sufficiency helper with a personal ebook knowledge base.</Description>
+    <Copyright>Copyright © 2026 Garden Helper contributors</Copyright>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GardenHelper.Core\GardenHelper.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\GardenHelper.ico" />
+    <!-- Knowledge-base content ships as plain JSON next to the executable (see docs/CONTENT.md). -->
+    <Content Include="..\..\content\**\*.json" Link="Content\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+<UserControl x:Class="GardenHelper.App.Views.Banners"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure">
+    <!-- Shared error / status / busy strip. Uses the page view model's ErrorMessage, StatusMessage and IsBusy. -->
+    <StackPanel>
+        <ProgressBar IsIndeterminate="True" Margin="0,0,0,8" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}"/>
+        <Border Visibility="{Binding ErrorMessage, Converter={StaticResource HasValueVis}}" BorderBrush="{DynamicResource DangerBrush}"
+                BorderThickness="1,1,1,1" CornerRadius="8" Padding="12,8" Margin="0,0,0,10" Background="{DynamicResource SurfaceBrush}"
+                AutomationProperties.LiveSetting="Assertive">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="⚠" FontFamily="{StaticResource SymbolFont}" Foreground="{DynamicResource DangerBrush}" Margin="0,0,8,0"/>
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource DangerBrush}"/>
+            </StackPanel>
+        </Border>
+        <Border Visibility="{Binding StatusMessage, Converter={StaticResource HasValueVis}}" BorderBrush="{DynamicResource OkBrush}"
+                BorderThickness="1" CornerRadius="8" Padding="12,8" Margin="0,0,0,10" Background="{DynamicResource SurfaceBrush}"
+                AutomationProperties.LiveSetting="Polite">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="✔" FontFamily="{StaticResource SymbolFont}" Foreground="{DynamicResource OkBrush}" Margin="0,0,8,0"/>
+                <TextBlock Text="{Binding StatusMessage}" Foreground="{DynamicResource OkBrush}"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

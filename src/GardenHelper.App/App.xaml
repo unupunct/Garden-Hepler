@@ -1,0 +1,41 @@
+﻿<Application x:Class="GardenHelper.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:GardenHelper.App.ViewModels"
+             xmlns:v="clr-namespace:GardenHelper.App.Views"
+             xmlns:infra="clr-namespace:GardenHelper.App.Infrastructure"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Light.xaml"/>
+                <ResourceDictionary Source="Themes/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <infra:BoolToVisibility x:Key="BoolToVis"/>
+            <infra:HasValueToVisibility x:Key="HasValueVis"/>
+            <infra:EqualsConverter x:Key="EqualsConv"/>
+            <infra:DateConverter x:Key="DateConv"/>
+            <infra:BytesConverter x:Key="BytesConv"/>
+            <infra:NoItemsToVisibility x:Key="NoItemsVis"/>
+            <infra:NotConverter x:Key="Not"/>
+            <infra:DoneGlyphConverter x:Key="DoneGlyph"/>
+            <infra:DetailsVisibility x:Key="DetailsVis"/>
+
+            <DataTemplate DataType="{x:Type vm:DashboardViewModel}"><v:DashboardView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:TasksViewModel}"><v:TasksView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PlantsViewModel}"><v:PlantsView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SeedsViewModel}"><v:SeedsView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:JournalViewModel}"><v:JournalView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:LibraryViewModel}"><v:LibraryView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ReaderViewModel}"><v:ReaderView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SearchViewModel}"><v:SearchView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:GardenViewModel}"><v:GardenView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}"><v:SettingsView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AboutViewModel}"><v:AboutView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SiteViewModel}"><v:SiteView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DesignerViewModel}"><v:DesignerView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:MonitorViewModel}"><v:MonitorView/></DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

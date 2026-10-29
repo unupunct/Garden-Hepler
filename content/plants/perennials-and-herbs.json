@@ -1,0 +1,832 @@
+[
+  {
+    "id": "basil",
+    "names": {
+      "en": [
+        "Basil"
+      ],
+      "ro": [
+        "Busuioc"
+      ]
+    },
+    "scientific": "Ocimum basilicum",
+    "synonyms": [],
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Tender culinary herb that grows quickly in warmth and is damaged by cold nights.",
+      "ro": "Plantă aromatică sensibilă, care crește repede la căldură și este afectată de nopțile reci."
+    },
+    "tips": {
+      "en": [
+        "Pinch growing tips to keep plants bushy and delay flowering.",
+        "Do not plant out until nights are reliably warm.",
+        "Water at the base to limit leaf disease."
+      ],
+      "ro": [
+        "Ciupește vârfurile pentru plante stufoase și înflorire întârziată.",
+        "Nu planta în câmp înainte ca nopțile să fie calde.",
+        "Udă la bază pentru a limita bolile frunzelor."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -6,
+        "max": -4
+      },
+      "direct": {
+        "min": 1,
+        "max": 2
+      },
+      "transplant": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "daysToMaturity": {
+      "min": 30,
+      "max": 60
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  },
+  {
+    "id": "parsley",
+    "names": {
+      "en": [
+        "Parsley"
+      ],
+      "ro": [
+        "Pătrunjel"
+      ]
+    },
+    "scientific": "Petroselinum crispum",
+    "synonyms": [],
+    "family": "Apiaceae",
+    "category": "herb",
+    "lifecycle": "biennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Biennial herb that is slow to germinate; usually treated as an annual for leaf production.",
+      "ro": "Plantă aromatică bienală cu germinare lentă; de obicei cultivată ca anuală pentru frunze."
+    },
+    "tips": {
+      "en": [
+        "Seed can take several weeks to emerge: be patient.",
+        "Cut outer stems and the plant keeps producing.",
+        "Flowers in its second year and attracts hoverflies."
+      ],
+      "ro": [
+        "Semințele pot dura câteva săptămâni să răsară: ai răbdare.",
+        "Taie tulpinile exterioare și planta continuă să producă.",
+        "Înflorește în al doilea an și atrage sirfidele."
+      ]
+    },
+    "rotationFamily": "Apiaceae",
+    "roles": [
+      "food",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -10,
+        "max": -8
+      },
+      "direct": {
+        "min": -3,
+        "max": 2
+      }
+    },
+    "daysToMaturity": {
+      "min": 70,
+      "max": 90
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 25
+    },
+    "rowSpacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 25,
+      "max": 50
+    }
+  },
+  {
+    "id": "chives",
+    "names": {
+      "en": [
+        "Chives"
+      ],
+      "ro": [
+        "Arpagic",
+        "Ceapă de tuns"
+      ]
+    },
+    "scientific": "Allium schoenoprasum",
+    "synonyms": [],
+    "family": "Amaryllidaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy perennial allium; edible leaves and flowers, and a good edge plant that bees visit.",
+      "ro": "Alium perenă rezistentă; frunzele și florile sunt comestibile, iar florile ei, vizitate de albine, o fac o plantă bună de margine."
+    },
+    "tips": {
+      "en": [
+        "Divide clumps every few years.",
+        "Cut back hard after flowering to renew leaves.",
+        "Easy in containers."
+      ],
+      "ro": [
+        "Împarte tufele la câțiva ani.",
+        "Taie scurt după înflorire pentru a reînnoi frunzele.",
+        "Se pretează bine la ghivece."
+      ]
+    },
+    "rotationFamily": "Amaryllidaceae",
+    "roles": [
+      "food",
+      "pollinator",
+      "pest-confuser"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 20
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 40
+    }
+  },
+  {
+    "id": "asparagus",
+    "names": {
+      "en": [
+        "Asparagus"
+      ],
+      "ro": [
+        "Sparanghel"
+      ]
+    },
+    "scientific": "Asparagus officinalis",
+    "synonyms": [],
+    "family": "Asparagaceae",
+    "category": "perennial-vegetable",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Long-lived perennial: a well-prepared bed can crop for 15 years or more, but harvest must be light in the first seasons.",
+      "ro": "Perenă de lungă durată: un strat bine pregătit poate produce 15 ani sau mai mult, dar în primele sezoane recolta trebuie să fie redusă."
+    },
+    "tips": {
+      "en": [
+        "Remove perennial weeds thoroughly before planting.",
+        "Avoid harvesting in the first year or two so crowns build reserves.",
+        "Let ferns grow after the harvest season to feed the crown."
+      ],
+      "ro": [
+        "Elimină complet buruienile perene înainte de plantare.",
+        "Nu recolta în primul sau al doilea an, ca rădăcinile să-și facă rezerve.",
+        "Lasă frunzele (ferigile) să crească după sezonul de recoltare, pentru a hrăni rădăcina."
+      ]
+    },
+    "rotationFamily": "Asparagaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "The red berries are not edible.",
+      "ro": "Boabele roșii nu sunt comestibile."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": -1
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "rowSpacingCm": {
+      "min": 100,
+      "max": 150
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 180
+    }
+  },
+  {
+    "id": "rhubarb",
+    "names": {
+      "en": [
+        "Rhubarb"
+      ],
+      "ro": [
+        "Rubarbă"
+      ]
+    },
+    "scientific": "Rheum × hybridum",
+    "synonyms": [],
+    "family": "Polygonaceae",
+    "category": "perennial-vegetable",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy perennial grown for its leaf stalks, which are harvested in spring and early summer.",
+      "ro": "Plantă perenă rezistentă, cultivată pentru pețiolii frunzelor, recoltați primăvara și la începutul verii."
+    },
+    "tips": {
+      "en": [
+        "Give each crown plenty of space and rich, moist soil.",
+        "Pull stalks rather than cutting, and leave some on the plant.",
+        "Divide old crowns in dormancy."
+      ],
+      "ro": [
+        "Oferă fiecărei tufe mult spațiu și sol bogat și umed.",
+        "Smulge pețiolii în loc să-i tai și lasă câțiva pe plantă.",
+        "Împarte tufele bătrâne în repaus."
+      ]
+    },
+    "rotationFamily": "Polygonaceae",
+    "roles": [
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Leaf blades contain oxalic acid and are poisonous: eat only the stalks.",
+      "ro": "Limbul frunzei conține acid oxalic și este toxic: se consumă doar pețiolii."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "spacingCm": {
+      "min": 90,
+      "max": 100
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 100
+    }
+  },
+  {
+    "id": "jerusalem-artichoke",
+    "names": {
+      "en": [
+        "Jerusalem artichoke",
+        "Sunchoke"
+      ],
+      "ro": [
+        "Topinambur"
+      ]
+    },
+    "scientific": "Helianthus tuberosus",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "perennial-vegetable",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall, very vigorous perennial grown for its tubers. It can spread aggressively from tubers left in the ground.",
+      "ro": "Perenă înaltă și foarte viguroasă, cultivată pentru tuberculi. Se poate răspândi agresiv din tuberculii rămași în sol."
+    },
+    "tips": {
+      "en": [
+        "Plant where it can stay, or use a contained bed.",
+        "Lift all tubers if you want to remove it.",
+        "Tubers can cause digestive discomfort in some people."
+      ],
+      "ro": [
+        "Plantează unde poate rămâne sau într-un strat delimitat.",
+        "Scoate toți tuberculii dacă vrei să o elimini.",
+        "Tuberculii pot provoca disconfort digestiv unor persoane."
+      ]
+    },
+    "rotationFamily": "Asteraceae",
+    "roles": [
+      "food",
+      "windbreak",
+      "biomass"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": 0
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "rowSpacingCm": {
+      "min": 90,
+      "max": 100
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 300
+    }
+  },
+  {
+    "id": "mint",
+    "names": {
+      "en": [
+        "Mint"
+      ],
+      "ro": [
+        "Mentă"
+      ]
+    },
+    "scientific": "Mentha spp.",
+    "synonyms": [],
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Vigorous spreading herb; best grown in a container or contained bed.",
+      "ro": "Plantă aromatică viguroasă și invazivă la rădăcină; se cultivă cel mai bine în ghiveci sau în strat delimitat."
+    },
+    "tips": {
+      "en": [
+        "Sink a bottomless pot into the soil to limit runners.",
+        "Cut back regularly for tender new leaves.",
+        "Flowers attract many pollinators."
+      ],
+      "ro": [
+        "Îngroapă un ghiveci fără fund în sol pentru a limita stolonii.",
+        "Taie regulat pentru frunze tinere și fragede.",
+        "Florile atrag mulți polenizatori."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "food",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -4,
+        "max": 6
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 80
+    }
+  },
+  {
+    "id": "lavender",
+    "names": {
+      "en": [
+        "Lavender"
+      ],
+      "ro": [
+        "Lavandă"
+      ]
+    },
+    "scientific": "Lavandula angustifolia",
+    "synonyms": [],
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Drought-tolerant aromatic shrub that thrives in sunny, well-drained soil and is valuable for bees.",
+      "ro": "Arbust aromatic tolerant la secetă, care prosperă pe sol însorit și bine drenat și este valoros pentru albine."
+    },
+    "tips": {
+      "en": [
+        "Prune lightly after flowering; do not cut into old wood.",
+        "Heavy, wet soils shorten its life.",
+        "Plant on a slope or raised bed where drainage is poor."
+      ],
+      "ro": [
+        "Taie ușor după înflorire; nu tăia în lemnul vechi.",
+        "Solurile grele și ude îi scurtează viața.",
+        "Plantează pe pantă sau în strat înălțat unde drenajul este slab."
+      ]
+    },
+    "rotationFamily": "Lamiaceae",
+    "roles": [
+      "pollinator",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "plant": {
+        "min": -2,
+        "max": 8
+      }
+    },
+    "spacingCm": {
+      "min": 45,
+      "max": 90
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 80
+    }
+  },
+  {
+    "id": "marigold",
+    "names": {
+      "en": [
+        "French marigold",
+        "Marigold"
+      ],
+      "ro": [
+        "Crăiță",
+        "Tagetes",
+        "Condurași"
+      ]
+    },
+    "scientific": "Tagetes patula",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Cheerful annual flower often grown among vegetables. Some Tagetes cultivars suppress certain root-knot nematodes when grown as a dedicated crop.",
+      "ro": "Floare anuală folosită adesea printre legume. Unele soiuri de Tagetes suprimă anumiți nematozi când sunt cultivate ca o cultură dedicată."
+    },
+    "tips": {
+      "en": [
+        "Deadhead to prolong flowering.",
+        "Single-flowered types are easier for pollinators to use than very double ones.",
+        "Nematode benefits depend on species, cultivar and dense planting: do not rely on a few plants."
+      ],
+      "ro": [
+        "Îndepărtează florile trecute pentru a prelungi înflorirea.",
+        "Soiurile cu flori simple sunt mai utile polenizatorilor decât cele foarte pline.",
+        "Efectul asupra nematozilor depinde de specie, soi și plantare deasă: nu te baza pe câteva plante."
+      ]
+    },
+    "rotationFamily": "Asteraceae",
+    "roles": [
+      "pollinator",
+      "beneficial-insects"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "indoors": {
+        "min": -6,
+        "max": -4
+      },
+      "direct": {
+        "min": 1,
+        "max": 3
+      },
+      "transplant": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 15,
+      "max": 40
+    }
+  },
+  {
+    "id": "nasturtium",
+    "names": {
+      "en": [
+        "Nasturtium"
+      ],
+      "ro": [
+        "Condurul doamnei",
+        "Năsturel"
+      ]
+    },
+    "scientific": "Tropaeolum majus",
+    "synonyms": [],
+    "family": "Tropaeolaceae",
+    "category": "flower",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "low",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Fast, sprawling annual with edible leaves and flowers. Poor soil gives more flowers than leaves.",
+      "ro": "Plantă anuală târâtoare, cu creștere rapidă și frunze și flori comestibile. Solul sărac dă mai multe flori decât frunze."
+    },
+    "tips": {
+      "en": [
+        "Sow seed directly after frost danger has passed.",
+        "Aphids are often drawn to it, which can protect neighbours but also hosts the pest.",
+        "Self-seeds in many gardens."
+      ],
+      "ro": [
+        "Seamănă direct după trecerea pericolului de îngheț.",
+        "Afidele sunt adesea atrase de ea, ceea ce poate proteja vecinii, dar găzduiește dăunătorul.",
+        "Se autosemănă în multe grădini."
+      ]
+    },
+    "rotationFamily": "Tropaeolaceae",
+    "roles": [
+      "food",
+      "ground-cover",
+      "trap-crop"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 1,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 40
+    }
+  },
+  {
+    "id": "borage",
+    "names": {
+      "en": [
+        "Borage"
+      ],
+      "ro": [
+        "Limba mielului",
+        "Boragine"
+      ]
+    },
+    "scientific": "Borago officinalis",
+    "synonyms": [],
+    "family": "Boraginaceae",
+    "category": "herb",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "low",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Hardy annual with edible blue flowers that bees love. Self-seeds freely.",
+      "ro": "Plantă anuală rezistentă, cu flori albastre comestibile foarte iubite de albine. Se autosemănă ușor."
+    },
+    "tips": {
+      "en": [
+        "Sow where it is to grow; it dislikes transplanting.",
+        "Leaves are hairy and can irritate skin.",
+        "Produces abundant nectar for a long season."
+      ],
+      "ro": [
+        "Seamănă direct unde va crește; nu suportă transplantarea.",
+        "Frunzele sunt păroase și pot irita pielea.",
+        "Produce mult nectar pe o perioadă lungă."
+      ]
+    },
+    "rotationFamily": "Boraginaceae",
+    "roles": [
+      "pollinator",
+      "edible-flower"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Borage contains pyrrolizidine alkaloids; regular or heavy consumption is not advised.",
+      "ro": "Boragina conține alcaloizi pirolizidinici; consumul regulat sau în cantitate mare nu este recomandat."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 0,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 100
+    }
+  },
+  {
+    "id": "calendula",
+    "names": {
+      "en": [
+        "Calendula",
+        "Pot marigold"
+      ],
+      "ro": [
+        "Gălbenele"
+      ]
+    },
+    "scientific": "Calendula officinalis",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "annual",
+    "sun": "full-partial",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Easy hardy annual with edible petals; flowers draw hoverflies and other beneficial insects.",
+      "ro": "Plantă anuală rezistentă și ușor de cultivat, cu petale comestibile; florile atrag sirfide și alte insecte utile."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring or autumn.",
+        "Pick flowers regularly to keep blooming.",
+        "Seeds fall and germinate the following year."
+      ],
+      "ro": [
+        "Seamănă primăvara sau toamna.",
+        "Culege florile regulat pentru înflorire continuă.",
+        "Semințele cad și germinează în anul următor."
+      ]
+    },
+    "rotationFamily": "Asteraceae",
+    "roles": [
+      "pollinator",
+      "beneficial-insects",
+      "edible-flower"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    }
+  }
+]

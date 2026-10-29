@@ -1,0 +1,42 @@
+[
+  {
+    "family": "Solanaceae", "minYears": 3, "evidence": "recommendation",
+    "reason": { "en": "Tomatoes, potatoes, peppers and aubergines share late blight, verticillium wilt and some nematodes, which can persist in the soil. Extension services commonly advise a break of about three years or more.",
+                "ro": "Roșiile, cartofii, ardeii și vinetele au în comun mana, verticiloza și unii nematozi, care pot persista în sol. Serviciile de extensie recomandă de obicei o pauză de circa trei ani sau mai mult." }
+  },
+  {
+    "family": "Brassicaceae", "minYears": 3, "evidence": "recommendation",
+    "reason": { "en": "Cabbage-family crops (including radish and turnip) are hosts of clubroot, whose spores can survive in soil for many years. A break of at least three years is typical advice; longer where clubroot is present.",
+                "ro": "Plantele din familia verzei (inclusiv ridichile și napii) sunt gazde pentru hernia verzei, ale cărei spori pot supraviețui în sol mulți ani. O pauză de cel puțin trei ani este sfatul obișnuit; mai lungă acolo unde boala este prezentă." }
+  },
+  {
+    "family": "Amaryllidaceae", "minYears": 4, "evidence": "recommendation",
+    "reason": { "en": "Onions, garlic and leeks are affected by white rot, whose resting bodies can survive in soil for years. Four years or more is commonly advised, and never replant alliums where white rot appeared.",
+                "ro": "Ceapa, usturoiul și prazul sunt afectate de putregaiul alb, ale cărui forme de rezistență pot supraviețui în sol ani de zile. Se recomandă de obicei patru ani sau mai mult, iar alliumurile nu se replantează unde a apărut putregaiul alb." }
+  },
+  {
+    "family": "Apiaceae", "minYears": 3, "evidence": "recommendation",
+    "reason": { "en": "Carrots, parsley and parsnips share carrot fly and some soil-borne diseases. A break of about three years is typical.",
+                "ro": "Morcovii, pătrunjelul și păstârnacul au în comun musca morcovului și unele boli din sol. O pauză de circa trei ani este tipică." }
+  },
+  {
+    "family": "Cucurbitaceae", "minYears": 2, "evidence": "recommendation",
+    "reason": { "en": "Courgettes, cucumbers and squashes share mildews and wilts. A break of about two years is commonly advised.",
+                "ro": "Dovleceii, castraveții și dovlecii au în comun mana și ofilirile. O pauză de circa doi ani este recomandată de obicei." }
+  },
+  {
+    "family": "Fabaceae", "minYears": 2, "evidence": "recommendation",
+    "reason": { "en": "Peas and beans can suffer from soil-borne root rots when grown repeatedly in one place. A break of about two years is commonly advised. Legumes also leave nitrogen for the next crop.",
+                "ro": "Mazărea și fasolea pot suferi de putregaiuri ale rădăcinii din sol când sunt cultivate repetat în același loc. O pauză de circa doi ani este recomandată de obicei. Leguminoasele lasă și azot pentru cultura următoare." }
+  },
+  {
+    "family": "Amaranthaceae", "minYears": 2, "evidence": "recommendation",
+    "reason": { "en": "Beetroot and spinach share leaf spots and some soil pests. A break of about two years is typical.",
+                "ro": "Sfecla și spanacul au în comun pătările frunzelor și unii dăunători din sol. O pauză de circa doi ani este tipică." }
+  },
+  {
+    "family": "Asteraceae", "minYears": 1, "evidence": "recommendation",
+    "reason": { "en": "Lettuce and relatives share lettuce root aphid and some downy mildews; a one-year break reduces build-up.",
+                "ro": "Salata și rudele ei au în comun afidul rădăcinii și unele mane; o pauză de un an reduce acumularea." }
+  }
+]
