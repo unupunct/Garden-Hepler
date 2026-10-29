@@ -27,6 +27,7 @@ public class GardenDbContext : DbContext
     public DbSet<Greenhouse.GreenhouseActuator> GreenhouseActuators => Set<Greenhouse.GreenhouseActuator>();
     public DbSet<Greenhouse.GreenhouseItem> GreenhouseItems => Set<Greenhouse.GreenhouseItem>();
     public DbSet<Design.InteriorItem> InteriorItems => Set<Design.InteriorItem>();
+    public DbSet<Photo> Photos => Set<Photo>();
     public DbSet<Planning.BudgetEntry> Budget => Set<Planning.BudgetEntry>();
     public DbSet<Animals.AnimalGroup> AnimalGroups => Set<Animals.AnimalGroup>();
     public DbSet<Animals.AnimalLog> AnimalLogs => Set<Animals.AnimalLog>();
@@ -77,6 +78,7 @@ public class GardenDbContext : DbContext
         b.Entity<Greenhouse.GreenhouseActuator>().HasIndex(x => new { x.FeatureId, x.Key }).IsUnique();
         b.Entity<Greenhouse.GreenhouseItem>().HasIndex(x => x.FeatureId);
         b.Entity<Design.InteriorItem>().HasIndex(x => new { x.FeatureId, x.Floor });
+        b.Entity<Photo>().HasIndex(x => x.Date);
         b.Entity<Animals.AnimalLog>().HasIndex(x => new { x.GroupId, x.Date });
         b.Entity<Cameras.Camera>().HasIndex(x => x.GardenId);
         b.Entity<Cameras.CameraEvent>().HasIndex(x => new { x.CameraId, x.AtUtc });

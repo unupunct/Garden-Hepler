@@ -336,6 +336,7 @@ public sealed partial class DesignerViewModel : PageViewModel
         var beds = await _repo.ListAsync<GardenBed>(q => q.Where(b => b.GardenId == _garden.Id).Include(b => b.Plantings).OrderBy(b => b.Id));
         var hidden = beds.Where(b => b.FeatureId is not null && FeatureCatalog.IsStructure(b.Kind)).Select(b => b.FeatureId!.Value).ToHashSet();
         BuildBoundary(featureEntities, hidden);
+        await AlignToAnchorAsync(beds);
         await LoadCameraMarkersAsync();
         if (JustImportedBoundary) { StatusMessage = Loc.T("map_imported"); JustImportedBoundary = false; }
         FitView();      // open framed on the property, however large it is

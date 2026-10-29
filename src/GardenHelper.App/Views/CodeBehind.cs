@@ -57,6 +57,7 @@ public partial class GreenhouseView : UserControl
         if (Item(sender) is { } li && Vm is { } vm) await vm.ItemMovedAsync(li);
     }
 }
+public partial class WelcomeView : UserControl { public WelcomeView() => InitializeComponent(); }
 public partial class PiGuideView : UserControl
 {
     public PiGuideView()

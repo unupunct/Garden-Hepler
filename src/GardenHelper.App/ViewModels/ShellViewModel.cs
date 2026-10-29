@@ -80,8 +80,19 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
     [ObservableProperty] private NavEntry? _selectedNav;
     [ObservableProperty] private string _searchText = "";
 
-    /// <summary>The property command center is the home screen.</summary>
-    public void Start() => GoTo<PropertyViewModel>();
+    /// <summary>A first start (no garden yet) opens the welcome setup; otherwise the day's screen.</summary>
+    public void Start() => _ = StartAsync();
+
+    private async Task StartAsync()
+    {
+        try
+        {
+            var repo = _services.GetRequiredService<GardenHelper.Core.Services.Repository>();
+            if (await repo.ActiveGardenAsync() is null) { GoTo<WelcomeViewModel>(); return; }
+        }
+        catch (Exception) { /* fall through to the normal start */ }
+        GoTo<TodayViewModel>();
+    }
 
     partial void OnSelectedNavChanged(NavEntry? value)
     {

@@ -544,6 +544,12 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("TEXT");
 
+                    b.Property<double?>("PlanAnchorLat")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("PlanAnchorLon")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("Region")
                         .HasColumnType("TEXT");
 
@@ -784,6 +790,42 @@ namespace GardenHelper.Core.Data.Migrations
                     b.HasIndex("Date");
 
                     b.ToTable("Journal");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Domain.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("File")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("OwnerKind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PlantId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Date");
+
+                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("GardenHelper.Core.Domain.PropertyFeature", b =>

@@ -111,18 +111,31 @@ public sealed partial class DesignerViewModel
     /// </summary>
     private async Task ReloadKeepingViewAsync(GeoPoint? anchor)
     {
-        var keepScale = Scale; var keepCentre = (X: CanvasWidth / 2, Y: CanvasHeight / 2);
-        await LoadAsync();
-        if (anchor is not null && _frame is not null && _garden is not null)
+        var keepScale = Scale;
+        await LoadAsync();          // LoadAsync realigns beds and cameras to the ground anchor, whatever changed
+        Scale = keepScale;
+    }
+
+    /// <summary>
+    /// The plan's frame is derived from all places, so adding, reshaping or deleting one (here or on the map page) can move its origin.
+    /// The garden remembers which spot on the ground was at the plan's corner; if that spot has moved, every bed and camera is shifted by the same amount
+    /// so each one stays where it is on the ground.
+    /// </summary>
+    private async Task AlignToAnchorAsync(List<GardenBed> beds)
+    {
+        if (_frame is null || _garden is null) return;
+        var here = _frame.ToGeo(new Pt(0, 0));
+        if (_garden.PlanAnchorLat is { } la && _garden.PlanAnchorLon is { } lo)
         {
-            var p = _frame.ToPlan(anchor);
+            var p = _frame.ToPlan(new GeoPoint(la, lo));
             if (Math.Abs(p.X) > 0.5 || Math.Abs(p.Y) > 0.5)
             {
-                foreach (var b in await _repo.ListAsync<GardenBed>(q => q.Where(x => x.GardenId == _garden.Id))) { b.X += p.X; b.Y += p.Y; await _repo.SaveAsync(b); }
+                foreach (var b in beds) { b.X += p.X; b.Y += p.Y; await _repo.SaveAsync(b); }
                 foreach (var c in await _repo.ListAsync<Camera>(q => q.Where(x => x.PlanX != null))) { c.PlanX += p.X; c.PlanY += p.Y; await _repo.SaveAsync(c); }
-                await LoadAsync();
             }
+            if (Math.Abs(p.X) <= 0.5 && Math.Abs(p.Y) <= 0.5 && Math.Abs(la - here.Lat) < 1e-9 && Math.Abs(lo - here.Lon) < 1e-9) return;
         }
-        Scale = keepScale;
+        _garden.PlanAnchorLat = here.Lat; _garden.PlanAnchorLon = here.Lon;
+        _garden = await _repo.SaveAsync(_garden);
     }
 }

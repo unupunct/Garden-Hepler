@@ -33,6 +33,24 @@ public class Garden
     public double? BackdropTopLat { get; set; }
     public double? BackdropTopLon { get; set; }
     public double? BackdropCmPerPixel { get; set; }
+    /// <summary>The spot on the ground (WGS84) that was at the top-left corner (0,0) of the garden plan when the plan was last opened. It lets the plan stay put on the ground when places are traced, reshaped or deleted.</summary>
+    public double? PlanAnchorLat { get; set; }
+    public double? PlanAnchorLon { get; set; }
+}
+
+/// <summary>A picture taken on the property: of a bed, a plant, an animal group, a place, or just the garden. The file is kept in the photo folder.</summary>
+public class Photo
+{
+    public int Id { get; set; }
+    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+    /// <summary>Stored file name (see SeedPhotoStore).</summary>
+    public string File { get; set; } = "";
+    public string? Caption { get; set; }
+    /// <summary>general, bed, animal, place or plant.</summary>
+    public string OwnerKind { get; set; } = "general";
+    public int? OwnerId { get; set; }
+    public string? PlantId { get; set; }
+    public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
 }
 
 /// <summary>A named place traced on the satellite map: a permanent structure (house, workshop…) or a garden space (garden 1, greenhouse, compost pile…).</summary>

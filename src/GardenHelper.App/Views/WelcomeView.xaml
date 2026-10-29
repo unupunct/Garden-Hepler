@@ -1,0 +1,85 @@
+<UserControl x:Class="GardenHelper.App.Views.WelcomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="28,22,28,30" MaxWidth="820" HorizontalAlignment="Left">
+            <TextBlock Text="{loc:L welcome_title}" Style="{StaticResource H1}"/>
+            <TextBlock Text="{loc:L welcome_sub}" FontSize="16" TextWrapping="Wrap" Foreground="#FF5B6B50" Margin="0,2,0,0"/>
+            <v:Banners Margin="0,8,0,0"/>
+
+            <Border Style="{StaticResource Card}" Padding="18" Margin="0,14,0,0" CornerRadius="18">
+                <StackPanel>
+                    <TextBlock Text="{loc:L welcome_s1}" Style="{StaticResource H2}"/>
+                    <TextBlock Text="{loc:L welcome_name}" Style="{StaticResource Label}"/>
+                    <TextBox Text="{Binding GardenName, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{loc:L welcome_name}"/>
+                    <TextBlock Text="{loc:L welcome_find}" Style="{StaticResource Label}" Margin="0,10,0,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Text="{Binding PlaceQuery, UpdateSourceTrigger=PropertyChanged}" Width="320" AutomationProperties.Name="{loc:L welcome_find}"/>
+                        <Button Content="{loc:L welcome_search}" Command="{Binding FindPlaceCommand}" Margin="8,0,0,0" Padding="14,6" ToolTip="{loc:L welcome_search_tip}"/>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding Hits}" Visibility="{Binding HasHits, Converter={StaticResource BoolToVis}}" Margin="0,6,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding}" Command="{Binding DataContext.PickHitCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="0,0,0,4" Padding="12,5"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="{Binding FoundInfo}" Foreground="#FF4C6E33" Margin="0,4,0,0"/>
+                    <Grid Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel><TextBlock Text="{loc:L welcome_country}" Style="{StaticResource Label}"/><TextBox Text="{Binding Country}"/></StackPanel>
+                        <StackPanel Grid.Column="2"><TextBlock Text="{loc:L welcome_region}" Style="{StaticResource Label}"/><TextBox Text="{Binding Region}"/></StackPanel>
+                        <StackPanel Grid.Column="4"><TextBlock Text="{loc:L site_lat}" Style="{StaticResource Label}"/><TextBox Text="{Binding Latitude}"/></StackPanel>
+                        <StackPanel Grid.Column="6"><TextBlock Text="{loc:L site_lon}" Style="{StaticResource Label}"/><TextBox Text="{Binding Longitude}"/></StackPanel>
+                    </Grid>
+                    <TextBlock Text="{loc:L welcome_frost}" Style="{StaticResource Label}" Margin="0,10,0,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{loc:L welcome_spring}" VerticalAlignment="Center" Margin="0,0,6,0"/><DatePicker SelectedDate="{Binding SpringFrost}" Width="150"/>
+                        <TextBlock Text="{loc:L welcome_autumn}" VerticalAlignment="Center" Margin="18,0,6,0"/><DatePicker SelectedDate="{Binding AutumnFrost}" Width="150"/>
+                    </StackPanel>
+                    <TextBlock Text="{loc:L welcome_frost_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Padding="18" Margin="0,12,0,0" CornerRadius="18">
+                <StackPanel>
+                    <TextBlock Text="{loc:L welcome_s2}" Style="{StaticResource H2}"/>
+                    <TextBlock Text="{loc:L welcome_animals_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                    <ItemsControl ItemsSource="{Binding Animals}" Margin="0,6,0,0">
+                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#FFE3DCC8" BorderThickness="1" CornerRadius="14" Padding="12,8" Margin="0,0,8,8">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox IsChecked="{Binding Keep}" Content="{Binding Label}" VerticalAlignment="Center"/>
+                                        <TextBox Text="{Binding Count}" Width="50" Margin="10,0,0,0" IsEnabled="{Binding Keep}" ToolTip="{loc:L welcome_how_many}" AutomationProperties.Name="{loc:L welcome_how_many}"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Padding="18" Margin="0,12,0,0" CornerRadius="18">
+                <StackPanel>
+                    <TextBlock Text="{loc:L welcome_s3}" Style="{StaticResource H2}"/>
+                    <TextBlock Text="{loc:L welcome_crops_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                    <ItemsControl ItemsSource="{Binding Crops}" Margin="0,6,0,0">
+                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#FFE3DCC8" BorderThickness="1" CornerRadius="14" Padding="12,6" Margin="0,0,8,8"><CheckBox IsChecked="{Binding Grow}" Content="{Binding Name}"/></Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <Button Style="{StaticResource PrimaryButton}" Content="{loc:L welcome_create}" Command="{Binding CreateCommand}" HorizontalAlignment="Left" Margin="0,16,0,0" Padding="22,10" FontSize="15"/>
+            <TextBlock Text="{loc:L welcome_later}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,6,0,0"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
