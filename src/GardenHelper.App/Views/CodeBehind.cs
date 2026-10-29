@@ -31,6 +31,8 @@ public partial class CamerasView : UserControl
     private void OnUnloaded(object sender, RoutedEventArgs e) => (DataContext as ViewModels.CamerasViewModel)?.Stop();
 }
 public partial class AnimalsView : UserControl { public AnimalsView() => InitializeComponent(); }
+public partial class ComingUpView : UserControl { public ComingUpView() => InitializeComponent(); }
+public partial class BudgetView : UserControl { public BudgetView() => InitializeComponent(); }
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }
 public partial class SpaceView : UserControl { public SpaceView() => InitializeComponent(); }
 

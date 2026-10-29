@@ -21,6 +21,7 @@ public class GardenDbContext : DbContext
     public DbSet<FeatureLog> FeatureLogs => Set<FeatureLog>();
     public DbSet<InventoryPlant> Inventory => Set<InventoryPlant>();
     public DbSet<Cameras.Camera> Cameras => Set<Cameras.Camera>();
+    public DbSet<Planning.BudgetEntry> Budget => Set<Planning.BudgetEntry>();
     public DbSet<Animals.AnimalGroup> AnimalGroups => Set<Animals.AnimalGroup>();
     public DbSet<Animals.AnimalLog> AnimalLogs => Set<Animals.AnimalLog>();
     public DbSet<Animals.FeedRation> FeedRations => Set<Animals.FeedRation>();
@@ -64,6 +65,7 @@ public class GardenDbContext : DbContext
             e.HasMany(x => x.Rations).WithOne(x => x.Group).HasForeignKey(x => x.GroupId).OnDelete(DeleteBehavior.Cascade);
             e.HasMany(x => x.Logs).WithOne(x => x.Group).HasForeignKey(x => x.GroupId).OnDelete(DeleteBehavior.Cascade);
         });
+        b.Entity<Planning.BudgetEntry>().HasIndex(x => x.Date);
         b.Entity<Animals.AnimalLog>().HasIndex(x => new { x.GroupId, x.Date });
         b.Entity<Cameras.Camera>().HasIndex(x => x.GardenId);
         b.Entity<BookSection>().HasIndex(x => new { x.BookId, x.Ordinal });

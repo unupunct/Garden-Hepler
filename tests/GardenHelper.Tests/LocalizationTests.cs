@@ -41,7 +41,7 @@ public class LocalizationTests
             foreach (Match m in Regex.Matches(t, @"Loc\.[TF]\(""([A-Za-z0-9_]+)""")) used.Add(m.Groups[1].Value);
         }
         // Keys built from a prefix at run time (nav_, act_, task_, kind_, status_, sev_, search_kind_) are checked by their prefix.
-        var dynamicPrefixes = new[] { "nav_", "act_", "task_", "kind_", "status_", "sev_", "search_kind_", "rotv_", "feat_", "log_", "cam_kind_", "animal_", "alog_" };
+        var dynamicPrefixes = new[] { "nav_", "act_", "task_", "kind_", "status_", "sev_", "search_kind_", "rotv_", "feat_", "log_", "cam_kind_", "animal_", "alog_", "bcat_", "up_bucket_" };
         var missing = used.Where(k => !known.Contains(k) && !dynamicPrefixes.Contains(k)).ToList();
         Assert.Empty(missing);
     }
@@ -61,6 +61,8 @@ public class LocalizationTests
         };
         expected = expected
             .Concat(GardenHelper.Core.Cameras.CameraUrl.Kinds.Select(k => "cam_kind_" + k))
+            .Concat(GardenHelper.Core.Planning.BudgetCatalog.Categories.Append("animals").Select(k => "bcat_" + k))
+            .Concat(GardenHelper.Core.Planning.ComingUpPlanner.Buckets.Select(k => "up_bucket_" + k))
             .Concat(GardenHelper.Core.Animals.AnimalCatalog.Species.Select(k => "animal_" + k))
             .Concat(GardenHelper.Core.Animals.AnimalCatalog.LogKinds.Select(k => "alog_" + k))
             .Concat(GardenHelper.Core.Domain.FeatureCatalog.Structures.Concat(GardenHelper.Core.Domain.FeatureCatalog.Spaces).Select(k => "feat_" + k))

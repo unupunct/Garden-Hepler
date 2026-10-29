@@ -751,6 +751,39 @@ namespace GardenHelper.Core.Data.Migrations
                     b.ToTable("Seeds");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Planning.BudgetEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GardenId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsIncome")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Date");
+
+                    b.ToTable("Budget");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Animals.AnimalLog", b =>
                 {
                     b.HasOne("GardenHelper.Core.Animals.AnimalGroup", "Group")
