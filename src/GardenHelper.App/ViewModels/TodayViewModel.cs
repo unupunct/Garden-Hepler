@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Net.Http;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GardenHelper.App.Infrastructure;
@@ -7,7 +8,9 @@ using GardenHelper.Core.Animals;
 using GardenHelper.Core.Domain;
 using GardenHelper.Core.Greenhouse;
 using GardenHelper.Core.Planning;
+using GardenHelper.Core.Knowledge;
 using GardenHelper.Core.Services;
+using GardenHelper.Core.Site;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -27,6 +30,9 @@ public sealed partial class TodayRow : ObservableObject
     [ObservableProperty] private bool _isDone;
 }
 
+public sealed record DayCard(string Label, string Glyph, string Range, string Rain);
+public sealed record RipeningRow(string Title, string When, bool Ready);
+
 public sealed record TodayGroup(string Title, ObservableCollection<TodayRow> Rows);
 
 /// <summary>The first screen of the day: everything that is late or due, with a button that does it.</summary>
@@ -37,16 +43,27 @@ public sealed partial class TodayViewModel : PageViewModel
     private readonly GreenhouseService _greenhouse;
     private readonly INavigator _nav;
     private readonly ILogger _logger;
+    private readonly SettingsService _settings;
+    private readonly KnowledgeBase _kb;
+    private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(15) };
+    private const string WeatherKey = "weather_cache";
+    private Garden? _garden;
+    private WeatherForecast? _forecast;
 
-    public TodayViewModel(Repository repo, AlertService alerts, GreenhouseService greenhouse, INavigator nav, ILogger<TodayViewModel> log) : base(log)
+    public TodayViewModel(Repository repo, AlertService alerts, GreenhouseService greenhouse, SettingsService settings, KnowledgeBase kb, INavigator nav, ILogger<TodayViewModel> log) : base(log)
     {
-        _logger = log; _repo = repo; _alerts = alerts; _greenhouse = greenhouse; _nav = nav;
+        _settings = settings; _kb = kb; _logger = log; _repo = repo; _alerts = alerts; _greenhouse = greenhouse; _nav = nav;
     }
 
     public ObservableCollection<TodayGroup> Groups { get; } = new();
     [ObservableProperty] private string _greeting = "";
     [ObservableProperty] private string _summary = "";
     [ObservableProperty] private bool _isCalm;
+    public ObservableCollection<DayCard> DayCards { get; } = new();
+    public ObservableCollection<RipeningRow> Ripenings { get; } = new();
+    [ObservableProperty] private int _urgentCount, _openCount, _waterCount, _ripeningCount;
+    [ObservableProperty] private bool _hasSun, _hasWeather, _hasRipenings, _hasFrost, _noLocation;
+    [ObservableProperty] private string _sunUp = "", _sunDown = "", _sunDetail = "", _weatherNow = "", _weatherToday = "", _weatherAge = "", _frostText = "";
 
     private DateOnly Today => DateOnly.FromDateTime(DateTime.Today);
 
@@ -54,13 +71,17 @@ public sealed partial class TodayViewModel : PageViewModel
     {
         var culture = Loc.Instance.Culture; var now = DateTime.Now;
         Greeting = Loc.F(now.Hour < 12 ? "today_morning" : now.Hour < 18 ? "today_afternoon" : "today_evening", now.ToString("dddd, d MMMM", culture));
-        var garden = await _repo.ActiveGardenAsync();
+        var garden = await _repo.ActiveGardenAsync(); _garden = garden;
+        _forecast = WeatherForecast.FromJson(await _settings.GetAsync(WeatherKey));
+        var beds = garden is null ? new List<GardenBed>() : await _repo.ListAsync<GardenBed>(q => q.Where(b => b.GardenId == garden.Id).Include(b => b.Plantings));
+        BuildGlance(garden, beds);
         var tasks = await _repo.ListAsync<GardenTask>(q => q.Where(t => !t.Done && t.DueDate <= Today));
         var plants = await _repo.ListAsync<InventoryPlant>(q => q.Where(p => !p.IsTree));
         var groups = await _repo.ListAsync<AnimalGroup>(q => q.Include(g => g.Logs).Include(g => g.Rations));
         var items = TodayPlanner.Build(Today, tasks, plants, groups, "d MMM");
 
-        // what the garden rules and the greenhouse sensors say
+        // what the garden rules, the forecast and the greenhouse sensors say
+        if (_forecast is not null) items.AddRange(WeatherAdvice.Evaluate(_forecast.Days, Today, Loc.Instance.Culture));
         foreach (var row in await _alerts.LoadAsync())
             if (row.Alert.Severity is AlertSeverity.Urgent or AlertSeverity.Soon)
                 items.Add(new TodayItem("advice", row.Alert.Severity == AlertSeverity.Urgent ? "urgent" : "soon", row.Glyph, "today_advice", new[] { row.Message }, TodayAction.OpenActions, row.Alert.PlantingId ?? 0));
@@ -87,11 +108,80 @@ public sealed partial class TodayViewModel : PageViewModel
         Refresh();
     });
 
+    /// <summary>Sun times, forecast, frost dates and what is nearly ready to harvest.</summary>
+    private void BuildGlance(Garden? g, IReadOnlyList<GardenBed> beds)
+    {
+        var culture = Loc.Instance.Culture;
+        NoLocation = g?.Latitude is null || g.Longitude is null;
+        HasSun = !NoLocation;
+        if (HasSun)
+        {
+            var lat = g!.Latitude!.Value; var lon = g.Longitude!.Value;
+            var d = SolarCalculator.Day(lat, lon, Today, SolarCalculator.GuessOffset(lon, Today));
+            var y = SolarCalculator.Day(lat, lon, Today.AddDays(-1), SolarCalculator.GuessOffset(lon, Today.AddDays(-1)));
+            SunUp = d.Sunrise?.ToString("HH:mm") ?? "–"; SunDown = d.Sunset?.ToString("HH:mm") ?? "–";
+            var len = TimeSpan.FromHours(d.DayLengthHours); var delta = (int)Math.Round((d.DayLengthHours - y.DayLengthHours) * 60);
+            SunDetail = Loc.F("today_daylength", (int)len.TotalHours, len.Minutes) + " · " + (delta == 0 ? "" : Loc.F(delta > 0 ? "today_longer" : "today_shorter", Math.Abs(delta)));
+        }
+
+        DayCards.Clear();
+        HasWeather = _forecast is { Days.Count: > 0 };
+        if (_forecast is { } f && HasWeather)
+        {
+            var now = f.CurrentTempC is { } t ? $"{t:0}°C " : "";
+            var cur = f.CurrentCode is { } c ? WeatherCodes.Describe(c) : ("", "");
+            WeatherNow = now + cur.Item2 + " " + (cur.Item1.Length > 0 ? Loc.T(cur.Item1) : "");
+            var td = f.Days.FirstOrDefault(x => x.Date == Today) ?? f.Days[0];
+            WeatherToday = Loc.F("today_wx_line", td.MinC.ToString("0", culture), td.MaxC.ToString("0", culture), td.PrecipProbPct, td.WindMaxKmh.ToString("0", culture));
+            var age = DateTime.UtcNow - f.FetchedUtc;
+            WeatherAge = age.TotalHours < 1 ? Loc.T("today_wx_fresh") : age.TotalHours < 48 ? Loc.F("today_wx_hours", (int)age.TotalHours) : Loc.F("today_wx_days", (int)age.TotalDays);
+            foreach (var d in f.Days.Where(x => x.Date >= Today).Take(7))
+                DayCards.Add(new DayCard(d.Date == Today ? Loc.T("today_wx_today") : d.Date.ToString("ddd", culture), WeatherCodes.Describe(d.Code).Glyph, $"{d.MinC:0}° / {d.MaxC:0}°", d.PrecipProbPct >= 20 ? $"{d.PrecipProbPct}%" : ""));
+        }
+
+        // the next frost date in the calendar
+        HasFrost = false;
+        if (g is not null)
+        {
+            var next = new List<(DateOnly Date, string Key)>();
+            if (g.LastSpringFrost is { } ls) { next.Add((new DateOnly(Today.Year, ls.Month, ls.Day), "today_frost_last")); next.Add((new DateOnly(Today.Year + 1, ls.Month, ls.Day), "today_frost_last")); }
+            if (g.FirstAutumnFrost is { } fa) next.Add((new DateOnly(Today.Year, fa.Month, fa.Day), "today_frost_first"));
+            if (next.Where(x => x.Date >= Today).OrderBy(x => x.Date).Select(x => ((DateOnly Date, string Key)?)x).FirstOrDefault() is { } n && n.Date.DayNumber - Today.DayNumber <= 200)
+            { FrostText = Loc.F(n.Key, n.Date.ToString("d MMM", culture), n.Date.DayNumber - Today.DayNumber); HasFrost = true; }
+        }
+
+        Ripenings.Clear();
+        foreach (var r in HarvestForecast.Upcoming(beds, _kb, Today).Take(8))
+        {
+            var name = _kb.Get(r.PlantId)?.DisplayName(Loc.Instance.Language) ?? r.PlantId;
+            var when = r.ReadyNow ? Loc.T("today_ready_now")
+                : r.DaysToEarliest >= 14 ? Loc.F("today_ready_weeks", (int)Math.Round(r.DaysToEarliest / 7.0), r.Earliest.ToString("d MMM", culture))
+                : Loc.F("today_ready_days", r.DaysToEarliest, r.Earliest.ToString("d MMM", culture));
+            Ripenings.Add(new RipeningRow($"{name} · {r.BedName}", when, r.ReadyNow));
+        }
+        HasRipenings = Ripenings.Count > 0;
+    }
+
+    /// <summary>Downloads the forecast (sends only the coordinates) and keeps it so it still shows offline.</summary>
+    [RelayCommand]
+    private Task UpdateWeatherAsync() => RunAsync(async () =>
+    {
+        if (_garden?.Latitude is not { } lat || _garden.Longitude is not { } lon) { ErrorMessage = Loc.T("today_wx_need_location"); return; }
+        try
+        {
+            _forecast = await new WeatherService(Http).FetchAsync(lat, lon);
+            await _settings.SetAsync(WeatherKey, _forecast.ToJson());
+        }
+        catch (Exception ex) { _logger.LogInformation(ex, "Forecast download failed"); ErrorMessage = Loc.T("today_wx_offline"); return; }
+        await LoadAsync();
+    }, busy: false);
+
     private void Refresh()
     {
         var open = Groups.SelectMany(g => g.Rows).Where(r => !r.IsDone).ToList();
         var urgent = open.Count(r => r.IsUrgent);
-        IsCalm = open.Count == 0;
+        IsCalm = open.Count == 0; UrgentCount = urgent; OpenCount = open.Count;
+        WaterCount = open.Count(r => r.Item.Action == TodayAction.Watered); RipeningCount = Ripenings.Count(r => r.Ready);
         Summary = open.Count == 0 ? Loc.T("today_calm") : Loc.F("today_summary", open.Count, urgent);
     }
 

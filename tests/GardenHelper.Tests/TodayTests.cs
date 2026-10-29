@@ -55,3 +55,23 @@ public class TodayTests
         Assert.Contains(items, i => i.Key == "today_withdrawal");
     }
 }
+
+public class TodayExtrasTests
+{
+    private static readonly DateOnly Today = new(2026, 10, 29);
+
+    [Fact]
+    public void Frost_tomorrow_is_urgent_and_rain_today_is_a_tip()
+    {
+        var days = new[]
+        {
+            new GardenHelper.Core.Site.WeatherDay(Today, 4, 12, 8, 80, 20, 61),
+            new GardenHelper.Core.Site.WeatherDay(Today.AddDays(1), -2, 9, 0, 10, 10, 0),
+            new GardenHelper.Core.Site.WeatherDay(Today.AddDays(6), -5, 9, 0, 10, 10, 0),
+        };
+        var items = GardenHelper.Core.Planning.WeatherAdvice.Evaluate(days, Today, System.Globalization.CultureInfo.InvariantCulture);
+        Assert.Contains(items, i => i.Key == "today_wx_frost" && i.Severity == "urgent");
+        Assert.Contains(items, i => i.Key == "today_wx_rain");
+        Assert.Equal(1, items.Count(i => i.Key == "today_wx_frost"));      // day 6 is beyond the three-day window
+    }
+}
