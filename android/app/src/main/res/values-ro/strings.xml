@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Garden Helper</string>
+    <string name="setup_title">Conectare la Garden Helper</string>
+    <string name="setup_help">Introdu adresa PC-ului pe care rulează Garden Helper, de exemplu 192.168.1.20:8765, sau lipește linkul pentru telefon din pagina Conectare a aplicației. PC-ul trebuie să fie pornit și aplicația deschisă. În afara casei, folosește adresa Tailscale a PC-ului.</string>
+    <string name="connect">Conectare</string>
+    <string name="bad_address">Adresa nu este utilizabilă.</string>
+    <string name="cannot_reach">Nu pot ajunge la</string>
+    <string name="change_server">Schimbă adresa</string>
+    <string name="reload">Reîncarcă</string>
+</resources>

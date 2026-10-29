@@ -57,6 +57,7 @@ public partial class GreenhouseView : UserControl
         if (Item(sender) is { } li && Vm is { } vm) await vm.ItemMovedAsync(li);
     }
 }
+public partial class ConnectView : UserControl { public ConnectView() => InitializeComponent(); }
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }
 public partial class SpaceView : UserControl { public SpaceView() => InitializeComponent(); }
 

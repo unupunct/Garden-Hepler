@@ -37,6 +37,8 @@
   <ItemGroup>
     <Resource Include="Assets\GardenHelper.ico" />
     <!-- Knowledge-base content ships as plain JSON next to the executable (see docs/CONTENT.md). -->
+    <!-- The phone web app is served by the local API (see docs/PHONE-AND-HOME-ASSISTANT.md). -->
+    <Content Include="..\..\mobile\*" Link="Mobile\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\content\**\*.json" Link="Content\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

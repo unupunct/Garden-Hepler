@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Garden Helper</string>
+    <string name="setup_title">Connect to Garden Helper</string>
+    <string name="setup_help">Enter the address of the PC that runs Garden Helper, for example 192.168.1.20:8765, or paste the phone link from the app\'s Connect page. The PC must be on and the app open. Away from home, use the PC\'s Tailscale address.</string>
+    <string name="connect">Connect</string>
+    <string name="bad_address">That is not a usable address.</string>
+    <string name="cannot_reach">Cannot reach</string>
+    <string name="change_server">Change address</string>
+    <string name="reload">Reload</string>
+</resources>

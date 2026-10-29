@@ -37,6 +37,7 @@
             <DataTemplate DataType="{x:Type vm:MapViewModel}"><v:MapView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:CamerasViewModel}"><v:CamerasView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:AnimalsViewModel}"><v:AnimalsView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ConnectViewModel}"><v:ConnectView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:GreenhouseViewModel}"><v:GreenhouseView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:InventoryViewModel}"><v:InventoryView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:ComingUpViewModel}"><v:ComingUpView/></DataTemplate>

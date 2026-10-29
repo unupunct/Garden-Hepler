@@ -12,3 +12,5 @@ TestResults/
 site/
 library/
 samples/
+
+dist/

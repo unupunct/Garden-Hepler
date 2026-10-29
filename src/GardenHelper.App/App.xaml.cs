@@ -62,6 +62,7 @@ public partial class App : Application
             sc.AddSingleton<GardenHelper.Core.Cameras.CameraClient>();
             sc.AddSingleton<CameraFeed>();
             sc.AddSingleton<GardenHelper.Core.Greenhouse.GreenhouseService>();
+            sc.AddSingleton<GardenHelper.Core.Planning.RemoteService>();
             sc.AddSingleton<LocalApiServer>();
             sc.AddSingleton<SatelliteTileService>();
             sc.AddSingleton<BackdropService>();
@@ -70,7 +71,7 @@ public partial class App : Application
             sc.AddSingleton<INavigator>(p => p.GetRequiredService<ShellViewModel>());
             foreach (var vm in new[] { typeof(DashboardViewModel), typeof(TasksViewModel), typeof(PlantsViewModel), typeof(SeedsViewModel), typeof(JournalViewModel),
                                        typeof(LibraryViewModel), typeof(ReaderViewModel), typeof(SearchViewModel), typeof(GardenViewModel), typeof(SettingsViewModel), typeof(AboutViewModel),
-                                       typeof(SiteViewModel), typeof(MapViewModel), typeof(PropertyViewModel), typeof(SpaceViewModel), typeof(DesignerViewModel), typeof(MonitorViewModel), typeof(CamerasViewModel), typeof(AnimalsViewModel), typeof(ComingUpViewModel), typeof(BudgetViewModel), typeof(InventoryViewModel), typeof(GreenhouseViewModel) })
+                                       typeof(SiteViewModel), typeof(MapViewModel), typeof(PropertyViewModel), typeof(SpaceViewModel), typeof(DesignerViewModel), typeof(MonitorViewModel), typeof(CamerasViewModel), typeof(AnimalsViewModel), typeof(ComingUpViewModel), typeof(BudgetViewModel), typeof(InventoryViewModel), typeof(GreenhouseViewModel), typeof(ConnectViewModel) })
                 sc.AddTransient(vm);
             Services = sc.BuildServiceProvider();
             _log = Services.GetRequiredService<ILogger<App>>();

@@ -1,0 +1,9 @@
+{
+  "name": "Garden Helper",
+  "short_name": "Garden",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#2f6b3a",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
