@@ -772,6 +772,152 @@ namespace GardenHelper.Core.Data.Migrations
                     b.ToTable("Seeds");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Greenhouse.GreenhouseActuator", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Auto")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ChangedUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Desired")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FeatureId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeatureId", "Key")
+                        .IsUnique();
+
+                    b.ToTable("GreenhouseActuators");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Greenhouse.GreenhouseItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FeatureId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Height")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Width")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("X")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Y")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeatureId");
+
+                    b.ToTable("GreenhouseItems");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Greenhouse.GreenhouseReading", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("AtUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("FeatureId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Metric")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Value")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeatureId", "Metric", "AtUtc");
+
+                    b.ToTable("GreenhouseReadings");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Greenhouse.GreenhouseSetup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("AutoControl")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FeatureId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("HumidityMax")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("LengthCm")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PhMax")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PhMin")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("SoilMoistureMin")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("System")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TempMax")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TempMin")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("WaterTempMax")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("WidthCm")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeatureId")
+                        .IsUnique();
+
+                    b.ToTable("GreenhouseSetups");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Planning.BudgetEntry", b =>
                 {
                     b.Property<int>("Id")

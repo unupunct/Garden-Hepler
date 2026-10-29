@@ -21,6 +21,10 @@ public class GardenDbContext : DbContext
     public DbSet<FeatureLog> FeatureLogs => Set<FeatureLog>();
     public DbSet<InventoryPlant> Inventory => Set<InventoryPlant>();
     public DbSet<Cameras.Camera> Cameras => Set<Cameras.Camera>();
+    public DbSet<Greenhouse.GreenhouseSetup> GreenhouseSetups => Set<Greenhouse.GreenhouseSetup>();
+    public DbSet<Greenhouse.GreenhouseReading> GreenhouseReadings => Set<Greenhouse.GreenhouseReading>();
+    public DbSet<Greenhouse.GreenhouseActuator> GreenhouseActuators => Set<Greenhouse.GreenhouseActuator>();
+    public DbSet<Greenhouse.GreenhouseItem> GreenhouseItems => Set<Greenhouse.GreenhouseItem>();
     public DbSet<Planning.BudgetEntry> Budget => Set<Planning.BudgetEntry>();
     public DbSet<Animals.AnimalGroup> AnimalGroups => Set<Animals.AnimalGroup>();
     public DbSet<Animals.AnimalLog> AnimalLogs => Set<Animals.AnimalLog>();
@@ -66,6 +70,10 @@ public class GardenDbContext : DbContext
             e.HasMany(x => x.Logs).WithOne(x => x.Group).HasForeignKey(x => x.GroupId).OnDelete(DeleteBehavior.Cascade);
         });
         b.Entity<Planning.BudgetEntry>().HasIndex(x => x.Date);
+        b.Entity<Greenhouse.GreenhouseSetup>().HasIndex(x => x.FeatureId).IsUnique();
+        b.Entity<Greenhouse.GreenhouseReading>().HasIndex(x => new { x.FeatureId, x.Metric, x.AtUtc });
+        b.Entity<Greenhouse.GreenhouseActuator>().HasIndex(x => new { x.FeatureId, x.Key }).IsUnique();
+        b.Entity<Greenhouse.GreenhouseItem>().HasIndex(x => x.FeatureId);
         b.Entity<Animals.AnimalLog>().HasIndex(x => new { x.GroupId, x.Date });
         b.Entity<Cameras.Camera>().HasIndex(x => x.GardenId);
         b.Entity<BookSection>().HasIndex(x => new { x.BookId, x.Ordinal });

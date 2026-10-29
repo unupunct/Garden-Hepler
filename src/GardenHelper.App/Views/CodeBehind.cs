@@ -34,6 +34,29 @@ public partial class AnimalsView : UserControl { public AnimalsView() => Initial
 public partial class ComingUpView : UserControl { public ComingUpView() => InitializeComponent(); }
 public partial class BudgetView : UserControl { public BudgetView() => InitializeComponent(); }
 public partial class InventoryView : UserControl { public InventoryView() => InitializeComponent(); }
+public partial class GreenhouseView : UserControl
+{
+    private double _dx, _dy, _sx, _sy;
+    public GreenhouseView() => InitializeComponent();
+    private ViewModels.GreenhouseViewModel? Vm => DataContext as ViewModels.GreenhouseViewModel;
+    private static ViewModels.LayoutItem? Item(object sender) => (sender as FrameworkElement)?.DataContext as ViewModels.LayoutItem;
+    private void OnLoaded(object sender, RoutedEventArgs e) => Vm?.Resume();
+    private void OnUnloaded(object sender, RoutedEventArgs e) => Vm?.Stop();
+    private void OnItemDragStart(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+    {
+        if (Item(sender) is not { } li || Vm is not { } vm) return;
+        vm.SelectedItem = li; _sx = li.X; _sy = li.Y; _dx = _dy = 0;
+    }
+    private void OnItemDrag(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+    {
+        if (Item(sender) is not { } li) return;
+        _dx += e.HorizontalChange; _dy += e.VerticalChange; li.X = _sx + _dx; li.Y = _sy + _dy;
+    }
+    private async void OnItemDragDone(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+    {
+        if (Item(sender) is { } li && Vm is { } vm) await vm.ItemMovedAsync(li);
+    }
+}
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }
 public partial class SpaceView : UserControl { public SpaceView() => InitializeComponent(); }
 

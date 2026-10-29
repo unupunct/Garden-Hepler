@@ -61,6 +61,8 @@ public partial class App : Application
             sc.AddSingleton<ClimateService>();
             sc.AddSingleton<GardenHelper.Core.Cameras.CameraClient>();
             sc.AddSingleton<CameraFeed>();
+            sc.AddSingleton<GardenHelper.Core.Greenhouse.GreenhouseService>();
+            sc.AddSingleton<LocalApiServer>();
             sc.AddSingleton<SatelliteTileService>();
             sc.AddSingleton<BackdropService>();
             sc.AddSingleton<IDialogs, WpfDialogs>();
@@ -68,7 +70,7 @@ public partial class App : Application
             sc.AddSingleton<INavigator>(p => p.GetRequiredService<ShellViewModel>());
             foreach (var vm in new[] { typeof(DashboardViewModel), typeof(TasksViewModel), typeof(PlantsViewModel), typeof(SeedsViewModel), typeof(JournalViewModel),
                                        typeof(LibraryViewModel), typeof(ReaderViewModel), typeof(SearchViewModel), typeof(GardenViewModel), typeof(SettingsViewModel), typeof(AboutViewModel),
-                                       typeof(SiteViewModel), typeof(MapViewModel), typeof(PropertyViewModel), typeof(SpaceViewModel), typeof(DesignerViewModel), typeof(MonitorViewModel), typeof(CamerasViewModel), typeof(AnimalsViewModel), typeof(ComingUpViewModel), typeof(BudgetViewModel), typeof(InventoryViewModel) })
+                                       typeof(SiteViewModel), typeof(MapViewModel), typeof(PropertyViewModel), typeof(SpaceViewModel), typeof(DesignerViewModel), typeof(MonitorViewModel), typeof(CamerasViewModel), typeof(AnimalsViewModel), typeof(ComingUpViewModel), typeof(BudgetViewModel), typeof(InventoryViewModel), typeof(GreenhouseViewModel) })
                 sc.AddTransient(vm);
             Services = sc.BuildServiceProvider();
             _log = Services.GetRequiredService<ILogger<App>>();
@@ -80,6 +82,7 @@ public partial class App : Application
             MainWindow = window;
             window.Show();
             Services.GetRequiredService<ShellViewModel>().Start();
+            _ = Services.GetRequiredService<LocalApiServer>().StartFromSettingsAsync();
 
             _ = Task.Run(async () =>
             {

@@ -1,0 +1,183 @@
+<UserControl x:Class="GardenHelper.App.Views.GreenhouseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views"
+             Loaded="OnLoaded" Unloaded="OnUnloaded">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="28,20,28,20" MaxWidth="1000" HorizontalAlignment="Left">
+            <TextBlock Text="{loc:L nav_greenhouse}" Style="{StaticResource H1}"/>
+            <v:Banners Margin="0,8,0,0"/>
+
+            <StackPanel Margin="0,8,0,0" Visibility="{Binding HasHouse, Converter={StaticResource BoolToVis}, ConverterParameter=invert}">
+                <TextBlock Text="{Binding NoHouseText}" TextWrapping="Wrap"/>
+                <Button Style="{StaticResource PrimaryButton}" Content="{loc:L gh_create}" Command="{Binding CreateHouseCommand}" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+            </StackPanel>
+
+            <StackPanel Visibility="{Binding HasHouse, Converter={StaticResource BoolToVis}}">
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,12">
+                    <TextBlock Text="{loc:L gh_which}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <ComboBox ItemsSource="{Binding Houses}" SelectedItem="{Binding House}" MinWidth="220" AutomationProperties.Name="{loc:L gh_which}"/>
+                    <Button Content="{loc:L gh_create_another}" Command="{Binding CreateHouseCommand}" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <ItemsControl ItemsSource="{Binding Alerts}" Margin="0,0,0,10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#FFFCE8C8" CornerRadius="6" Padding="10,6" Margin="0,0,0,6">
+                                <TextBlock TextWrapping="Wrap" Foreground="#FF5A3A00" FontWeight="SemiBold"><Run Text="{Binding Glyph, Mode=OneWay}"/><Run Text="  "/><Run Text="{Binding Text, Mode=OneWay}"/></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L gh_live}" Style="{StaticResource H2}"/>
+                        <TextBlock Text="{loc:L gh_no_readings}" Style="{StaticResource Muted}" TextWrapping="Wrap" Visibility="{Binding Tiles.Count, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>
+                        <ItemsControl ItemsSource="{Binding Tiles}">
+                            <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#FFEEF3EA" CornerRadius="8" Padding="12,8" Margin="0,0,10,10" MinWidth="130">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Label}" FontSize="12" Foreground="#FF4A5A45"/>
+                                            <TextBlock Text="{Binding Value}" FontSize="22" FontWeight="SemiBold" Foreground="#FF1B2418"/>
+                                            <TextBlock Text="{Binding Age}" FontSize="11" Foreground="#FF4A5A45"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L gh_controls}" Style="{StaticResource H2}"/>
+                        <TextBlock Text="{loc:L gh_controls_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                        <ItemsControl ItemsSource="{Binding Actuators}" Margin="0,6,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,3">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="80"/><ColumnDefinition Width="90"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Label}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding State}" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding Mode}" Style="{StaticResource Muted}" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="3" Content="{loc:L gh_switch}" Margin="0,0,8,0" Padding="12,3"
+                                                Command="{Binding DataContext.SwitchCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" AutomationProperties.Name="{Binding Label}"/>
+                                        <Button Grid.Column="4" Content="{loc:L gh_back_auto}" Padding="12,3"
+                                                Command="{Binding DataContext.AutoCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L gh_limits}" Style="{StaticResource H2}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="220"/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L gh_system}" Style="{StaticResource Label}"/><ComboBox ItemsSource="{Binding Systems}" SelectedItem="{Binding GrowSystem}"/></StackPanel>
+                            <CheckBox Grid.Column="2" Content="{loc:L gh_auto_control}" IsChecked="{Binding AutoControl}" VerticalAlignment="Bottom" Margin="0,0,0,6"/>
+                        </Grid>
+                        <Grid Margin="0,4,0,0">
+                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L gh_temp_max}" Style="{StaticResource Label}"/><TextBox Text="{Binding TempMax}"/></StackPanel>
+                            <StackPanel Grid.Column="2"><TextBlock Text="{loc:L gh_temp_min}" Style="{StaticResource Label}"/><TextBox Text="{Binding TempMin}"/></StackPanel>
+                            <StackPanel Grid.Column="4"><TextBlock Text="{loc:L gh_humidity_max}" Style="{StaticResource Label}"/><TextBox Text="{Binding HumidityMax}"/></StackPanel>
+                            <StackPanel Grid.Column="6"><TextBlock Text="{loc:L gh_soil_min}" Style="{StaticResource Label}"/><TextBox Text="{Binding SoilMin}" ToolTip="{loc:L gh_soil_tip}"/></StackPanel>
+                        </Grid>
+                        <Grid Margin="0,4,0,0" Visibility="{Binding IsWater, Converter={StaticResource BoolToVis}}">
+                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L gh_water_temp_max}" Style="{StaticResource Label}"/><TextBox Text="{Binding WaterTempMax}"/></StackPanel>
+                            <StackPanel Grid.Column="2"><TextBlock Text="{loc:L gh_ph_min}" Style="{StaticResource Label}"/><TextBox Text="{Binding PhMin}"/></StackPanel>
+                            <StackPanel Grid.Column="4"><TextBlock Text="{loc:L gh_ph_max}" Style="{StaticResource Label}"/><TextBox Text="{Binding PhMax}"/></StackPanel>
+                        </Grid>
+                        <Grid Margin="0,4,0,0">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="160"/><ColumnDefinition Width="10"/><ColumnDefinition Width="160"/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L gh_width}" Style="{StaticResource Label}"/><TextBox Text="{Binding WidthCm}"/></StackPanel>
+                            <StackPanel Grid.Column="2"><TextBlock Text="{loc:L gh_length}" Style="{StaticResource Label}"/><TextBox Text="{Binding LengthCm}"/></StackPanel>
+                        </Grid>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveSettingsCommand}" HorizontalAlignment="Left" Margin="0,12,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L gh_layout}" Style="{StaticResource H2}"/>
+                        <TextBlock Text="{loc:L gh_layout_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                        <Border Background="#FFF4F1E6" BorderBrush="#FF8A7A55" BorderThickness="2" CornerRadius="4" Margin="0,8,0,8" MaxHeight="420">
+                            <Viewbox Stretch="Uniform" StretchDirection="Both" MaxHeight="410">
+                                <ItemsControl ItemsSource="{Binding Items}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
+                                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemContainerStyle>
+                                        <Style TargetType="ContentPresenter">
+                                            <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                                            <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                                        </Style>
+                                    </ItemsControl.ItemContainerStyle>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="{Binding Width}" Height="{Binding Height}" AutomationProperties.Name="{Binding Label}">
+                                                <Border Background="{Binding Fill}" BorderBrush="#FF2A3B26" BorderThickness="2" CornerRadius="4">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border"><Style.Triggers><DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="BorderBrush" Value="#FFC0562B"/><Setter Property="BorderThickness" Value="5"/></DataTrigger></Style.Triggers></Style>
+                                                    </Border.Style>
+                                                </Border>
+                                                <TextBlock Text="{Binding Label}" HorizontalAlignment="Center" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="#FF1B2418" FontWeight="SemiBold"
+                                                           FontSize="{Binding DataContext.LabelSize, RelativeSource={RelativeSource AncestorType=UserControl}}" IsHitTestVisible="False"/>
+                                                <Thumb Opacity="0" Cursor="SizeAll" DragStarted="OnItemDragStart" DragDelta="OnItemDrag" DragCompleted="OnItemDragDone"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Viewbox>
+                        </Border>
+                        <WrapPanel>
+                            <ComboBox ItemsSource="{Binding ItemKinds}" SelectedItem="{Binding NewKind}" MinWidth="160" Margin="0,0,8,0"/>
+                            <Button Content="{loc:L gh_add_item}" Command="{Binding AddItemCommand}"/>
+                        </WrapPanel>
+                        <StackPanel Visibility="{Binding HasItem, Converter={StaticResource BoolToVis}}" Margin="0,10,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition Width="110"/><ColumnDefinition Width="10"/><ColumnDefinition Width="110"/></Grid.ColumnDefinitions>
+                                <StackPanel><TextBlock Text="{loc:L design_name}" Style="{StaticResource Label}"/><TextBox Text="{Binding ItemName}"/></StackPanel>
+                                <StackPanel Grid.Column="2"><TextBlock Text="{loc:L design_width}" Style="{StaticResource Label}"/><TextBox Text="{Binding ItemWidth}"/></StackPanel>
+                                <StackPanel Grid.Column="4"><TextBlock Text="{loc:L design_height}" Style="{StaticResource Label}"/><TextBox Text="{Binding ItemHeight}"/></StackPanel>
+                            </Grid>
+                            <TextBlock Text="{loc:L gh_item_notes}" Style="{StaticResource Label}"/>
+                            <TextBox Text="{Binding ItemNotes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="44"/>
+                            <WrapPanel Margin="0,8,0,0">
+                                <Button Style="{StaticResource PrimaryButton}" Content="{loc:L save}" Command="{Binding SaveItemCommand}" Margin="0,0,8,0"/>
+                                <Button Style="{StaticResource DangerButton}" Content="{loc:L delete}" Command="{Binding DeleteItemCommand}"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L gh_pi}" Style="{StaticResource H2}"/>
+                        <TextBlock Text="{loc:L gh_pi_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
+                        <WrapPanel Margin="0,8,0,0">
+                            <CheckBox Content="{loc:L gh_api_enable}" IsChecked="{Binding ApiEnabled}" VerticalAlignment="Center" Margin="0,0,16,0"/>
+                            <TextBlock Text="{loc:L gh_port}" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <TextBox Text="{Binding ApiPort}" Width="80" Margin="0,0,8,0" AutomationProperties.Name="{loc:L gh_port}"/>
+                            <Button Content="{loc:L gh_apply}" Command="{Binding ApplyApiCommand}"/>
+                        </WrapPanel>
+                        <TextBlock Text="{Binding ApiStatus}" Margin="0,6,0,0"/>
+                        <TextBlock Text="{loc:L gh_token}" Style="{StaticResource Label}"/>
+                        <TextBox Text="{Binding ApiToken, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="{loc:L gh_token}"/>
+                        <Button Content="{loc:L gh_new_token}" Command="{Binding NewTokenCommand}" HorizontalAlignment="Left" Margin="0,6,0,0"/>
+                        <TextBlock Text="{loc:L gh_example}" Style="{StaticResource Label}"/>
+                        <TextBox Text="{Binding PiExample, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap"/>
+                        <Button Content="{loc:L gh_copy}" Command="{Binding CopyExampleCommand}" HorizontalAlignment="Left" Margin="0,6,0,0"/>
+                        <TextBlock Text="{loc:L gh_security}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

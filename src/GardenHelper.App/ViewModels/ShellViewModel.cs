@@ -55,6 +55,7 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
             new("map", "◎", typeof(MapViewModel)),
             new("cameras", "◉", typeof(CamerasViewModel)),
             new("animals", "♞", typeof(AnimalsViewModel)),
+            new("greenhouse", "▥", typeof(GreenhouseViewModel)),
             new("budget", "¤", typeof(BudgetViewModel)),
             new("grow", "", null),
             new("plants", "☘", typeof(PlantsViewModel)),
