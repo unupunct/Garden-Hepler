@@ -265,7 +265,7 @@
                                                     <ControlTemplate TargetType="Thumb">
                                                         <Grid>
                                                             <Ellipse Fill="#FF1F6F94" Stroke="White" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-                                                            <Viewbox Margin="22%"><TextBlock Text="&#x25C9;" Foreground="White"/></Viewbox>
+                                                            <Viewbox Stretch="Uniform"><TextBlock Text="&#x25C9;" Foreground="White" Margin="7"/></Viewbox>
                                                         </Grid>
                                                     </ControlTemplate>
                                                 </Thumb.Template>
