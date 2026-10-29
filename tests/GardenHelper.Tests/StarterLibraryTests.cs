@@ -13,6 +13,7 @@ public class StarterLibraryTests
         File.WriteAllText(Path.Combine(dir, "mulch.txt"), "Mulching guide\n\nMulch keeps soil moist and suppresses weeds. Spread compost mulch around the beds in spring.");
         File.WriteAllText(Path.Combine(dir, "sub", "seeds.txt"), "Seed starting\n\nStart tomato seeds indoors six weeks before the last frost.");
         File.WriteAllText(Path.Combine(dir, "readme.md.bak"), "not a book format");
+        File.WriteAllText(Path.Combine(dir, "SOURCES.md"), "# Sources\n\nA table of licences, not a book.");
         File.WriteAllBytes(Path.Combine(dir, "photo.jpg"), new byte[] { 0xFF, 0xD8, 0xFF });
         return dir;
     }
