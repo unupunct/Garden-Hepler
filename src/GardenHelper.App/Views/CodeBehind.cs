@@ -387,8 +387,19 @@ public partial class DesignerView : UserControl
         return false;
     }
 
+    private void OnTraceDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (Vm is { } vm && sender is IInputElement el) { vm.AddTracePoint(e.GetPosition(el)); e.Handled = true; }
+    }
+
+    private void OnShapeClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (e.ClickCount == 2 && (sender as FrameworkElement)?.DataContext is FeatureShape shape && Vm is { } vm) { vm.OpenShapeCommand.Execute(shape); e.Handled = true; }
+    }
+
     private void OnPanStart(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
+        if (Vm is { Tracing: true } && e.ChangedButton == System.Windows.Input.MouseButton.Left) return;   // clicks place pins while tracing
         if (Vm is { CardOpen: true } open) open.CardOpen = false;   // any click on the plan closes the plant card (clicking a plant opens it again)
         var middle = e.ChangedButton == System.Windows.Input.MouseButton.Middle;
         var background = e.ChangedButton == System.Windows.Input.MouseButton.Left && e.OriginalSource is DependencyObject src && IsInside(src, World)

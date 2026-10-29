@@ -115,10 +115,29 @@
                     <Button Content="{loc:L design_fit}" Command="{Binding FitCommand}" ToolTip="{loc:L design_fit_tip}" Margin="0,0,10,4" Padding="10,5"/>
                     <CheckBox Content="{loc:L design_snap}" IsChecked="{Binding Snap}" VerticalAlignment="Center" Margin="0,0,14,4"/>
                     <CheckBox Content="{loc:L design_backdrop}" IsChecked="{Binding ShowBackdrop}" IsEnabled="{Binding HasBackdrop}" VerticalAlignment="Center" Margin="0,0,6,4" ToolTip="{loc:L design_backdrop_tip}"/>
+                    <StackPanel Orientation="Horizontal" Margin="6,0,10,4" Visibility="{Binding HasBackdrop, Converter={StaticResource BoolToVis}}" VerticalAlignment="Center">
+                        <Button Content="−" Command="{Binding BackdropLessCommand}" Padding="9,4" ToolTip="{loc:L sat_less}" AutomationProperties.Name="{loc:L sat_less}"/>
+                        <TextBlock Text="{Binding BackdropOpacityText}" VerticalAlignment="Center" MinWidth="42" TextAlignment="Center"/>
+                        <Button Content="+" Command="{Binding BackdropMoreCommand}" Padding="9,4" ToolTip="{loc:L sat_more}" AutomationProperties.Name="{loc:L sat_more}"/>
+                    </StackPanel>
                     <Button Content="{loc:L design_backdrop_load}" Command="{Binding LoadBackdropCommand}" Padding="10,5" Margin="0,0,0,4" ToolTip="{loc:L design_backdrop_tip}"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="{loc:L trace_start}" Command="{Binding StartTraceCommand}" Padding="10,5" Margin="8,0,0,4" ToolTip="{loc:L trace_help}"/>
                 </WrapPanel>
             </Grid>
             <v:Banners Margin="0,6,0,0"/>
+            <Border Visibility="{Binding Tracing, Converter={StaticResource BoolToVis}}" Background="#FFFFF4E0" BorderBrush="#FFE7C98E" BorderThickness="1" CornerRadius="14" Padding="12,8" Margin="0,8,0,0">
+                <StackPanel>
+                    <TextBlock Text="{loc:L trace_help}" TextWrapping="Wrap" FontSize="12" Foreground="#FF5B4A28"/>
+                    <WrapPanel Margin="0,6,0,0">
+                        <TextBox Text="{Binding TraceName, UpdateSourceTrigger=PropertyChanged}" Width="220" Tag="{loc:L trace_name}" AutomationProperties.Name="{loc:L trace_name}" Margin="0,0,8,4"/>
+                        <ComboBox ItemsSource="{Binding TraceKinds}" SelectedItem="{Binding TraceKind}" MinWidth="170" AutomationProperties.Name="{loc:L trace_kind}" Margin="0,0,8,4"/>
+                        <TextBlock Text="{Binding TraceInfo}" VerticalAlignment="Center" Margin="0,0,10,4"/>
+                        <Button Content="{loc:L trace_undo}" Command="{Binding UndoPinCommand}" Margin="0,0,6,4"/>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L trace_finish}" Command="{Binding FinishTraceCommand}" Margin="0,0,6,4"/>
+                        <Button Content="{loc:L trace_cancel}" Command="{Binding CancelTraceCommand}" Margin="0,0,0,4"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
         </StackPanel>
 
         <!-- Three panels -->
@@ -199,19 +218,19 @@
                             <Grid.LayoutTransform><ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/></Grid.LayoutTransform>
                             <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" Background="{StaticResource GridBrush}"/>
                             <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" IsHitTestVisible="False" Visibility="{Binding BackdropVisible, Converter={StaticResource BoolToVis}}">
-                                <Image Source="{Binding Backdrop}" Canvas.Left="{Binding BackdropX}" Canvas.Top="{Binding BackdropY}" Width="{Binding BackdropW}" Height="{Binding BackdropH}" Stretch="Fill"/>
+                                <Image Opacity="{Binding BackdropOpacity}" Source="{Binding Backdrop}" Canvas.Left="{Binding BackdropX}" Canvas.Top="{Binding BackdropY}" Width="{Binding BackdropW}" Height="{Binding BackdropH}" Stretch="Fill"/>
                             </Canvas>
                             <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" IsHitTestVisible="False" Visibility="{Binding HasBoundary, Converter={StaticResource BoolToVis}}">
                                 <Polygon Points="{Binding BoundaryPoints}" Stroke="#FFD9A400" StrokeThickness="{Binding StrokeSize}" StrokeDashArray="5 3" StrokeLineJoin="Round" Fill="#18D9A400"/>
                             </Canvas>
                             <!-- Traced places from the map: permanent structures and garden spaces, at true position -->
-                            <ItemsControl ItemsSource="{Binding FeatureShapes}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" IsHitTestVisible="False">
+                            <ItemsControl ItemsSource="{Binding FeatureShapes}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
                                 <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Canvas>
-                                            <Polygon Points="{Binding Points}" Fill="{Binding Fill}" Stroke="{Binding Stroke}" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}" StrokeLineJoin="Round"/>
-                                            <Border Background="#D9FFFFFF" CornerRadius="4" Padding="6,1" SizeChanged="OnLabelSize">
+                                            <Polygon MouseLeftButtonDown="OnShapeClick" ToolTip="{Binding Name}" Cursor="Hand" Points="{Binding Points}" Fill="{Binding Fill}" Stroke="{Binding Stroke}" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}" StrokeLineJoin="Round"/>
+                                            <Border Background="#D9FFFFFF" CornerRadius="4" Padding="6,1" SizeChanged="OnLabelSize" IsHitTestVisible="False">
                                                 <TextBlock Text="{Binding Name}" Foreground="#FF1B2418" FontWeight="SemiBold" TextWrapping="NoWrap"
                                                            FontSize="{Binding DataContext.LabelSize, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                                             </Border>
@@ -347,6 +366,20 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+                            <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" Background="#01000000" Cursor="Cross" Visibility="{Binding Tracing, Converter={StaticResource BoolToVis}}" MouseLeftButtonDown="OnTraceDown">
+                                <Polygon Points="{Binding TraceShape}" Fill="#33C0562B" Stroke="#FFC0562B" StrokeThickness="{Binding StrokeSize}" IsHitTestVisible="False"/>
+                                <ItemsControl ItemsSource="{Binding TracePins}" IsHitTestVisible="False">
+                                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemContainerStyle><Style TargetType="ContentPresenter"><Setter Property="Canvas.Left" Value="{Binding X}"/><Setter Property="Canvas.Top" Value="{Binding Y}"/></Style></ItemsControl.ItemContainerStyle>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Ellipse Fill="White" Stroke="#FFC0562B" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                     Width="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                     Margin="{Binding DataContext.CameraHandleMargin, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Canvas>
                         </Grid>
                     </ScrollViewer>
                 </Border>
