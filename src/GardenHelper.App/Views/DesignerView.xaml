@@ -153,6 +153,7 @@
                         <Button Content="+" Command="{Binding BackdropMoreCommand}" Padding="9,4" ToolTip="{loc:L sat_more}" AutomationProperties.Name="{loc:L sat_more}"/>
                     </StackPanel>
                     <Button Content="{loc:L design_backdrop_load}" Command="{Binding LoadBackdropCommand}" Padding="10,5" Margin="0,0,0,4" ToolTip="{loc:L design_backdrop_tip}"/>
+                    <Button Content="{loc:L print_button}" Click="OnPrintPlan" Padding="10,5" Margin="8,0,0,4" ToolTip="{loc:L print_tip}"/>
                     <Button Style="{StaticResource PrimaryButton}" Content="{loc:L trace_start}" Command="{Binding StartTraceCommand}" Padding="10,5" Margin="8,0,0,4" ToolTip="{loc:L trace_help}"/>
                     <StackPanel Orientation="Horizontal" Margin="8,0,0,4" VerticalAlignment="Center">
                         <DatePicker SelectedDate="{Binding ViewDate}" Width="140" ToolTip="{loc:L season_view}" AutomationProperties.Name="{loc:L season_view}"/>

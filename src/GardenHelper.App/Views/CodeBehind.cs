@@ -57,6 +57,16 @@ public partial class GreenhouseView : UserControl
         if (Item(sender) is { } li && Vm is { } vm) await vm.ItemMovedAsync(li);
     }
 }
+public partial class SeasonView : UserControl
+{
+    public SeasonView() => InitializeComponent();
+    private void OnPrint(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not ViewModels.SeasonViewModel vm) return;
+        var (title, tiles, sections) = vm.Report;
+        Printing.PrintDocument(Printing.ReportDocument(title, tiles.Select(t => (t.Value, t.Label)), sections.Select(s => (s.Title, (IEnumerable<string>)s.Lines))), title);
+    }
+}
 public partial class PhotosView : UserControl { public PhotosView() => InitializeComponent(); }
 public partial class WelcomeView : UserControl { public WelcomeView() => InitializeComponent(); }
 public partial class PiGuideView : UserControl
@@ -73,7 +83,19 @@ public partial class PiGuideView : UserControl
         };
     }
 }
-public partial class TodayView : UserControl { public TodayView() => InitializeComponent(); }
+public partial class TodayView : UserControl
+{
+    public TodayView() => InitializeComponent();
+    private void OnPrint(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not ViewModels.TodayViewModel vm) return;
+        var title = Loc.T("today_print_title") + " · " + DateTime.Today.ToString("d MMMM yyyy", Loc.Instance.Culture);
+        var tiles = new[] { (vm.UrgentCount.ToString(), Loc.T("today_t_urgent")), (vm.OpenCount.ToString(), Loc.T("today_t_open")), (vm.WaterCount.ToString(), Loc.T("today_t_water")), (vm.RipeningCount.ToString(), Loc.T("today_t_ready")) };
+        var sections = vm.Groups.Select(g => (g.Title, (IEnumerable<string>)g.Rows.Where(r => !r.IsDone).Select(r => (r.IsUrgent ? "! " : "") + r.Title).ToList())).Where(s => s.Item2.Any()).ToList();
+        if (vm.Ripenings.Count > 0) sections.Add((Loc.T("today_ripening"), vm.Ripenings.Select(r => $"{r.Title}: {r.When}").ToList()));
+        Printing.PrintDocument(Printing.ReportDocument(title, tiles, sections), title);
+    }
+}
 public partial class ConnectView : UserControl { public ConnectView() => InitializeComponent(); }
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }
 public partial class SpaceView : UserControl { public SpaceView() => InitializeComponent(); }
@@ -404,6 +426,8 @@ public partial class DesignerView : UserControl
         return false;
     }
 
+    private void OnPrintPlan(object sender, RoutedEventArgs e) => Printing.PrintPicture(CanvasScroll, Loc.T("nav_designer"), Loc.T("print_plan_hint"));
+
     private void OnTraceDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (Vm is { } vm && sender is IInputElement el) { vm.AddTracePoint(e.GetPosition(el)); e.Handled = true; }
@@ -686,6 +710,8 @@ public partial class InteriorView : UserControl
         PlanScroll.ScrollToHorizontalOffset(cx * vm.Scale - pos.X); PlanScroll.ScrollToVerticalOffset(cy * vm.Scale - pos.Y);
         e.Handled = true;
     }
+
+    private void OnPrintPlan(object sender, RoutedEventArgs e) => Printing.PrintPicture(PlanScroll, Loc.T("nav_interior") + (Vm?.Building is { } b ? " · " + b.Name : ""), Loc.T("print_plan_hint"));
 
     private void OnShapeDown(object sender, System.Windows.Input.MouseButtonEventArgs e) { if (Shape(sender) is { } s && Vm is { } vm) vm.Selected = s; }
 

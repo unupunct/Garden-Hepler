@@ -187,6 +187,7 @@
                         <!-- zoom -->
                         <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="12" Background="#EEFFFFFF" BorderBrush="#FFDCD3BC" BorderThickness="1" CornerRadius="18" Padding="6,3">
                             <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource ToolButton}" Content="{loc:L print_button}" Click="OnPrintPlan" ToolTip="{loc:L print_tip}" Margin="0,0,10,0"/>
                                 <Button Style="{StaticResource ToolButton}" Content="↶" Command="{Binding UndoCommand}" IsEnabled="{Binding CanUndo}" ToolTip="{Binding UndoTip}" AutomationProperties.Name="{Binding UndoTip}" Margin="0,0,4,0"/>
                                 <Button Style="{StaticResource ToolButton}" Content="↷" Command="{Binding RedoCommand}" IsEnabled="{Binding CanRedo}" ToolTip="{Binding RedoTip}" AutomationProperties.Name="{Binding RedoTip}" Margin="0,0,10,0"/>
                                 <Button Style="{StaticResource ToolButton}" Content="−" Command="{Binding ZoomOutCommand}" Margin="0,0,4,0" AutomationProperties.Name="{loc:L int_zoom_out}" ToolTip="{loc:L int_zoom_out}"/>
