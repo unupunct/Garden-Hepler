@@ -40,6 +40,7 @@
             <DataTemplate DataType="{x:Type vm:ConnectViewModel}"><v:ConnectView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:GreenhouseViewModel}"><v:GreenhouseView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:TodayViewModel}"><v:TodayView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PlannerViewModel}"><v:PlannerView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:SeasonViewModel}"><v:SeasonView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:PhotosViewModel}"><v:PhotosView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:WelcomeViewModel}"><v:WelcomeView/></DataTemplate>

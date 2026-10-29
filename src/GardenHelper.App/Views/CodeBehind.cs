@@ -57,6 +57,11 @@ public partial class GreenhouseView : UserControl
         if (Item(sender) is { } li && Vm is { } vm) await vm.ItemMovedAsync(li);
     }
 }
+public partial class PlannerView : UserControl
+{
+    public PlannerView() => InitializeComponent();
+    private void OnPrint(object sender, RoutedEventArgs e) => Printing.PrintPicture(Page, Loc.T("nav_planner"), (DataContext as ViewModels.PlannerViewModel)?.Year.ToString());
+}
 public partial class SeasonView : UserControl
 {
     public SeasonView() => InitializeComponent();

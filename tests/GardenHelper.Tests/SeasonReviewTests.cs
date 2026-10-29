@@ -73,3 +73,21 @@ public class SeasonReviewTests
         Assert.Equal(new[] { 2026, 2024 }, years);
     }
 }
+
+public class PlantingCalendarTests
+{
+    private static readonly GardenHelper.Core.Knowledge.KnowledgeBase Kb = GardenHelper.Core.Knowledge.KnowledgeBase.Load(new[] { Fixtures.RepoContent() });
+
+    [Fact]
+    public void Tomato_has_indoor_sowing_planting_out_and_one_harvest_stretch()
+    {
+        var garden = new GardenHelper.Core.Domain.Garden { LastSpringFrost = new DateOnly(2026, 5, 10), FirstAutumnFrost = new DateOnly(2026, 10, 5) };
+        var rows = GardenHelper.Core.Planning.PlantingCalendar.Build(new[] { Kb.Get("tomato")! }, garden, 2026);
+        var row = Assert.Single(rows);
+        Assert.Contains(row.Bars, b => b.Kind == "sow_indoors");
+        Assert.Single(row.Bars, b => b.Kind == "harvest");
+        Assert.All(row.Bars, b => Assert.InRange(b.StartDay, 1, 366));
+        var harvest = row.Bars.Single(b => b.Kind == "harvest"); var indoor = row.Bars.First(b => b.Kind == "sow_indoors");
+        Assert.True(harvest.StartDay > indoor.StartDay);
+    }
+}
