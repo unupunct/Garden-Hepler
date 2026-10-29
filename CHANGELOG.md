@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+- **Today** dashboard: late tasks, thirsty plants, eggs and milk to log, treatment withdrawals, greenhouse and garden advice with one-click actions; sun times, saved forecast with weather advice, frost countdown, harvests nearly ready.
+- **Building plans**: draw walls, windows and doors, rooms, furniture, greenhouse and workshop items and your own shapes for the house, garage, workshop, barn and greenhouse; indoor plants placed where they stand, with watering alerts.
+- Garden designer: plant icons with text on hover only; plant cards (planted, watered, harvest, sensors) with quick logging; animal icons with eggs/milk logging; trace any-shaped building or space on the satellite picture and reshape it later; satellite strength +/-; view the garden as of a past date; soil-sensor dots on beds; settings remembered.
+- Raspberry Pi: first-time setup guide in the app and in docs, agent `--check`, `--print-service`, DS18B20 and BME280 support; sensors for outdoor places.
+- 18 more plan elements (pergola, patio, cold frame, rain barrel, fire pit and more).
+
 ## 0.1.0 — first release
 - Garden designer: scaled plan, beds/objects, drag/resize/rotate/snap, undo/redo, zoom/pan, overlap warnings, month planner, plant library with drag-to-bed and spacing-based counts, crop rotation check.
 - Command center home screen and per-place pages (notes, dated history of growth, soil and plant treatments and maintenance, plantings, next actions); traced structures and garden spaces appear in the designer; places are searchable.

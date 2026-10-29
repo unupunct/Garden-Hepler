@@ -51,6 +51,7 @@ Source: "..\README.md"; DestDir: "{app}\docs"; Flags: ignoreversion
 Source: "..\CHANGELOG.md"; DestDir: "{app}\docs"; Flags: ignoreversion
 Source: "..\THIRD-PARTY-NOTICES.md"; DestDir: "{app}\docs"; Flags: ignoreversion
 Source: "..\docs\USER_GUIDE.md"; DestDir: "{app}\docs"; Flags: ignoreversion
+Source: "..\docs\RASPBERRY-PI-SETUP.md"; DestDir: "{app}\docs"; Flags: ignoreversion
 Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
