@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using GardenHelper.App.Infrastructure;
@@ -59,13 +59,16 @@ public partial class App : Application
                 return http;
             });
             sc.AddSingleton<ClimateService>();
+            sc.AddSingleton<GardenHelper.Core.Cameras.CameraClient>();
+            sc.AddSingleton<CameraFeed>();
             sc.AddSingleton<SatelliteTileService>();
+            sc.AddSingleton<BackdropService>();
             sc.AddSingleton<IDialogs, WpfDialogs>();
             sc.AddSingleton<ShellViewModel>();
             sc.AddSingleton<INavigator>(p => p.GetRequiredService<ShellViewModel>());
             foreach (var vm in new[] { typeof(DashboardViewModel), typeof(TasksViewModel), typeof(PlantsViewModel), typeof(SeedsViewModel), typeof(JournalViewModel),
                                        typeof(LibraryViewModel), typeof(ReaderViewModel), typeof(SearchViewModel), typeof(GardenViewModel), typeof(SettingsViewModel), typeof(AboutViewModel),
-                                       typeof(SiteViewModel), typeof(MapViewModel), typeof(PropertyViewModel), typeof(SpaceViewModel), typeof(DesignerViewModel), typeof(MonitorViewModel) })
+                                       typeof(SiteViewModel), typeof(MapViewModel), typeof(PropertyViewModel), typeof(SpaceViewModel), typeof(DesignerViewModel), typeof(MonitorViewModel), typeof(CamerasViewModel) })
                 sc.AddTransient(vm);
             Services = sc.BuildServiceProvider();
             _log = Services.GetRequiredService<ILogger<App>>();

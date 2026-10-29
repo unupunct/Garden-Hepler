@@ -28,6 +28,11 @@ public class Garden
     public double? SatelliteCmPerPixel { get; set; }
     /// <summary>Property outline as JSON [{Lat,Lon},…] (WGS84), 3–20 pins placed on the map by the user.</summary>
     public string? BoundaryJson { get; set; }
+    /// <summary>Satellite picture stitched for the designer (file name in the site folder) and where it sits on the map.</summary>
+    public string? BackdropFile { get; set; }
+    public double? BackdropTopLat { get; set; }
+    public double? BackdropTopLon { get; set; }
+    public double? BackdropCmPerPixel { get; set; }
 }
 
 /// <summary>A named place traced on the satellite map: a permanent structure (house, workshop…) or a garden space (garden 1, greenhouse, compost pile…).</summary>
@@ -77,6 +82,57 @@ public static class FeatureCatalog
     public static bool IsStructure(string kind) => Structures.Contains(kind);
 }
 
+public enum PlantLocation { Outdoor = 0, Greenhouse = 1, Indoor = 2 }
+
+/// <summary>A plant (or group of identical plants) you own: outdoors, in the greenhouse, or indoors in a pot.</summary>
+public class InventoryPlant
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    /// <summary>Id of a record in the plant encyclopedia, when the plant is one of them. Custom plants leave it empty.</summary>
+    public string? SpeciesId { get; set; }
+    public string? Variety { get; set; }
+    public PlantLocation Location { get; set; }
+    /// <summary>Where it is, in your words: "kitchen window", "Garden 1, row 3", "greenhouse bench B".</summary>
+    public string? Place { get; set; }
+    public int Quantity { get; set; } = 1;
+    public DateOnly? Acquired { get; set; }
+    public string? Source { get; set; }
+    /// <summary>healthy, attention, recovering or dead.</summary>
+    public string Status { get; set; } = "healthy";
+    public string? Notes { get; set; }
+    public int? WateringIntervalDays { get; set; }
+    public DateOnly? LastWatered { get; set; }
+    public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
+    public List<InventoryLog> Logs { get; set; } = new();
+    public override string ToString() => Name;
+}
+
+public class InventoryLog
+{
+    public int Id { get; set; }
+    public int PlantId { get; set; }
+    public InventoryPlant? Plant { get; set; }
+    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+    /// <summary>note, watering, feeding, repotting, pruning, treatment, observation.</summary>
+    public string Kind { get; set; } = "note";
+    public string Text { get; set; } = "";
+}
+
+public static class InventoryRules
+{
+    public static readonly string[] Statuses = { "healthy", "attention", "recovering", "dead" };
+    public static readonly string[] LogKinds = { "note", "watering", "feeding", "repotting", "pruning", "treatment", "observation" };
+
+    /// <summary>The date the next watering is due, or null when no interval is set. Never watered counts from the day it was added.</summary>
+    public static DateOnly? NextWatering(InventoryPlant p) =>
+        p.WateringIntervalDays is > 0 and var days && p.Status != "dead"
+            ? (p.LastWatered ?? DateOnly.FromDateTime(p.CreatedUtc.ToLocalTime())).AddDays(days) : null;
+
+    /// <summary>Days overdue (positive), due today (0) or days remaining (negative); null when there is no schedule.</summary>
+    public static int? DaysOverdue(InventoryPlant p, DateOnly today) => NextWatering(p) is { } d ? today.DayNumber - d.DayNumber : null;
+}
+
 public enum PlantingStatus { Planned = 0, Sown = 1, Growing = 2, Harvesting = 3, Finished = 4 }
 
 /// <summary>An object on the garden plan. Sizes are centimetres; X/Y is the top-left corner.</summary>
@@ -93,6 +149,8 @@ public class GardenBed
     public double Height { get; set; } = 300;
     /// <summary>Clockwise rotation in degrees about the object's centre.</summary>
     public double Rotation { get; set; }
+    /// <summary>A locked bed cannot be moved or resized by accident.</summary>
+    public bool Locked { get; set; }
     /// <summary>The map feature (garden space) this bed was planned from, if any.</summary>
     public int? FeatureId { get; set; }
     /// <summary>Share of the day the spot is shaded by buildings or trees, 0-90 (user estimate).</summary>

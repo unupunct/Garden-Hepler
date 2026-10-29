@@ -41,7 +41,7 @@ public class LocalizationTests
             foreach (Match m in Regex.Matches(t, @"Loc\.[TF]\(""([A-Za-z0-9_]+)""")) used.Add(m.Groups[1].Value);
         }
         // Keys built from a prefix at run time (nav_, act_, task_, kind_, status_, sev_, search_kind_) are checked by their prefix.
-        var dynamicPrefixes = new[] { "nav_", "act_", "task_", "kind_", "status_", "sev_", "search_kind_", "rotv_", "feat_", "log_" };
+        var dynamicPrefixes = new[] { "nav_", "act_", "task_", "kind_", "status_", "sev_", "search_kind_", "rotv_", "feat_", "log_", "cam_kind_" };
         var missing = used.Where(k => !known.Contains(k) && !dynamicPrefixes.Contains(k)).ToList();
         Assert.Empty(missing);
     }
@@ -60,6 +60,7 @@ public class LocalizationTests
             "search_kind_Plant","search_kind_Book","search_kind_Journal","search_kind_Task","search_kind_Seed","search_kind_Feature","nav_property",
         };
         expected = expected
+            .Concat(GardenHelper.Core.Cameras.CameraUrl.Kinds.Select(k => "cam_kind_" + k))
             .Concat(GardenHelper.Core.Domain.FeatureCatalog.Structures.Concat(GardenHelper.Core.Domain.FeatureCatalog.Spaces).Select(k => "feat_" + k))
             .Concat(new[] { "feat_outline" })
             .Concat(GardenHelper.Core.Domain.FeatureCatalog.LogKinds.Select(k => "log_" + k)).ToArray();

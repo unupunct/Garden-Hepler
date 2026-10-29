@@ -24,6 +24,12 @@ public partial class SearchView : UserControl { public SearchView() => Initializ
 public partial class SettingsView : UserControl { public SettingsView() => InitializeComponent(); }
 public partial class AboutView : UserControl { public AboutView() => InitializeComponent(); }
 
+public partial class CamerasView : UserControl
+{
+    public CamerasView() => InitializeComponent();
+    private void OnLoaded(object sender, RoutedEventArgs e) => (DataContext as ViewModels.CamerasViewModel)?.Resume();
+    private void OnUnloaded(object sender, RoutedEventArgs e) => (DataContext as ViewModels.CamerasViewModel)?.Stop();
+}
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }
 public partial class SpaceView : UserControl { public SpaceView() => InitializeComponent(); }
 
@@ -208,15 +214,38 @@ public partial class DesignerView : UserControl
     // Raw (unsnapped) position while dragging, so snapping never swallows small movements.
     private double _rawA, _rawB;
 
-    public DesignerView() => InitializeComponent();
+    public DesignerView()
+    {
+        InitializeComponent();
+        DataContextChanged += (_, _) => HookViewModel();
+    }
     private void OnLabelSize(object sender, SizeChangedEventArgs e) => LabelPlacement.Centre(sender, e);
+
+    private double _camDx, _camDy, _camStartX, _camStartY;
+    private static CameraMarker? Cam(object sender) => (sender as FrameworkElement)?.DataContext as CameraMarker;
+    private void OnCameraTip(object sender, ToolTipEventArgs e) { if (Cam(sender) is { } m && Vm is { } vm) _ = vm.LoadPreviewAsync(m); }
+    private void OnCameraDragStart(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e) { if (Cam(sender) is { } m) { _camStartX = m.X; _camStartY = m.Y; _camDx = _camDy = 0; } }
+    private void OnCameraDrag(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+    {
+        if (Cam(sender) is not { } m) return;
+        _camDx += e.HorizontalChange; _camDy += e.VerticalChange;
+        if (Math.Abs(_camDx) + Math.Abs(_camDy) > 4 / Math.Max(Vm?.Scale ?? 1, 0.001)) { m.X = _camStartX + _camDx; m.Y = _camStartY + _camDy; }
+    }
+    private async void OnCameraDragDone(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+    {
+        if (Cam(sender) is not { } m || Vm is not { } vm) return;
+        if (Math.Abs(_camDx) + Math.Abs(_camDy) <= 4 / Math.Max(vm.Scale, 0.001)) vm.OpenCamera(m);   // a click, not a drag
+        else await vm.MoveCameraAsync(m, m.X, m.Y);
+    }
 
     private static BedItem? Bed(object sender) => (sender as FrameworkElement)?.DataContext as BedItem;
     private DesignerViewModel? Vm => DataContext as DesignerViewModel;
 
     private void OnBedDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        if (Bed(sender) is { } b && Vm is { } vm) vm.Selected = b;
+        if (Bed(sender) is not { } b || Vm is not { } vm) return;
+        vm.Selected = b;
+        if (e.ClickCount == 2) { vm.ZoomToSelectedCommand.Execute(null); e.Handled = true; }   // double-click an element to zoom in on it
     }
 
     private void OnMoveStart(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
@@ -226,7 +255,7 @@ public partial class DesignerView : UserControl
 
     private void OnMove(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
     {
-        if (Bed(sender) is not { } b || Vm is not { } vm) return;
+        if (Bed(sender) is not { } b || Vm is not { } vm) return; if (b.Locked) { vm.StatusMessage = Loc.T("design_locked_msg"); return; }
         // The thumb sits inside the bed's rotation, so turn the pointer movement back into garden axes.
         var r = b.Rotation * Math.PI / 180; var cos = Math.Cos(r); var sin = Math.Sin(r);
         var dx = e.HorizontalChange * cos - e.VerticalChange * sin;
@@ -244,7 +273,7 @@ public partial class DesignerView : UserControl
 
     private void OnResize(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
     {
-        if (Bed(sender) is not { } b || Vm is not { } vm) return;
+        if (Bed(sender) is not { } b || Vm is not { } vm) return; if (b.Locked) { vm.StatusMessage = Loc.T("design_locked_msg"); return; }
         _rawA += e.HorizontalChange; _rawB += e.VerticalChange;
         b.Width = vm.SnapValue(_rawA);
         b.Height = vm.SnapValue(_rawB);
@@ -261,21 +290,57 @@ public partial class DesignerView : UserControl
         if (Bed(sender) is { } b && Vm is { } vm) await vm.CommitAsync(b, Loc.F("design_undo_resize", b.Name));
     }
 
-    // ---- Canvas navigation ----
+    // ---- Canvas navigation: wheel zooms at the cursor, drag the background to pan (middle button works too) ----
     private bool _panning; private Point _panStart; private double _panH, _panV;
+
+    private void HookViewModel()
+    {
+        if (Vm is not { } vm) return;
+        vm.ZoomRequested += factor => ZoomAt(factor, null);
+        vm.CenterRequested += (x, y) => Dispatcher.BeginInvoke(new Action(() =>
+        {
+            CanvasScroll.UpdateLayout();
+            CanvasScroll.ScrollToHorizontalOffset(Math.Max(0, x * vm.Scale - CanvasScroll.ViewportWidth / 2));
+            CanvasScroll.ScrollToVerticalOffset(Math.Max(0, y * vm.Scale - CanvasScroll.ViewportHeight / 2));
+        }), System.Windows.Threading.DispatcherPriority.Loaded);
+    }
+
+    private void OnViewportSize(object sender, SizeChangedEventArgs e)
+    {
+        if (Vm is { } vm) { vm.ViewportWidth = CanvasScroll.ViewportWidth > 0 ? CanvasScroll.ViewportWidth : e.NewSize.Width; vm.ViewportHeight = CanvasScroll.ViewportHeight > 0 ? CanvasScroll.ViewportHeight : e.NewSize.Height; }
+    }
+
+    /// <summary>Zooms by a factor, keeping the point under the pointer (or the middle of the window) where it is.</summary>
+    private void ZoomAt(double factor, Point? viewportPoint)
+    {
+        if (Vm is not { } vm) return;
+        var vp = viewportPoint ?? new Point(CanvasScroll.ViewportWidth / 2, CanvasScroll.ViewportHeight / 2);
+        var wx = (CanvasScroll.HorizontalOffset + vp.X) / vm.Scale; var wy = (CanvasScroll.VerticalOffset + vp.Y) / vm.Scale;
+        vm.Scale = Math.Clamp(Math.Round(vm.Scale * factor, 4), DesignerViewModel.MinScale, DesignerViewModel.MaxScale);
+        CanvasScroll.UpdateLayout();
+        CanvasScroll.ScrollToHorizontalOffset(Math.Max(0, wx * vm.Scale - vp.X)); CanvasScroll.ScrollToVerticalOffset(Math.Max(0, wy * vm.Scale - vp.Y));
+    }
 
     private void OnWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
     {
-        if (System.Windows.Input.Keyboard.Modifiers != System.Windows.Input.ModifierKeys.Control || Vm is not { } vm) return;
-        vm.Scale = Math.Clamp(Math.Round(vm.Scale * (e.Delta > 0 ? 1.15 : 1 / 1.15), 3), 0.03, 3);
+        ZoomAt(e.Delta > 0 ? 1.2 : 1 / 1.2, e.GetPosition(CanvasScroll));
         e.Handled = true;
+    }
+
+    private static bool IsInside(DependencyObject? d, DependencyObject ancestor)
+    {
+        while (d is not null) { if (ReferenceEquals(d, ancestor)) return true; d = d is System.Windows.Media.Visual or System.Windows.Media.Media3D.Visual3D ? System.Windows.Media.VisualTreeHelper.GetParent(d) : LogicalTreeHelper.GetParent(d); }
+        return false;
     }
 
     private void OnPanStart(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        if (e.ChangedButton != System.Windows.Input.MouseButton.Middle) return;
+        var middle = e.ChangedButton == System.Windows.Input.MouseButton.Middle;
+        var background = e.ChangedButton == System.Windows.Input.MouseButton.Left && e.OriginalSource is DependencyObject src && IsInside(src, World)
+                         && (src as FrameworkElement)?.DataContext is not BedItem;
+        if (!middle && !background) return;
         _panning = true; _panStart = e.GetPosition(CanvasScroll); _panH = CanvasScroll.HorizontalOffset; _panV = CanvasScroll.VerticalOffset;
-        CanvasScroll.CaptureMouse(); CanvasScroll.Cursor = System.Windows.Input.Cursors.Hand; e.Handled = true;
+        CanvasScroll.CaptureMouse(); CanvasScroll.Cursor = System.Windows.Input.Cursors.Hand; e.Handled = middle;
     }
 
     private void OnPanMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -288,10 +353,9 @@ public partial class DesignerView : UserControl
 
     private void OnPanEnd(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        if (!_panning || e.ChangedButton != System.Windows.Input.MouseButton.Middle) return;
+        if (!_panning) return;
         _panning = false; CanvasScroll.ReleaseMouseCapture(); CanvasScroll.Cursor = null;
     }
-
     private void OnWorldMove(object sender, System.Windows.Input.MouseEventArgs e)
     {
         if (Vm is not { } vm) return;

@@ -1,0 +1,505 @@
+[
+  {
+    "id": "pothos",
+    "names": {
+      "en": [
+        "Pothos",
+        "Devil's ivy"
+      ],
+      "ro": [
+        "Poto",
+        "Epipremnum"
+      ]
+    },
+    "scientific": "Epipremnum aureum",
+    "synonyms": [],
+    "family": "Araceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Very forgiving trailing climber that tolerates low to bright indirect light.",
+      "ro": "Cățărătoare foarte iertătoare, care suportă lumină slabă până la lumină indirectă puternică."
+    },
+    "tips": {
+      "en": [
+        "Water when the top few centimetres of soil are dry; soggy soil rots the roots.",
+        "Trim the vines to keep it bushy; cuttings root easily in water."
+      ],
+      "ro": [
+        "Udă când primii centimetri de sol sunt uscați; solul îmbibat putrezește rădăcinile.",
+        "Scurtează lăstarii pentru a-l ține stufos; butașii prind ușor în apă."
+      ]
+    },
+    "rotationFamily": "Araceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Toxic if eaten by people and pets (it contains calcium oxalate crystals). Keep out of reach of children, cats and dogs.",
+      "ro": "Toxică dacă este consumată de oameni și animale (conține cristale de oxalat de calciu). Ține-o departe de copii, pisici și câini."
+    }
+  },
+  {
+    "id": "snake-plant",
+    "names": {
+      "en": [
+        "Snake plant",
+        "Mother-in-law's tongue"
+      ],
+      "ro": [
+        "Limba soacrei",
+        "Sansevieria"
+      ]
+    },
+    "scientific": "Dracaena trifasciata",
+    "synonyms": [],
+    "family": "Asparagaceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "low",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Tough, upright succulent-like plant that copes with low light and long gaps between waterings.",
+      "ro": "Plantă robustă, dreaptă, asemănătoare suculentelor, care suportă lumina slabă și pauze lungi între udări."
+    },
+    "tips": {
+      "en": [
+        "Let the soil dry out fully between waterings, and water less in winter.",
+        "Use a pot with drainage; overwatering is the usual cause of failure."
+      ],
+      "ro": [
+        "Lasă solul să se usuce complet între udări și udă mai rar iarna.",
+        "Folosește un ghiveci cu drenaj; udarea excesivă este cauza obișnuită a eșecului."
+      ]
+    },
+    "rotationFamily": "Asparagaceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Mildly toxic to pets if chewed.",
+      "ro": "Ușor toxică pentru animale dacă este mestecată."
+    }
+  },
+  {
+    "id": "monstera",
+    "names": {
+      "en": [
+        "Monstera",
+        "Swiss cheese plant"
+      ],
+      "ro": [
+        "Monstera",
+        "Costița"
+      ]
+    },
+    "scientific": "Monstera deliciosa",
+    "synonyms": [],
+    "family": "Araceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Large climbing foliage plant that develops split leaves in bright, indirect light.",
+      "ro": "Plantă decorativă mare, cățărătoare, ale cărei frunze se despică la lumină indirectă puternică."
+    },
+    "tips": {
+      "en": [
+        "Give it a moss pole to climb; water when the top 3–5 cm of soil are dry.",
+        "Wipe the leaves occasionally so they can use the light."
+      ],
+      "ro": [
+        "Oferă-i un tutore cu mușchi pe care să se cațere; udă când primii 3–5 cm de sol sunt uscați.",
+        "Șterge frunzele din când în când ca să poată folosi lumina."
+      ]
+    },
+    "rotationFamily": "Araceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Toxic if eaten by people and pets (it contains calcium oxalate crystals). Keep out of reach of children, cats and dogs.",
+      "ro": "Toxică dacă este consumată de oameni și animale (conține cristale de oxalat de calciu). Ține-o departe de copii, pisici și câini."
+    }
+  },
+  {
+    "id": "spider-plant",
+    "names": {
+      "en": [
+        "Spider plant"
+      ],
+      "ro": [
+        "Clorofit"
+      ]
+    },
+    "scientific": "Chlorophytum comosum",
+    "synonyms": [],
+    "family": "Asparagaceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Easy plant that sends out plantlets on long stems; generally regarded as safe around cats and dogs.",
+      "ro": "Plantă ușoară, care face plantule pe tulpini lungi; în general considerată sigură pentru pisici și câini."
+    },
+    "tips": {
+      "en": [
+        "Brown leaf tips usually mean dry air, salts or fluoride in tap water: try rainwater.",
+        "Pot up the plantlets to make new plants."
+      ],
+      "ro": [
+        "Vârfurile brune ale frunzelor indică de obicei aer uscat, săruri sau fluor în apa de la robinet: încearcă apă de ploaie.",
+        "Plantează plantulele în ghivece pentru a obține plante noi."
+      ]
+    },
+    "rotationFamily": "Asparagaceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "peace-lily",
+    "names": {
+      "en": [
+        "Peace lily"
+      ],
+      "ro": [
+        "Crinul păcii",
+        "Spatifilum"
+      ]
+    },
+    "scientific": "Spathiphyllum wallisii",
+    "synonyms": [],
+    "family": "Araceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "high",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Glossy leaves and white spathes; it droops clearly when thirsty and recovers after watering.",
+      "ro": "Frunze lucioase și spate albe; se ofilește vizibil când îi este sete și își revine după udare."
+    },
+    "tips": {
+      "en": [
+        "Keep the soil evenly moist but never standing in water.",
+        "Needs bright indirect light to flower; scorch in direct sun."
+      ],
+      "ro": [
+        "Menține solul uniform umed, dar niciodată stând în apă.",
+        "Are nevoie de lumină indirectă puternică pentru a înflori; se arde în soare direct."
+      ]
+    },
+    "rotationFamily": "Araceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Toxic if eaten by people and pets (it contains calcium oxalate crystals). Keep out of reach of children, cats and dogs.",
+      "ro": "Toxică dacă este consumată de oameni și animale (conține cristale de oxalat de calciu). Ține-o departe de copii, pisici și câini."
+    }
+  },
+  {
+    "id": "aloe-vera",
+    "names": {
+      "en": [
+        "Aloe vera"
+      ],
+      "ro": [
+        "Aloe",
+        "Aloe vera"
+      ]
+    },
+    "scientific": "Aloe vera",
+    "synonyms": [],
+    "family": "Asphodelaceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Succulent for the brightest window; stores water in its leaves and rots if kept wet.",
+      "ro": "Suculentă pentru cea mai luminoasă fereastră; își stochează apa în frunze și putrezește dacă este ținută umedă."
+    },
+    "tips": {
+      "en": [
+        "Water thoroughly but rarely, only when the soil is completely dry.",
+        "Use a gritty, fast-draining cactus mix."
+      ],
+      "ro": [
+        "Udă bine, dar rar, doar când solul este complet uscat.",
+        "Folosește un substrat pentru cactuși, aspru și cu drenaj rapid."
+      ]
+    },
+    "rotationFamily": "Asphodelaceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "The latex under the leaf skin is a laxative and toxic to pets. Do not give it to animals.",
+      "ro": "Latexul de sub pielea frunzei este laxativ și toxic pentru animale. Nu-l da animalelor."
+    }
+  },
+  {
+    "id": "zz-plant",
+    "names": {
+      "en": [
+        "ZZ plant"
+      ],
+      "ro": [
+        "Zamioculcas"
+      ]
+    },
+    "scientific": "Zamioculcas zamiifolia",
+    "synonyms": [],
+    "family": "Araceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "low",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Almost indestructible plant with thick rhizomes that store water; tolerates low light and neglect.",
+      "ro": "Plantă aproape indestructibilă, cu rizomi groși care stochează apă; suportă lumina slabă și neglijarea."
+    },
+    "tips": {
+      "en": [
+        "Water only when the soil is dry right through; it prefers too little to too much.",
+        "Grows slowly; repot only when the pot is crowded."
+      ],
+      "ro": [
+        "Udă doar când solul este uscat complet; preferă prea puțin în loc de prea mult.",
+        "Crește lent; mută-l în alt ghiveci doar când este înghesuit."
+      ]
+    },
+    "rotationFamily": "Araceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Toxic if eaten by people and pets (it contains calcium oxalate crystals). Keep out of reach of children, cats and dogs.",
+      "ro": "Toxică dacă este consumată de oameni și animale (conține cristale de oxalat de calciu). Ține-o departe de copii, pisici și câini."
+    }
+  },
+  {
+    "id": "rubber-plant",
+    "names": {
+      "en": [
+        "Rubber plant"
+      ],
+      "ro": [
+        "Ficus elastica",
+        "Arborele de cauciuc"
+      ]
+    },
+    "scientific": "Ficus elastica",
+    "synonyms": [],
+    "family": "Moraceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Bold, glossy-leaved tree for a bright spot out of direct sun; drops leaves if moved often or overwatered.",
+      "ro": "Arbust decorativ, cu frunze mari și lucioase, pentru un loc luminos fără soare direct; își pierde frunzele dacă este mutat des sau udat prea mult."
+    },
+    "tips": {
+      "en": [
+        "Water when the top 4–5 cm of soil are dry and keep it away from cold draughts.",
+        "Wipe the leaves; the milky sap can irritate skin, so wear gloves when pruning."
+      ],
+      "ro": [
+        "Udă când primii 4–5 cm de sol sunt uscați și ferește-l de curenții reci.",
+        "Șterge frunzele; sucul lăptos poate irita pielea, deci poartă mănuși la tăiere."
+      ]
+    },
+    "rotationFamily": "Moraceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "The sap is irritating and the plant is mildly toxic to pets.",
+      "ro": "Sucul este iritant, iar planta este ușor toxică pentru animale."
+    }
+  },
+  {
+    "id": "moth-orchid",
+    "names": {
+      "en": [
+        "Moth orchid"
+      ],
+      "ro": [
+        "Orhidee",
+        "Phalaenopsis"
+      ]
+    },
+    "scientific": "Phalaenopsis spp.",
+    "synonyms": [],
+    "family": "Orchidaceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "The common supermarket orchid: roots live in bark, not soil, and like bright indirect light.",
+      "ro": "Orhideea comună din magazine: rădăcinile trăiesc în scoarță, nu în pământ, și iubesc lumina indirectă puternică."
+    },
+    "tips": {
+      "en": [
+        "Water by soaking the roots for about 10–15 minutes, then drain fully; never leave water in the crown.",
+        "Silvery roots mean it is dry; green roots mean it has water."
+      ],
+      "ro": [
+        "Udă înmuind rădăcinile circa 10–15 minute, apoi scurge complet; nu lăsa apă în coroana frunzelor.",
+        "Rădăcinile argintii arată că este uscată; cele verzi arată că are apă."
+      ]
+    },
+    "rotationFamily": "Orchidaceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "jade-plant",
+    "names": {
+      "en": [
+        "Jade plant"
+      ],
+      "ro": [
+        "Planta jad",
+        "Crassula"
+      ]
+    },
+    "scientific": "Crassula ovata",
+    "synonyms": [],
+    "family": "Crassulaceae",
+    "category": "houseplant",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "tender",
+    "summary": {
+      "en": "Long-lived succulent with thick leaves; needs strong light and a dry rest in winter.",
+      "ro": "Suculentă longevivă, cu frunze groase; are nevoie de lumină puternică și de o odihnă uscată iarna."
+    },
+    "tips": {
+      "en": [
+        "Water when the soil is dry and the leaves are slightly less plump; much less in winter.",
+        "A cool, bright winter spot encourages flowering."
+      ],
+      "ro": [
+        "Udă când solul este uscat, iar frunzele sunt ușor mai puțin turgescente; mult mai rar iarna.",
+        "Un loc răcoros și luminos iarna stimulează înflorirea."
+      ]
+    },
+    "rotationFamily": "Crassulaceae",
+    "roles": [
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Starter record compiled from widely published houseplant care guidance; individual plants vary with light, pot, season and home. Watch the plant, not the calendar.",
+        "organization": "Garden Helper project"
+      }
+    ],
+    "cautions": {
+      "en": "Mildly toxic to cats and dogs.",
+      "ro": "Ușor toxică pentru pisici și câini."
+    }
+  }
+]

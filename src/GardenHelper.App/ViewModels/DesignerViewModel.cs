@@ -1,3 +1,5 @@
+using System.Windows.Media.Imaging;
+using System.IO;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -27,6 +29,10 @@ public sealed partial class BedItem : ObservableObject
     public double Height { get => Bed.Height; set { Bed.Height = Math.Max(20, value); OnPropertyChanged(); OnPropertyChanged(nameof(SizeText)); OnPropertyChanged(nameof(AreaText)); } }
     public double Rotation { get => Bed.Rotation; set { Bed.Rotation = ((value % 360) + 360) % 360; OnPropertyChanged(); } }
     public string Name { get => Bed.Name; set { Bed.Name = value; OnPropertyChanged(); OnPropertyChanged(nameof(Label)); } }
+    public bool Locked { get => Bed.Locked; set { Bed.Locked = value; OnPropertyChanged(); OnPropertyChanged(nameof(Label)); OnPropertyChanged(nameof(LockLabel)); } }
+    public string LockLabel => Locked ? Loc.T("design_unlock") : Loc.T("design_lock");
+    [ObservableProperty] private IReadOnlyList<PlantMarker>? _markers;
+    [ObservableProperty] private string _tipText = "";
     public int ShadePercent { get => Bed.ShadePercent; set { Bed.ShadePercent = Math.Clamp(value, 0, 90); OnPropertyChanged(); } }
     public string Kind { get => Bed.Kind; set { Bed.Kind = value; OnPropertyChanged(); OnPropertyChanged(nameof(Fill)); } }
 
@@ -34,12 +40,16 @@ public sealed partial class BedItem : ObservableObject
     [ObservableProperty] private bool _isHighlighted;
     [ObservableProperty] private string _plantsText = "";
 
-    public string Label => Name;
+    public string Label => (Locked ? "🔒 " : "") + Name;
     public string SizeText => $"{Width / 100:0.##} × {Height / 100:0.##} m";
     public string AreaText => $"{Width * Height / 10000:0.##} m²";
     public Pt[] Corners => GeometryMath.RectCorners(X, Y, Width, Height, Rotation);
 
-    public Brush Fill => new SolidColorBrush(Kind switch
+    public bool IsStructure => FeatureCatalog.IsStructure(Kind);
+
+    public Brush Fill => FeatureCatalog.IsStructure(Kind)
+        ? new SolidColorBrush(Color.FromArgb(205, FeatureColors.For(Kind).R, FeatureColors.For(Kind).G, FeatureColors.For(Kind).B))
+        : new SolidColorBrush(Kind switch
     {
         "raised" => Color.FromArgb(190, 150, 110, 70), "greenhouse" => Color.FromArgb(170, 150, 210, 220),
         "pond" => Color.FromArgb(190, 70, 130, 190), "compost" => Color.FromArgb(190, 110, 80, 50),
@@ -59,7 +69,7 @@ public sealed record KindOption(string Key, string Label)
 {
     public override string ToString() => Label;
 }
-public sealed record PlantingRow(BedPlanting Planting, string PlantName, string StatusLabel, string Expected)
+public sealed record PlantingRow(BedPlanting Planting, string PlantName, string StatusLabel, string Expected, Geometry? IconBody = null, Geometry? IconAccent = null, Brush? IconBodyBrush = null, Brush? IconAccentBrush = null)
 {
     public string SownArg => $"{Planting.Id}:Sown";
     public string GrowingArg => $"{Planting.Id}:Growing";
@@ -96,12 +106,15 @@ public sealed partial class DesignerViewModel : PageViewModel
 
     public UndoStack History { get; } = new();
 
-    public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, ILogger<DesignerViewModel> log) : base(log)
+    private readonly BackdropService _backdrops;
+
+    public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, BackdropService backdrops, CameraFeed camFeed, ILogger<DesignerViewModel> log) : base(log)
     {
-        _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav;
+        _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
         var lang = Loc.Instance.Language;
         Plants = kb.Plants.OrderBy(p => p.DisplayName(lang)).Select(p => new PlantOption(p.Id, p.DisplayName(lang))).ToList();
-        Kinds = new[] { "bed", "raised", "greenhouse", "tree", "pond", "compost", "path", "structure" }.Select(k => new KindOption(k, Loc.T("kind_" + k))).ToList();
+        Kinds = new[] { "bed", "raised", "greenhouse", "tree", "pond", "compost", "path", "structure" }.Select(k => new KindOption(k, Loc.T("kind_" + k)))
+            .Concat(FeatureCatalog.Structures.Select(k => new KindOption(k, Loc.T("feat_" + k)))).ToList();
         Filters = new[]
         {
             new LibraryFilter("all", Loc.T("filter_all"), _ => true),
@@ -133,7 +146,15 @@ public sealed partial class DesignerViewModel : PageViewModel
     [ObservableProperty] private double _scale = 0.5;
     [ObservableProperty] private double _canvasWidth = 1600;
     [ObservableProperty] private double _canvasHeight = 1000;
-    [ObservableProperty] private System.Windows.Media.ImageSource? _satellite;
+    // Satellite backdrop: the picture, where it sits on the plan (cm) and whether it is shown.
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(BackdropVisible))] private System.Windows.Media.ImageSource? _backdrop;
+    [ObservableProperty] private double _backdropX;
+    [ObservableProperty] private double _backdropY;
+    [ObservableProperty] private double _backdropW;
+    [ObservableProperty] private double _backdropH;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(BackdropVisible))] private bool _hasBackdrop;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(BackdropVisible))] private bool _showBackdrop = true;
+    public bool BackdropVisible => HasBackdrop && ShowBackdrop && Backdrop is not null;
     [ObservableProperty] private bool _snap = true;
     [ObservableProperty] private PlantOption? _newPlant;
     [ObservableProperty] private string _newQuantity = "1";
@@ -165,26 +186,47 @@ public sealed partial class DesignerViewModel : PageViewModel
     private List<Pt> _planAll = new();
 
     /// <summary>Places the property outline and every traced place on the plan, all on one plane so they keep their true positions.</summary>
-    private void BuildBoundary(IReadOnlyList<PropertyFeature> features)
+    private PlanFrame? _frame;
+    private GeoPoint[] _geoAll = Array.Empty<GeoPoint>();
+
+    private void BuildBoundary(IReadOnlyList<PropertyFeature> features, ISet<int> hiddenFeatureIds)
     {
         _boundary = new(); _planAll = new(); BoundaryPoints = new PointCollection(); HasBoundary = false; BoundaryText = ""; FeatureShapes.Clear();
+        _frame = null; Backdrop = null; HasBackdrop = false; _geoAll = Array.Empty<GeoPoint>();
+        CanvasWidth = 1600; CanvasHeight = 1000;
         if (_garden is null) return;
         var outline = GeoMath.FromJson(_garden.BoundaryJson);
         var hasOutline = outline.Count >= GeoMath.MinBoundaryPins;
-        var feats = features.Select(f => (Feature: f, Pins: GeoMath.FromJson(f.PointsJson))).Where(x => x.Pins.Count >= GeoMath.MinBoundaryPins).ToList();
+        // Structures drawn in the designer are editable beds; only the others are drawn here as locked outlines.
+        var feats = features.Where(f => !hiddenFeatureIds.Contains(f.Id))
+            .Select(f => (Feature: f, Pins: GeoMath.FromJson(f.PointsJson))).Where(x => x.Pins.Count >= GeoMath.MinBoundaryPins).ToList();
+        var allKnown = features.SelectMany(f => GeoMath.FromJson(f.PointsJson)).ToList();
+        if (hasOutline) allKnown.AddRange(outline);
+        _geoAll = allKnown.ToArray();
+
+        // One reversible frame for everything, so what is drawn here can be saved back as real coordinates.
+        double w = 1600, h = 1000;
+        if (allKnown.Count > 0) _frame = PlanFrame.Fit(allKnown, 500, out w, out h);
+        else if (_garden.Latitude is { } la && _garden.Longitude is { } lo) _frame = new PlanFrame(new GeoPoint(la, lo), 800, 500);
+        CanvasWidth = Math.Max(1600, w); CanvasHeight = Math.Max(1000, h);
+
+        // The satellite backdrop may stick out beyond the shapes: widen the plane to hold it.
+        if (_frame is not null && _garden.BackdropFile is { } file && _garden.BackdropTopLat is { } tla && _garden.BackdropTopLon is { } tlo && _garden.BackdropCmPerPixel is { } cmpp
+            && _backdrops.Load(file) is BitmapSource img)
+        {
+            var tl = _frame.ToPlan(new GeoPoint(tla, tlo));
+            var bw = img.PixelWidth * cmpp; var bh = img.PixelHeight * cmpp;
+            var dx = tl.X < 0 ? -tl.X : 0; var dy = tl.Y < 0 ? -tl.Y : 0;
+            if (dx > 0 || dy > 0) _frame.Shift(dx, dy);
+            CanvasWidth = Math.Max(CanvasWidth + dx, tl.X + dx + bw); CanvasHeight = Math.Max(CanvasHeight + dy, tl.Y + dy + bh);
+            Backdrop = img; BackdropX = tl.X + dx; BackdropY = tl.Y + dy; BackdropW = bw; BackdropH = bh; HasBackdrop = true;
+        }
+
         var shapes = new List<IReadOnlyList<GeoPoint>>();
         if (hasOutline) shapes.Add(outline);
         shapes.AddRange(feats.Select(x => (IReadOnlyList<GeoPoint>)x.Pins));
-        if (shapes.Count == 0) return;
-
-        List<List<Pt>> plan;
-        if (Satellite is not null && _garden.Latitude is { } la && _garden.Longitude is { } lo)
-            plan = shapes.Select(s => GeoMath.ToPlan(s, new GeoPoint(la, lo), CanvasWidth / 2, CanvasHeight / 2)).ToList();   // picture is centred on these coordinates
-        else
-        {
-            var (p, w, h) = GeoMath.ToPlanFittedMany(shapes);
-            plan = p; CanvasWidth = Math.Max(1600, w); CanvasHeight = Math.Max(1000, h);
-        }
+        var plan = shapes.Select(s => (List<Pt>)s.Select(_frame!.ToPlan).ToList()).ToList();
+        if (plan.Count == 0) return;
         _planAll = plan.SelectMany(s => s).ToList();
         var i = 0;
         if (hasOutline)
@@ -230,16 +272,19 @@ public sealed partial class DesignerViewModel : PageViewModel
 
     public double LabelSize => 13 / Scale;
     public double HandleSize => 16 / Scale;
+    public double CameraIconSize => 28 / Scale;
+    public double CameraIconOffset => -14 / Scale;
     public bool HasSelection => Selected is not null;
-    public string ScaleText => $"{Scale * 100:0}%";
+    public string ScaleText => Scale * 100 < 1 ? $"{Scale * 100:0.0}%" : $"{Scale * 100:0}%";
     public bool CanUndo => History.CanUndo;
     public bool CanRedo => History.CanRedo;
     public string UndoTip => History.UndoText is { } t ? Loc.F("design_undo_tip", t) : Loc.T("design_undo");
     public string RedoTip => History.RedoText is { } t ? Loc.F("design_redo_tip", t) : Loc.T("design_redo");
     public string StatusSelection => Selected is null ? Loc.T("design_status_none")
-        : Loc.F("design_status_sel", Selected.Name, Selected.SizeText, Selected.AreaText, Selected.Rotation.ToString("0"));
+        : Loc.F("design_status_sel", Selected.Name, Selected.SizeText, Selected.AreaText, Selected.Rotation.ToString("0"),
+            (Selected.X / 100).ToString("0.0", Loc.Instance.Culture), (Selected.Y / 100).ToString("0.0", Loc.Instance.Culture));
 
-    partial void OnScaleChanged(double value) { OnPropertyChanged(nameof(StrokeSize)); OnPropertyChanged(nameof(LabelSize)); OnPropertyChanged(nameof(HandleSize)); OnPropertyChanged(nameof(ScaleText)); }
+    partial void OnScaleChanged(double value) { OnPropertyChanged(nameof(StrokeSize)); OnPropertyChanged(nameof(LabelSize)); OnPropertyChanged(nameof(HandleSize)); OnPropertyChanged(nameof(CameraIconSize)); OnPropertyChanged(nameof(CameraIconOffset)); OnPropertyChanged(nameof(ScaleText)); }
     partial void OnLibrarySearchChanged(string value) => RefreshCards();
     partial void OnSelectedFilterChanged(LibraryFilter? value) => RefreshCards();
     partial void OnNewPlantChanged(PlantOption? value) => UpdatePlantAdvice();
@@ -266,28 +311,14 @@ public sealed partial class DesignerViewModel : PageViewModel
         HasGarden = _garden is not null;
         if (_garden is null) return;
 
-        if (SiteImage.Load(_paths, _garden) is { } img && _garden.SatelliteCmPerPixel is { } cm)
-        {
-            Satellite = img;
-            var bmp = (System.Windows.Media.Imaging.BitmapSource)img;
-            CanvasWidth = bmp.PixelWidth * cm; CanvasHeight = bmp.PixelHeight * cm;
-            Scale = 0.08;
-        }
-        else { Satellite = null; CanvasWidth = 1600; CanvasHeight = 1000; }
         var featureEntities = await _repo.ListAsync<PropertyFeature>(q => q.Where(f => f.GardenId == _garden.Id));
-        BuildBoundary(featureEntities);
-        if (_planAll.Count > 0 && JustImportedBoundary)
-        {
-            // Frame the property so the imported outline and places are visible straight away.
-            var minX = _planAll.Min(p => p.X); var maxX = _planAll.Max(p => p.X);
-            var minY = _planAll.Min(p => p.Y); var maxY = _planAll.Max(p => p.Y);
-            Scale = Math.Clamp(Math.Round(Math.Min(780 / (maxX - minX + 600), 560 / (maxY - minY + 600)), 3), 0.03, 3);
-            StatusMessage = Loc.T("map_imported");
-            JustImportedBoundary = false;
-        }
-
         var keep = Selected?.Id;
         var beds = await _repo.ListAsync<GardenBed>(q => q.Where(b => b.GardenId == _garden.Id).Include(b => b.Plantings).OrderBy(b => b.Id));
+        var hidden = beds.Where(b => b.FeatureId is not null && FeatureCatalog.IsStructure(b.Kind)).Select(b => b.FeatureId!.Value).ToHashSet();
+        BuildBoundary(featureEntities, hidden);
+        await LoadCameraMarkersAsync();
+        if (JustImportedBoundary) { StatusMessage = Loc.T("map_imported"); JustImportedBoundary = false; }
+        FitView();      // open framed on the property, however large it is
         Beds.Clear(); _snapshots.Clear();
         foreach (var b in beds) { Beds.Add(Wrap(b)); _snapshots[b.Id] = Capture(b); }
         Selected = Beds.FirstOrDefault(b => b.Id == keep);
@@ -297,7 +328,12 @@ public sealed partial class DesignerViewModel : PageViewModel
         if (PlanFeatureId is { } planId) { PlanFeatureId = null; await PlanFeatureCoreAsync(planId); }
     });
 
-    private BedItem Wrap(GardenBed bed) => new(bed) { PlantsText = PlantsSummary(bed.Plantings) };
+    private BedItem Wrap(GardenBed bed)
+    {
+        var item = new BedItem(bed) { PlantsText = PlantsSummary(bed.Plantings) };
+        RebuildMarkers(item);
+        return item;
+    }
 
     private string PlantsSummary(IEnumerable<BedPlanting> plantings) =>
         string.Join(", ", plantings.Where(p => p.Status != PlantingStatus.Finished)
@@ -334,6 +370,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     public Task AddPlantToBedAsync(BedItem? bed, string plantId) => RunAsync(async () =>
     {
         if (bed is null) { StatusMessage = Loc.T("design_select_bed_first"); return; }
+        if (bed.IsStructure) { StatusMessage = Loc.T("design_no_plants_in_structure"); return; }
         var plant = _kb.Get(plantId); if (plant is null) return;
         var grid = plant.SpacingCm is { } s ? PlantLayout.Fit(bed.Width, bed.Height, s.Max, plant.RowSpacingCm?.Max) : null;
         var qty = Math.Max(1, grid?.Total ?? 1);
@@ -427,6 +464,7 @@ public sealed partial class DesignerViewModel : PageViewModel
         var list = await _repo.ListAsync<BedPlanting>(q => q.Where(p => p.BedId == Selected.Id).OrderBy(p => p.Status).ThenBy(p => p.Id));
         Selected.Bed.Plantings = list;
         foreach (var p in list) Plantings.Add(Row(p));
+        RebuildMarkers(Selected);
         Selected.PlantsText = PlantsSummary(list);
         UpdatePlantAdvice();
         RebuildCalendar();
@@ -438,7 +476,11 @@ public sealed partial class DesignerViewModel : PageViewModel
         var plant = _kb.Get(p.PlantId);
         var expected = p.PlantedDate is { } d && plant?.DaysToMaturity is { } m
             ? Loc.F("design_expected", d.AddDays(m.Min).ToString("d MMM", Loc.Instance.Culture), d.AddDays(m.Max).ToString("d MMM", Loc.Instance.Culture)) : "";
-        return new PlantingRow(p, plant?.DisplayName(Loc.Instance.Language) ?? p.PlantId, Loc.T("status_" + p.Status), expected);
+        var (shape, body) = PlantIcons.For(plant);
+        var bodyBrush = new SolidColorBrush(body); bodyBrush.Freeze();
+        var accentBrush = new SolidColorBrush(PlantIcons.AccentColorOf(shape)); accentBrush.Freeze();
+        return new PlantingRow(p, plant?.DisplayName(Loc.Instance.Language) ?? p.PlantId, Loc.T("status_" + p.Status), expected,
+            PlantIcons.BodyOf(shape), PlantIcons.AccentOf(shape), bodyBrush, accentBrush);
     }
 
     // ---------------- Editing with undo ----------------
@@ -456,6 +498,7 @@ public sealed partial class DesignerViewModel : PageViewModel
         var after = Capture(item.Bed);
         var before = _snapshots.GetValueOrDefault(item.Id);
         await PersistAsync(item.Bed);
+        RebuildMarkers(item);
         UpdateOverlap();
         if (before is null || before == after) return;
         _snapshots[item.Id] = after;
@@ -469,6 +512,70 @@ public sealed partial class DesignerViewModel : PageViewModel
         var plantings = bed.Plantings; bed.Plantings = new();
         await _repo.SaveAsync(bed);
         bed.Plantings = plantings;
+        await SyncStructureAsync(bed);
+    }, busy: false);
+
+    /// <summary>A structure drawn here is also a place on the property: keep its map coordinates, name and kind in step.</summary>
+    private async Task SyncStructureAsync(GardenBed bed)
+    {
+        if (bed.FeatureId is not { } fid || !FeatureCatalog.IsStructure(bed.Kind) || _frame is null) return;
+        var feature = (await _repo.ListAsync<PropertyFeature>(q => q.Where(f => f.Id == fid))).FirstOrDefault();
+        if (feature is null) return;
+        feature.Name = bed.Name; feature.Kind = bed.Kind;
+        feature.PointsJson = GeoMath.ToJson(GeometryMath.RectCorners(bed.X, bed.Y, bed.Width, bed.Height, bed.Rotation).Select(_frame.ToGeo).ToList());
+        await _repo.SaveAsync(feature);
+    }
+
+    private static (double W, double H) StructureSize(string kind) => kind switch
+    {
+        "house" => (1000, 800), "workshop" => (500, 400), "shed" => (300, 300), "barn" => (1200, 600), "garage" => (600, 500), _ => (400, 400),
+    };
+
+    /// <summary>Adds a permanent structure (house, workshop, shed…) in the middle of the property; drag, resize and rotate it like a bed.</summary>
+    [RelayCommand]
+    private Task AddStructureAsync(string kind) => RunAsync(async () =>
+    {
+        if (_garden is null) return;
+        if (_frame is null) { ErrorMessage = Loc.T("design_need_coords"); return; }
+        var (w, h) = StructureSize(kind);
+        var centre = NewObjectCentre();
+        var offset = Beds.Count(b => b.IsStructure) * 120 % 600;
+        double x = SnapValue(centre.X - w / 2 + offset), y = SnapValue(centre.Y - h / 2 + offset);
+        var n = Beds.Count(b => b.Kind == kind) + 1;
+        var name = $"{Loc.T("feat_" + kind)} {n}";
+        var geo = GeometryMath.RectCorners(x, y, w, h, 0).Select(_frame.ToGeo).ToList();
+        var feature = await _repo.SaveAsync(new PropertyFeature { GardenId = _garden.Id, Name = name, Kind = kind, PointsJson = GeoMath.ToJson(geo) });
+        var bed = await _repo.SaveAsync(new GardenBed { GardenId = _garden.Id, Name = name, Kind = kind, FeatureId = feature.Id, X = x, Y = y, Width = w, Height = h });
+        var item = Wrap(bed);
+        Beds.Add(item); _snapshots[bed.Id] = Capture(bed); Selected = item;
+        History.Push(new UndoEntry(Loc.F("design_undo_add", item.Name), () => RemoveAsync(item), async () => item = await RecreateAsync(item)));
+        StatusMessage = Loc.T("design_structure_added");
+    }, busy: false);
+
+    /// <summary>Downloads (once, after asking) the satellite picture for the property area and shows it behind the plan.</summary>
+    [RelayCommand]
+    private Task LoadBackdropAsync() => RunAsync(async () =>
+    {
+        if (_garden is null) return;
+        var area = _geoAll.ToList();
+        if (area.Count == 0 && _garden.Latitude is { } la && _garden.Longitude is { } lo) area.Add(new GeoPoint(la, lo));
+        if (area.Count == 0) { ErrorMessage = Loc.T("design_backdrop_need_geo"); return; }
+        if (!_dialogs.Confirm(Loc.T("design_backdrop_confirm"))) return;
+        IsBusy = true;
+        try
+        {
+            var (file, grid) = await _backdrops.BuildAsync(_garden.Id, area);
+            _garden.BackdropFile = file; _garden.BackdropTopLat = grid.TopLeft.Lat; _garden.BackdropTopLon = grid.TopLeft.Lon; _garden.BackdropCmPerPixel = grid.CmPerPixel;
+            _garden = await _repo.SaveAsync(_garden);
+        }
+        catch (Exception ex) when (ex is System.Net.Http.HttpRequestException or TaskCanceledException or NotSupportedException or IOException)
+        {
+            ErrorMessage = Loc.F("design_backdrop_failed", ex.Message); return;
+        }
+        finally { IsBusy = false; }
+        ShowBackdrop = true;
+        await LoadAsync();
+        StatusMessage = Loc.T("design_backdrop_done");
     }, busy: false);
 
     public double SnapValue(double v) => Snap ? Math.Round(v / 10) * 10 : v;
@@ -479,10 +586,11 @@ public sealed partial class DesignerViewModel : PageViewModel
         if (_garden is null) return;
         var (w, h) = kind switch { "tree" => (300.0, 300.0), "pond" => (400.0, 300.0), "greenhouse" => (300.0, 400.0), "path" => (80.0, 600.0), "compost" => (100.0, 100.0), "structure" => (300.0, 300.0), _ => (120.0, 300.0) };
         var offset = Beds.Count * 40 % 400;
+        var centre = NewObjectCentre();
         var bed = await _repo.SaveAsync(new GardenBed
         {
             GardenId = _garden.Id, Kind = kind, Name = $"{Loc.T("kind_" + kind)} {Beds.Count(b => b.Kind == kind) + 1}",
-            X = CanvasWidth / 2 - w / 2 + offset, Y = CanvasHeight / 2 - h / 2 + offset, Width = w, Height = h,
+            X = SnapValue(centre.X - w / 2 + offset), Y = SnapValue(centre.Y - h / 2 + offset), Width = w, Height = h,
         });
         var item = Wrap(bed);
         Beds.Add(item); _snapshots[bed.Id] = Capture(bed); Selected = item;
@@ -495,6 +603,8 @@ public sealed partial class DesignerViewModel : PageViewModel
         var plantings = item.Bed.Plantings; item.Bed.Plantings = new();
         await _repo.DeleteAsync(item.Bed);
         item.Bed.Plantings = plantings;
+        // A structure is also a place on the property: removing it here removes the place too (undo brings both back).
+        if (item.Bed.FeatureId is { } fid && item.IsStructure) await _repo.DeleteAsync(new PropertyFeature { Id = fid });
         if (Selected == item) Selected = null;
         Beds.Remove(item); _snapshots.Remove(item.Id);
         RebuildCalendar();
@@ -504,10 +614,16 @@ public sealed partial class DesignerViewModel : PageViewModel
     private async Task<BedItem> RecreateAsync(BedItem old)
     {
         var o = old.Bed;
+        var featureId = o.FeatureId;
+        if (old.IsStructure && _frame is not null)
+        {
+            var geo = GeometryMath.RectCorners(o.X, o.Y, o.Width, o.Height, o.Rotation).Select(_frame.ToGeo).ToList();
+            featureId = (await _repo.SaveAsync(new PropertyFeature { GardenId = o.GardenId, Name = o.Name, Kind = o.Kind, PointsJson = GeoMath.ToJson(geo) })).Id;
+        }
         var copy = new GardenBed
         {
             GardenId = o.GardenId, Kind = o.Kind, Name = o.Name, X = o.X, Y = o.Y, Width = o.Width, Height = o.Height, Rotation = o.Rotation,
-            ShadePercent = o.ShadePercent, Notes = o.Notes,
+            ShadePercent = o.ShadePercent, Notes = o.Notes, FeatureId = featureId,
             Plantings = o.Plantings.Select(p => new BedPlanting { PlantId = p.PlantId, Variety = p.Variety, Quantity = p.Quantity, PlantedDate = p.PlantedDate, Status = p.Status, Notes = p.Notes }).ToList(),
         };
         await _repo.SaveAsync(copy);
@@ -547,9 +663,38 @@ public sealed partial class DesignerViewModel : PageViewModel
     [RelayCommand] private Task UndoAsync() => RunAsync(async () => { await History.UndoAsync(); await RefreshPlantingsAsync(); }, busy: false);
     [RelayCommand] private Task RedoAsync() => RunAsync(async () => { await History.RedoAsync(); await RefreshPlantingsAsync(); }, busy: false);
 
-    [RelayCommand] private void ZoomIn() => Scale = Math.Min(3, Math.Round(Scale * 1.25, 3));
-    [RelayCommand] private void ZoomOut() => Scale = Math.Max(0.03, Math.Round(Scale / 1.25, 3));
-    [RelayCommand] private void Fit() => Scale = Math.Round(Math.Min(780 / CanvasWidth, 600 / CanvasHeight), 3);
+    // ---- Zoom and framing. The view does the anchored zoom (it knows the scroll position); the model only asks. ----
+    public const double MinScale = 0.002, MaxScale = 6;
+    public double ViewportWidth { get; set; } = 800;
+    public double ViewportHeight { get; set; } = 560;
+    /// <summary>Asks the view to zoom by a factor around the centre of what is visible.</summary>
+    public event Action<double>? ZoomRequested;
+    /// <summary>Asks the view to scroll so this point of the plan is in the middle of the window.</summary>
+    public event Action<double, double>? CenterRequested;
+
+    [RelayCommand] private void ZoomIn() => ZoomRequested?.Invoke(1.25);
+    [RelayCommand] private void ZoomOut() => ZoomRequested?.Invoke(1 / 1.25);
+    [RelayCommand] private void Fit() => FitView();
+
+    /// <summary>Frames the property outline and everything drawn on it; with nothing drawn, frames the whole plan.</summary>
+    private void FitView()
+    {
+        var pts = _planAll.Concat(Beds.SelectMany(b => b.Corners)).ToList();
+        double minX = 0, minY = 0, maxX = CanvasWidth, maxY = CanvasHeight;
+        if (pts.Count > 0) { minX = pts.Min(p => p.X); maxX = pts.Max(p => p.X); minY = pts.Min(p => p.Y); maxY = pts.Max(p => p.Y); }
+        var w = Math.Max(200, maxX - minX); var h = Math.Max(200, maxY - minY);
+        Scale = Math.Clamp(Math.Round(Math.Min((ViewportWidth - 40) / w, (ViewportHeight - 40) / h), 4), MinScale, MaxScale);
+        CenterRequested?.Invoke((minX + maxX) / 2, (minY + maxY) / 2);
+    }
+
+    /// <summary>Where new things appear: the middle of the property, or of the plan when nothing is drawn yet.</summary>
+    private void RequestCenter(double x, double y) => CenterRequested?.Invoke(x, y);
+
+    private Pt NewObjectCentre()
+    {
+        if (_planAll.Count > 0) return new Pt((_planAll.Min(p => p.X) + _planAll.Max(p => p.X)) / 2, (_planAll.Min(p => p.Y) + _planAll.Max(p => p.Y)) / 2);
+        return new Pt(CanvasWidth / 2, CanvasHeight / 2);
+    }
     [RelayCommand] private void OpenGarden() => _nav.GoTo<GardenViewModel>();
     [RelayCommand] private void OpenSite() => _nav.GoTo<SiteViewModel>();
 

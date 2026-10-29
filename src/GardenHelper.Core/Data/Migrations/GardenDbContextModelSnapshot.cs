@@ -17,6 +17,64 @@ namespace GardenHelper.Core.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
 
+            modelBuilder.Entity("GardenHelper.Core.Cameras.Camera", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Enabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("FeatureId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("FovDeg")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("GardenId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("HeadingDeg")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("HeightCm")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("Lat")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("Lon")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SecretProtected")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GardenId");
+
+                    b.ToTable("Cameras");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.AppSetting", b =>
                 {
                     b.Property<string>("Key")
@@ -235,6 +293,18 @@ namespace GardenHelper.Core.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<double?>("BackdropCmPerPixel")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("BackdropFile")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("BackdropTopLat")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("BackdropTopLon")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("BoundaryJson")
                         .HasColumnType("TEXT");
 
@@ -302,6 +372,9 @@ namespace GardenHelper.Core.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("Locked")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -365,6 +438,89 @@ namespace GardenHelper.Core.Data.Migrations
                     b.HasIndex("Done", "DueDate");
 
                     b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Domain.InventoryLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PlantId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlantId", "Date");
+
+                    b.ToTable("InventoryLogs");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Domain.InventoryPlant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateOnly?>("Acquired")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly?>("LastWatered")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Location")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Place")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SpeciesId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Variety")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("WateringIntervalDays")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Location");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("Inventory");
                 });
 
             modelBuilder.Entity("GardenHelper.Core.Domain.JournalEntry", b =>
@@ -538,6 +694,17 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Navigation("Feature");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Domain.InventoryLog", b =>
+                {
+                    b.HasOne("GardenHelper.Core.Domain.InventoryPlant", "Plant")
+                        .WithMany("Logs")
+                        .HasForeignKey("PlantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Plant");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.Book", b =>
                 {
                     b.Navigation("Sections");
@@ -548,6 +715,11 @@ namespace GardenHelper.Core.Data.Migrations
             modelBuilder.Entity("GardenHelper.Core.Domain.GardenBed", b =>
                 {
                     b.Navigation("Plantings");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Domain.InventoryPlant", b =>
+                {
+                    b.Navigation("Logs");
                 });
 
             modelBuilder.Entity("GardenHelper.Core.Domain.PropertyFeature", b =>
