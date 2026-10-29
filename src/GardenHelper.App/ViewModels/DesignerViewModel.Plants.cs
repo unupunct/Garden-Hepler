@@ -15,7 +15,7 @@ namespace GardenHelper.App.ViewModels;
 public sealed record CardRow(string Label, string Value);
 
 /// <summary>What shows when you click a plant on the plan: when it went in, when it was last watered, how it is doing and what the sensors say.</summary>
-public sealed record PlantDetailCard(string Title, string Subtitle, string Glyph, IReadOnlyList<CardRow> Rows, IReadOnlyList<CardRow> Sensors, string SensorsNote, int PlantingId, string PlantId, string BedName);
+public sealed record PlantDetailCard(string Title, string Subtitle, string Glyph, IReadOnlyList<CardRow> Rows, IReadOnlyList<CardRow> Sensors, string SensorsNote, int PlantingId, string PlantId, string BedName, int BedId = 0);
 
 /// <summary>A small icon on a building or space for what lives there (chickens in the coop, goats in the barn…).</summary>
 public sealed record FeatureBadge(int FeatureId, int GroupId, string Place, double X, double Y, string Glyph, string Count, string Tip);
@@ -114,7 +114,7 @@ public sealed partial class DesignerViewModel
             if (sensors.Count > 0) sensorNote = "";
         }
         var (_, _) = (m.Shape, m.Body);
-        return new PlantDetailCard(plant?.DisplayName(lang) ?? p.PlantId, plant?.Scientific ?? "", "", rows, sensors, sensorNote, p.Id, p.PlantId, bed.Name);
+        return new PlantDetailCard(plant?.DisplayName(lang) ?? p.PlantId, plant?.Scientific ?? "", "", rows, sensors, sensorNote, p.Id, p.PlantId, bed.Name, bed.Id);
     }
 
     [RelayCommand] private void CloseCard() => CardOpen = false;
@@ -141,6 +141,29 @@ public sealed partial class DesignerViewModel
         CardNote = ""; CardOpen = false;
         StatusMessage = Loc.F(kind == "water" ? "card_water_done" : "card_logged", name);
     }, busy: false);
+
+    /// <summary>Adds a picture of the plant in the open card to the photo timeline.</summary>
+    [RelayCommand]
+    private async Task AddCardPhotoAsync()
+    {
+        if (Card is not { } c) return;
+        var file = _dialogs.PickFile(Loc.T("photos_filter")); if (file is null) return;
+        var stored = await _photos.AddFileAsync(file);
+        if (stored is null) { ErrorMessage = Loc.T("photos_bad_file"); return; }
+        await _repo.SaveAsync(new Photo { File = stored, Caption = c.Title, OwnerKind = c.BedId > 0 ? "bed" : "plant", OwnerId = c.BedId > 0 ? c.BedId : null, PlantId = c.PlantId });
+        CardOpen = false; StatusMessage = Loc.T("photos_saved");
+    }
+
+    [RelayCommand]
+    private async Task AddAnimalPhotoAsync()
+    {
+        if (AnimalCard is not { } c) return;
+        var file = _dialogs.PickFile(Loc.T("photos_filter")); if (file is null) return;
+        var stored = await _photos.AddFileAsync(file);
+        if (stored is null) { ErrorMessage = Loc.T("photos_bad_file"); return; }
+        await _repo.SaveAsync(new Photo { File = stored, Caption = c.Title, OwnerKind = "animal", OwnerId = c.GroupId });
+        AnimalCardOpen = false; StatusMessage = Loc.T("photos_saved");
+    }
 
     // ---- animals: click the icon on a coop, pen or barn
     public sealed record AnimalCardInfo(int GroupId, string Title, IReadOnlyList<CardRow> Rows, string? Unit, string? UnitLabel);

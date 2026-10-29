@@ -421,6 +421,24 @@ foreach (var t in trees) { beds[t.Key].SensorFeatureId = features["orchard"].Id;
 await gh.IngestAsync(features["veg"].Id, new Dictionary<string, double> { ["soil_moisture"] = 21, ["air_temp"] = 11.2 }, DateTime.UtcNow.AddMinutes(-12), default, applyRules: false);
 await gh.IngestAsync(features["orchard"].Id, new Dictionary<string, double> { ["soil_moisture"] = 58, ["air_temp"] = 10.8 }, DateTime.UtcNow.AddMinutes(-9), default, applyRules: false);
 
+// a few pictures for the photo timeline (the satellite picture stands in for real photos)
+var photoSource = Path.Combine(paths.SiteDir, "backdrop-1.jpg");
+if (File.Exists(photoSource))
+{
+    var store = new SeedPhotoStore(paths);
+    foreach (var (ago, kind, owner, plant, caption) in new (int, string, int?, string?, string)[]
+    {
+        (120, "bed", beds["rb1"].Id, "tomato", "Tomatoes planted out, first flowers"), (85, "bed", beds["rb1"].Id, "tomato", "Blight on the lower leaves: removed them"),
+        (60, "animal", null, null, "Hens enjoying the lettuce thinnings"), (45, "plant", null, "pumpkin", "The two giant pumpkins"), (30, "place", features["greenhouse"].Id, null, "Aquaponic bench, lettuce rafts"),
+        (14, "bed", beds["gb4"].Id, "garlic", "Garlic planted and mulched"), (3, "general", null, null, "First frost on the beds this morning"),
+    })
+    {
+        var name = await store.AddFileAsync(photoSource); if (name is null) continue;
+        var ownerId = kind == "animal" ? hens.Id : owner;
+        await repo.SaveAsync(new Photo { Date = Ago(ago), File = name, Caption = caption, OwnerKind = kind, OwnerId = ownerId, PlantId = plant });
+    }
+}
+
 // ---------------------------------------------------------------- settings: the demo knows it is demo data
 var settings = new SettingsService(new ContextFactory(paths));
 await settings.SetAsync("language", "en");

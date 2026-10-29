@@ -108,6 +108,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     private readonly INavigator _nav;
     private readonly ILogger _logger;
     private readonly SettingsService _settings;
+    private readonly SeedPhotoStore _photos;
     private readonly GardenHelper.Core.Greenhouse.GreenhouseService _greenhouse;
     private Garden? _garden;
     private readonly Dictionary<int, BedState> _snapshots = new();
@@ -118,9 +119,9 @@ public sealed partial class DesignerViewModel : PageViewModel
 
     private readonly BackdropService _backdrops;
 
-    public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, BackdropService backdrops, CameraFeed camFeed, GardenHelper.Core.Greenhouse.GreenhouseService greenhouse, SettingsService settings, ILogger<DesignerViewModel> log) : base(log)
+    public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, BackdropService backdrops, CameraFeed camFeed, GardenHelper.Core.Greenhouse.GreenhouseService greenhouse, SettingsService settings, SeedPhotoStore photos, ILogger<DesignerViewModel> log) : base(log)
     {
-        _settings = settings; _logger = log; _greenhouse = greenhouse; _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
+        _photos = photos; _settings = settings; _logger = log; _greenhouse = greenhouse; _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
         Palette = PlanElements.Groups.Select(g => new PaletteGroup(Loc.T("pal_" + g),
             (g == "devices" ? new[] { new PaletteItem("camera", Loc.T("pal_camera"), "◉") }
                             : PlanElements.InGroup(g).Select(e => new PaletteItem(e.Key, Loc.T((e.IsStructure ? "feat_" : "kind_") + e.Key), e.Glyph)).ToArray()))).ToList();
