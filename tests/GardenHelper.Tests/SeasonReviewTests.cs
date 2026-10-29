@@ -123,3 +123,35 @@ public class LookAheadTests
         Assert.DoesNotContain(Run(new DateOnly(2026, 7, 1), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key.StartsWith("look_winter"));
     }
 }
+
+public class AnimalCareTests
+{
+    private static readonly DateOnly Today = new(2026, 10, 29);
+
+    [Fact]
+    public void Feed_days_left_count_down_from_the_day_the_stock_was_set()
+    {
+        var r = new GardenHelper.Core.Animals.FeedRation { GramsPerAnimalPerDay = 1500, StockKg = 30, StockDate = Today.AddDays(-1) };
+        Assert.Equal(4, GardenHelper.Core.Animals.AnimalRules.FeedDaysLeft(r, 4, Today)!.Value, 1);            // 4 goats eat 6 kg a day: 24 kg left = 4 days
+        Assert.Null(GardenHelper.Core.Animals.AnimalRules.FeedDaysLeft(new GardenHelper.Core.Animals.FeedRation { GramsPerAnimalPerDay = 100 }, 4, Today));
+    }
+
+    [Fact]
+    public void Care_due_soon_and_low_feed_show_up_for_today_but_far_off_things_do_not()
+    {
+        var g = new GardenHelper.Core.Animals.AnimalGroup { Id = 1, Name = "Goats", Species = "goat", Count = 4,
+            Rations = new() { new GardenHelper.Core.Animals.FeedRation { Name = "Hay", GramsPerAnimalPerDay = 1500, StockKg = 30, StockDate = Today.AddDays(-1) } },
+            Logs = new()
+            {
+                new GardenHelper.Core.Animals.AnimalLog { Kind = "vaccination", Date = Today.AddDays(-80), DueDate = Today.AddDays(3) },
+                new GardenHelper.Core.Animals.AnimalLog { Kind = "worming", Date = Today.AddDays(-20), DueDate = Today.AddDays(60) },
+                new GardenHelper.Core.Animals.AnimalLog { Kind = "weight", Date = Today.AddDays(-2), Quantity = 55 },
+            } };
+        var items = GardenHelper.Core.Planning.TodayPlanner.Build(Today, Array.Empty<GardenHelper.Core.Domain.GardenTask>(), Array.Empty<GardenHelper.Core.Domain.InventoryPlant>(), new[] { g });
+        Assert.Contains(items, i => i.Key == "today_animal_vaccination");
+        Assert.DoesNotContain(items, i => i.Key == "today_animal_worming");
+        Assert.Contains(items, i => i.Key == "today_feed_low" && i.Severity == "soon");
+        Assert.Equal(55, GardenHelper.Core.Animals.AnimalRules.LastWeight(g.Logs)!.Value.Kg);
+        Assert.Equal(150, GardenHelper.Core.Animals.AnimalRules.Gestation("goat"));
+    }
+}

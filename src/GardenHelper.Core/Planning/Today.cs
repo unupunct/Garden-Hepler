@@ -38,6 +38,15 @@ public static class TodayPlanner
             var unit = g.Species switch { "chicken" or "duck" => "eggs", "goat" => "milk", _ => null };
             if (unit is not null && g.Logs.Any(l => l.Kind == "production" && l.Date >= today.AddDays(-14)) && !g.Logs.Any(l => l.Kind == "production" && l.Date == today))
                 items.Add(new("animals", "info", unit == "eggs" ? "🥚" : "🥛", unit == "eggs" ? "today_log_eggs" : "today_log_milk", new[] { g.Name }, TodayAction.LogProduction, g.Id, true, unit));
+            foreach (var (kind, due) in AnimalRules.UpcomingCare(g.Logs, today))
+            {
+                var days = due.DayNumber - today.DayNumber;
+                if (days > 7) continue;
+                items.Add(new("animals", days < 0 && kind != "breeding" ? "urgent" : days <= 1 ? "soon" : "info", kind == "breeding" ? "🐣" : "💉", "today_animal_" + kind, new[] { g.Name, due.ToString(cultureDateFormat) }, TodayAction.OpenAnimals, g.Id));
+            }
+            foreach (var r in g.Rations)
+                if (AnimalRules.FeedDaysLeft(r, g.Count, today) is { } left && left <= 7)
+                    items.Add(new("animals", left <= 3 ? "urgent" : "soon", "🌾", "today_feed_low", new[] { r.Name, g.Name, Math.Max(0, (int)Math.Round(left)).ToString() }, TodayAction.OpenAnimals, g.Id));
             if (AnimalRules.ActiveWithdrawal(g.Logs, today) is { } until)
                 items.Add(new("animals", "soon", "⛔", "today_withdrawal", new[] { g.Name, until.ToString(cultureDateFormat) }, TodayAction.OpenAnimals, g.Id));
         }

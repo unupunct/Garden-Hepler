@@ -68,6 +68,9 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Property<DateOnly>("Date")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateOnly?>("DueDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("GroupId")
                         .HasColumnType("INTEGER");
 
@@ -110,6 +113,12 @@ namespace GardenHelper.Core.Data.Migrations
 
                     b.Property<decimal>("PricePerKg")
                         .HasColumnType("TEXT");
+
+                    b.Property<DateOnly?>("StockDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("StockKg")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 

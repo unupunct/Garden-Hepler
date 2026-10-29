@@ -55,6 +55,8 @@ public sealed partial class AnimalsViewModel : PageViewModel
     [ObservableProperty] private string _logQuantity = "";
     [ObservableProperty] private string _logCost = "";
     [ObservableProperty] private string _logWithdrawDays = "";
+    [ObservableProperty] private string _logDueDays = "";
+    [ObservableProperty] private string _rationStock = "";
     [ObservableProperty] private string _totals = "";
 
     private static double? Num(string s) => double.TryParse(s.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out var v) ? v : null;
@@ -84,12 +86,16 @@ public sealed partial class AnimalsViewModel : PageViewModel
                 l.Quantity is { } q ? q.ToString("0.##", Loc.Instance.Culture) : null,
                 l.Cost is { } c ? Money(c) : null,
                 l.WithdrawalUntil is { } w ? Loc.F("animal_withdrawal_until", w.ToString("d", Loc.Instance.Culture)) : null,
+                l.DueDate is { } due ? Loc.F(l.Kind == "breeding" ? "animal_expected" : "animal_next_due", due.ToString("d", Loc.Instance.Culture)) : null,
             }.Where(x => x is not null));
             Logs.Add(new AnimalLogRow(l.Id, l.Date.ToString("d", Loc.Instance.Culture), Loc.T("alog_" + l.Kind), l.Text, detail));
         }
         var s = AnimalRules.Summarize(g, Today);
         var lines = new List<string> { Loc.F("animal_feed_line", s.FeedKgPerDay.ToString("0.##", Loc.Instance.Culture), Money(s.FeedCostPerDay), Money(s.FeedCostPerMonth)) };
         if (s.AveragePerDay is { } avg) lines.Add(Loc.F("animal_prod_line", avg.ToString("0.#", Loc.Instance.Culture)) + (s.LayingPercent is { } pct ? " " + Loc.F("animal_laying", pct.ToString("0", Loc.Instance.Culture)) : ""));
+        foreach (var r in g.Rations.Where(r => r.StockKg is not null))
+            lines.Add(Loc.F("animal_stock_line", r.Name, AnimalRules.FeedDaysLeft(r, g.Count, Today) is { } d ? Math.Round(d).ToString("0", Loc.Instance.Culture) : "–", r.StockKg!.Value.ToString("0.#", Loc.Instance.Culture)));
+        if (AnimalRules.LastWeight(g.Logs) is { } wt) lines.Add(Loc.F("animal_weight_line", wt.Kg.ToString("0.#", Loc.Instance.Culture), wt.Date.ToString("d", Loc.Instance.Culture)));
         Summary = string.Join("\n", lines);
         Withdrawal = s.WithdrawalUntil is { } w2 ? Loc.F("animal_withdrawal_warn", w2.ToString("D", Loc.Instance.Culture)) : "";
         Spent = Loc.F("animal_spent", Money(AnimalRules.SpentInMonth(g.Logs, Today.Year, Today.Month)));
@@ -157,10 +163,22 @@ public sealed partial class AnimalsViewModel : PageViewModel
         if (Selected is not { } g) return;
         if (string.IsNullOrWhiteSpace(RationName) || Num(RationGrams) is not { } gr || gr <= 0 || gr > 20000 || (!string.IsNullOrWhiteSpace(RationPrice) && Num(RationPrice) is null or < 0))
         { ErrorMessage = Loc.T("animal_bad_ration"); return; }
-        var r = await _repo.SaveAsync(new FeedRation { GroupId = g.Id, Name = RationName.Trim(), GramsPerAnimalPerDay = gr, PricePerKg = (decimal)(Num(RationPrice) ?? 0) });
+        var r = await _repo.SaveAsync(new FeedRation { GroupId = g.Id, Name = RationName.Trim(), GramsPerAnimalPerDay = gr, PricePerKg = (decimal)(Num(RationPrice) ?? 0), StockKg = Num(RationStock) is > 0 and var st ? st : null, StockDate = Num(RationStock) is > 0 ? Today : null });
         g.Rations.Add(r);
-        RationName = RationGrams = RationPrice = "";
+        RationName = RationGrams = RationPrice = RationStock = "";
         RefreshTotals(); Refresh();
+    }, busy: false);
+
+    /// <summary>Records how much feed is in store now (use the amount in the stock box) for every feed of the group that has a stock, or the first feed when none has.</summary>
+    [RelayCommand]
+    private Task RestockAsync(FeedRation r) => RunAsync(async () =>
+    {
+        if (Selected is not { } g) return;
+        if (Num(RationStock) is not { } kg || kg < 0 || kg > 100000) { ErrorMessage = Loc.T("animal_bad_stock"); return; }
+        r.StockKg = kg; r.StockDate = Today;
+        await _repo.SaveAsync(r);
+        RationStock = ""; RefreshTotals(); Refresh();
+        StatusMessage = Loc.T("animal_restocked");
     }, busy: false);
 
     [RelayCommand]
@@ -183,10 +201,19 @@ public sealed partial class AnimalsViewModel : PageViewModel
         { ErrorMessage = Loc.T("animal_bad_numbers"); return; }
         if (kind.Key is "production" or "count" && qty is null) { ErrorMessage = Loc.T("animal_need_quantity"); return; }
         if (kind.Key is "note" or "treatment" && string.IsNullOrWhiteSpace(LogText)) { ErrorMessage = Loc.T("animal_need_text"); return; }
+        if (kind.Key == "weight" && qty is not > 0) { ErrorMessage = Loc.T("animal_need_quantity"); return; }
+        double? dueDays = string.IsNullOrWhiteSpace(LogDueDays) ? null : Num(LogDueDays);
+        if (!string.IsNullOrWhiteSpace(LogDueDays) && dueDays is null or < 0 or > 3650) { ErrorMessage = Loc.T("animal_bad_numbers"); return; }
+        DateOnly? dueDate = kind.Key switch
+        {
+            "breeding" => Today.AddDays((int)Math.Round(dueDays ?? AnimalRules.Gestation(g.Species))),
+            "vaccination" or "worming" => Today.AddDays((int)Math.Round(dueDays ?? 90)),
+            _ => null,
+        };
         var log = await _repo.SaveAsync(new AnimalLog
         {
             GroupId = g.Id, Kind = kind.Key, Text = LogText.Trim(), Quantity = qty, Cost = cost is null ? null : (decimal)cost,
-            WithdrawalUntil = kind.Key == "treatment" && days is > 0 ? Today.AddDays((int)Math.Round(days.Value)) : null,
+            WithdrawalUntil = kind.Key == "treatment" && days is > 0 ? Today.AddDays((int)Math.Round(days.Value)) : null, DueDate = dueDate,
         });
         g.Logs.Add(log);
         if (kind.Key == "count")
@@ -195,7 +222,7 @@ public sealed partial class AnimalsViewModel : PageViewModel
             await _repo.SaveAsync(new AnimalGroup { Id = g.Id, GardenId = g.GardenId, Name = g.Name, Species = g.Species, Breed = g.Breed, Count = g.Count, FeatureId = g.FeatureId, Notes = g.Notes });
             EditCount = g.Count.ToString(CultureInfo.InvariantCulture);
         }
-        LogText = LogQuantity = LogCost = LogWithdrawDays = "";
+        LogText = LogQuantity = LogCost = LogWithdrawDays = LogDueDays = "";
         RefreshTotals(); Refresh();
         StatusMessage = Loc.T("animal_log_added");
     }, busy: false);

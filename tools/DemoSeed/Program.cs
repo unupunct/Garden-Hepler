@@ -450,6 +450,14 @@ foreach (var (ago, plant, bed, qty, unit) in new (int, string, string, double, s
 })
     await repo.SaveAsync(new Harvest { Date = Ago(ago), PlantId = P(plant), BedId = beds[bed].Id, Quantity = qty, Unit = unit });
 
+// animal care: vaccination due soon, young expected, feed running low, weights
+await repo.SaveAsync(new AnimalLog { GroupId = hens.Id, Date = Ago(80), Kind = "vaccination", Text = "Newcastle disease booster", DueDate = Ahead(3) });
+await repo.SaveAsync(new AnimalLog { GroupId = goats.Id, Date = Ago(75), Kind = "worming", Text = "Rotated wormer, faecal count was moderate", DueDate = Ahead(15) });
+await repo.SaveAsync(new AnimalLog { GroupId = rabbits.Id, Date = Ago(26), Kind = "breeding", Text = "Doe Lili mated with Max", DueDate = Ahead(5), Quantity = 1 });
+foreach (var (g, ration, kg) in new[] { (goats, "Hay", 28.0), (hens, "Layer pellets", 160.0), (pigs, "Grain mix", 900.0) })
+    if ((await repo.ListAsync<FeedRation>(q => q.Where(r => r.GroupId == g.Id && r.Name == ration))).FirstOrDefault() is { } fr) { fr.StockKg = kg; fr.StockDate = Ago(1); await repo.SaveAsync(fr); }
+foreach (var (ago, kg) in new[] { (60, 41.0), (30, 58.0), (7, 71.0) }) await repo.SaveAsync(new AnimalLog { GroupId = pigs.Id, Date = Ago(ago), Kind = "weight", Quantity = kg, Text = "Weighed with the tape" });
+
 // ---------------------------------------------------------------- settings: the demo knows it is demo data
 var settings = new SettingsService(new ContextFactory(paths));
 await settings.SetAsync("language", "en");

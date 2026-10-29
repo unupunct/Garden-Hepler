@@ -67,6 +67,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <DockPanel Margin="0,2">
+                                        <Button DockPanel.Dock="Right" Content="{loc:L animal_restock}" Padding="8,2" Margin="0,0,6,0" ToolTip="{loc:L animal_stock_tip}"
+                                                Command="{Binding DataContext.RestockCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
                                         <Button DockPanel.Dock="Right" Content="✕" Padding="8,2" AutomationProperties.Name="{loc:L delete}"
                                                 Command="{Binding DataContext.RemoveRationCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
                                         <TextBlock VerticalAlignment="Center"><Run Text="{Binding Name, Mode=OneWay}" FontWeight="SemiBold"/><Run Text="  "/><Run Text="{Binding GramsPerAnimalPerDay, Mode=OneWay, StringFormat={}{0:0.#} g}"/><Run Text="  ·  "/><Run Text="{Binding PricePerKg, Mode=OneWay, StringFormat={}{0:0.00}/kg}"/></TextBlock>
@@ -81,6 +83,10 @@
                             <StackPanel Grid.Column="4"><TextBlock Text="{loc:L animal_price_kg}" Style="{StaticResource Label}"/><TextBox Text="{Binding RationPrice}"/></StackPanel>
                             <Button Grid.Column="6" Content="{loc:L add}" Command="{Binding AddRationCommand}" VerticalAlignment="Bottom"/>
                         </Grid>
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <TextBlock Text="{loc:L animal_stock}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding RationStock}" Width="90" ToolTip="{loc:L animal_stock_tip}" AutomationProperties.Name="{loc:L animal_stock}"/>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
 
@@ -99,6 +105,10 @@
                             <StackPanel Grid.Column="4"><TextBlock Text="{loc:L animal_withdraw_days}" Style="{StaticResource Label}"/><TextBox Text="{Binding LogWithdrawDays}" ToolTip="{loc:L animal_withdraw_tip}"/></StackPanel>
                             <Button Grid.Column="6" Style="{StaticResource PrimaryButton}" Content="{loc:L add}" Command="{Binding AddLogCommand}" VerticalAlignment="Bottom"/>
                         </Grid>
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <TextBlock Text="{loc:L animal_due_days}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBox Text="{Binding LogDueDays}" Width="90" ToolTip="{loc:L animal_due_tip}" AutomationProperties.Name="{loc:L animal_due_days}"/>
+                        </StackPanel>
                         <ItemsControl ItemsSource="{Binding Logs}" Margin="0,12,0,0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
