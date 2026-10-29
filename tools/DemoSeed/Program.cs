@@ -1,5 +1,5 @@
 // Demo homestead near Moieciu de Sus (Brasov County, Romania): about six months of records, for testing the app.
-// Usage: DemoSeed <data folder> <content folder> [--force]
+// Usage: DemoSeed <data folder> <content folder> [--force] [--big]   (--big adds years of bulk records, to see how the app copes with a large property)
 using GardenHelper.Core.Animals;
 using GardenHelper.Core.Cameras;
 using GardenHelper.Core.Data;
@@ -457,6 +457,16 @@ await repo.SaveAsync(new AnimalLog { GroupId = rabbits.Id, Date = Ago(26), Kind 
 foreach (var (g, ration, kg) in new[] { (goats, "Hay", 28.0), (hens, "Layer pellets", 160.0), (pigs, "Grain mix", 900.0) })
     if ((await repo.ListAsync<FeedRation>(q => q.Where(r => r.GroupId == g.Id && r.Name == ration))).FirstOrDefault() is { } fr) { fr.StockKg = kg; fr.StockDate = Ago(1); await repo.SaveAsync(fr); }
 foreach (var (ago, kg) in new[] { (60, 41.0), (30, 58.0), (7, 71.0) }) await repo.SaveAsync(new AnimalLog { GroupId = pigs.Id, Date = Ago(ago), Kind = "weight", Quantity = kg, Text = "Weighed with the tape" });
+
+// ---------------------------------------------------------------- --big: a property kept for many years
+if (args.Contains("--big"))
+{
+    var photo = (await repo.ListAsync<Photo>(null)).Select(p => p.File).FirstOrDefault() ?? "x.jpg";
+    var bulkGarden = (await repo.ActiveGardenAsync())!;
+    using var bulk = new ContextFactory(paths).CreateDbContext();
+    BulkData.Add(bulk, bulkGarden.Id, kb.Plantable.Select(p => p.Id).Take(60).ToList(), today, photo);
+    Console.WriteLine("  --big: added years of bulk records");
+}
 
 // ---------------------------------------------------------------- settings: the demo knows it is demo data
 var settings = new SettingsService(new ContextFactory(paths));

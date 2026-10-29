@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using GardenHelper.Core.Animals;
+using GardenHelper.Core.Data;
 using GardenHelper.Core.Domain;
 using GardenHelper.Core.Knowledge;
 using GardenHelper.Core.Planning;
@@ -27,25 +28,7 @@ public class StressTests
         {
             db.Gardens.Add(new Garden { Name = "Big", Latitude = 45, Longitude = 25, LastSpringFrost = new DateOnly(2026, 5, 10), FirstAutumnFrost = new DateOnly(2026, 10, 5) });
             await db.SaveChangesAsync();
-            var rnd = new Random(1);
-            for (var b = 0; b < 600; b++)
-            {
-                var bed = new GardenBed { GardenId = 1, Name = "Bed " + b, Kind = "raised", X = b * 10, Y = 0 };
-                for (var p = 0; p < 6; p++) bed.Plantings.Add(new BedPlanting { PlantId = plantIds[rnd.Next(plantIds.Length)], Quantity = 5, PlantedDate = today.AddDays(-rnd.Next(1500)), Status = PlantingStatus.Growing });
-                db.Beds.Add(bed);
-            }
-            for (var i = 0; i < 6000; i++) db.Journal.Add(new JournalEntry { Date = today.AddDays(-rnd.Next(1500)), Title = "Entry " + i, Text = "x", Tags = i % 3 == 0 ? "harvest" : "watering", PlantId = plantIds[rnd.Next(plantIds.Length)] });
-            for (var i = 0; i < 4000; i++) db.Harvests.Add(new Harvest { Date = today.AddDays(-rnd.Next(1500)), PlantId = plantIds[rnd.Next(plantIds.Length)], BedId = 1 + rnd.Next(600), Quantity = rnd.Next(1, 30), Unit = "kg" });
-            for (var i = 0; i < 3000; i++) db.Photos.Add(new Photo { Date = today.AddDays(-rnd.Next(1500)), File = "x.jpg", Caption = "p" + i });
-            for (var g = 0; g < 20; g++)
-            {
-                var grp = new AnimalGroup { GardenId = 1, Name = "Group " + g, Species = "chicken", Count = 30 };
-                grp.Rations.Add(new FeedRation { Name = "Feed", GramsPerAnimalPerDay = 100, PricePerKg = 2 });
-                for (var i = 0; i < 700; i++) grp.Logs.Add(new AnimalLog { Date = today.AddDays(-rnd.Next(1500)), Kind = "production", Quantity = rnd.Next(10, 30) });
-                db.AnimalGroups.Add(grp);
-            }
-            for (var i = 0; i < 3000; i++) db.Tasks.Add(new GardenTask { Title = "Task " + i, DueDate = today.AddDays(-rnd.Next(1500)), Done = i % 5 != 0 });
-            await db.SaveChangesAsync();
+            BulkData.Add(db, 1, plantIds, today);
         }
 
         var repo = new Repository(env.Factory);

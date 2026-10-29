@@ -11,7 +11,16 @@ using Microsoft.Extensions.Logging;
 
 namespace GardenHelper.App.ViewModels;
 
-public sealed record PhotoTile(Photo Photo, ImageSource? Thumb, string About, string DateText, string Caption);
+/// <summary>One picture in a grid. The thumbnail may arrive a moment later (it is decoded off the UI thread), so the grid appears at once.</summary>
+public sealed partial class PhotoTile : ObservableObject
+{
+    public PhotoTile(Photo photo, ImageSource? thumb, string about, string dateText, string caption) { Photo = photo; _thumb = thumb; About = about; DateText = dateText; Caption = caption; }
+    public Photo Photo { get; }
+    public string About { get; }
+    public string DateText { get; }
+    public string Caption { get; }
+    [ObservableProperty] private ImageSource? _thumb;
+}
 public sealed record PhotoMonthGroup(string Title, IReadOnlyList<PhotoTile> Tiles);
 public sealed record OwnerOption(int? Id, string? PlantId, string Name) { public override string ToString() => Name; }
 
@@ -94,12 +103,30 @@ public sealed partial class PhotosViewModel : PageViewModel
             (q.Length == 0 || (p.Caption ?? "").Contains(q, StringComparison.OrdinalIgnoreCase) || AboutOf(p).Contains(q, StringComparison.OrdinalIgnoreCase))).ToList();
         var culture = Loc.Instance.Culture;
         Groups.Clear();
+        var generation = ++_generation;
+        var tiles = new List<PhotoTile>();
         HasMore = shown.Count > _limit;
         foreach (var month in shown.Take(_limit).GroupBy(p => new DateOnly(p.Date.Year, p.Date.Month, 1)).OrderByDescending(g => g.Key))
             Groups.Add(new PhotoMonthGroup(month.Key.ToString("MMMM yyyy", culture),
-                month.Select(p => new PhotoTile(p, PhotoImage.Load(_store.PathOf(p.File), 260), AboutOf(p), p.Date.ToString("d MMM yyyy", culture), p.Caption ?? "")).ToList()));
+                month.Select(p => new PhotoTile(p, null, AboutOf(p), p.Date.ToString("d MMM yyyy", culture), p.Caption ?? "")).ToList()));
+        foreach (var g in Groups) tiles.AddRange(g.Tiles);
+        _ = FillThumbsAsync(tiles, generation);
         CountText = Loc.FN("photos_count", shown.Count, shown.Count);
         IsEmpty = _all.Count == 0;
+    }
+
+    private int _generation;
+
+    private async Task FillThumbsAsync(List<PhotoTile> tiles, int generation)
+    {
+        // decode a few at a time on worker threads; stop if the list was rebuilt meanwhile
+        foreach (var batch in tiles.Chunk(16))
+        {
+            if (generation != _generation) return;
+            var decoded = await Task.Run(() => batch.Select(t => PhotoImage.Load(_store.PathOf(t.Photo.File), 260)).ToArray());
+            if (generation != _generation) return;
+            for (var i = 0; i < batch.Length; i++) batch[i].Thumb = decoded[i];
+        }
     }
 
     private async Task LoadOwnersAsync()

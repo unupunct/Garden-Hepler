@@ -132,10 +132,26 @@ public class LookAheadTests
     {
         var garden = new GardenHelper.Core.Domain.Garden { FirstAutumnFrost = new DateOnly(2026, 10, 5) };
         var trees = new[] { new GardenHelper.Core.Domain.InventoryPlant { IsTree = true, TreeType = "fruit", SpeciesId = "plum", Name = "Plum" } };
-        Assert.Contains(Run(new DateOnly(2026, 1, 20), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key == "look_tree_prune_winter");
+        var apple = new[] { new GardenHelper.Core.Domain.InventoryPlant { IsTree = true, TreeType = "fruit", SpeciesId = "apple", Name = "Apple" } };
+        Assert.Contains(Run(new DateOnly(2026, 1, 20), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), apple), i => i.Key == "look_tree_prune_winter");
+        Assert.DoesNotContain(Run(new DateOnly(2026, 1, 20), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key == "look_tree_prune_winter");   // plum: summer pruning only
         Assert.Contains(Run(new DateOnly(2026, 8, 10), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key == "look_tree_summer_prune");
         Assert.Contains(Run(new DateOnly(2026, 9, 25), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key == "look_winter_protect");
         Assert.DoesNotContain(Run(new DateOnly(2026, 7, 1), garden, Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>(), trees), i => i.Key.StartsWith("look_winter"));
+    }
+
+    [Fact]
+    public void Tree_care_windows_move_with_the_frost_dates()
+    {
+        var apple = new[] { new GardenHelper.Core.Domain.InventoryPlant { IsTree = true, TreeType = "fruit", SpeciesId = "apple", Name = "Apple" } };
+        var none = Array.Empty<GardenHelper.Core.Knowledge.PlantRecord>();
+        var cold = new GardenHelper.Core.Domain.Garden { LastSpringFrost = new DateOnly(2026, 5, 25), FirstAutumnFrost = new DateOnly(2026, 9, 25) };
+        var warm = new GardenHelper.Core.Domain.Garden { LastSpringFrost = new DateOnly(2026, 4, 1), FirstAutumnFrost = new DateOnly(2026, 11, 10) };
+        var day = new DateOnly(2026, 3, 25);                         // two months before the cold garden's last frost, a few days before the warm one's
+        Assert.Contains(Run(day, cold, none, apple), i => i.Key == "look_tree_prune_winter");
+        Assert.DoesNotContain(Run(day, warm, none, apple), i => i.Key == "look_tree_prune_winter");
+        Assert.Contains(Run(new DateOnly(2026, 10, 15), cold, none, apple), i => i.Key == "look_tree_whitewash");
+        Assert.DoesNotContain(Run(new DateOnly(2026, 10, 15), warm, none, apple), i => i.Key == "look_tree_whitewash");
     }
 }
 
