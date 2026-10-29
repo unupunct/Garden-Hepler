@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+- Raspberry Pi guide opens as its own page from a How-to button in the Greenhouse page, with this PC's address, port, token and place number filled in; available in English and Romanian.
+- Plan frame stays aligned when places are traced or reshaped; the plan fits the window when it opens.
+
 ## 0.2.0
 - **Today** dashboard: late tasks, thirsty plants, eggs and milk to log, treatment withdrawals, greenhouse and garden advice with one-click actions; sun times, saved forecast with weather advice, frost countdown, harvests nearly ready.
 - **Building plans**: draw walls, windows and doors, rooms, furniture, greenhouse and workshop items and your own shapes for the house, garage, workshop, barn and greenhouse; indoor plants placed where they stand, with watering alerts.

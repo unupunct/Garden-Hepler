@@ -35,7 +35,9 @@ public sealed partial class PiGuideViewModel : PageViewModel
     public override Task LoadAsync() => RunAsync(async () =>
     {
         var dir = FindFolder("docs");
-        var file = dir is null ? null : Path.Combine(dir, "RASPBERRY-PI-SETUP.md");
+        var ro = Loc.Instance.Language == "ro";
+        var file = dir is null ? null : Path.Combine(dir, ro ? "RASPBERRY-PI-SETUP.ro.md" : "RASPBERRY-PI-SETUP.md");
+        if (file is not null && !File.Exists(file)) file = Path.Combine(dir!, "RASPBERRY-PI-SETUP.md");      // no translation: use the English guide
         if (file is null || !File.Exists(file)) { ErrorMessage = Loc.T("gh_guide_missing"); return; }
         var port = await _settings.GetAsync(LocalApiServer.PortKey) ?? LocalApiServer.DefaultPort.ToString();
         var token = await _api.TokenAsync();
@@ -43,7 +45,8 @@ public sealed partial class PiGuideViewModel : PageViewModel
         var md = await File.ReadAllTextAsync(file);
         // make the examples ready to copy: this PC, this port, this token, this place
         md = md.Replace("192.168.1.20:8765", $"{PcAddress}:{port}").Replace("YOUR_TOKEN", token).Replace("--greenhouse 8", $"--greenhouse {(HouseId > 0 ? HouseId : 1)}");
-        var intro = $"> **Your values, already filled in below:** this PC `{PcAddress}`, port `{port}`, place number `{(HouseId > 0 ? HouseId : 1)}`. The secret token is in the commands: do not share them.\n\n";
+        var intro = ro ? $"> **Valorile tale, deja completate mai jos:** acest PC `{PcAddress}`, portul `{port}`, numărul locului `{(HouseId > 0 ? HouseId : 1)}`. Tokenul secret este în comenzi: nu le da mai departe.\n\n"
+                       : $"> **Your values, already filled in below:** this PC `{PcAddress}`, port `{port}`, place number `{(HouseId > 0 ? HouseId : 1)}`. The secret token is in the commands: do not share them.\n\n";
         var at = md.IndexOf('\n', md.IndexOf("# ", StringComparison.Ordinal)) + 1;
         Document = MarkdownLite.Build(md[..at] + "\n" + intro + md[at..]);
     });

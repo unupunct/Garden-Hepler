@@ -9,7 +9,7 @@
     <AssemblyName>GardenHelper</AssemblyName>
     <RootNamespace>GardenHelper.App</RootNamespace>
     <ApplicationIcon>Assets\GardenHelper.ico</ApplicationIcon>
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
     <Product>Garden Helper</Product>
     <Company>Garden Helper contributors</Company>
     <Description>Offline gardening, permaculture and self-sufficiency helper with a personal ebook knowledge base.</Description>
@@ -43,7 +43,7 @@
     <Content Include="..\..\mobile\*" Link="Mobile\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <!-- Raspberry Pi agent and its first-time guide, opened from the Greenhouse page. -->
     <Content Include="..\..\tools\raspberry-pi\greenhouse_agent.py;..\..\tools\raspberry-pi\README.md" Link="tools\raspberry-pi\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\docs\RASPBERRY-PI-SETUP.md" Link="docs\RASPBERRY-PI-SETUP.md" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\docs\RASPBERRY-PI-SETUP.md;..\..\docs\RASPBERRY-PI-SETUP.ro.md" Link="docs\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\content\**\*.json" Link="Content\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
