@@ -20,11 +20,13 @@ public sealed partial class SeasonViewModel : PageViewModel
     private readonly Repository _repo;
     private readonly KnowledgeBase _kb;
 
-    public SeasonViewModel(Repository repo, KnowledgeBase kb, ILogger<SeasonViewModel> log) : base(log) { _repo = repo; _kb = kb; }
+    private readonly SeedPhotoStore _store;
+    public SeasonViewModel(Repository repo, KnowledgeBase kb, SeedPhotoStore store, ILogger<SeasonViewModel> log) : base(log) { _repo = repo; _kb = kb; _store = store; }
 
     public ObservableCollection<int> Years { get; } = new();
     public ObservableCollection<SeasonTile> Tiles { get; } = new();
     public ObservableCollection<SeasonSection> Sections { get; } = new();
+    public ObservableCollection<PhotoTile> Gallery { get; } = new();
     [ObservableProperty] private int _selectedYear = DateTime.Today.Year;
     [ObservableProperty] private string _title = "";
     [ObservableProperty] private bool _isEmpty;
@@ -54,6 +56,10 @@ public sealed partial class SeasonViewModel : PageViewModel
 
         var r = SeasonReviewBuilder.Build(SelectedYear, beds, _kb, journal, budget, groups, tasks, photos, DateOnly.FromDateTime(DateTime.Today), harvests);
         Fill(r, garden?.Name);
+        Gallery.Clear();
+        var culture = Loc.Instance.Culture;
+        foreach (var ph in photos.Where(x => x.Date.Year == SelectedYear).OrderBy(x => x.Date).Take(12))
+            Gallery.Add(new PhotoTile(ph, PhotoImage.Load(_store.PathOf(ph.File), 240), "", ph.Date.ToString("d MMM", culture), ph.Caption ?? ""));
     });
 
     private string Name(string plantId) => _kb.Get(plantId)?.DisplayName(Loc.Instance.Language) ?? plantId;

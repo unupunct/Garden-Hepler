@@ -75,3 +75,31 @@ public class TodayExtrasTests
         Assert.Equal(1, items.Count(i => i.Key == "today_wx_frost"));      // day 6 is beyond the three-day window
     }
 }
+
+
+public class WateringAdvisorTests
+{
+    private static readonly DateOnly Today = new(2026, 7, 10);
+    private static readonly System.Globalization.CultureInfo C = System.Globalization.CultureInfo.InvariantCulture;
+    private static GardenHelper.Core.Site.WeatherDay Day(int offset, double max, double mm = 0, int prob = 0) => new(Today.AddDays(offset), 12, max, mm, prob, 10, 0);
+
+    [Fact]
+    public void Dry_soil_asks_for_water_unless_rain_is_coming()
+    {
+        var beds = new[] { new GardenHelper.Core.Planning.BedWatering(1, "Bed A", 12, null, true), new GardenHelper.Core.Planning.BedWatering(2, "Bed B", 60, null, true), new GardenHelper.Core.Planning.BedWatering(3, "Empty", 5, null, false) };
+        var dry = GardenHelper.Core.Planning.WateringAdvisor.Evaluate(beds, new[] { Day(0, 24) }, Today, C);
+        var one = Assert.Single(dry); Assert.Equal("urgent", one.Severity); Assert.Equal(GardenHelper.Core.Planning.TodayAction.WaterBed, one.Action);
+        var wet = GardenHelper.Core.Planning.WateringAdvisor.Evaluate(beds, new[] { Day(0, 24, 9, 80) }, Today, C);
+        Assert.Equal("today_bed_dry_rain", Assert.Single(wet).Key);
+    }
+
+    [Fact]
+    public void Without_a_sensor_only_hot_dry_spells_trigger_a_reminder()
+    {
+        var beds = new[] { new GardenHelper.Core.Planning.BedWatering(1, "Bed A", null, Today.AddDays(-4), true), new GardenHelper.Core.Planning.BedWatering(2, "Bed B", null, Today.AddDays(-1), true) };
+        Assert.Empty(GardenHelper.Core.Planning.WateringAdvisor.Evaluate(beds, new[] { Day(0, 22) }, Today, C));
+        var hot = GardenHelper.Core.Planning.WateringAdvisor.Evaluate(beds, new[] { Day(0, 31) }, Today, C);
+        Assert.Equal("today_bed_hot", Assert.Single(hot).Key);
+        Assert.Empty(GardenHelper.Core.Planning.WateringAdvisor.Evaluate(beds, new[] { Day(0, 31, 7, 70) }, Today, C));
+    }
+}

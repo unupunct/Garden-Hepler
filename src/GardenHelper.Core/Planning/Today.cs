@@ -3,10 +3,10 @@ using GardenHelper.Core.Domain;
 
 namespace GardenHelper.Core.Planning;
 
-public enum TodayAction { Done, Watered, LogProduction, OpenAnimals, OpenGreenhouse, OpenActions, OpenInventory }
+public enum TodayAction { Done, Watered, WaterBed, LogProduction, OpenAnimals, OpenGreenhouse, OpenActions, OpenInventory }
 
 /// <summary>One thing that needs the owner today. The text is a localisation key plus arguments; <see cref="RefId"/> says which task, plant, animal group or greenhouse it is about.</summary>
-public sealed record TodayItem(string Section, string Severity, string Glyph, string Key, string[] Args, TodayAction Action, int RefId, bool NeedsNumber = false, string? Unit = null);
+public sealed record TodayItem(string Section, string Severity, string Glyph, string Key, string[] Args, TodayAction Action, int RefId, bool NeedsNumber = false, string? Unit = null, int[]? RefIds = null);
 
 /// <summary>Turns tasks, plants and animals into today's list: what is late, what is due, what has not been logged yet.</summary>
 public static class TodayPlanner

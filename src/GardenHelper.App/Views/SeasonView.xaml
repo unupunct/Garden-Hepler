@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
              xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <UserControl.Resources><loc:CountToVisibility x:Key="CountVis"/></UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="28,20,28,28" MaxWidth="980" HorizontalAlignment="Left">
             <TextBlock Text="{loc:L nav_season}" Style="{StaticResource H1}"/>
@@ -40,6 +41,17 @@
                                     <ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="0,2"/></DataTemplate></ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Text="{loc:L season_s_gallery}" Style="{StaticResource H2}" Margin="0,16,0,4" Visibility="{Binding Gallery.Count, Converter={StaticResource CountVis}}"/>
+            <ItemsControl ItemsSource="{Binding Gallery}">
+                <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="150" Margin="0,0,10,10" CornerRadius="14" ClipToBounds="True" Background="White" BorderBrush="#FFE3DCC8" BorderThickness="1" ToolTip="{Binding Caption}">
+                            <StackPanel><Image Source="{Binding Thumb}" Height="100" Stretch="UniformToFill"/><TextBlock Text="{Binding Caption}" Margin="8,4,8,0" FontSize="11" TextTrimming="CharacterEllipsis"/><TextBlock Text="{Binding DateText}" Margin="8,0,8,6" FontSize="10" Foreground="#FF8A9580"/></StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

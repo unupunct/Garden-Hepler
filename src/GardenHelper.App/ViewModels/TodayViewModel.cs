@@ -177,6 +177,14 @@ public sealed partial class TodayViewModel : PageViewModel
                     await _repo.SaveAsync(new InventoryLog { PlantId = p.Id, Date = Today, Kind = "watering", Text = "" });
                 }
                 break;
+            case TodayAction.WaterBed:
+                {
+                    var ids = it.RefIds ?? new[] { it.RefId };
+                    foreach (var bed in await _repo.ListAsync<GardenBed>(q => q.Where(b => ids.Contains(b.Id)).Include(b => b.Plantings)))
+                        foreach (var plantId in bed.Plantings.Where(x => x.Status is PlantingStatus.Sown or PlantingStatus.Growing or PlantingStatus.Harvesting).Select(x => x.PlantId).Distinct())
+                            await _repo.SaveAsync(new JournalEntry { Title = Loc.F("card_water_title", _kb.Get(plantId)?.DisplayName(Loc.Instance.Language) ?? plantId, bed.Name), Text = "", Tags = "watering", PlantId = plantId });
+                }
+                break;
             case TodayAction.LogProduction:
                 if (!double.TryParse(row.Input.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out var qty) || qty < 0) { ErrorMessage = Loc.T("animal_need_quantity"); return; }
                 await _repo.SaveAsync(new AnimalLog { GroupId = it.RefId, Date = Today, Kind = "production", Quantity = qty, Text = "" });

@@ -33,6 +33,7 @@ public sealed class TodayService
         var items = TodayPlanner.Build(today, tasks, plants, groups, "d MMM");
 
         if (forecast is not null) items.AddRange(WeatherAdvice.Evaluate(forecast.Days, today, Loc.Instance.Culture));
+        if (garden is not null) items.AddRange(await BedWateringAsync(garden, forecast, today));
         foreach (var row in await _alerts.LoadAsync())
             if (row.Alert.Severity is AlertSeverity.Urgent or AlertSeverity.Soon)
                 items.Add(new TodayItem("advice", row.Alert.Severity == AlertSeverity.Urgent ? "urgent" : "soon", row.Glyph, "today_advice", new[] { row.Message }, TodayAction.OpenActions, row.Alert.PlantingId ?? 0));
@@ -49,6 +50,34 @@ public sealed class TodayService
                 catch (Exception ex) { _log.LogWarning(ex, "Greenhouse alerts failed"); }
             }
         return items.OrderBy(i => TodayPlanner.SeverityRank(i.Severity)).ThenBy(i => Array.IndexOf(TodayPlanner.Sections, i.Section)).ToList();
+    }
+
+    /// <summary>Beds that need water today: from the soil sensor when there is one, otherwise from hot weather and the last watering; rain that is coming cancels it.</summary>
+    private async Task<List<TodayItem>> BedWateringAsync(Garden garden, WeatherForecast? forecast, DateOnly today)
+    {
+        try
+        {
+            var beds = (await _repo.ListAsync<GardenBed>(q => q.Where(b => b.GardenId == garden.Id).Include(b => b.Plantings)))
+                .Where(b => !FeatureCatalog.IsStructure(b.Kind) && b.Kind is not ("path" or "pond" or "compost" or "driveway")).ToList();
+            var watered = await _repo.ListAsync<JournalEntry>(q => q.Where(j => j.Tags.Contains("watering")));
+            var cache = new Dictionary<int, Dictionary<string, (double Value, DateTime AtUtc)>>();
+            var rows = new List<BedWatering>();
+            foreach (var b in beds)
+            {
+                var active = b.Plantings.Where(p => p.Status is PlantingStatus.Sown or PlantingStatus.Growing or PlantingStatus.Harvesting).Select(p => p.PlantId).Distinct().ToList();
+                if (active.Count == 0) continue;
+                DateOnly? last = watered.Where(j => j.PlantId is not null && active.Contains(j.PlantId)).Select(j => (DateOnly?)j.Date).Max();
+                double? moisture = null;
+                if ((b.SensorFeatureId ?? b.FeatureId) is { } fid)
+                {
+                    if (!cache.TryGetValue(fid, out var latest)) cache[fid] = latest = await _greenhouse.LatestAsync(fid);
+                    if (latest.TryGetValue("soil_moisture", out var m)) moisture = m.Value;
+                }
+                rows.Add(new BedWatering(b.Id, b.Name, moisture, last, true));
+            }
+            return WateringAdvisor.Evaluate(rows, forecast?.Days ?? new List<WeatherDay>(), today, Loc.Instance.Culture);
+        }
+        catch (Exception ex) { _log.LogWarning(ex, "Bed watering check failed"); return new(); }
     }
 
     public static string TitleOf(TodayItem i) => Loc.F(i.Key, i.Args.Cast<object>().ToArray());

@@ -15,7 +15,7 @@ namespace GardenHelper.App.ViewModels;
 public sealed record CardRow(string Label, string Value);
 
 /// <summary>What shows when you click a plant on the plan: when it went in, when it was last watered, how it is doing and what the sensors say.</summary>
-public sealed record PlantDetailCard(string Title, string Subtitle, string Glyph, IReadOnlyList<CardRow> Rows, IReadOnlyList<CardRow> Sensors, string SensorsNote, int PlantingId, string PlantId, string BedName, int BedId = 0);
+public sealed record PlantDetailCard(string Title, string Subtitle, string Glyph, IReadOnlyList<CardRow> Rows, IReadOnlyList<CardRow> Sensors, string SensorsNote, int PlantingId, string PlantId, string BedName, int BedId = 0, IReadOnlyList<System.Windows.Media.ImageSource>? Photos = null);
 
 /// <summary>A small icon on a building or space for what lives there (chickens in the coop, goats in the barn…).</summary>
 public sealed record FeatureBadge(int FeatureId, int GroupId, string Place, double X, double Y, string Glyph, string Count, string Tip);
@@ -113,11 +113,14 @@ public sealed partial class DesignerViewModel
                 }
             if (sensors.Count > 0) sensorNote = "";
         }
+        var recent = (await _repo.ListAsync<Photo>(q => q.Where(x => x.OwnerKind == "bed" && x.OwnerId == bed.Id).OrderByDescending(x => x.Date).ThenByDescending(x => x.Id).Take(4)))
+            .Select(x => PhotoImage.Load(_photos.PathOf(x.File), 110)).Where(i => i is not null).Cast<System.Windows.Media.ImageSource>().ToList();
         var (_, _) = (m.Shape, m.Body);
-        return new PlantDetailCard(plant?.DisplayName(lang) ?? p.PlantId, plant?.Scientific ?? "", "", rows, sensors, sensorNote, p.Id, p.PlantId, bed.Name, bed.Id);
+        return new PlantDetailCard(plant?.DisplayName(lang) ?? p.PlantId, plant?.Scientific ?? "", "", rows, sensors, sensorNote, p.Id, p.PlantId, bed.Name, bed.Id, recent);
     }
 
     [RelayCommand] private void CloseCard() => CardOpen = false;
+    [RelayCommand] private void ShowBedPhotos() { var name = Card?.BedName ?? ""; CardOpen = false; _nav.GoTo<PhotosViewModel>(vm => vm.Search = name); }
 
     [ObservableProperty] private string _cardNote = "";
     [ObservableProperty] private string _cardQty = "";
