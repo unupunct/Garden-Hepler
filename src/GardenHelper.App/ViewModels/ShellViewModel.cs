@@ -58,6 +58,7 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
             new("budget", "¤", typeof(BudgetViewModel)),
             new("grow", "", null),
             new("plants", "☘", typeof(PlantsViewModel)),
+            new("inventory", "❀", typeof(InventoryViewModel)),
             new("seeds", "◉", typeof(SeedsViewModel)),
             new("journal", "✎", typeof(JournalViewModel)),
             new("learn", "", null),

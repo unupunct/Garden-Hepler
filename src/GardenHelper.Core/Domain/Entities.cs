@@ -104,6 +104,16 @@ public class InventoryPlant
     public int? WateringIntervalDays { get; set; }
     public DateOnly? LastWatered { get; set; }
     public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
+    /// <summary>Trees are kept in the same inventory; the fields below are only used for them.</summary>
+    public bool IsTree { get; set; }
+    /// <summary>fruit, nut, shade, conifer or other.</summary>
+    public string? TreeType { get; set; }
+    public DateOnly? PlantedOn { get; set; }
+    public double? HeightCm { get; set; }
+    public double? CrownRadiusCm { get; set; }
+    public double? RootRadiusCm { get; set; }
+    /// <summary>The tree object on the garden plan, so shade and roots can be worked out against the beds.</summary>
+    public int? BedId { get; set; }
     public List<InventoryLog> Logs { get; set; } = new();
     public override string ToString() => Name;
 }

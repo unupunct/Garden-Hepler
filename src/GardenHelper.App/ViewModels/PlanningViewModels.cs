@@ -45,12 +45,25 @@ public sealed partial class ComingUpViewModel : PageViewModel
         var groups = await _repo.ListAsync<AnimalGroup>(q => q.Include(g => g.Logs));
         var treatments = groups.SelectMany(g => g.Logs.Where(l => l.Kind == "treatment").Select(l => (l, g.Name)));
         var items = ComingUpPlanner.Build(tasks, treatments, today, Horizon.Days);
+        var last = today.AddDays(Horizon.Days);
+        foreach (var p in await _repo.ListAsync<InventoryPlant>(q => q.Where(x => x.Status != "dead")))
+        {
+            if (InventoryRules.NextWatering(p) is { } due && due <= last) items.Add(new UpcomingItem(due, "water", Loc.F("up_water", p.Name), p.Place, p.Id));
+            if (!p.IsTree) continue;
+            var age = TreeRules.AgeYears(p.PlantedOn, today);
+            foreach (var k in TreeRules.SeasonalActions(p.TreeType, today.Month, age)) items.Add(new UpcomingItem(today, "tree", Loc.F("up_tree_job", p.Name, Loc.T("tact_" + k)), null, p.Id));
+            var first = new DateOnly(today.Year, today.Month, 1).AddMonths(1);
+            if (first <= last)
+                foreach (var k in TreeRules.SeasonalActions(p.TreeType, first.Month, age).Except(TreeRules.SeasonalActions(p.TreeType, today.Month, age)))
+                    items.Add(new UpcomingItem(first, "tree", Loc.F("up_tree_job", p.Name, Loc.T("tact_" + k)), null, p.Id));
+        }
+        items = items.OrderBy(i => i.Date).ThenBy(i => i.Kind).ThenBy(i => i.Title).ToList();
         Groups.Clear();
         foreach (var bucket in ComingUpPlanner.Buckets)
         {
             var rows = items.Where(i => ComingUpPlanner.BucketOf(i.Date, today) == bucket).Select(i => new UpcomingRow(
-                i.Date.ToString("ddd d MMM", Loc.Instance.Culture), i.Kind == "task" ? "✔" : "⚠",
-                i.Kind == "task" ? i.Title : Loc.F("up_withdrawal_end", i.Title), i.Detail ?? "", i.Kind, i.RefId)).ToList();
+                i.Date.ToString("ddd d MMM", Loc.Instance.Culture), i.Kind switch { "task" => "✔", "water" => "≈", "tree" => "❀", _ => "⚠" },
+                i.Kind == "withdrawal" ? Loc.F("up_withdrawal_end", i.Title) : i.Title, i.Detail ?? "", i.Kind, i.RefId)).ToList();
             if (rows.Count > 0) Groups.Add(new UpcomingGroup(Loc.T("up_bucket_" + bucket), rows));
         }
         Now.Clear(); foreach (var a in await _alerts.LoadAsync()) Now.Add(a);
@@ -61,6 +74,7 @@ public sealed partial class ComingUpViewModel : PageViewModel
     private void Open(UpcomingRow row)
     {
         if (row.Kind == "task") _nav.GoTo<TasksViewModel>();
+        else if (row.Kind is "water" or "tree") _nav.GoTo<InventoryViewModel>();
         else _nav.GoTo<AnimalsViewModel>();
     }
 }

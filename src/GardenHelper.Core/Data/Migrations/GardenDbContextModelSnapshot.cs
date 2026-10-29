@@ -577,8 +577,20 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Property<DateOnly?>("Acquired")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("BedId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("CreatedUtc")
                         .HasColumnType("TEXT");
+
+                    b.Property<double?>("CrownRadiusCm")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("HeightCm")
+                        .HasColumnType("REAL");
+
+                    b.Property<bool>("IsTree")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateOnly?>("LastWatered")
                         .HasColumnType("TEXT");
@@ -596,8 +608,14 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Property<string>("Place")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateOnly?>("PlantedOn")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
+
+                    b.Property<double?>("RootRadiusCm")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Source")
                         .HasColumnType("TEXT");
@@ -607,6 +625,9 @@ namespace GardenHelper.Core.Data.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TreeType")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Variety")
