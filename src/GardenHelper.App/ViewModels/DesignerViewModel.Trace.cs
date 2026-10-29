@@ -66,7 +66,9 @@ public sealed partial class DesignerViewModel
         var geo = _trace.Select(p => _frame.ToGeo(new Pt(p.X, p.Y))).ToList();
         if (GeoMath.SelfIntersects(geo)) { ErrorMessage = Loc.T("trace_crossing"); return; }
         var name = TraceName.Trim();
-        await _repo.SaveAsync(new PropertyFeature { GardenId = _garden.Id, Name = name, Kind = (TraceKind ?? TraceKinds.First()).Key, PointsJson = GeoMath.ToJson(geo) });
+        var created = await _repo.SaveAsync(new PropertyFeature { GardenId = _garden.Id, Name = name, Kind = (TraceKind ?? TraceKinds.First()).Key, PointsJson = GeoMath.ToJson(geo) });
+        var state = StateOf(created); var fid = new[] { created.Id };
+        History.Push(new UndoEntry(Loc.F("edit_undo_trace", name), () => DeleteFeatureByIdAsync(fid), () => RecreateFeatureAsync(fid, state)));
         var cx = _trace.Average(t => t.X); var cy = _trace.Average(t => t.Y);
         var g0 = _frame.ToGeo(new Pt(0, 0));
         CancelTrace();

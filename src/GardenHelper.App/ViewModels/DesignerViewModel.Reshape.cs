@@ -76,17 +76,44 @@ public sealed partial class DesignerViewModel
     }
 
     /// <summary>Saves the shape (and name and kind) of the place being edited. Everything else on the plan stays exactly where it is on the ground.</summary>
+    private sealed record FeatureState(string Name, string Kind, string PointsJson);
+    private static FeatureState StateOf(PropertyFeature f) => new(f.Name, f.Kind, f.PointsJson);
+
+    private async Task ApplyFeatureStateAsync(int[] id, FeatureState s, bool reselect)
+    {
+        var f = (await _repo.ListAsync<PropertyFeature>(q => q.Where(x => x.Id == id[0]))).FirstOrDefault(); if (f is null) return;
+        (f.Name, f.Kind, f.PointsJson) = (s.Name, s.Kind, s.PointsJson);
+        await _repo.SaveAsync(f); await ReloadKeepingViewAsync(null);
+        if (reselect) ReselectEdit();
+    }
+
+    private async Task RecreateFeatureAsync(int[] id, FeatureState s)
+    {
+        var again = await _repo.SaveAsync(new PropertyFeature { GardenId = _garden!.Id, Name = s.Name, Kind = s.Kind, PointsJson = s.PointsJson });
+        id[0] = again.Id; await ReloadKeepingViewAsync(null);
+    }
+
+    private async Task DeleteFeatureByIdAsync(int[] id)
+    {
+        if ((await _repo.ListAsync<PropertyFeature>(q => q.Where(x => x.Id == id[0]))).FirstOrDefault() is { } f) await _repo.DeleteAsync(f);
+        if (Editing && _editFeatureId == id[0]) DoneEdit();
+        await ReloadKeepingViewAsync(null);
+    }
+
     public Task CommitEditAsync() => RunAsync(async () =>
     {
         if (_garden is null || _frame is null || _features.FirstOrDefault(f => f.Id == _editFeatureId) is not { } feature) return;
         var geo = _editPts.Select(p => _frame.ToGeo(p)).ToList();
         if (GeoMath.SelfIntersects(geo)) { ErrorMessage = Loc.T("trace_crossing"); await ReloadKeepingViewAsync(null); ReselectEdit(); return; }
-        var g0 = _frame.ToGeo(new Pt(0, 0));
+        var before = StateOf(feature);
         feature.PointsJson = GeoMath.ToJson(geo);
         if (!string.IsNullOrWhiteSpace(EditName)) feature.Name = EditName.Trim();
         if (EditKind is not null) feature.Kind = EditKind.Key;
         await _repo.SaveAsync(feature);
-        await ReloadKeepingViewAsync(g0);
+        var after = StateOf(feature); var fid = new[] { feature.Id };
+        if (before != after)
+            History.Push(new UndoEntry(Loc.F("edit_undo_reshape", after.Name), () => ApplyFeatureStateAsync(fid, before, true), () => ApplyFeatureStateAsync(fid, after, true)));
+        await ReloadKeepingViewAsync(null);
         ReselectEdit();
     }, busy: false);
 
@@ -100,9 +127,10 @@ public sealed partial class DesignerViewModel
     private Task DeleteEditAsync() => RunAsync(async () =>
     {
         if (_features.FirstOrDefault(f => f.Id == _editFeatureId) is not { } feature || !_dialogs.Confirm(Loc.F("edit_delete_confirm", feature.Name))) return;
-        var g0 = _frame?.ToGeo(new Pt(0, 0));
+        var state = StateOf(feature); var fid = new[] { feature.Id };
         await _repo.DeleteAsync(feature);
-        DoneEdit(); await ReloadKeepingViewAsync(g0);
+        History.Push(new UndoEntry(Loc.F("edit_undo_delete", state.Name), () => RecreateFeatureAsync(fid, state), () => DeleteFeatureByIdAsync(fid)));
+        DoneEdit(); await ReloadKeepingViewAsync(null);
     }, busy: false);
 
     /// <summary>

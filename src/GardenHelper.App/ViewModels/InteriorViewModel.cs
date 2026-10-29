@@ -84,7 +84,7 @@ public sealed partial class InteriorViewModel : PageViewModel
     {
         _logger = log; _repo = repo; _dialogs = dialogs; _nav = nav;
         Floors = InteriorCatalog.Floors.Select(f => new FloorOption(f, Loc.T("int_floor_" + InteriorCatalog.FloorKey(f)))).ToList();
-        _floor = Floors[1];
+        _floor = Floors[1]; InitUndo();
         Tools = InteriorCatalog.Groups.Select(g => new InteriorToolGroup(Loc.T("int_g_" + g), InteriorCatalog.InGroup(g).ToList())).ToList();
     }
 
@@ -186,6 +186,7 @@ public sealed partial class InteriorViewModel : PageViewModel
         foreach (var i in _all.Where(i => i.Floor == Floor.Floor).OrderBy(i => InteriorCatalog.Get(i.Kind)?.Layer ?? 1).ThenBy(i => i.Id))
             Shapes.Add(new InteriorShape(i, i.InventoryPlantId is { } pid && byId.TryGetValue(pid, out var p) ? p : null, Today));
         Selected = keepId is { } k ? Shapes.FirstOrDefault(s => s.Item.Id == k) : null;
+        TakeSnapshots();
         PlantChoices.Clear(); PlantChoices.Add(new PlantChoice(null, Loc.T("int_no_plant")));
         foreach (var p in _plants.Where(p => p.Location == PlantLocation.Indoor || p.Location == PlantLocation.Greenhouse)) PlantChoices.Add(new PlantChoice(p.Id, p.Name));
         var placed = _all.Where(i => i.InventoryPlantId is not null).Select(i => i.InventoryPlantId!.Value).ToHashSet();
@@ -238,7 +239,7 @@ public sealed partial class InteriorViewModel : PageViewModel
 
     private async Task AddAsync(InteriorItem item)
     {
-        item = await _repo.SaveAsync(item); _all.Add(item); Rebuild(); Selected = Shapes.FirstOrDefault(s => s.Item.Id == item.Id);
+        item = await _repo.SaveAsync(item); _all.Add(item); RecordAdd(item); Rebuild(); Selected = Shapes.FirstOrDefault(s => s.Item.Id == item.Id);
     }
 
     /// <summary>A wall drawn with the mouse from one point to another (snapped to 10 cm, straight when nearly so).</summary>
@@ -262,7 +263,7 @@ public sealed partial class InteriorViewModel : PageViewModel
         (s.X, s.Y, s.Width, s.Height, s.Rotation) = (x, y, w, h, ((r % 360) + 360) % 360);
         s.Item.Name = ItemName.Trim(); s.Item.Notes = string.IsNullOrWhiteSpace(ItemNotes) ? null : ItemNotes;
         if (s.IsPlant) s.Item.InventoryPlantId = ItemPlant?.Id;
-        await _repo.SaveAsync(s.Item);
+        await _repo.SaveAsync(s.Item); RecordChange(s.Item);
         Rebuild();
         StatusMessage = Loc.T("saved");
     }, busy: false);
@@ -278,14 +279,14 @@ public sealed partial class InteriorViewModel : PageViewModel
     private Task RotateAsync() => RunAsync(async () =>
     {
         if (Selected is not { } s) return;
-        s.Rotation = (s.Rotation + 90) % 360; ItemRot = F(s.Rotation); await _repo.SaveAsync(s.Item);
+        s.Rotation = (s.Rotation + 90) % 360; ItemRot = F(s.Rotation); await _repo.SaveAsync(s.Item); RecordChange(s.Item);
     }, busy: false);
 
     [RelayCommand]
     private Task DeleteAsync() => RunAsync(async () =>
     {
         if (Selected is not { } s || !_dialogs.Confirm(Loc.F("int_delete", s.Label))) return;
-        await _repo.DeleteAsync(s.Item); _all.Remove(s.Item); Selected = null; Rebuild();
+        RecordDelete(s.Item); await _repo.DeleteAsync(s.Item); _all.Remove(s.Item); Selected = null; Rebuild();
     }, busy: false);
 
     /// <summary>Puts an indoor plant from the inventory on the plan, in the middle of the room, ready to be dragged to its spot.</summary>
@@ -305,9 +306,9 @@ public sealed partial class InteriorViewModel : PageViewModel
     {
         if (s.IsOpening) { if (!InteriorCatalog.SnapToWall(s.Item, _all)) { s.X = InteriorCatalog.Snap(s.X, 5); s.Y = InteriorCatalog.Snap(s.Y, 5); } s.Refresh(); }
         else { s.X = InteriorCatalog.Snap(s.X, 5); s.Y = InteriorCatalog.Snap(s.Y, 5); }
-        await _repo.SaveAsync(s.Item);
+        await _repo.SaveAsync(s.Item); RecordChange(s.Item);
         if (Selected == s) FillFields(s);
     }
 
-    public async Task ResizedAsync(InteriorShape s) { await _repo.SaveAsync(s.Item); if (Selected == s) FillFields(s); }
+    public async Task ResizedAsync(InteriorShape s) { await _repo.SaveAsync(s.Item); RecordChange(s.Item); if (Selected == s) FillFields(s); }
 }

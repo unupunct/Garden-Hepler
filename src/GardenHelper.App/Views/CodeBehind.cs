@@ -658,6 +658,15 @@ public partial class InteriorView : UserControl
     private ViewModels.InteriorViewModel? Vm => DataContext as ViewModels.InteriorViewModel;
     private static ViewModels.InteriorShape? Shape(object sender) => (sender as FrameworkElement)?.DataContext as ViewModels.InteriorShape;
 
+    private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+        if (Vm is not { } vm || e.OriginalSource is System.Windows.Controls.TextBox) return;
+        var ctrl = (System.Windows.Input.Keyboard.Modifiers & System.Windows.Input.ModifierKeys.Control) != 0;
+        if (ctrl && e.Key == System.Windows.Input.Key.Z) { vm.UndoCommand.Execute(null); e.Handled = true; }
+        else if (ctrl && e.Key == System.Windows.Input.Key.Y) { vm.RedoCommand.Execute(null); e.Handled = true; }
+        else if (e.Key == System.Windows.Input.Key.Delete && vm.HasSelected) { vm.DeleteCommand.Execute(null); e.Handled = true; }
+    }
+
     private void OnViewportSize(object sender, SizeChangedEventArgs e)
     {
         if (Vm is not { } vm) return;
