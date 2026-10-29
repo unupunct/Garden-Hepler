@@ -28,13 +28,17 @@ public sealed class LocalApiServer
     private readonly RemoteService _remote;
     private readonly CameraClient _cameras;
     private readonly Dictionary<int, (DateTime At, byte[] Bytes)> _snapshots = new();
+    private readonly CameraEvents _events;
+    private readonly RecordingStore _recordings;
+    private readonly CameraMonitor _monitor;
+    private readonly Dictionary<int, DateTime> _lastSensor = new();
     private readonly Repository _repo;
     private readonly SettingsService _settings;
     private readonly ILogger<LocalApiServer> _log;
     private WebApplication? _app;
 
-    public LocalApiServer(GreenhouseService greenhouse, RemoteService remote, CameraClient cameras, Repository repo, SettingsService settings, ILogger<LocalApiServer> log)
-    { _greenhouse = greenhouse; _remote = remote; _cameras = cameras; _repo = repo; _settings = settings; _log = log; }
+    public LocalApiServer(GreenhouseService greenhouse, RemoteService remote, CameraClient cameras, CameraEvents events, RecordingStore recordings, CameraMonitor monitor, Repository repo, SettingsService settings, ILogger<LocalApiServer> log)
+    { _events = events; _recordings = recordings; _monitor = monitor; _greenhouse = greenhouse; _remote = remote; _cameras = cameras; _repo = repo; _settings = settings; _log = log; }
 
     public bool Running => _app is not null;
     public int Port { get; private set; }
@@ -122,6 +126,27 @@ public sealed class LocalApiServer
                 return Results.Bytes(bytes, LooksPng(bytes) ? "image/png" : "image/jpeg");
             }
             catch (CameraException ex) { return Results.Json(new { error = ex.Message }, statusCode: 502); }
+        });
+        // A motion sensor (a Raspberry Pi with a PIR, Home Assistant, a doorbell...) reports movement; the camera's picture is attached when it can be fetched.
+        app.MapPost("/api/v1/cameras/{id:int}/events", async (int id, HttpRequest req) =>
+        {
+            Dictionary<string, string>? body = null;
+            try { if (req.ContentLength is > 0) body = await req.ReadFromJsonAsync<Dictionary<string, string>>(); } catch { return Results.BadRequest(new { error = "Send {\"kind\": \"motion\"} or nothing." }); }
+            var kind = body?.GetValueOrDefault("kind") ?? "sensor";
+            if (kind is not ("sensor" or "motion")) return Results.BadRequest(new { error = "kind must be sensor or motion." });
+            var cam = (await _repo.ListAsync<Camera>(q => q.Where(c => c.Id == id))).FirstOrDefault();
+            if (cam is null) return Results.NotFound(new { error = "No such camera." });
+            lock (_lastSensor) { if (_lastSensor.TryGetValue(id, out var last) && (DateTime.UtcNow - last).TotalSeconds < 5) return Results.Json(new { skipped = "too soon" }, statusCode: 429); _lastSensor[id] = DateTime.UtcNow; }
+            byte[]? picture = null;
+            try { if (cam.Kind != "rtsp") picture = await _cameras.GrabFrameAsync(cam, CameraSecrets.Unprotect(cam.SecretProtected)); } catch (CameraException) { /* the event is still recorded without a picture */ }
+            var ev = picture is not null ? await _monitor.RecordAsync(cam, kind, null, picture, DateTime.UtcNow) : await _events.AddAsync(id, kind, null, null);
+            return Results.Json(new { id = ev.Id, picture = picture is not null });
+        });
+        app.MapGet("/api/v1/cameras/{id:int}/events", async (int id) => Results.Json((await _events.ListAsync(id, 50)).Select(e => new { e.Id, atUtc = e.AtUtc, e.Kind, e.Score, hasPicture = e.File != null })));
+        app.MapGet("/api/v1/events/{id:int}/image", async (int id) =>
+        {
+            var e = (await _repo.ListAsync<CameraEvent>(q => q.Where(x => x.Id == id))).FirstOrDefault();
+            return _recordings.PathOf(e?.File) is { } path && File.Exists(path) ? Results.File(File.ReadAllBytes(path), path.EndsWith(".png") ? "image/png" : "image/jpeg") : Results.NotFound();
         });
         app.MapGet("/api/v1/status", () => Results.Json(new { app = "Garden Helper", timeUtc = DateTime.UtcNow }));
         app.MapPost("/api/v1/greenhouse/{id:int}/readings", async (int id, HttpRequest req) =>

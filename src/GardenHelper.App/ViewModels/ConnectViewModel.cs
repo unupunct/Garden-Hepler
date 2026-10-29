@@ -30,6 +30,7 @@ public sealed partial class ConnectViewModel : PageViewModel
     [ObservableProperty] private AddressOption? _address;
     [ObservableProperty] private string _phoneLink = "";
     [ObservableProperty] private string _homeAssistant = "";
+    [ObservableProperty] private System.Windows.Media.ImageSource? _phoneQr;
 
     /// <summary>Addresses of this PC on the local network (private ranges first), plus the VPN address when there is one.</summary>
     public static IEnumerable<string> LocalAddresses()
@@ -76,6 +77,7 @@ public sealed partial class ConnectViewModel : PageViewModel
     {
         Status = _api.Running ? Loc.F("gh_api_on", _api.Port) : Loc.T("gh_api_off");
         PhoneLink = $"{Base}/#t={Token}";
+        PhoneQr = QrCodes.Generate(PhoneLink, 220);
         HomeAssistant = BuildHomeAssistant(Base, Token);
     }
 

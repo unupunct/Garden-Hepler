@@ -28,6 +28,18 @@ public class Camera
     public int? FeatureId { get; set; }
     public bool Enabled { get; set; } = true;
     public string? Notes { get; set; }
+    /// <summary>A <see cref="CameraPresets"/> key (hikvision, dahua, axis...): says how the picture address was built and whether the camera can be moved.</summary>
+    public string? Brand { get; set; }
+    /// <summary>Channel number on recorders and multi-lens cameras (1 for a single camera).</summary>
+    public int Channel { get; set; } = 1;
+    /// <summary>Watch the picture for movement and keep a picture when something moves.</summary>
+    public bool MotionEnabled { get; set; }
+    /// <summary>1-100: higher reacts to smaller movements.</summary>
+    public int MotionSensitivity { get; set; } = 50;
+    /// <summary>Keep one picture every this many minutes (a time-lapse); null = off.</summary>
+    public int? SnapshotEveryMinutes { get; set; }
+    /// <summary>Saved pictures older than this are deleted.</summary>
+    public int KeepDays { get; set; } = 14;
     public override string ToString() => Name;
 }
 
@@ -60,7 +72,14 @@ public sealed class CameraClient
 {
     private const int MaxBytes = 6 * 1024 * 1024;
     private readonly HttpClient _http;
-    public CameraClient(HttpClient http) => _http = http;
+    private readonly Func<System.Net.NetworkCredential, HttpClient> _digest;
+
+    /// <param name="digestFactory">Makes a client that answers HTTP Digest logins (Hikvision, Dahua and Axis use them). The default one is fine; tests can replace it.</param>
+    public CameraClient(HttpClient http, Func<System.Net.NetworkCredential, HttpClient>? digestFactory = null)
+    {
+        _http = http;
+        _digest = digestFactory ?? (c => new HttpClient(new SocketsHttpHandler { Credentials = c, PreAuthenticate = true }) { Timeout = TimeSpan.FromSeconds(10) });
+    }
 
     public async Task<byte[]> GrabFrameAsync(Camera camera, string? password, CancellationToken ct = default)
     {
@@ -68,16 +87,50 @@ public sealed class CameraClient
         if (CameraUrl.Check(camera.Kind, camera.Url, out var uri) != CameraUrlProblem.None || uri is null) throw new CameraException("The camera address is not a valid http or https URL.");
         using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
         cts.CancelAfter(TimeSpan.FromSeconds(8));
-        using var request = new HttpRequestMessage(HttpMethod.Get, uri);
-        if (!string.IsNullOrEmpty(camera.Username))
-            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{camera.Username}:{password}")));
         try
         {
-            using var response = await _http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cts.Token);
+            using var response = await SendWithLoginAsync(HttpMethod.Get, uri, null, camera.Username, password, cts.Token);
             if ((int)response.StatusCode is 401 or 403) throw new CameraException("The camera refused the login. Check the user name and password.");
             if (!response.IsSuccessStatusCode) throw new CameraException($"The camera answered with HTTP {(int)response.StatusCode}.");
             await using var stream = await response.Content.ReadAsStreamAsync(cts.Token);
             return camera.Kind == "mjpeg" ? await ReadFirstFrameAsync(stream, cts.Token) : await ReadSingleImageAsync(stream, cts.Token);
+        }
+        catch (OperationCanceledException) when (!ct.IsCancellationRequested) { throw new CameraException("The camera did not answer in time."); }
+        catch (HttpRequestException ex) { throw new CameraException("The camera could not be reached: " + ex.Message, ex); }
+    }
+
+    /// <summary>Sends a request with the camera's login: Basic first, and when the camera asks for Digest, once more the Digest way.</summary>
+    private async Task<HttpResponseMessage> SendWithLoginAsync(HttpMethod method, Uri uri, string? body, string? user, string? password, CancellationToken ct)
+    {
+        HttpRequestMessage Make(bool basic)
+        {
+            var r = new HttpRequestMessage(method, uri);
+            if (body is not null) r.Content = new StringContent(body, Encoding.UTF8, "application/xml");
+            if (basic && !string.IsNullOrEmpty(user)) r.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{user}:{password}")));
+            return r;
+        }
+        using var first = Make(true);
+        var response = await _http.SendAsync(first, HttpCompletionOption.ResponseHeadersRead, ct);
+        if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized && !string.IsNullOrEmpty(user) && response.Headers.WwwAuthenticate.Any(h => h.Scheme.Equals("Digest", StringComparison.OrdinalIgnoreCase)))
+        {
+            response.Dispose();
+            var client = _digest(new System.Net.NetworkCredential(user, password ?? ""));
+            using var second = Make(false);
+            return await client.SendAsync(second, HttpCompletionOption.ResponseHeadersRead, ct);
+        }
+        return response;
+    }
+
+    /// <summary>Moves or zooms a camera that supports it (see <see cref="CameraPtz"/>).</summary>
+    public async Task MoveAsync(Camera camera, string direction, string? password, CancellationToken ct = default)
+    {
+        var req = CameraPtz.Build(camera, direction) ?? throw new CameraException("This camera cannot be moved from here. Choose its type (Hikvision, Dahua or Axis) in the camera settings.");
+        using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct); cts.CancelAfter(TimeSpan.FromSeconds(6));
+        try
+        {
+            using var response = await SendWithLoginAsync(req.Method, req.Uri, req.Body, camera.Username, password, cts.Token);
+            if ((int)response.StatusCode is 401 or 403) throw new CameraException("The camera refused the login.");
+            if (!response.IsSuccessStatusCode) throw new CameraException($"The camera answered with HTTP {(int)response.StatusCode}.");
         }
         catch (OperationCanceledException) when (!ct.IsCancellationRequested) { throw new CameraException("The camera did not answer in time."); }
         catch (HttpRequestException ex) { throw new CameraException("The camera could not be reached: " + ex.Message, ex); }

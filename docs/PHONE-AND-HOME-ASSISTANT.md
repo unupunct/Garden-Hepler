@@ -33,6 +33,27 @@ Header `Authorization: Bearer <token>` (or HTTP Basic with the token as password
 | `GET /api/v1/cameras`, `GET /api/v1/cameras/{id}/snapshot` | camera list, one picture |
 | `POST /api/v1/greenhouse/{id}/switch/{vent\|fan\|water\|pump\|light}` `{"on": true}` or `{"auto": true}` | hold a switch by hand, or return it to auto |
 | `POST /api/v1/greenhouse/{id}/readings`, `GET .../commands` | what the Raspberry Pi uses |
+| `POST /api/v1/cameras/{id}/events` `{"kind": "sensor"}` | a motion sensor (PIR on a Raspberry Pi, a Home Assistant automation) reports movement; the camera's picture is saved with it. At most one per 5 seconds per camera |
+| `GET /api/v1/cameras/{id}/events`, `GET /api/v1/events/{id}/image` | recent events of a camera, and a saved picture |
 
 ## Rebuilding the APK
 Needs JDK 17 and the Android SDK (platform 34, build-tools 34.0.0). In the `android` folder run `gradlew assembleDebug`; the file appears under `app/build/outputs/apk/debug/`. For a Play Store release you would create your own signing key and use `assembleRelease`.
+
+## Cameras: setup, movement and recordings
+On the **Cameras** page: *Quick setup* builds the picture address from the camera type and IP address (Hikvision, Dahua/Amcrest, Axis, Android IP Webcam, ESP32-CAM, Raspberry Pi mjpg-streamer, other), *Find cameras on my network* looks at common ports on your own network after asking, and a QR code (from a picture or the clipboard) can fill the address and login when it holds one. Many cameras' QR codes hold only a serial number for the maker's app: the app says so.
+
+Movement: tick *Watch for movement* and the app compares the picture every few seconds while it is open and keeps a picture when something moves (sensitivity, time-lapse interval and days to keep are set per camera). Pictures live in `%LOCALAPPDATA%\GardenHelperecordings`. Cameras that can turn (Hikvision, Dahua/Amcrest, Axis) get arrow and zoom buttons; drag the handle at the tip of a camera's view wedge on the garden plan to set the direction it points.
+
+Not built in: video recording (it needs an RTSP player), and recording while the app is closed.
+
+Home Assistant motion example (reports a PIR or any binary sensor to camera 1):
+```yaml
+rest_command:
+  garden_motion:
+    url: "http://<PC>:8765/api/v1/cameras/1/events"
+    method: post
+    content_type: "application/json"
+    payload: '{"kind": "sensor"}'
+    headers:
+      Authorization: "Bearer <TOKEN>"
+```

@@ -241,6 +241,12 @@
                                     <DataTemplate>
                                         <Canvas>
                                             <Polygon Points="{Binding View}" Fill="#3329A3D9" Stroke="#9929A3D9" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}" IsHitTestVisible="False"/>
+                                            <Thumb Canvas.Left="{Binding HandleX}" Canvas.Top="{Binding HandleY}" Margin="{Binding DataContext.CameraHandleMargin, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                   Width="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="{Binding DataContext.CameraHandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                   Cursor="Cross" ToolTip="{loc:L cam_turn_tip}" AutomationProperties.Name="{loc:L cam_turn_tip}"
+                                                   DragStarted="OnCamTurnStart" DragDelta="OnCamTurn" DragCompleted="OnCamTurnDone">
+                                                <Thumb.Template><ControlTemplate TargetType="Thumb"><Ellipse Fill="#FFFFFFFF" Stroke="#FF1F6F94" StrokeThickness="{Binding DataContext.StrokeSize, RelativeSource={RelativeSource AncestorType=UserControl}}"/></ControlTemplate></Thumb.Template>
+                                            </Thumb>
                                             <Thumb Cursor="Hand" AutomationProperties.Name="{Binding Name}" DragStarted="OnCameraDragStart" DragDelta="OnCameraDrag" DragCompleted="OnCameraDragDone"
                                                    Width="{Binding DataContext.CameraIconSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                    Height="{Binding DataContext.CameraIconSize, RelativeSource={RelativeSource AncestorType=UserControl}}"

@@ -1,3 +1,4 @@
+using System.Net.Http;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Media;
@@ -21,15 +22,20 @@ public sealed partial class CamerasViewModel : PageViewModel
 {
     private readonly Repository _repo;
     private readonly CameraFeed _feed;
+    private readonly CameraClient _client;
+    private readonly CameraEvents _events;
+    private readonly RecordingStore _store;
+    private readonly CameraMonitor _monitor;
+    private readonly HttpClient _http;
     private readonly IDialogs _dialogs;
     private readonly INavigator _nav;
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromMilliseconds(1500) };
     private Garden? _garden;
     private bool _grabbing;
 
-    public CamerasViewModel(Repository repo, CameraFeed feed, IDialogs dialogs, INavigator nav, ILogger<CamerasViewModel> log) : base(log)
+    public CamerasViewModel(Repository repo, CameraFeed feed, CameraClient client, CameraEvents events, RecordingStore store, CameraMonitor monitor, HttpClient http, IDialogs dialogs, INavigator nav, ILogger<CamerasViewModel> log) : base(log)
     {
-        _repo = repo; _feed = feed; _dialogs = dialogs; _nav = nav;
+        _repo = repo; _feed = feed; _client = client; _events = events; _store = store; _monitor = monitor; _http = http; _dialogs = dialogs; _nav = nav;
         Kinds = CameraUrl.Kinds.Select(k => new CameraKindOption(k, Loc.T("cam_kind_" + k))).ToList();
         _timer.Tick += async (_, _) => await GrabAsync(quiet: true);
     }
@@ -71,6 +77,7 @@ public sealed partial class CamerasViewModel : PageViewModel
         EditHeight = value.HeightCm.ToString("0", CultureInfo.InvariantCulture); EditNotes = value.Notes ?? ""; EditEnabled = value.Enabled;
         EditPlace = Places.FirstOrDefault(p => p.Id == value.FeatureId?.ToString()) ?? Places[0];
         HasPassword = value.SecretProtected is not null;
+        LoadExtras(value);
         if (Live) _ = GrabAsync();
     }
 
@@ -87,8 +94,8 @@ public sealed partial class CamerasViewModel : PageViewModel
     });
 
     /// <summary>Stops polling the camera (called when the page is left).</summary>
-    public void Stop() { _timer.Stop(); }
-    public void Resume() { if (Live && HasSelection) _timer.Start(); }
+    public void Stop() { _timer.Stop(); _monitor.EventRecorded -= OnMonitorEvent; }
+    public void Resume() { if (Live && HasSelection) _timer.Start(); _monitor.EventRecorded -= OnMonitorEvent; _monitor.EventRecorded += OnMonitorEvent; }
 
     [RelayCommand]
     private Task AddAsync() => RunAsync(async () =>
@@ -120,6 +127,7 @@ public sealed partial class CamerasViewModel : PageViewModel
             Lat = lat, Lon = lon, PlanX = Selected.PlanX, PlanY = Selected.PlanY, HeadingDeg = ((heading % 360) + 360) % 360, FovDeg = fov, HeightCm = height,
             FeatureId = int.TryParse(EditPlace?.Id, out var fid) ? fid : null, Enabled = EditEnabled, Notes = string.IsNullOrWhiteSpace(EditNotes) ? null : EditNotes,
         };
+        if (ReadExtras(c) is { } extrasProblem) return (null, extrasProblem);
         return string.IsNullOrWhiteSpace(c.Name) ? (null, Loc.T("cam_name_required")) : (c, null);
     }
 

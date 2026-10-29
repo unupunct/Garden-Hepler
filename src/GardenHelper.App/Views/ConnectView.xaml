@@ -35,6 +35,8 @@
                     <TextBlock Text="{loc:L connect_link}" Style="{StaticResource Label}"/>
                     <TextBox Text="{Binding PhoneLink, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap"/>
                     <Button Content="{loc:L gh_copy}" Command="{Binding CopyLinkCommand}" HorizontalAlignment="Left" Margin="0,6,0,0"/>
+                    <TextBlock Text="{loc:L connect_qr}" Style="{StaticResource Label}"/>
+                    <Border Background="White" Padding="6" HorizontalAlignment="Left" CornerRadius="6"><Image Source="{Binding PhoneQr}" Width="200" Height="200" AutomationProperties.Name="{loc:L connect_qr}"/></Border>
                     <TextBlock Text="{loc:L connect_remote}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,8,0,0"/>
                 </StackPanel>
             </Border>

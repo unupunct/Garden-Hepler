@@ -283,6 +283,8 @@ public sealed partial class DesignerViewModel : PageViewModel
     public double HandleSize => 16 / Scale;
     public double CameraIconSize => 28 / Scale;
     public double CameraIconOffset => -14 / Scale;
+    public double CameraHandleSize => 16 / Scale;
+    public System.Windows.Thickness CameraHandleMargin => new(-8 / Scale);
     public bool HasSelection => Selected is not null;
     public string ScaleText => Scale * 100 < 1 ? $"{Scale * 100:0.0}%" : $"{Scale * 100:0}%";
     public bool CanUndo => History.CanUndo;
@@ -293,7 +295,7 @@ public sealed partial class DesignerViewModel : PageViewModel
         : Loc.F("design_status_sel", Selected.Name, Selected.SizeText, Selected.AreaText, Selected.Rotation.ToString("0"),
             (Selected.X / 100).ToString("0.0", Loc.Instance.Culture), (Selected.Y / 100).ToString("0.0", Loc.Instance.Culture));
 
-    partial void OnScaleChanged(double value) { OnPropertyChanged(nameof(StrokeSize)); OnPropertyChanged(nameof(LabelSize)); OnPropertyChanged(nameof(HandleSize)); OnPropertyChanged(nameof(CameraIconSize)); OnPropertyChanged(nameof(CameraIconOffset)); OnPropertyChanged(nameof(ScaleText)); }
+    partial void OnScaleChanged(double value) { OnPropertyChanged(nameof(StrokeSize)); OnPropertyChanged(nameof(LabelSize)); OnPropertyChanged(nameof(HandleSize)); OnPropertyChanged(nameof(CameraIconSize)); OnPropertyChanged(nameof(CameraIconOffset)); OnPropertyChanged(nameof(CameraHandleSize)); OnPropertyChanged(nameof(CameraHandleMargin)); OnPropertyChanged(nameof(ScaleText)); }
     partial void OnLibrarySearchChanged(string value) => RefreshCards();
     partial void OnSelectedFilterChanged(LibraryFilter? value) => RefreshCards();
     partial void OnNewPlantChanged(PlantOption? value) => UpdatePlantAdvice();

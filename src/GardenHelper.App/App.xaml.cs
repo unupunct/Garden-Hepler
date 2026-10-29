@@ -64,6 +64,9 @@ public partial class App : Application
             sc.AddSingleton<GardenHelper.Core.Library.StarterLibrary>();
             sc.AddSingleton<GardenHelper.Core.Services.SeedPhotoStore>();
             sc.AddSingleton<GardenHelper.Core.Greenhouse.GreenhouseService>();
+            sc.AddSingleton<GardenHelper.Core.Cameras.RecordingStore>();
+            sc.AddSingleton<GardenHelper.Core.Cameras.CameraEvents>();
+            sc.AddSingleton<CameraMonitor>();
             sc.AddSingleton<GardenHelper.Core.Planning.RemoteService>();
             sc.AddSingleton<LocalApiServer>();
             sc.AddSingleton<SatelliteTileService>();
@@ -86,6 +89,7 @@ public partial class App : Application
             window.Show();
             Services.GetRequiredService<ShellViewModel>().Start();
             _ = Services.GetRequiredService<LocalApiServer>().StartFromSettingsAsync();
+            Services.GetRequiredService<CameraMonitor>().Start();
 
             _ = Task.Run(async () =>
             {

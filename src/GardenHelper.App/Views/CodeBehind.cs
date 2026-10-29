@@ -254,6 +254,17 @@ public partial class DesignerView : UserControl
         if ((sender as FrameworkElement)?.DataContext is PaletteItem item) Vm?.AddElementCommand.Execute(item);
     }
 
+    private double _turnX, _turnY;
+    private void OnCamTurnStart(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e) { if (Cam(sender) is { } m) { _turnX = m.HandleX; _turnY = m.HandleY; } }
+    private void OnCamTurn(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+    {
+        if (Cam(sender) is not { } m) return;
+        _turnX += e.HorizontalChange; _turnY += e.VerticalChange;
+        var deg = Math.Atan2(_turnX, -_turnY) * 180 / Math.PI;           // angle of the pointer around the camera, 0 = up
+        m.SetHeading(Math.Round(deg / 5) * 5);                            // snaps to 5 degrees
+    }
+    private async void OnCamTurnDone(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) { if (Cam(sender) is { } m && Vm is { } vm) await vm.TurnCameraAsync(m); }
+
     private double _camDx, _camDy, _camStartX, _camStartY;
     private static CameraMarker? Cam(object sender) => (sender as FrameworkElement)?.DataContext as CameraMarker;
     private void OnCameraTip(object sender, ToolTipEventArgs e) { if (Cam(sender) is { } m && Vm is { } vm) _ = vm.LoadPreviewAsync(m); }

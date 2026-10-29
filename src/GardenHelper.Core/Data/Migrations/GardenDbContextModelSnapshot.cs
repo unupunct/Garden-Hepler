@@ -124,6 +124,12 @@ namespace GardenHelper.Core.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Brand")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Channel")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("Enabled")
                         .HasColumnType("INTEGER");
 
@@ -142,6 +148,9 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Property<double>("HeightCm")
                         .HasColumnType("REAL");
 
+                    b.Property<int>("KeepDays")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Kind")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -151,6 +160,12 @@ namespace GardenHelper.Core.Data.Migrations
 
                     b.Property<double?>("Lon")
                         .HasColumnType("REAL");
+
+                    b.Property<bool>("MotionEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MotionSensitivity")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -168,6 +183,9 @@ namespace GardenHelper.Core.Data.Migrations
                     b.Property<string>("SecretProtected")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("SnapshotEveryMinutes")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -180,6 +198,38 @@ namespace GardenHelper.Core.Data.Migrations
                     b.HasIndex("GardenId");
 
                     b.ToTable("Cameras");
+                });
+
+            modelBuilder.Entity("GardenHelper.Core.Cameras.CameraEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("AtUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CameraId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("File")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("Score")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CameraId", "AtUtc");
+
+                    b.ToTable("CameraEvents");
                 });
 
             modelBuilder.Entity("GardenHelper.Core.Domain.AppSetting", b =>

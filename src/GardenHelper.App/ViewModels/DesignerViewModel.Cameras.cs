@@ -9,25 +9,50 @@ using GardenHelper.Core.Site;
 
 namespace GardenHelper.App.ViewModels;
 
-/// <summary>A camera icon on the garden plan, with the wedge showing what it sees.</summary>
+/// <summary>A camera icon on the garden plan, with the wedge showing what it sees. Dragging the handle at the tip of the wedge turns the camera.</summary>
 public sealed partial class CameraMarker : ObservableObject
 {
-    public CameraMarker(Camera camera, double x, double y, PointCollection view) { Camera = camera; X = x; Y = y; View = view; }
+    public const double ViewRadiusCm = 900;
+
+    public CameraMarker(Camera camera, double x, double y) { Camera = camera; X = x; Y = y; _heading = camera.HeadingDeg; Rebuild(); }
     public Camera Camera { get; }
     public int Id => Camera.Id;
     public string Name => Camera.Name;
-    public PointCollection View { get; }
     [ObservableProperty] private double _x;
     [ObservableProperty] private double _y;
+    [ObservableProperty] private PointCollection _view = new();
+    [ObservableProperty] private double _handleX;
+    [ObservableProperty] private double _handleY;
+    [ObservableProperty] private double _heading;
     [ObservableProperty] private ImageSource? _preview;
     [ObservableProperty] private string _previewNote = Loc.T("cam_hover_loading");
     public string Tip => $"{Camera.Name}\n{Loc.T("cam_hover_open")}";
     internal DateTime LastPreview { get; set; }
+
+    /// <summary>Points the camera: 0 = north = up on the plan, clockwise.</summary>
+    public void SetHeading(double degrees)
+    {
+        Heading = ((degrees % 360) + 360) % 360;
+        Rebuild();
+    }
+
+    private void Rebuild()
+    {
+        var fov = Camera.FovDeg;
+        var pts = new PointCollection { new Point(0, 0) };
+        for (var i = 0; i <= 12; i++)
+        {
+            var a = (Heading - fov / 2 + fov * i / 12) * Math.PI / 180;
+            pts.Add(new Point(Math.Sin(a) * ViewRadiusCm, -Math.Cos(a) * ViewRadiusCm));
+        }
+        pts.Freeze(); View = pts;
+        var h = Heading * Math.PI / 180;
+        HandleX = Math.Sin(h) * ViewRadiusCm * 0.9; HandleY = -Math.Cos(h) * ViewRadiusCm * 0.9;
+    }
 }
 
 public sealed partial class DesignerViewModel
 {
-    private const double CameraViewRadiusCm = 900;
     public ObservableCollection<CameraMarker> CameraMarkers { get; } = new();
     private CameraFeed? _camFeed;
 
@@ -42,15 +67,7 @@ public sealed partial class DesignerViewModel
             Pt? at = _frame is not null && c.Lat is { } la && c.Lon is { } lo ? _frame.ToPlan(new GeoPoint(la, lo))
                    : c.PlanX is { } px && c.PlanY is { } py ? new Pt(px, py) : null;
             if (at is not { } p) continue;
-            // Wedge: apex at the camera, opening FovDeg wide, centred on the heading (0 = north = up on the plan).
-            var pts = new PointCollection { new Point(0, 0) };
-            for (var i = 0; i <= 12; i++)
-            {
-                var a = (c.HeadingDeg - c.FovDeg / 2 + c.FovDeg * i / 12) * Math.PI / 180;
-                pts.Add(new Point(Math.Sin(a) * CameraViewRadiusCm, -Math.Cos(a) * CameraViewRadiusCm));
-            }
-            pts.Freeze();
-            CameraMarkers.Add(new CameraMarker(c, p.X, p.Y, pts));
+            CameraMarkers.Add(new CameraMarker(c, p.X, p.Y));
         }
     }
 
@@ -65,6 +82,13 @@ public sealed partial class DesignerViewModel
 
     /// <summary>Clicking the icon opens the Cameras tab on this camera with its feed running and its settings beside it.</summary>
     public void OpenCamera(CameraMarker m) => _nav.GoTo<CamerasViewModel>(vm => vm.PendingSelect = m.Id);
+
+    public async Task TurnCameraAsync(CameraMarker m)
+    {
+        m.Camera.HeadingDeg = Math.Round(m.Heading);
+        await _repo.SaveAsync(m.Camera);
+        StatusMessage = Loc.F("cam_turned", m.Camera.HeadingDeg.ToString("0"));
+    }
 
     public async Task MoveCameraAsync(CameraMarker m, double x, double y)
     {
