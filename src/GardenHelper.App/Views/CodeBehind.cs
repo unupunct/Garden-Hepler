@@ -1,5 +1,7 @@
 using System.ComponentModel;
 using System.IO;
+using System.Windows.Media;
+using GardenHelper.Core.Site;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +25,145 @@ public partial class SettingsView : UserControl { public SettingsView() => Initi
 public partial class AboutView : UserControl { public AboutView() => InitializeComponent(); }
 
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }
+
+public partial class MapView : UserControl
+{
+    private MapViewModel? _vm;
+    private int _dragPin = -1;
+    private bool _down, _panning, _moved;
+    private Point _start, _last;
+    private int _generation;
+
+    public MapView()
+    {
+        InitializeComponent();
+        DataContextChanged += (_, _) =>
+        {
+            if (_vm is not null) _vm.MapChanged -= Render;
+            _vm = DataContext as MapViewModel;
+            if (_vm is not null) _vm.MapChanged += Render;
+            Render();
+        };
+        Unloaded += (_, _) => { if (_vm is not null) _vm.MapChanged -= Render; };
+    }
+
+    // World-pixel position of the top-left corner of the viewport.
+    private (double X, double Y) TopLeft()
+    {
+        var (cx, cy) = GeoMath.ToWorldPixel(new GeoPoint(_vm!.CenterLat, _vm.CenterLon), _vm.Zoom);
+        return (cx - Surface.ActualWidth / 2, cy - Surface.ActualHeight / 2);
+    }
+
+    private GeoPoint ScreenToGeo(Point p) { var tl = TopLeft(); return GeoMath.FromWorldPixel(tl.X + p.X, tl.Y + p.Y, _vm!.Zoom); }
+
+    private Point GeoToScreen(GeoPoint g)
+    {
+        var tl = TopLeft(); var (x, y) = GeoMath.ToWorldPixel(g, _vm!.Zoom);
+        return new Point(x - tl.X, y - tl.Y);
+    }
+
+    private void Render()
+    {
+        if (_vm is null || Surface.ActualWidth < 10 || Surface.ActualHeight < 10) return;
+        TileLayer.Children.Clear(); Overlay.Children.Clear();
+        var z = _vm.Zoom; var tl = TopLeft(); var max = 1 << z;
+        var x0 = (int)Math.Floor(tl.X / 256); var x1 = (int)Math.Floor((tl.X + Surface.ActualWidth) / 256);
+        var y0 = (int)Math.Floor(tl.Y / 256); var y1 = (int)Math.Floor((tl.Y + Surface.ActualHeight) / 256);
+        for (var ty = Math.Max(0, y0); ty <= Math.Min(max - 1, y1); ty++)
+            for (var tx = Math.Max(0, x0); tx <= Math.Min(max - 1, x1); tx++)
+            {
+                var img = _vm.TryGetCachedTile(z, tx, ty);
+                if (img is null) _vm.RequestTile(z, tx, ty);
+                var el = img is null
+                    ? (FrameworkElement)new System.Windows.Shapes.Rectangle { Fill = new SolidColorBrush(Color.FromRgb(0x2B, 0x38, 0x2B)), Width = 256, Height = 256 }
+                    : new Image { Source = img, Width = 256, Height = 256 };
+                Canvas.SetLeft(el, tx * 256 - tl.X); Canvas.SetTop(el, ty * 256 - tl.Y);
+                TileLayer.Children.Add(el);
+            }
+
+        var pts = _vm.Points.Select(GeoToScreen).ToList();
+        var accent = new SolidColorBrush(Color.FromRgb(0xE5, 0x8C, 0x62));
+        if (pts.Count >= 3)
+            Overlay.Children.Add(new System.Windows.Shapes.Polygon { Points = new PointCollection(pts), Stroke = accent, StrokeThickness = 3, StrokeLineJoin = PenLineJoin.Round, Fill = new SolidColorBrush(Color.FromArgb(55, 0xE5, 0x8C, 0x62)) });
+        else if (pts.Count == 2)
+            Overlay.Children.Add(new System.Windows.Shapes.Polyline { Points = new PointCollection(pts), Stroke = accent, StrokeThickness = 3 });
+        for (var i = 0; i < pts.Count; i++)
+        {
+            var dot = new System.Windows.Shapes.Ellipse { Width = 22, Height = 22, Fill = new SolidColorBrush(Color.FromRgb(0xC0, 0x56, 0x2B)), Stroke = Brushes.White, StrokeThickness = 2 };
+            Canvas.SetLeft(dot, pts[i].X - 11); Canvas.SetTop(dot, pts[i].Y - 11);
+            var num = new TextBlock { Text = (i + 1).ToString(), Foreground = Brushes.White, FontWeight = FontWeights.Bold, FontSize = 11, Width = 22, TextAlignment = TextAlignment.Center };
+            Canvas.SetLeft(num, pts[i].X - 11); Canvas.SetTop(num, pts[i].Y - 8);
+            Overlay.Children.Add(dot); Overlay.Children.Add(num);
+        }
+    }
+
+    private int HitPin(Point p)
+    {
+        if (_vm is null) return -1;
+        var pts = _vm.Points.Select(GeoToScreen).ToList();
+        for (var i = pts.Count - 1; i >= 0; i--)
+            if ((pts[i] - p).Length <= 13) return i;
+        return -1;
+    }
+
+    private void OnSize(object sender, SizeChangedEventArgs e) => Render();
+
+    private void OnDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (_vm is null || !_vm.MapEnabled) return;
+        Surface.Focus(); Surface.CaptureMouse();
+        _start = _last = e.GetPosition(Surface); _down = true; _moved = false; _panning = false;
+        _dragPin = HitPin(_start);
+    }
+
+    private void OnMove(object sender, System.Windows.Input.MouseEventArgs e)
+    {
+        if (_vm is null) return;
+        var p = e.GetPosition(Surface);
+        var g = ScreenToGeo(p);
+        _vm.CursorText = $"{g.Lat:0.00000}, {g.Lon:0.00000}";
+        if (!_down) return;
+        if (!_moved && (p - _start).Length > 4) { _moved = true; _panning = _dragPin < 0; }
+        if (!_moved) return;
+        if (_dragPin >= 0) _vm.MovePin(_dragPin, g);
+        else if (_panning)
+        {
+            var (cx, cy) = GeoMath.ToWorldPixel(new GeoPoint(_vm.CenterLat, _vm.CenterLon), _vm.Zoom);
+            var c = GeoMath.FromWorldPixel(cx - (p.X - _last.X), cy - (p.Y - _last.Y), _vm.Zoom);
+            _vm.CenterLat = c.Lat; _vm.CenterLon = c.Lon;
+        }
+        _last = p;
+    }
+
+    private void OnUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (!_down || _vm is null) return;
+        _down = false; Surface.ReleaseMouseCapture();
+        if (!_moved) _vm.AddPin(ScreenToGeo(e.GetPosition(Surface)));      // a plain click drops a pin
+        _dragPin = -1; _panning = false;
+    }
+
+    private void OnRightDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (_vm is null || !_vm.MapEnabled) return;
+        var i = HitPin(e.GetPosition(Surface));
+        if (i >= 0) _vm.RemovePinAt(i);
+    }
+
+    private void OnWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+    {
+        if (_vm is null || !_vm.MapEnabled) return;
+        var p = e.GetPosition(Surface);
+        var under = ScreenToGeo(p);
+        var z = Math.Clamp(_vm.Zoom + (e.Delta > 0 ? 1 : -1), 3, 19);
+        if (z == _vm.Zoom) return;
+        // Keep the point under the cursor fixed while zooming.
+        var (wx, wy) = GeoMath.ToWorldPixel(under, z);
+        var c = GeoMath.FromWorldPixel(wx - (p.X - Surface.ActualWidth / 2), wy - (p.Y - Surface.ActualHeight / 2), z);
+        _vm.CenterLat = c.Lat; _vm.CenterLon = c.Lon; _vm.Zoom = z;
+        e.Handled = true;
+    }
+}
 public partial class MonitorView : UserControl { public MonitorView() => InitializeComponent(); }
 
 public partial class DesignerView : UserControl

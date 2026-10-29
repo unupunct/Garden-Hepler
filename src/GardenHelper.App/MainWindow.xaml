@@ -71,6 +71,10 @@
                              AutomationProperties.Name="{loc:L search_global}" ToolTip="{loc:L search_global_tip}">
                         <TextBox.InputBindings><KeyBinding Key="Enter" Command="{Binding SearchCommand}"/></TextBox.InputBindings>
                     </TextBox>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" AutomationProperties.Name="{loc:L set_language}">
+                        <RadioButton Style="{StaticResource Segment}" GroupName="toplang" Content="EN" ToolTip="English" IsChecked="{Binding Language, Converter={StaticResource EqualsConv}, ConverterParameter=en}"/>
+                        <RadioButton Style="{StaticResource Segment}" GroupName="toplang" Content="RO" ToolTip="Română" IsChecked="{Binding Language, Converter={StaticResource EqualsConv}, ConverterParameter=ro}"/>
+                    </StackPanel>
                     <TextBlock Text="⌕" FontFamily="{StaticResource SymbolFont}" FontSize="18" Foreground="{DynamicResource MutedBrush}" Margin="13,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
                     <TextBlock Text="{loc:L search_placeholder}" Foreground="{DynamicResource MutedBrush}" Margin="38,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"
                                Visibility="{Binding SearchText, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>

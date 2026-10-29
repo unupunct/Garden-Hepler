@@ -1,0 +1,92 @@
+<UserControl x:Class="GardenHelper.App.Views.MapView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GardenHelper.App.Infrastructure"
+             xmlns:v="clr-namespace:GardenHelper.App.Views">
+    <Grid Margin="24,16,24,16">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition Width="360"/></Grid.ColumnDefinitions>
+
+        <TextBlock Text="{loc:L nav_map}" Style="{StaticResource H1}" FontSize="24" Grid.ColumnSpan="3"/>
+        <v:Banners Grid.Row="1" Grid.ColumnSpan="3" Margin="0,8,0,0"/>
+
+        <!-- Map -->
+        <Border Grid.Row="2" Style="{StaticResource Card}" Padding="0" CornerRadius="10">
+            <Grid x:Name="Surface" ClipToBounds="True" Background="#FF1E2A1E" Focusable="True"
+                  MouseLeftButtonDown="OnDown" MouseMove="OnMove" MouseLeftButtonUp="OnUp" MouseRightButtonDown="OnRightDown" MouseWheel="OnWheel" SizeChanged="OnSize"
+                  AutomationProperties.Name="{loc:L nav_map}">
+                <Canvas x:Name="TileLayer" IsHitTestVisible="False"/>
+                <Canvas x:Name="Overlay" IsHitTestVisible="False"/>
+                <!-- Not loaded yet: nothing is contacted until the user agrees -->
+                <Border Background="#E6FFFDF8" CornerRadius="10" Padding="22" MaxWidth="520" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Visibility="{Binding MapEnabled, Converter={StaticResource BoolToVis}, ConverterParameter=invert}">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L map_offline_title}" Style="{StaticResource H2}" Foreground="#FF1F2A1C"/>
+                        <TextBlock Text="{loc:L map_offline_note}" Foreground="#FF566350" Margin="0,6,0,14"/>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L map_load}" Command="{Binding LoadMapCommand}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#CCFFFFFF" CornerRadius="6" Padding="8,3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" IsHitTestVisible="False">
+                    <TextBlock FontSize="11" Foreground="#FF1F2A1C"><Run Text="{Binding Attribution, Mode=OneWay}"/><Run Text="   "/><Run Text="{Binding CursorText, Mode=OneWay}"/></TextBlock>
+                </Border>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+                    <Button Content="+" Command="{Binding ZoomInCommand}" ToolTip="{loc:L design_zoom_in}" AutomationProperties.Name="{loc:L design_zoom_in}" Padding="13,6" Margin="0,0,0,4"/>
+                    <Button Content="−" Command="{Binding ZoomOutCommand}" ToolTip="{loc:L design_zoom_out}" AutomationProperties.Name="{loc:L design_zoom_out}" Padding="13,6"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Side panel -->
+        <ScrollViewer Grid.Row="2" Grid.Column="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L map_find}" Style="{StaticResource H2}"/>
+                        <Grid Margin="0,6,0,0">
+                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="8"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                            <StackPanel><TextBlock Text="{loc:L site_lat}" Style="{StaticResource Label}" Margin="0,0,0,3"/><TextBox Text="{Binding Latitude}" AutomationProperties.Name="{loc:L site_lat}"/></StackPanel>
+                            <StackPanel Grid.Column="2"><TextBlock Text="{loc:L site_lon}" Style="{StaticResource Label}" Margin="0,0,0,3"/><TextBox Text="{Binding Longitude}" AutomationProperties.Name="{loc:L site_lon}"/></StackPanel>
+                        </Grid>
+                        <Button Content="{loc:L map_go}" Command="{Binding GoToCoordinatesCommand}" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="{loc:L map_outline}" Style="{StaticResource H2}"/>
+                        <TextBlock Text="{loc:L map_instructions}" Style="{StaticResource Muted}" FontSize="12" Margin="0,4,0,8"/>
+                        <TextBlock Text="{Binding PinsText}" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding AreaText}" Margin="0,4,0,0"/>
+                        <TextBlock FontSize="12" Foreground="{DynamicResource WarnBrush}" Margin="0,6,0,0" Visibility="{Binding WarningText, Converter={StaticResource HasValueVis}}"><Run Text="⚠ "/><Run Text="{Binding WarningText, Mode=OneWay}"/></TextBlock>
+                        <ItemsControl ItemsSource="{Binding Pins}" Margin="0,8,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Text}" FontFamily="Consolas" FontSize="12" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="1" Content="✕" FontFamily="Segoe UI Symbol" FontSize="11" Padding="7,2" ToolTip="{loc:L map_pin_remove}" AutomationProperties.Name="{loc:L map_pin_remove}"
+                                                Command="{Binding DataContext.RemovePinCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <WrapPanel Margin="0,10,0,0">
+                            <Button Content="{loc:L map_add_center}" Command="{Binding AddPinAtCenterCommand}" Margin="0,0,6,6" ToolTip="{loc:L map_add_center_tip}"/>
+                            <Button Content="{loc:L map_undo}" Command="{Binding UndoPinCommand}" Margin="0,0,6,6"/>
+                            <Button Style="{StaticResource DangerButton}" Content="{loc:L map_clear}" Command="{Binding ClearCommand}" Margin="0,0,6,6"/>
+                        </WrapPanel>
+                        <WrapPanel Margin="0,4,0,0">
+                            <Button Content="{loc:L map_save}" Command="{Binding SaveCommand}" Margin="0,0,6,6"/>
+                            <Button Style="{StaticResource PrimaryButton}" Content="{loc:L map_import}" Command="{Binding ImportCommand}" IsEnabled="{Binding CanImport}" Margin="0,0,6,6"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="14" Visibility="{Binding TileProblem, Converter={StaticResource HasValueVis}}" Margin="0,0,0,12">
+                    <TextBlock Foreground="{DynamicResource DangerBrush}"><Run Text="⚠ "/><Run Text="{Binding TileProblem, Mode=OneWay}"/></TextBlock>
+                </Border>
+                <TextBlock Text="{loc:L map_accuracy}" Style="{StaticResource Muted}" FontSize="12"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

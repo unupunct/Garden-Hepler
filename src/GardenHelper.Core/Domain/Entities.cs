@@ -26,6 +26,8 @@ public class Garden
     /// <summary>Satellite picture saved in the data folder (file name only).</summary>
     public string? SatelliteFile { get; set; }
     public double? SatelliteCmPerPixel { get; set; }
+    /// <summary>Property outline as JSON [{Lat,Lon},…] (WGS84), 3–20 pins placed on the map by the user.</summary>
+    public string? BoundaryJson { get; set; }
 }
 
 public enum PlantingStatus { Planned = 0, Sown = 1, Growing = 2, Harvesting = 3, Finished = 4 }

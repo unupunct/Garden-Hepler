@@ -106,6 +106,7 @@
                 <Border DockPanel.Dock="Bottom" Style="{StaticResource Card}" Padding="12,6" Margin="0,8,0,0">
                     <WrapPanel>
                         <TextBlock Text="{Binding CursorText}" Style="{StaticResource Muted}" FontSize="12" MinWidth="170" Margin="0,0,16,0"/>
+                        <TextBlock Text="{Binding BoundaryText}" FontSize="12" Margin="0,0,16,0" Visibility="{Binding HasBoundary, Converter={StaticResource BoolToVis}}"/>
                         <TextBlock Text="{Binding StatusSelection}" FontSize="12" Margin="0,0,16,0"/>
                         <TextBlock FontSize="12" Foreground="{DynamicResource WarnBrush}" Visibility="{Binding OverlapText, Converter={StaticResource HasValueVis}}"><Run Text="⚠ "/><Run Text="{Binding OverlapText, Mode=OneWay}"/></TextBlock>
                     </WrapPanel>
@@ -117,6 +118,9 @@
                             <Grid.LayoutTransform><ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/></Grid.LayoutTransform>
                             <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" Background="{StaticResource GridBrush}"/>
                             <Image Source="{Binding Satellite}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" Stretch="Fill" IsHitTestVisible="False"/>
+                            <Canvas Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}" IsHitTestVisible="False" Visibility="{Binding HasBoundary, Converter={StaticResource BoolToVis}}">
+                                <Polygon Points="{Binding BoundaryPoints}" Stroke="#FFD9A400" StrokeThickness="{Binding StrokeSize}" StrokeDashArray="5 3" StrokeLineJoin="Round" Fill="#18D9A400"/>
+                            </Canvas>
                             <ItemsControl ItemsSource="{Binding Beds}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
                                 <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemContainerStyle>

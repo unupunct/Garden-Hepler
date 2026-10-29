@@ -27,9 +27,20 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
     private readonly IServiceProvider _services;
     private bool _navigating;
 
-    public ShellViewModel(IServiceProvider services)
+    private readonly Preferences _prefs;
+    [ObservableProperty] private string _language = "en";
+
+    partial void OnLanguageChanged(string value)
     {
-        _services = services;
+        if (value != _prefs.Language) _ = _prefs.SetAsync(language: value);
+    }
+
+    public ShellViewModel(IServiceProvider services, Preferences prefs)
+    {
+        _services = services; _prefs = prefs;
+        _language = prefs.Language;
+        // Stay in sync when the language is changed from the Settings page.
+        Loc.Instance.PropertyChanged += (_, e) => { if (e.PropertyName == nameof(Loc.Language) && Language != Loc.Instance.Language) Language = Loc.Instance.Language; };
         Nav = new ObservableCollection<NavEntry>
         {
             new("home", "", null),
@@ -39,6 +50,7 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
             new("plan", "", null),
             new("designer", "▦", typeof(DesignerViewModel)),
             new("site", "☀", typeof(SiteViewModel)),
+            new("map", "◎", typeof(MapViewModel)),
             new("grow", "", null),
             new("plants", "☘", typeof(PlantsViewModel)),
             new("seeds", "◉", typeof(SeedsViewModel)),

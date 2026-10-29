@@ -34,6 +34,7 @@
             <DataTemplate DataType="{x:Type vm:SettingsViewModel}"><v:SettingsView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:AboutViewModel}"><v:AboutView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:SiteViewModel}"><v:SiteView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:MapViewModel}"><v:MapView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:DesignerViewModel}"><v:DesignerView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:MonitorViewModel}"><v:MonitorView/></DataTemplate>
         </ResourceDictionary>

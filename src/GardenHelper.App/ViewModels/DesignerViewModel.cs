@@ -8,6 +8,7 @@ using GardenHelper.Core.Design;
 using GardenHelper.Core.Domain;
 using GardenHelper.Core.Knowledge;
 using GardenHelper.Core.Services;
+using GardenHelper.Core.Site;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -144,6 +145,32 @@ public sealed partial class DesignerViewModel : PageViewModel
     [ObservableProperty] private string _fitText = "";
     [ObservableProperty] private bool _leftOpen = true;
 
+    // ---- Property outline imported from the map page (3–20 pins) ----
+    private List<Pt> _boundary = new();
+    public bool JustImportedBoundary { get; set; }
+    [ObservableProperty] private PointCollection _boundaryPoints = new();
+    [ObservableProperty] private bool _hasBoundary;
+    [ObservableProperty] private string _boundaryText = "";
+    public double StrokeSize => 2.5 / Scale;
+
+    private void BuildBoundary()
+    {
+        _boundary = new(); BoundaryPoints = new PointCollection(); HasBoundary = false; BoundaryText = "";
+        var pins = GeoMath.FromJson(_garden?.BoundaryJson);
+        if (_garden is null || pins.Count < GeoMath.MinBoundaryPins) return;
+        if (Satellite is not null && _garden.Latitude is { } la && _garden.Longitude is { } lo)
+            _boundary = GeoMath.ToPlan(pins, new GeoPoint(la, lo), CanvasWidth / 2, CanvasHeight / 2);   // picture is centred on these coordinates
+        else
+        {
+            var (pts, w, h) = GeoMath.ToPlanFitted(pins);
+            _boundary = pts; CanvasWidth = Math.Max(1600, w); CanvasHeight = Math.Max(1000, h);
+        }
+        BoundaryPoints = new PointCollection(_boundary.Select(p => new System.Windows.Point(p.X, p.Y)));
+        var (area, per) = GeoMath.Measure(pins);
+        BoundaryText = Loc.F("design_boundary", area.ToString("N0", Loc.Instance.Culture), per.ToString("N0", Loc.Instance.Culture));
+        HasBoundary = true;
+    }
+
     public double LabelSize => 13 / Scale;
     public double HandleSize => 16 / Scale;
     public bool HasSelection => Selected is not null;
@@ -155,7 +182,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     public string StatusSelection => Selected is null ? Loc.T("design_status_none")
         : Loc.F("design_status_sel", Selected.Name, Selected.SizeText, Selected.AreaText, Selected.Rotation.ToString("0"));
 
-    partial void OnScaleChanged(double value) { OnPropertyChanged(nameof(LabelSize)); OnPropertyChanged(nameof(HandleSize)); OnPropertyChanged(nameof(ScaleText)); }
+    partial void OnScaleChanged(double value) { OnPropertyChanged(nameof(StrokeSize)); OnPropertyChanged(nameof(LabelSize)); OnPropertyChanged(nameof(HandleSize)); OnPropertyChanged(nameof(ScaleText)); }
     partial void OnLibrarySearchChanged(string value) => RefreshCards();
     partial void OnSelectedFilterChanged(LibraryFilter? value) => RefreshCards();
     partial void OnNewPlantChanged(PlantOption? value) => UpdatePlantAdvice();
@@ -190,6 +217,16 @@ public sealed partial class DesignerViewModel : PageViewModel
             Scale = 0.08;
         }
         else { Satellite = null; CanvasWidth = 1600; CanvasHeight = 1000; }
+        BuildBoundary();
+        if (HasBoundary && JustImportedBoundary)
+        {
+            // Frame the property so the imported outline is visible straight away.
+            var minX = _boundary.Min(p => p.X); var maxX = _boundary.Max(p => p.X);
+            var minY = _boundary.Min(p => p.Y); var maxY = _boundary.Max(p => p.Y);
+            Scale = Math.Clamp(Math.Round(Math.Min(780 / (maxX - minX + 600), 560 / (maxY - minY + 600)), 3), 0.03, 3);
+            StatusMessage = Loc.T("map_imported");
+            JustImportedBoundary = false;
+        }
 
         var keep = Selected?.Id;
         var beds = await _repo.ListAsync<GardenBed>(q => q.Where(b => b.GardenId == _garden.Id).Include(b => b.Plantings).OrderBy(b => b.Id));
@@ -314,7 +351,11 @@ public sealed partial class DesignerViewModel : PageViewModel
         if (Selected is null || Selected.Kind == "path") { OverlapText = ""; return; }
         var mine = Selected.Corners;
         var hit = Beds.Where(o => o != Selected && o.Kind != "path" && GeometryMath.ConvexOverlap(mine, o.Corners)).Select(o => o.Name).ToList();
-        OverlapText = hit.Count == 0 ? "" : Loc.F("design_overlap", string.Join(", ", hit));
+        var parts = new List<string>();
+        if (hit.Count > 0) parts.Add(Loc.F("design_overlap", string.Join(", ", hit)));
+        // Only growing areas must stay inside the property; paths and structures may run to its edge.
+        if (_boundary.Count >= 3 && !GeometryMath.PolygonInside(mine, _boundary)) parts.Add(Loc.T("design_outside"));
+        OverlapText = string.Join(" · ", parts);
     }
 
     private async Task RefreshPlantingsAsync()

@@ -14,6 +14,7 @@ An offline Windows companion for growing your own food. Plan your beds on a scal
 - **Crop rotation check** — every planting is checked against the bed's history using editable family rules (`content/rotation-rules.json`). Verdicts are *compatible*, *caution*, *conflict* or *not enough information*, each with the reason. You can always proceed; an override is recorded.
 - **Next actions** — transparent rules over your plantings, frost dates, sun and seeds (sowing window open or closing, harvest due, frost approaching for tender crops, too little sun, no seed left). Every suggestion shows the data it used.
 - **Site, sun and climate** — enter coordinates; sun path, day length and noon sun height are calculated **offline**. Optionally (one explicit click) fetch a satellite picture and real temperature history, from which typical frost dates, monthly temperatures and degree days are derived.
+- **Property map** — a satellite map (online, only after you agree) where you click 3 to 20 pins around your property. Drag pins to adjust; area and perimeter update live; one click imports the outline into the designer at true scale, and beds placed outside it are flagged. Positions come from imagery, so they are approximate, not survey-grade.
 - **Plant encyclopedia** — 106 starter records in English and Romanian covering vegetables, herbs, cover crops, fruit and nut trees, berries, vines and cultivated mushrooms commonly grown in Romania, with sowing windows, spacing, companions (with evidence level), cautions and sources. It is a practical starter set, not an exhaustive flora: add your own with plain JSON files.
 - **My library (knowledge base)** — import ebooks and documents, read them in the app, and search every word across all of them. Subjects are extracted for each book. Search ignores accents and capitals (`samanta` finds `sămânță`).
 - Tasks, journal, seed inventory, weekly automatic backup with verification, restore, English/Romanian, light/dark themes, metric/imperial.
@@ -79,7 +80,8 @@ Drop JSON files in `%LOCALAPPDATA%\GardenHelper\content\plants\` (same format as
 | Next-action alerts, sun estimate from coordinates, climate/frost derivation, satellite picture | **Done** |
 | Ebook library, reader, full-text and subject search | **Done** |
 | Multi-year rotation *planner* (generate future sequences), succession planting | Planned |
-| Property boundary polygons, georeferencing with control points, address search, projected CRS (UTM / Stereo 70) | Planned |
+| Property outline from map pins (3–20), live area/perimeter, import into the designer at true scale | **Done** |
+| Georeferencing with control points and scale calibration, address search, projected CRS (UTM / Stereo 70), GeoJSON import | Planned |
 | Shade simulation from obstacles, sunlight heatmap, automated bed planning, seasonal simulator | Planned |
 | PNG/PDF plan export, labels, reports, GeoJSON import | Planned |
 | Greenhouse, pond, mushroom, compost and soil modules | Planned |

@@ -205,6 +205,9 @@ namespace GardenHelper.Core.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("BoundaryJson")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ClimateJson")
                         .HasColumnType("TEXT");
 
