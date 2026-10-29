@@ -23,6 +23,8 @@ public sealed partial class PhotosViewModel : PageViewModel
     private readonly SeedPhotoStore _store;
     private readonly KnowledgeBase _kb;
     private readonly IDialogs _dialogs;
+    private const int PageSize = 120;          // thumbnails are decoded on the spot, so a big library is shown a page at a time
+    private int _limit = PageSize;
     private List<Photo> _all = new();
     private Dictionary<(string, int), string> _names = new();
 
@@ -43,6 +45,7 @@ public sealed partial class PhotosViewModel : PageViewModel
     [ObservableProperty] private string _search = "";
     [ObservableProperty] private string _countText = "";
     [ObservableProperty] private bool _isEmpty;
+    [ObservableProperty] private bool _hasMore;
     // adding
     [ObservableProperty] private bool _isAdding;
     [ObservableProperty] private string? _pendingFile;
@@ -55,8 +58,10 @@ public sealed partial class PhotosViewModel : PageViewModel
     [ObservableProperty] private PhotoTile? _viewing;
     [ObservableProperty] private ImageSource? _viewImage;
 
-    partial void OnKindFilterChanged(AnimalOption value) => Rebuild();
-    partial void OnSearchChanged(string value) => Rebuild();
+    partial void OnKindFilterChanged(AnimalOption value) { _limit = PageSize; Rebuild(); }
+    partial void OnSearchChanged(string value) { _limit = PageSize; Rebuild(); }
+
+    [RelayCommand] private void ShowMore() { _limit += PageSize; Rebuild(); }
     partial void OnNewKindChanged(AnimalOption value) => _ = LoadOwnersAsync();
 
     public override async Task LoadAsync()
@@ -89,7 +94,8 @@ public sealed partial class PhotosViewModel : PageViewModel
             (q.Length == 0 || (p.Caption ?? "").Contains(q, StringComparison.OrdinalIgnoreCase) || AboutOf(p).Contains(q, StringComparison.OrdinalIgnoreCase))).ToList();
         var culture = Loc.Instance.Culture;
         Groups.Clear();
-        foreach (var month in shown.GroupBy(p => new DateOnly(p.Date.Year, p.Date.Month, 1)).OrderByDescending(g => g.Key))
+        HasMore = shown.Count > _limit;
+        foreach (var month in shown.Take(_limit).GroupBy(p => new DateOnly(p.Date.Year, p.Date.Month, 1)).OrderByDescending(g => g.Key))
             Groups.Add(new PhotoMonthGroup(month.Key.ToString("MMMM yyyy", culture),
                 month.Select(p => new PhotoTile(p, PhotoImage.Load(_store.PathOf(p.File), 260), AboutOf(p), p.Date.ToString("d MMM yyyy", culture), p.Caption ?? "")).ToList()));
         CountText = Loc.FN("photos_count", shown.Count, shown.Count);
