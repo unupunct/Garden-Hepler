@@ -451,6 +451,21 @@ public partial class LibraryView : UserControl
 {
     public LibraryView() => InitializeComponent();
 
+    private void OnCaseSize(object sender, SizeChangedEventArgs e) { if (e.WidthChanged && DataContext is LibraryViewModel vm) vm.SetShelfWidth(e.NewSize.Width - 20); }
+
+    /// <summary>One click picks a book (its details open on the right); a double click opens it for reading.</summary>
+    private void OnSpineDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (DataContext is not LibraryViewModel vm || (sender as FrameworkElement)?.DataContext is not SpineItem spine) return;
+        vm.SelectBookCommand.Execute(spine.Row);
+        if (e.ClickCount == 2) vm.ReadCommand.Execute(spine.Row);
+    }
+
+    private void OnIndexTitle(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is LibraryViewModel vm && (sender as FrameworkElement)?.DataContext is BookRow row) vm.SelectBookCommand.Execute(row);
+    }
+
     private void OnDragOver(object sender, DragEventArgs e)
     {
         e.Effects = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;

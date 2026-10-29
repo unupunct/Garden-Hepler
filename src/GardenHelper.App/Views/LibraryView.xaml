@@ -54,39 +54,119 @@
 
         <TextBox Grid.Row="2" Text="{Binding Query, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" AutomationProperties.Name="{loc:L lib_search}" Tag="{loc:L lib_search}"
                  Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVis}, ConverterParameter=invert}" x:Name="SearchBox"/>
-        <StackPanel Grid.Row="3" Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVis}, ConverterParameter=invert}">
-            <TextBlock Text="{loc:L lib_subjects}" Style="{StaticResource Label}" Margin="0,0,0,4" Visibility="{Binding Subjects.Count, Converter={StaticResource HasValueVis}}"/>
-            <ListBox Style="{StaticResource ChipList}" ItemsSource="{Binding Subjects}" SelectedItem="{Binding SubjectFilter}" MaxHeight="76" Margin="0,0,0,6"
-                     AutomationProperties.Name="{loc:L lib_subjects}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate><TextBlock FontSize="12"><Run Text="{Binding Term, Mode=OneWay}"/><Run Text=" · " /><Run Text="{Binding Books, Mode=OneWay}"/></TextBlock></DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <Button Style="{StaticResource LinkButton}" Content="{loc:L lib_clear_filter}" HorizontalAlignment="Left" Margin="0,0,0,8"
-                    Command="{Binding FilterSubjectCommand}" Visibility="{Binding SubjectFilter, Converter={StaticResource HasValueVis}}"/>
-        </StackPanel>
-
         <Grid Grid.Row="4" Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVis}, ConverterParameter=invert}">
-            <Grid.ColumnDefinitions><ColumnDefinition Width="380"/><ColumnDefinition Width="24"/><ColumnDefinition/></Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
 
-            <ListBox ItemsSource="{Binding Books}" SelectedItem="{Binding Selected}" AutomationProperties.Name="{loc:L nav_library}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
-                                <TextBlock Text="{Binding Author}" Style="{StaticResource Muted}" FontSize="12" TextTrimming="CharacterEllipsis"/>
-                                <TextBlock Text="{Binding Meta}" Style="{StaticResource Muted}" FontSize="12"/>
-                            </StackPanel>
-                            <Border Grid.Column="1" Style="{StaticResource Badge}" VerticalAlignment="Top" Margin="8,0,0,0"><TextBlock Text="{Binding Format}" FontSize="11" FontWeight="SemiBold"/></Border>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <!-- The bookcase and the A-Z index (hidden while full-text search results are shown) -->
+            <ScrollViewer x:Name="CaseScroll" VerticalScrollBarVisibility="Auto" SizeChanged="OnCaseSize" Visibility="{Binding HasQuery, Converter={StaticResource BoolToVis}, ConverterParameter=invert}">
+                <StackPanel>
+                    <Border CornerRadius="8" Padding="18,16,18,10" BorderThickness="2" BorderBrush="#FF3B2616">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#FF6B4A30" Offset="0"/><GradientStop Color="#FF4E3420" Offset="1"/></LinearGradientBrush>
+                        </Border.Background>
+                        <ItemsControl ItemsSource="{Binding Shelves}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,0,0,10">
+                                        <Border Background="#FF33200F" CornerRadius="3,3,0,0" Padding="4,0,4,0" Height="218">
+                                            <ItemsControl ItemsSource="{Binding Spines}" VerticalAlignment="Bottom">
+                                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Width="{Binding Width}" Height="{Binding Height}" Margin="0,0,3,0" VerticalAlignment="Bottom" CornerRadius="4,4,1,1" Background="{Binding Fill}" BorderBrush="#33FFFFFF" BorderThickness="1,1,0,0"
+                                                                Cursor="Hand" Focusable="True" ToolTipService.InitialShowDelay="120" ToolTipService.ShowDuration="12000" AutomationProperties.Name="{Binding Title}"
+                                                                MouseLeftButtonDown="OnSpineDown" RenderTransformOrigin="0.5,1">
+                                                            <Border.ToolTip>
+                                                                <StackPanel MaxWidth="320">
+                                                                    <TextBlock Text="{Binding Row.Title}" FontWeight="Bold" TextWrapping="Wrap"/>
+                                                                    <TextBlock Text="{Binding Row.Author}" Opacity="0.8" TextWrapping="Wrap"/>
+                                                                    <TextBlock Opacity="0.7" FontSize="11" Margin="0,3,0,0"><Run Text="{Binding Row.Format, Mode=OneWay}"/><Run Text=" · "/><Run Text="{Binding Row.Meta, Mode=OneWay}"/></TextBlock>
+                                                                    <TextBlock Text="{loc:L lib_shelf_tip}" Opacity="0.6" FontSize="11" Margin="0,3,0,0"/>
+                                                                </StackPanel>
+                                                            </Border.ToolTip>
+                                                            <Border.RenderTransform><TranslateTransform Y="0"/></Border.RenderTransform>
+                                                            <Border.Style>
+                                                                <Style TargetType="Border">
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Dimmed}" Value="True"><Setter Property="Opacity" Value="0.25"/></DataTrigger>
+                                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="BorderBrush" Value="#FFF3C969"/><Setter Property="BorderThickness" Value="3"/><Setter Property="Margin" Value="0,0,3,16"/></DataTrigger>
+                                                                        <Trigger Property="IsMouseOver" Value="True"><Setter Property="Margin" Value="0,0,3,8"/></Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+                                                            <Grid>
+                                                                <Rectangle Height="5" Fill="#66F3C969" VerticalAlignment="Top" Margin="0,14,0,0"/>
+                                                                <Rectangle Height="5" Fill="#66F3C969" VerticalAlignment="Top" Margin="0,24,0,0"/>
+                                                                <Rectangle Height="5" Fill="#66F3C969" VerticalAlignment="Bottom" Margin="0,0,0,14"/>
+                                                                <TextBlock Text="{Binding Title}" Foreground="#FFF6EEDC" FontWeight="SemiBold" FontSize="12.5" TextTrimming="CharacterEllipsis"
+                                                                           Width="{Binding TextLength}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,12,0,0" TextAlignment="Center">
+                                                                    <TextBlock.LayoutTransform><RotateTransform Angle="90"/></TextBlock.LayoutTransform>
+                                                                </TextBlock>
+                                                            </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Border>
+                                        <Border Height="16" CornerRadius="0,0,3,3" BorderBrush="#FF2A1A0C" BorderThickness="0,1,0,0">
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFB8855A" Offset="0"/><GradientStop Color="#FF8A5E3A" Offset="1"/></LinearGradientBrush>
+                                            </Border.Background>
+                                            <Border.Effect><DropShadowEffect BlurRadius="8" ShadowDepth="3" Opacity="0.45"/></Border.Effect>
+                                        </Border>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>
+
+                    <TextBlock Text="{loc:L lib_all_titles}" Style="{StaticResource H2}" Margin="0,22,0,8"/>
+                    <Grid Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="340"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding TitleFilter, UpdateSourceTrigger=PropertyChanged}" Tag="{loc:L lib_find_title}" AutomationProperties.Name="{loc:L lib_find_title}"/>
+                        <Button Grid.Column="1" Style="{StaticResource LinkButton}" Content="{loc:L lib_clear_filter}" Margin="10,0,0,0" Command="{Binding ClearTitleFilterCommand}"
+                                Visibility="{Binding TitleFilter, Converter={StaticResource HasValueVis}}"/>
+                    </Grid>
+                    <ItemsControl ItemsSource="{Binding LetterBar}" Margin="0,0,0,6">
+                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding}" Width="34" Height="30" Margin="0,0,4,4" Padding="0" FontWeight="SemiBold" AutomationProperties.Name="{Binding}"
+                                        Command="{Binding DataContext.PickLetterCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="{loc:L lib_no_title_match}" Style="{StaticResource Muted}" Visibility="{Binding NoTitleMatches, Converter={StaticResource BoolToVis}}"/>
+                    <ItemsControl ItemsSource="{Binding Letters}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,6,0,6">
+                                    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1" Margin="0,0,0,4">
+                                        <TextBlock Text="{Binding Letter}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource AccentBrush}"/>
+                                    </Border>
+                                    <ItemsControl ItemsSource="{Binding Books}">
+                                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Width="330" HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0" Padding="4,4" Margin="0,0,8,0" Cursor="Hand"
+                                                        Click="OnIndexTitle" AutomationProperties.Name="{Binding Title}" ToolTip="{Binding Title}">
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" FontWeight="SemiBold"/>
+                                                        <TextBlock Text="{Binding Author}" Style="{StaticResource Muted}" FontSize="11" TextTrimming="CharacterEllipsis"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
 
             <!-- Search results -->
-            <DockPanel Grid.Column="2" Visibility="{Binding HasQuery, Converter={StaticResource BoolToVis}}">
+            <DockPanel Grid.Column="0" Visibility="{Binding HasQuery, Converter={StaticResource BoolToVis}}">
                 <TextBlock DockPanel.Dock="Top" Text="{loc:L lib_results}" Style="{StaticResource H2}" Margin="0,0,0,8"/>
                 <ProgressBar DockPanel.Dock="Top" IsIndeterminate="True" Margin="0,0,0,8" Visibility="{Binding IsSearching, Converter={StaticResource BoolToVis}}"/>
                 <TextBlock DockPanel.Dock="Top" Text="{loc:L lib_no_hits}" Style="{StaticResource Muted}" Visibility="{Binding NoHits, Converter={StaticResource BoolToVis}}"/>
@@ -103,7 +183,7 @@
             </DockPanel>
 
             <!-- Book details -->
-            <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top">
+            <Border Grid.Column="1" Width="360" Margin="22,0,0,0" Style="{StaticResource Card}" VerticalAlignment="Top">
                 <Border.Visibility>
                     <MultiBinding Converter="{StaticResource DetailsVis}">
                         <Binding Path="HasQuery"/><Binding Path="Selected"/>

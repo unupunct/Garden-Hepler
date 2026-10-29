@@ -61,6 +61,7 @@ public sealed partial class LibraryViewModel : PageViewModel
 
     partial void OnSelectedChanged(BookRow? value)
     {
+        MarkSelected();
         if (value is null) return;
         EditTitle = value.Book.Title; EditAuthor = value.Book.Author ?? ""; EditTags = value.Book.Tags;
         SelectedSubjects.Clear();
@@ -121,10 +122,10 @@ public sealed partial class LibraryViewModel : PageViewModel
         var books = await _library.ListAsync(null, SubjectFilter?.Term);
         Books.Clear();
         foreach (var b in books) Books.Add(new BookRow(b));
-        var stats = await _library.StatsAsync();
-        IsEmpty = stats.Books == 0;
-        StatsText = Loc.F("lib_stats", stats.Books, stats.Sections.ToString("N0", Loc.Instance.Culture), stats.Words.ToString("N0", Loc.Instance.Culture));
+        IsEmpty = Books.Count == 0 && SubjectFilter is null;
+        StatsText = Loc.F("lib_stats_books", Books.Count);
         Selected = Books.FirstOrDefault(b => b.Book.Id == keep) ?? Selected;
+        RebuildAll();
     }
 
     [RelayCommand]
