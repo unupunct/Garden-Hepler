@@ -44,6 +44,36 @@
 
             <Border Style="{StaticResource Card}" Margin="0,0,0,16">
                 <StackPanel>
+                    <TextBlock Text="{loc:L lock_title}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                    <TextBlock Text="{loc:L lock_text}" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <PasswordBox x:Name="Pw1" Width="170" Margin="0,0,8,0" AutomationProperties.Name="{loc:L lock_new}" ToolTip="{loc:L lock_new}"/>
+                        <PasswordBox x:Name="Pw2" Width="170" Margin="0,0,8,0" AutomationProperties.Name="{loc:L lock_again}" ToolTip="{loc:L lock_again}"/>
+                        <Button Style="{StaticResource PrimaryButton}" Content="{loc:L lock_set_button}" Click="OnSetPassword" Margin="0,0,8,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0" Visibility="{Binding LockOn, Converter={StaticResource BoolToVis}}">
+                        <PasswordBox x:Name="PwCurrent" Width="170" Margin="0,0,8,0" AutomationProperties.Name="{loc:L lock_current}" ToolTip="{loc:L lock_current}"/>
+                        <Button Content="{loc:L lock_remove}" Click="OnRemovePassword" Margin="0,0,8,0"/>
+                        <Button Content="{loc:L lock_now}" Command="{Binding LockAppCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{loc:L auto_title}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
+                    <TextBlock Text="{loc:L auto_text}" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
+                    <TextBox Text="{Binding AutoFolder, Mode=OneWay}" IsReadOnly="True" Margin="0,10,0,8" AutomationProperties.Name="{loc:L auto_title}"/>
+                    <WrapPanel>
+                        <Button Content="{loc:L auto_choose}" Command="{Binding ChooseAutoFolderCommand}" Margin="0,0,8,0"/>
+                        <Button Content="{loc:L auto_now}" Command="{Binding AutoNowCommand}" Margin="0,0,8,0"/>
+                        <Button Content="{loc:L auto_stop}" Command="{Binding StopAutoFolderCommand}"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
                     <TextBlock Text="{loc:L export_title}" Style="{StaticResource H2}" Margin="0,0,0,4"/>
                     <TextBlock Text="{loc:L export_text}" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
                     <CheckBox Content="{loc:L export_library}" IsChecked="{Binding IncludeLibrary}" Margin="0,10,0,8"/>

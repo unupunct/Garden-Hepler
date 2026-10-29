@@ -102,6 +102,11 @@ public partial class App : Application
             });
             _ = Task.Run(async () =>
             {
+                try { await Services.GetRequiredService<GardenHelper.Core.Services.ExportService>().AutoExportIfDueAsync(Services.GetRequiredService<GardenHelper.Core.Services.SettingsService>(), TimeSpan.FromDays(7)); }
+                catch (Exception ex) { _log.LogWarning(ex, "Automatic export failed"); }
+            });
+            _ = Task.Run(async () =>
+            {
                 try { await Services.GetRequiredService<BackupService>().AutoBackupIfDueAsync(TimeSpan.FromDays(7)); }
                 catch (Exception ex) { _log.LogWarning(ex, "Automatic backup failed"); }
             });

@@ -61,12 +61,13 @@ public sealed partial class SettingsViewModel : PageViewModel
     private readonly IDialogs _dialogs;
     private readonly GardenHelper.Core.Services.SettingsService _settings;
     private readonly GardenHelper.Core.Services.ExportService _exporter;
+    private readonly IServiceProvider _services;
     private readonly GardenHelper.App.Infrastructure.ReminderService _reminders;
     private bool _loading;
 
-    public SettingsViewModel(Preferences prefs, BackupService backups, AppPaths paths, IDialogs dialogs, GardenHelper.Core.Services.SettingsService settings, GardenHelper.App.Infrastructure.ReminderService reminders, GardenHelper.Core.Services.ExportService exporter, ILogger<SettingsViewModel> log) : base(log)
+    public SettingsViewModel(Preferences prefs, BackupService backups, AppPaths paths, IDialogs dialogs, GardenHelper.Core.Services.SettingsService settings, GardenHelper.App.Infrastructure.ReminderService reminders, GardenHelper.Core.Services.ExportService exporter, IServiceProvider services, ILogger<SettingsViewModel> log) : base(log)
     {
-        _exporter = exporter; _settings = settings; _reminders = reminders; _prefs = prefs; _backups = backups; _paths = paths; _dialogs = dialogs;
+        _services = services; _exporter = exporter; _settings = settings; _reminders = reminders; _prefs = prefs; _backups = backups; _paths = paths; _dialogs = dialogs;
         _loading = true;
         Language = prefs.Language; Theme = prefs.Theme; Units = prefs.Units;
         _loading = false;
@@ -96,6 +97,8 @@ public sealed partial class SettingsViewModel : PageViewModel
         _loading = true;
         RemindersOn = await _settings.GetAsync(GardenHelper.App.Infrastructure.ReminderService.EnabledKey) != "0";
         SummaryTime = await _settings.GetAsync(GardenHelper.App.Infrastructure.ReminderService.SummaryKey) ?? "08:00";
+        LockOn = !string.IsNullOrEmpty(await _settings.GetAsync(GardenHelper.Core.Services.PasswordLock.EnabledKey));
+        AutoFolder = await _settings.GetAsync(GardenHelper.Core.Services.ExportService.AutoFolderKey) ?? "";
         _loading = false;
         RefreshBackups();
         RestorePending = File.Exists(_paths.PendingRestoreFile);
@@ -108,6 +111,46 @@ public sealed partial class SettingsViewModel : PageViewModel
     }
 
     [ObservableProperty] private bool _includeLibrary;
+    [ObservableProperty] private bool _lockOn;
+    [ObservableProperty] private string _autoFolder = "";
+
+    public async Task SetPasswordAsync(string password, string again)
+    {
+        if (password != again) { ErrorMessage = Loc.T("lock_mismatch"); return; }
+        if (GardenHelper.Core.Services.PasswordLock.Problem(password) is { } p) { ErrorMessage = Loc.T("lock_" + p); return; }
+        await _settings.SetAsync(GardenHelper.Core.Services.PasswordLock.EnabledKey, GardenHelper.Core.Services.PasswordLock.Hash(password));
+        LockOn = true; StatusMessage = Loc.T("lock_set");
+    }
+
+    public async Task RemovePasswordAsync(string current)
+    {
+        if (!GardenHelper.Core.Services.PasswordLock.Verify(current, await _settings.GetAsync(GardenHelper.Core.Services.PasswordLock.EnabledKey))) { ErrorMessage = Loc.T("lock_wrong"); return; }
+        await _settings.SetAsync(GardenHelper.Core.Services.PasswordLock.EnabledKey, "");
+        LockOn = false; StatusMessage = Loc.T("lock_removed");
+    }
+
+    [RelayCommand] private void LockApp() { if (_services.GetService(typeof(ShellViewModel)) is ShellViewModel shell) shell.LockNow(); }
+
+    [RelayCommand]
+    private Task ChooseAutoFolderAsync() => RunAsync(async () =>
+    {
+        var dir = _dialogs.PickFolder(Loc.T("auto_pick"));
+        if (dir is null) return;
+        await _settings.SetAsync(GardenHelper.Core.Services.ExportService.AutoFolderKey, dir); await _settings.SetAsync(GardenHelper.Core.Services.ExportService.AutoLastKey, "");
+        AutoFolder = dir; StatusMessage = Loc.T("auto_set");
+    }, busy: false);
+
+    [RelayCommand]
+    private Task StopAutoFolderAsync() => RunAsync(async () => { await _settings.SetAsync(GardenHelper.Core.Services.ExportService.AutoFolderKey, ""); AutoFolder = ""; StatusMessage = Loc.T("auto_off"); }, busy: false);
+
+    [RelayCommand]
+    private Task AutoNowAsync() => RunAsync(async () =>
+    {
+        if (string.IsNullOrEmpty(AutoFolder)) { ErrorMessage = Loc.T("auto_none"); return; }
+        await _settings.SetAsync(GardenHelper.Core.Services.ExportService.AutoLastKey, "");
+        var info = await _exporter.AutoExportIfDueAsync(_settings, TimeSpan.Zero);
+        StatusMessage = info is null ? Loc.T("auto_none") : Loc.F("export_done", Path.GetFileName(info.Path), (info.Bytes / 1048576.0).ToString("0.#", Loc.Instance.Culture));
+    });
 
     [RelayCommand]
     private Task ExportAllAsync() => RunAsync(async () =>

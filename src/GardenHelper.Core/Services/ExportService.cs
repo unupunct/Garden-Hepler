@@ -51,6 +51,21 @@ public sealed class ExportService
         finally { try { File.Delete(backup.Path); } catch (IOException) { } }
     }
 
+    public const string AutoFolderKey = "autoexport.folder", AutoLastKey = "autoexport.last";
+
+    /// <summary>If a folder is chosen and the last automatic export is older than the interval, writes a new ZIP there and keeps the newest few.</summary>
+    public async Task<ExportInfo?> AutoExportIfDueAsync(SettingsService settings, TimeSpan interval, int keep = 4, CancellationToken ct = default)
+    {
+        var folder = await settings.GetAsync(AutoFolderKey);
+        if (string.IsNullOrWhiteSpace(folder) || !Directory.Exists(folder)) return null;
+        if (DateTime.TryParse(await settings.GetAsync(AutoLastKey), null, System.Globalization.DateTimeStyles.RoundtripKind, out var last) && DateTime.UtcNow - last < interval) return null;
+        var info = await ExportAsync(Path.Combine(folder, $"GardenHelper-auto-{DateTime.Now:yyyyMMdd-HHmm}.zip"), includeLibrary: false, ct);
+        await settings.SetAsync(AutoLastKey, DateTime.UtcNow.ToString("O"), ct);
+        foreach (var old in Directory.EnumerateFiles(folder, "GardenHelper-auto-*.zip").OrderByDescending(f => f).Skip(keep))
+            try { File.Delete(old); } catch (IOException) { }
+        return info;
+    }
+
     /// <summary>Checks the ZIP, copies its files into the data folder, and schedules its database for the next start. Throws with a clear message when it is not an export of this app.</summary>
     public async Task ImportAsync(string zipPath, CancellationToken ct = default)
     {

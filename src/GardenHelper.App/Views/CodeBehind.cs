@@ -21,7 +21,18 @@ public partial class SeedsView : UserControl { public SeedsView() => InitializeC
 public partial class JournalView : UserControl { public JournalView() => InitializeComponent(); }
 public partial class GardenView : UserControl { public GardenView() => InitializeComponent(); }
 public partial class SearchView : UserControl { public SearchView() => InitializeComponent(); }
-public partial class SettingsView : UserControl { public SettingsView() => InitializeComponent(); }
+public partial class SettingsView : UserControl
+{
+    public SettingsView() => InitializeComponent();
+    private async void OnSetPassword(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is ViewModels.SettingsViewModel vm) { await vm.SetPasswordAsync(Pw1.Password, Pw2.Password); if (vm.LockOn) { Pw1.Clear(); Pw2.Clear(); } }
+    }
+    private async void OnRemovePassword(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is ViewModels.SettingsViewModel vm) { await vm.RemovePasswordAsync(PwCurrent.Password); PwCurrent.Clear(); }
+    }
+}
 public partial class AboutView : UserControl { public AboutView() => InitializeComponent(); }
 
 public partial class CamerasView : UserControl

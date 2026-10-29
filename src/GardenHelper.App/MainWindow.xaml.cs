@@ -12,9 +12,16 @@ public partial class MainWindow : Window
         DataContext = shell;
     }
 
+    private async void OnUnlock(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is ShellViewModel vm) { await vm.TryUnlockAsync(UnlockBox.Password); UnlockBox.Clear(); UnlockBox.Focus(); }
+    }
+    private void OnUnlockKey(object sender, KeyEventArgs e) { if (e.Key == Key.Enter) OnUnlock(sender, e); }
+
     /// <summary>Ctrl+K or Ctrl+F focuses the global search box; Alt+1..5 jump to the main pages.</summary>
     private void OnPreviewKeyDown(object sender, KeyEventArgs e)
     {
+        if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.L && DataContext is ShellViewModel locking) { locking.LockNow(); e.Handled = true; return; }
         if (Keyboard.Modifiers == ModifierKeys.Control && (e.Key == Key.K || e.Key == Key.F))
         {
             SearchBox.Focus();

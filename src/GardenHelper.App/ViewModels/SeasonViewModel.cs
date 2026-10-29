@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
+using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using GardenHelper.App.Infrastructure;
 using GardenHelper.Core.Animals;
 using GardenHelper.Core.Domain;
@@ -21,7 +23,8 @@ public sealed partial class SeasonViewModel : PageViewModel
     private readonly KnowledgeBase _kb;
 
     private readonly SeedPhotoStore _store;
-    public SeasonViewModel(Repository repo, KnowledgeBase kb, SeedPhotoStore store, ILogger<SeasonViewModel> log) : base(log) { _repo = repo; _kb = kb; _store = store; }
+    private readonly IDialogs _dialogs;
+    public SeasonViewModel(Repository repo, KnowledgeBase kb, SeedPhotoStore store, IDialogs dialogs, ILogger<SeasonViewModel> log) : base(log) { _repo = repo; _kb = kb; _store = store; _dialogs = dialogs; }
 
     public ObservableCollection<int> Years { get; } = new();
     public ObservableCollection<SeasonTile> Tiles { get; } = new();
@@ -34,6 +37,22 @@ public sealed partial class SeasonViewModel : PageViewModel
 
     /// <summary>The report as plain text blocks, for printing.</summary>
     public (string Title, IReadOnlyList<SeasonTile> Tiles, IReadOnlyList<SeasonSection> Sections) Report => (Title, Tiles.ToList(), Sections.ToList());
+
+    /// <summary>Saves the review, with its pictures, as one web page that opens in any browser: easy to send to family.</summary>
+    [RelayCommand]
+    private Task ShareAsync() => RunAsync(async () =>
+    {
+        var file = _dialogs.SaveFile("Web page|*.html", $"GardenHelper-season-{SelectedYear}.html");
+        if (file is null) return;
+        var photos = (await _repo.ListAsync<Photo>(q => q.Where(p => p.Date.Year == SelectedYear).OrderBy(p => p.Date))).Take(12).ToList();
+        var culture = Loc.Instance.Culture;
+        var images = new List<ReportImage>();
+        foreach (var p in photos)
+            if (PhotoImage.ToJpegDataUri(_store.PathOf(p.File), 900) is { } uri) images.Add(new ReportImage(p.Caption ?? "", p.Date.ToString("d MMM", culture), uri));
+        var html = HtmlReport.Build(Title, "Garden Helper · " + DateTime.Today.ToString("d MMMM yyyy", culture), Tiles.Select(t => (t.Value, t.Label)), Sections.Select(s => (s.Title, (IEnumerable<string>)s.Lines)), images, Loc.T("season_s_gallery"));
+        await File.WriteAllTextAsync(file, html);
+        StatusMessage = Loc.F("share_done", Path.GetFileName(file));
+    }, busy: false);
 
     partial void OnSelectedYearChanged(int value) { if (!_loading) _ = LoadAsync(); }
 

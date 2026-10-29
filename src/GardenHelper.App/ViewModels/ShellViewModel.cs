@@ -86,7 +86,20 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
     /// <summary>A first start (no garden yet) opens the welcome setup; otherwise the day's screen.</summary>
     public void Start() => _ = StartAsync();
 
+    [ObservableProperty] private bool _isLocked;
+    [ObservableProperty] private string _lockError = "";
+
     private async Task StartAsync()
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(await _services.GetRequiredService<GardenHelper.Core.Services.SettingsService>().GetAsync(GardenHelper.Core.Services.PasswordLock.EnabledKey))) { IsLocked = true; return; }
+        }
+        catch (Exception) { /* no lock */ }
+        await OpenStartPageAsync();
+    }
+
+    private async Task OpenStartPageAsync()
     {
         try
         {
@@ -95,6 +108,23 @@ public sealed partial class ShellViewModel : ObservableObject, INavigator
         }
         catch (Exception) { /* fall through to the normal start */ }
         GoTo<TodayViewModel>();
+    }
+
+    /// <summary>Opens the app when the password is right.</summary>
+    public async Task<bool> TryUnlockAsync(string password)
+    {
+        var stored = await _services.GetRequiredService<GardenHelper.Core.Services.SettingsService>().GetAsync(GardenHelper.Core.Services.PasswordLock.EnabledKey);
+        if (!GardenHelper.Core.Services.PasswordLock.Verify(password, stored)) { LockError = Loc.T("lock_wrong"); return false; }
+        LockError = ""; IsLocked = false;
+        if (Current is null) await OpenStartPageAsync();
+        return true;
+    }
+
+    /// <summary>Shows the password screen again (Settings, or Ctrl+L).</summary>
+    public void LockNow() { _ = LockNowAsync(); }
+    private async Task LockNowAsync()
+    {
+        if (!string.IsNullOrEmpty(await _services.GetRequiredService<GardenHelper.Core.Services.SettingsService>().GetAsync(GardenHelper.Core.Services.PasswordLock.EnabledKey))) { LockError = ""; IsLocked = true; }
     }
 
     partial void OnSelectedNavChanged(NavEntry? value)

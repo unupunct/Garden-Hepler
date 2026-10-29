@@ -12,7 +12,8 @@
             <WrapPanel Margin="0,10,0,0">
                 <TextBlock Text="{loc:L season_year}" VerticalAlignment="Center" Margin="0,0,8,0"/>
                 <ComboBox ItemsSource="{Binding Years}" SelectedItem="{Binding SelectedYear}" MinWidth="100" Margin="0,0,14,0" AutomationProperties.Name="{loc:L season_year}"/>
-                <Button Content="{loc:L print_button}" Click="OnPrint" Padding="14,6"/>
+                <Button Content="{loc:L print_button}" Click="OnPrint" Padding="14,6" Margin="0,0,8,0"/>
+                <Button Content="{loc:L share_button}" Command="{Binding ShareCommand}" Padding="14,6" ToolTip="{loc:L share_tip}"/>
             </WrapPanel>
             <TextBlock Text="{Binding Title}" FontSize="22" FontFamily="Georgia" FontWeight="SemiBold" Margin="0,12,0,0"/>
 

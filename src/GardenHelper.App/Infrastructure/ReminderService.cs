@@ -53,6 +53,7 @@ public sealed class ReminderService : IDisposable
 
     private void Show(string title, string text)
     {
+        if (_services.GetService(typeof(ViewModels.ShellViewModel)) is ViewModels.ShellViewModel { IsLocked: true }) return;      // nothing private on screen while the app is locked
         EnsureIcon();
         try { _icon?.ShowBalloonTip(10000, title, text, System.Windows.Forms.ToolTipIcon.Info); } catch (Exception ex) { _log.LogWarning(ex, "Notification failed"); }
     }
