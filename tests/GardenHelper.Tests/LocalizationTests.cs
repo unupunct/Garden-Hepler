@@ -14,10 +14,13 @@ public class LocalizationTests
 
     private static HashSet<string> Keys(string language)
     {
-        var text = File.ReadAllText(Path.Combine(AppDir(), "Infrastructure", "Strings.cs"));
-        var start = text.IndexOf(language == "en" ? "En() => new()" : "Ro() => new()", StringComparison.Ordinal);
-        var end = language == "en" ? text.IndexOf("Ro() => new()", StringComparison.Ordinal) : text.Length;
-        return Regex.Matches(text[start..end], @"\[""([A-Za-z0-9_]+)""\]\s*=").Select(m => m.Groups[1].Value).ToHashSet();
+        // every entry carries both languages: ("key", "English", "Romanian")
+        var column = language == "en" ? 2 : 3;
+        var keys = new HashSet<string>();
+        foreach (var file in Directory.EnumerateFiles(Path.Combine(AppDir(), "Infrastructure", "Strings"), "*.cs"))
+            foreach (Match m in Regex.Matches(File.ReadAllText(file), @"^\s*\(""([A-Za-z0-9_]+)"",\s*""((?:[^""\\]|\\.)*)"",\s*""((?:[^""\\]|\\.)*)""\),", RegexOptions.Multiline))
+                if (m.Groups[column].Value.Length > 0) keys.Add(m.Groups[1].Value);
+        return keys;
     }
 
     [Fact]
