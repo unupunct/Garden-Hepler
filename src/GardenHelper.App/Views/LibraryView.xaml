@@ -73,7 +73,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Margin="0,0,0,10">
-                                        <Border Background="#FF33200F" CornerRadius="3,3,0,0" Padding="4,0,4,0" Height="218">
+                                        <Border Background="#FF33200F" CornerRadius="3,3,0,0" Padding="4,0,4,0" Height="{Binding DataContext.ShelfHeight, RelativeSource={RelativeSource AncestorType=UserControl}}">
                                             <ItemsControl ItemsSource="{Binding Spines}" VerticalAlignment="Bottom">
                                                 <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
@@ -93,17 +93,18 @@
                                                             <Border.Style>
                                                                 <Style TargetType="Border">
                                                                     <Style.Triggers>
-                                                                        <DataTrigger Binding="{Binding Dimmed}" Value="True"><Setter Property="Opacity" Value="0.25"/></DataTrigger>
                                                                         <DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="BorderBrush" Value="#FFF3C969"/><Setter Property="BorderThickness" Value="3"/><Setter Property="Margin" Value="0,0,3,16"/></DataTrigger>
                                                                         <Trigger Property="IsMouseOver" Value="True"><Setter Property="Margin" Value="0,0,3,8"/></Trigger>
                                                                     </Style.Triggers>
                                                                 </Style>
                                                             </Border.Style>
                                                             <Grid>
-                                                                <Rectangle Height="5" Fill="#66F3C969" VerticalAlignment="Top" Margin="0,14,0,0"/>
-                                                                <Rectangle Height="5" Fill="#66F3C969" VerticalAlignment="Top" Margin="0,24,0,0"/>
-                                                                <Rectangle Height="5" Fill="#66F3C969" VerticalAlignment="Bottom" Margin="0,0,0,14"/>
-                                                                <TextBlock Text="{Binding Title}" Foreground="#FFF6EEDC" FontWeight="SemiBold" FontSize="12.5" TextTrimming="CharacterEllipsis"
+                                                                <StackPanel Visibility="{Binding ShowBands, Converter={StaticResource BoolToVis}}">
+                                                                    <Rectangle Height="5" Fill="#66F3C969" VerticalAlignment="Top" Margin="0,14,0,0"/>
+                                                                    <Rectangle Height="5" Fill="#66F3C969" VerticalAlignment="Top" Margin="0,5,0,0"/>
+                                                                </StackPanel>
+                                                                <Rectangle Height="4" Fill="#66F3C969" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
+                                                                <TextBlock Text="{Binding Title}" Foreground="#FFF6EEDC" FontWeight="SemiBold" FontSize="{Binding FontSize}" TextTrimming="CharacterEllipsis" Visibility="{Binding ShowText, Converter={StaticResource BoolToVis}}"
                                                                            Width="{Binding TextLength}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,12,0,0" TextAlignment="Center">
                                                                     <TextBlock.LayoutTransform><RotateTransform Angle="90"/></TextBlock.LayoutTransform>
                                                                 </TextBlock>
@@ -125,6 +126,11 @@
                         </ItemsControl>
                     </Border>
 
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Visibility="{Binding HasPages, Converter={StaticResource BoolToVis}}">
+                        <Button Content="◀" Padding="14,4" Command="{Binding PreviousPageCommand}" ToolTip="{loc:L lib_prev_page}" AutomationProperties.Name="{loc:L lib_prev_page}"/>
+                        <TextBlock Text="{Binding PageText}" VerticalAlignment="Center" Margin="16,0" FontWeight="SemiBold" MinWidth="130" TextAlignment="Center"/>
+                        <Button Content="▶" Padding="14,4" Command="{Binding NextPageCommand}" ToolTip="{loc:L lib_next_page}" AutomationProperties.Name="{loc:L lib_next_page}"/>
+                    </StackPanel>
                     <TextBlock Text="{loc:L lib_all_titles}" Style="{StaticResource H2}" Margin="0,22,0,8"/>
                     <Grid Margin="0,0,0,8">
                         <Grid.ColumnDefinitions><ColumnDefinition Width="340"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
@@ -141,6 +147,7 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    <TextBlock Text="{Binding IndexNote}" Style="{StaticResource Muted}" FontSize="12" Margin="0,0,0,6" Visibility="{Binding IndexNote, Converter={StaticResource HasValueVis}}"/>
                     <TextBlock Text="{loc:L lib_no_title_match}" Style="{StaticResource Muted}" Visibility="{Binding NoTitleMatches, Converter={StaticResource BoolToVis}}"/>
                     <ItemsControl ItemsSource="{Binding Letters}">
                         <ItemsControl.ItemTemplate>

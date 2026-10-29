@@ -20,6 +20,26 @@ public class ShelvesTests
     }
 
     [Fact]
+    public void Big_libraries_get_smaller_books_that_stay_readable_sizes()
+    {
+        var scales = new[] { 10, 100, 500, 1000, 3000 }.Select(Shelves.ScaleFor).ToList();
+        Assert.Equal(scales.OrderByDescending(s => s), scales);                           // never bigger as the library grows
+        Assert.Equal(1.0, Shelves.ScaleFor(45)); Assert.True(Shelves.ScaleFor(3000) <= 0.45);
+        var full = Shelves.Spine("Mini Farming", 61_000); var small = Shelves.Spine("Mini Farming", 61_000, Shelves.ScaleFor(3000));
+        Assert.True(small.Width < full.Width && small.Height < full.Height); Assert.Equal(full.ColorIndex, small.ColorIndex);
+        Assert.True(Shelves.Spine("x", 0, 0.01).Width >= 10);                              // a spine never vanishes
+    }
+
+    [Fact]
+    public void Shelves_are_split_into_pages_only_when_there_are_many()
+    {
+        Assert.Equal(2, Shelves.ShelvesPerPage(2, 1.0)); Assert.Equal(6, Shelves.ShelvesPerPage(6, 1.0));
+        Assert.Equal(4, Shelves.ShelvesPerPage(40, 0.82)); Assert.Equal(5, Shelves.ShelvesPerPage(40, 0.5));
+        Assert.Equal(1, Shelves.PageCount(2, 2)); Assert.Equal(9, Shelves.PageCount(41, 5)); Assert.Equal(1, Shelves.PageCount(0, 5));
+        Assert.Equal(0, Shelves.PageOfShelf(4, 5)); Assert.Equal(1, Shelves.PageOfShelf(5, 5)); Assert.Equal(8, Shelves.PageOfShelf(40, 5));
+    }
+
+    [Fact]
     public void Shelves_fill_left_to_right_and_wrap()
     {
         var rows = Shelves.Rows(new double[] { 40, 40, 40, 40, 40 }, maxRowWidth: 130, gap: 3);        // 40+3+40+3+40 = 126 fits three
