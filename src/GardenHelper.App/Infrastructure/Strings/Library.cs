@@ -3,7 +3,7 @@ namespace GardenHelper.App.Infrastructure;
 public static partial class Strings
 {
     // key -> (English, Romanian). Add both texts together so the two languages never drift apart.
-    private static readonly (string Key, string En, string Ro)[] Library = new[]
+    private static (string Key, string En, string Ro)[] Library() => new[]
     {
         ("lib_import", "Add ebooks…", "Adaugă cărți…"),
         ("lib_search", "Search inside all your books (words, subjects, phrases)", "Caută în toate cărțile tale (cuvinte, subiecte, expresii)"),

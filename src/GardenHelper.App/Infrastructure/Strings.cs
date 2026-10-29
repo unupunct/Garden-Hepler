@@ -18,7 +18,7 @@ public static partial class Strings
     private static Dictionary<string, Dictionary<string, string>> Build()
     {
         var en = new Dictionary<string, string>(); var ro = new Dictionary<string, string>();
-        foreach (var area in new[] { Animals, Common, Design, Devices, Garden, Library, Misc, Plants, Today })
+        foreach (var area in new[] { Animals(), Common(), Design(), Devices(), Garden(), Library(), Misc(), Plants(), Today() })
             foreach (var (key, e, r) in area) { en.Add(key, e); ro.Add(key, r); }
         return new Dictionary<string, Dictionary<string, string>> { ["en"] = en, ["ro"] = ro };
     }

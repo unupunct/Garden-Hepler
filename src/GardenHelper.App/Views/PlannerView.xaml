@@ -24,15 +24,15 @@
                 <Border Background="#E9875B" Width="14" Height="14" CornerRadius="4" Margin="0,0,4,0"/><TextBlock Text="{loc:L plan_k_harvest}" FontSize="12"/>
             </WrapPanel>
 
-            <Border Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVis}}" Background="#FFEFF6E6" CornerRadius="18" Padding="20" Margin="0,8,0,0" MaxWidth="900" HorizontalAlignment="Left">
-                <TextBlock Text="{loc:L plan_empty}" TextWrapping="Wrap" Foreground="#FF40552F"/>
+            <Border Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVis}}" Background="{DynamicResource TintGreenBrush}" CornerRadius="18" Padding="20" Margin="0,8,0,0" MaxWidth="900" HorizontalAlignment="Left">
+                <TextBlock Text="{loc:L plan_empty}" TextWrapping="Wrap" Foreground="{DynamicResource TextBrush}"/>
             </Border>
 
             <Grid HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="840"/></Grid.ColumnDefinitions>
                 <ItemsControl Grid.Column="1" ItemsSource="{Binding Months}" Margin="0,0,0,2">
                     <ItemsControl.ItemsPanel><ItemsPanelTemplate><UniformGrid Rows="1"/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding}" HorizontalAlignment="Center" FontSize="12" Foreground="#FF6C7A62"/></DataTemplate></ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding}" HorizontalAlignment="Center" FontSize="12" Foreground="{DynamicResource MutedBrush}"/></DataTemplate></ItemsControl.ItemTemplate>
                 </ItemsControl>
             </Grid>
             <Grid HorizontalAlignment="Left">
@@ -42,7 +42,7 @@
                             <Grid Height="54">
                                 <Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="840"/></Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" Margin="0,0,8,0"/>
-                                <Border Grid.Column="1" Background="White" BorderBrush="#FFE3DCC8" BorderThickness="0,0,0,1" CornerRadius="6">
+                                <Border Grid.Column="1" Background="{DynamicResource SurfaceBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1" CornerRadius="6">
                                     <ItemsControl ItemsSource="{Binding Bars}">
                                         <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemContainerStyle><Style TargetType="ContentPresenter"><Setter Property="Canvas.Left" Value="{Binding Left}"/><Setter Property="Canvas.Top" Value="{Binding Top}"/></Style></ItemsControl.ItemContainerStyle>

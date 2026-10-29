@@ -30,8 +30,8 @@
                 <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,14">
                     <StackPanel>
                         <TextBlock Text="{Binding Summary}" TextWrapping="Wrap" FontSize="15"/>
-                        <Border Background="#FFFCE8C8" CornerRadius="6" Padding="10,6" Margin="0,8,0,0" Visibility="{Binding Withdrawal, Converter={StaticResource HasValueVis}}">
-                            <TextBlock Text="{Binding Withdrawal}" TextWrapping="Wrap" Foreground="#FF5A3A00" FontWeight="SemiBold"/>
+                        <Border Background="{DynamicResource TintWarnBrush}" CornerRadius="6" Padding="10,6" Margin="0,8,0,0" Visibility="{Binding Withdrawal, Converter={StaticResource HasValueVis}}">
+                            <TextBlock Text="{Binding Withdrawal}" TextWrapping="Wrap" Foreground="{DynamicResource TextBrush}" FontWeight="SemiBold"/>
                         </Border>
                         <TextBlock Text="{Binding Spent}" Style="{StaticResource Muted}" Margin="0,8,0,0"/>
                     </StackPanel>

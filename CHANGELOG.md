@@ -6,7 +6,9 @@
 - **Money that connects to the garden**: cost per kg of harvest, per egg or litre, and animal costs against sales, in the season review.
 - **Annotate the plan**: text labels, irrigation, path and cable lines, and a ruler that measures in metres.
 - **Sharing and safety**: optional password for opening the app (Ctrl+L locks it), the season review as a single web page to share, and an automatic weekly export to a folder you choose.
-- **Large properties**: pictures are shown a page at a time; a stress test covers hundreds of beds and thousands of records.
+- **Large properties**: pictures are shown a page at a time and their thumbnails load in the background; a stress test and a `--big` demo option cover hundreds of beds and thousands of records.
+- **Dark mode** fixes on the newer pages (Today tiles, Photos, Season review, Settings and the password boxes).
+- **Fruit-tree care follows your frost dates** and tree kinds: stone fruit is pruned in summer, not winter.
 
 ## 0.4.0
 - **Yield tracking**: record how much you harvested (kg or pieces) from the plant card; the season review shows yield per crop and the best bed.

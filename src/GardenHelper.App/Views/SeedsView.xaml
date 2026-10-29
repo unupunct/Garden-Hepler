@@ -74,7 +74,7 @@
                         <StackPanel>
                             <TextBlock Text="{loc:L seed_front}" FontWeight="SemiBold"/>
                             <Button Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand" Command="{Binding OpenPhotoCommand}" CommandParameter="front" ToolTip="{loc:L seed_open_photo}" AutomationProperties.Name="{loc:L seed_front}">
-                                <Grid MinHeight="110" Background="#FFEEF3EA">
+                                <Grid MinHeight="110" Background="{DynamicResource TintGreenBrush}">
                                     <Image Source="{Binding FrontImage}" MaxHeight="260" Stretch="Uniform"/>
                                     <TextBlock Text="{loc:L seed_no_photo}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF5D6A58" Visibility="{Binding FrontImage, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>
                                 </Grid>
@@ -88,7 +88,7 @@
                         <StackPanel Grid.Column="2">
                             <TextBlock Text="{loc:L seed_back}" FontWeight="SemiBold"/>
                             <Button Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand" Command="{Binding OpenPhotoCommand}" CommandParameter="back" ToolTip="{loc:L seed_open_photo}" AutomationProperties.Name="{loc:L seed_back}">
-                                <Grid MinHeight="110" Background="#FFEEF3EA">
+                                <Grid MinHeight="110" Background="{DynamicResource TintGreenBrush}">
                                     <Image Source="{Binding BackImage}" MaxHeight="260" Stretch="Uniform"/>
                                     <TextBlock Text="{loc:L seed_no_photo}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF5D6A58" Visibility="{Binding BackImage, Converter={StaticResource HasValueVis}, ConverterParameter=invert}"/>
                                 </Grid>

@@ -17,16 +17,16 @@
             </WrapPanel>
             <TextBlock Text="{Binding Title}" FontSize="22" FontFamily="Georgia" FontWeight="SemiBold" Margin="0,12,0,0"/>
 
-            <Border Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVis}}" Background="#FFEFF6E6" CornerRadius="18" Padding="20" Margin="0,12,0,0">
-                <TextBlock Text="{loc:L season_empty}" TextWrapping="Wrap" Foreground="#FF40552F"/>
+            <Border Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVis}}" Background="{DynamicResource TintGreenBrush}" CornerRadius="18" Padding="20" Margin="0,12,0,0">
+                <TextBlock Text="{loc:L season_empty}" TextWrapping="Wrap" Foreground="{DynamicResource TextBrush}"/>
             </Border>
 
             <ItemsControl ItemsSource="{Binding Tiles}" Margin="0,10,0,0">
                 <ItemsControl.ItemsPanel><ItemsPanelTemplate><UniformGrid Rows="1"/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="White" BorderBrush="#FFE3DCC8" BorderThickness="1" CornerRadius="18" Padding="16,10" Margin="0,0,10,0">
-                            <StackPanel><TextBlock Text="{Binding Value}" FontSize="28" FontWeight="Bold" Foreground="#FF2F5D3A"/><TextBlock Text="{Binding Label}" FontSize="12" Foreground="#FF6C7A62"/></StackPanel>
+                        <Border Background="{DynamicResource SurfaceBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="18" Padding="16,10" Margin="0,0,10,0">
+                            <StackPanel><TextBlock Text="{Binding Value}" FontSize="28" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}"/><TextBlock Text="{Binding Label}" FontSize="12" Foreground="{DynamicResource MutedBrush}"/></StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -51,8 +51,8 @@
                 <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="150" Margin="0,0,10,10" CornerRadius="14" ClipToBounds="True" Background="White" BorderBrush="#FFE3DCC8" BorderThickness="1" ToolTip="{Binding Caption}">
-                            <StackPanel><Image Source="{Binding Thumb}" Height="100" Stretch="UniformToFill"/><TextBlock Text="{Binding Caption}" Margin="8,4,8,0" FontSize="11" TextTrimming="CharacterEllipsis"/><TextBlock Text="{Binding DateText}" Margin="8,0,8,6" FontSize="10" Foreground="#FF8A9580"/></StackPanel>
+                        <Border Width="150" Margin="0,0,10,10" CornerRadius="14" ClipToBounds="True" Background="{DynamicResource SurfaceBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" ToolTip="{Binding Caption}">
+                            <StackPanel><Image Source="{Binding Thumb}" Height="100" Stretch="UniformToFill"/><TextBlock Text="{Binding Caption}" Margin="8,4,8,0" FontSize="11" TextTrimming="CharacterEllipsis"/><TextBlock Text="{Binding DateText}" Margin="8,0,8,6" FontSize="10" Foreground="{DynamicResource MutedBrush}"/></StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

@@ -24,6 +24,14 @@ public class LocalizationTests
     }
 
     [Fact]
+    public void String_areas_are_methods_not_static_fields()
+    {
+        // static fields of a partial class initialise in an undefined order across files: the app crashed at start when the main dictionary was built before them
+        foreach (var file in Directory.EnumerateFiles(Path.Combine(AppDir(), "Infrastructure", "Strings"), "*.cs"))
+            Assert.DoesNotContain("static readonly", File.ReadAllText(file));
+    }
+
+    [Fact]
     public void Romanian_and_english_have_the_same_keys()
     {
         var en = Keys("en"); var ro = Keys("ro");

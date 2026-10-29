@@ -3,7 +3,7 @@ namespace GardenHelper.App.Infrastructure;
 public static partial class Strings
 {
     // key -> (English, Romanian). Add both texts together so the two languages never drift apart.
-    private static readonly (string Key, string En, string Ro)[] Common = new[]
+    private static (string Key, string En, string Ro)[] Common() => new[]
     {
         ("nav_menu", "Main navigation", "Navigare principală"),
         ("nav_home", "HOME", "ACASĂ"),

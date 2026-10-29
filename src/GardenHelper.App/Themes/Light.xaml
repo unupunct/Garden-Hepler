@@ -20,4 +20,17 @@
     <SolidColorBrush x:Key="OkBrush" Color="#2F6B3A"/>
     <SolidColorBrush x:Key="HoverBrush" Color="#EFEBDB"/>
     <Color x:Key="ShadowColor">#000000</Color>
+    <SolidColorBrush x:Key="TintRedBrush" Color="#FFFFF0EA"/>
+    <SolidColorBrush x:Key="TintRedBorderBrush" Color="#FFEBC0AE"/>
+    <SolidColorBrush x:Key="TintBlueBrush" Color="#FFEAF3FA"/>
+    <SolidColorBrush x:Key="TintBlueBorderBrush" Color="#FFBBD5E8"/>
+    <SolidColorBrush x:Key="TintGreenBrush" Color="#FFEFF6E6"/>
+    <SolidColorBrush x:Key="TintGreenBorderBrush" Color="#FFCFE2BC"/>
+    <SolidColorBrush x:Key="TintAmberBrush" Color="#FFFFF7E3"/>
+    <SolidColorBrush x:Key="TintAmberBorderBrush" Color="#FFEBD9A8"/>
+    <SolidColorBrush x:Key="TintWarnBrush" Color="#FFFCE8C8"/>
+    <SolidColorBrush x:Key="TintBlueTextBrush" Color="#FF2F6288"/>
+    <SolidColorBrush x:Key="TintGreenTextBrush" Color="#FF4C6E33"/>
+    <SolidColorBrush x:Key="TintAmberTextBrush" Color="#FF8A6A1F"/>
+    <SolidColorBrush x:Key="TintRedTextBrush" Color="#FFB5472B"/>
 </ResourceDictionary>
