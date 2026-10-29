@@ -57,6 +57,20 @@ public partial class GreenhouseView : UserControl
         if (Item(sender) is { } li && Vm is { } vm) await vm.ItemMovedAsync(li);
     }
 }
+public partial class PiGuideView : UserControl
+{
+    public PiGuideView()
+    {
+        InitializeComponent();
+        DataContextChanged += (_, _) =>
+        {
+            if (DataContext is not ViewModels.PiGuideViewModel vm) return;
+            void Show() => Doc.Document = vm.Document;
+            vm.PropertyChanged += (_, e) => { if (e.PropertyName == nameof(ViewModels.PiGuideViewModel.Document)) Show(); };
+            Show();
+        };
+    }
+}
 public partial class TodayView : UserControl { public TodayView() => InitializeComponent(); }
 public partial class ConnectView : UserControl { public ConnectView() => InitializeComponent(); }
 public partial class SiteView : UserControl { public SiteView() => InitializeComponent(); }

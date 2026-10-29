@@ -225,6 +225,7 @@ public sealed partial class GreenhouseViewModel : PageViewModel
         await _svc.ApplyRulesAsync(HouseId); await RefreshLiveAsync();
     }, busy: false);
 
+    [RelayCommand] private void OpenPiGuide() { var id = HouseId; _nav.GoTo<PiGuideViewModel>(vm => vm.HouseId = id); }
     [RelayCommand] private void OpenLayout() { var id = HouseId; _nav.GoTo<InteriorViewModel>(vm => vm.FeatureId = id); }
 
     // ---- layout inside the greenhouse ----
@@ -271,7 +272,7 @@ public sealed partial class GreenhouseViewModel : PageViewModel
 
     // ---- Raspberry Pi connection ----
     /// <summary>This PC's address on the home network (a private IPv4 address), so the Pi command can be copied as it is.</summary>
-    private static string? LocalAddress()
+    public static string? LocalAddress()
     {
         try
         {

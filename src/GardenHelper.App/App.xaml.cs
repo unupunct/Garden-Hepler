@@ -76,7 +76,7 @@ public partial class App : Application
             sc.AddSingleton<INavigator>(p => p.GetRequiredService<ShellViewModel>());
             foreach (var vm in new[] { typeof(DashboardViewModel), typeof(TasksViewModel), typeof(PlantsViewModel), typeof(SeedsViewModel), typeof(JournalViewModel),
                                        typeof(LibraryViewModel), typeof(ReaderViewModel), typeof(SearchViewModel), typeof(GardenViewModel), typeof(SettingsViewModel), typeof(AboutViewModel),
-                                       typeof(SiteViewModel), typeof(MapViewModel), typeof(PropertyViewModel), typeof(SpaceViewModel), typeof(DesignerViewModel), typeof(MonitorViewModel), typeof(CamerasViewModel), typeof(AnimalsViewModel), typeof(ComingUpViewModel), typeof(BudgetViewModel), typeof(InventoryViewModel), typeof(GreenhouseViewModel), typeof(InteriorViewModel), typeof(TodayViewModel), typeof(ConnectViewModel) })
+                                       typeof(SiteViewModel), typeof(MapViewModel), typeof(PropertyViewModel), typeof(SpaceViewModel), typeof(DesignerViewModel), typeof(MonitorViewModel), typeof(CamerasViewModel), typeof(AnimalsViewModel), typeof(ComingUpViewModel), typeof(BudgetViewModel), typeof(InventoryViewModel), typeof(GreenhouseViewModel), typeof(InteriorViewModel), typeof(TodayViewModel), typeof(PiGuideViewModel), typeof(ConnectViewModel) })
                 sc.AddTransient(vm);
             Services = sc.BuildServiceProvider();
             _log = Services.GetRequiredService<ILogger<App>>();
