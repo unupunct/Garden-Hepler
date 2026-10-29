@@ -249,6 +249,11 @@ public partial class DesignerView : UserControl
     }
     private void OnLabelSize(object sender, SizeChangedEventArgs e) => LabelPlacement.Centre(sender, e);
 
+    private void OnPaletteItem(object sender, RoutedEventArgs e)
+    {
+        if ((sender as FrameworkElement)?.DataContext is PaletteItem item) Vm?.AddElementCommand.Execute(item);
+    }
+
     private double _camDx, _camDy, _camStartX, _camStartY;
     private static CameraMarker? Cam(object sender) => (sender as FrameworkElement)?.DataContext as CameraMarker;
     private void OnCameraTip(object sender, ToolTipEventArgs e) { if (Cam(sender) is { } m && Vm is { } vm) _ = vm.LoadPreviewAsync(m); }

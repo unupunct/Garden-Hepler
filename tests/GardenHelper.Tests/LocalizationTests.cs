@@ -41,7 +41,7 @@ public class LocalizationTests
             foreach (Match m in Regex.Matches(t, @"Loc\.[TF]\(""([A-Za-z0-9_]+)""")) used.Add(m.Groups[1].Value);
         }
         // Keys built from a prefix at run time (nav_, act_, task_, kind_, status_, sev_, search_kind_) are checked by their prefix.
-        var dynamicPrefixes = new[] { "nav_", "act_", "task_", "kind_", "status_", "sev_", "search_kind_", "rotv_", "feat_", "log_", "cam_kind_", "animal_", "alog_", "bcat_", "up_bucket_", "inv_f_", "inv_loc_", "inv_st_", "inv_log_", "tree_type_", "tact_", "gh_m_", "gh_act_", "gh_sys_", "gh_item_", "gh_alert_", "purpose_", "origin_", "edib_" };
+        var dynamicPrefixes = new[] { "nav_", "act_", "task_", "kind_", "status_", "sev_", "search_kind_", "rotv_", "feat_", "log_", "cam_kind_", "animal_", "alog_", "bcat_", "up_bucket_", "inv_f_", "inv_loc_", "inv_st_", "inv_log_", "tree_type_", "tact_", "gh_m_", "gh_act_", "gh_sys_", "gh_item_", "gh_alert_", "purpose_", "origin_", "edib_", "pal_" };
         var missing = used.Where(k => !known.Contains(k) && !dynamicPrefixes.Contains(k)).ToList();
         Assert.Empty(missing);
     }
@@ -69,6 +69,8 @@ public class LocalizationTests
             .Concat(GardenHelper.Core.Domain.InventoryRules.LogKinds.Select(k => "inv_log_" + k))
             .Concat(GardenHelper.Core.Planning.TreeRules.Types.Select(k => "tree_type_" + k))
             .Concat(GardenHelper.Core.Planning.TreeRules.AllActionKeys.Select(k => "tact_" + k))
+            .Concat(GardenHelper.Core.Design.PlanElements.Objects.Select(e => "kind_" + e.Key))
+            .Concat(GardenHelper.Core.Design.PlanElements.Groups.Select(g => "pal_" + g))
             .Concat(GardenHelper.Core.Knowledge.PlantPurpose.Keys.Select(k => "purpose_" + k))
             .Concat(GardenHelper.Core.Knowledge.PlantOrigin.All.Select(k => "origin_" + k.Replace('-', '_')))
             .Concat(GardenHelper.Core.Knowledge.Edibility.All.Select(k => "edib_" + k.Replace('-', '_')))

@@ -66,7 +66,7 @@ public class FeatureLog
 
 public static class FeatureCatalog
 {
-    public static readonly string[] Structures = { "house", "workshop", "shed", "barn", "garage", "other_structure" };
+    public static readonly string[] Structures = { "house", "workshop", "shed", "barn", "garage", "coop", "pen", "other_structure" };
     public static readonly string[] Spaces = { "garden", "greenhouse", "compost", "orchard", "pond", "free_land", "other_space" };
     public static readonly string[] LogKinds = { "note", "growth", "soil", "plant", "observation", "maintenance" };
 

@@ -49,14 +49,18 @@ public sealed partial class BedItem : ObservableObject
 
     public Brush Fill => FeatureCatalog.IsStructure(Kind)
         ? new SolidColorBrush(Color.FromArgb(205, FeatureColors.For(Kind).R, FeatureColors.For(Kind).G, FeatureColors.For(Kind).B))
-        : new SolidColorBrush(Kind switch
+        : new SolidColorBrush(ObjectColor(Kind));
+
+    private static Color ObjectColor(string kind)
     {
-        "raised" => Color.FromArgb(190, 150, 110, 70), "greenhouse" => Color.FromArgb(170, 150, 210, 220),
-        "pond" => Color.FromArgb(190, 70, 130, 190), "compost" => Color.FromArgb(190, 110, 80, 50),
-        "tree" => Color.FromArgb(190, 60, 120, 60), "path" => Color.FromArgb(150, 200, 190, 160),
-        "structure" => Color.FromArgb(190, 150, 150, 150), _ => Color.FromArgb(185, 140, 175, 100),
-    });
+        if (kind == "structure") return Color.FromArgb(190, 150, 150, 150);
+        if (PlanElements.Get(kind) is { } e && ColorConverter.ConvertFromString(e.Color) is Color c) return Color.FromArgb(kind is "greenhouse" ? (byte)170 : kind is "path" or "driveway" ? (byte)150 : (byte)200, c.R, c.G, c.B);
+        return Color.FromArgb(185, 140, 175, 100);
+    }
 }
+
+public sealed record PaletteItem(string Key, string Label, string Glyph);
+public sealed record PaletteGroup(string Title, IReadOnlyList<PaletteItem> Items);
 
 public sealed record FeatureShape(int Id, string Name, string Kind, string KindLabel, bool IsStructure, PointCollection Points, double LabelX, double LabelY,
     Brush Fill, Brush Stroke, string AreaText, List<Pt> Plan)
@@ -111,9 +115,12 @@ public sealed partial class DesignerViewModel : PageViewModel
     public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, BackdropService backdrops, CameraFeed camFeed, ILogger<DesignerViewModel> log) : base(log)
     {
         _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
+        Palette = PlanElements.Groups.Select(g => new PaletteGroup(Loc.T("pal_" + g),
+            (g == "devices" ? new[] { new PaletteItem("camera", Loc.T("pal_camera"), "◉") }
+                            : PlanElements.InGroup(g).Select(e => new PaletteItem(e.Key, Loc.T((e.IsStructure ? "feat_" : "kind_") + e.Key), e.Glyph)).ToArray()))).ToList();
         var lang = Loc.Instance.Language;
         Plants = kb.Plantable.OrderBy(p => p.DisplayName(lang)).Select(p => new PlantOption(p.Id, p.DisplayName(lang))).ToList();
-        Kinds = new[] { "bed", "raised", "greenhouse", "tree", "pond", "compost", "path", "structure" }.Select(k => new KindOption(k, Loc.T("kind_" + k)))
+        Kinds = PlanElements.Objects.Select(e => e.Key).Append("structure").Select(k => new KindOption(k, Loc.T("kind_" + k)))
             .Concat(FeatureCatalog.Structures.Select(k => new KindOption(k, Loc.T("feat_" + k)))).ToList();
         Filters = new[]
         {
@@ -132,6 +139,8 @@ public sealed partial class DesignerViewModel : PageViewModel
     }
 
     public IReadOnlyList<PlantOption> Plants { get; }
+    public IReadOnlyList<PaletteGroup> Palette { get; }
+    [ObservableProperty] private bool _paletteOpen;
     public IReadOnlyList<KindOption> Kinds { get; }
     public IReadOnlyList<LibraryFilter> Filters { get; }
     public ObservableCollection<BedItem> Beds { get; } = new();
@@ -531,21 +540,34 @@ public sealed partial class DesignerViewModel : PageViewModel
         "house" => (1000, 800), "workshop" => (500, 400), "shed" => (300, 300), "barn" => (1200, 600), "garage" => (600, 500), _ => (400, 400),
     };
 
+    /// <summary>Adds whatever was picked in the palette in the middle of the view: a camera, a building, or a plan object such as a fence or a bin.</summary>
+    [RelayCommand]
+    private Task AddElementAsync(PaletteItem item)
+    {
+        PaletteOpen = false;
+        if (item.Key == "camera") return AddCameraHereAsync();
+        return PlanElements.Get(item.Key)?.IsStructure == true ? AddStructureAsync(item.Key) : AddObjectAsync(item.Key);
+    }
+
     /// <summary>Adds a permanent structure (house, workshop, shed…) in the middle of the property; drag, resize and rotate it like a bed.</summary>
     [RelayCommand]
     private Task AddStructureAsync(string kind) => RunAsync(async () =>
     {
         if (_garden is null) return;
-        if (_frame is null) { ErrorMessage = Loc.T("design_need_coords"); return; }
-        var (w, h) = StructureSize(kind);
+        var (w, h) = PlanElements.SizeOf(kind);
         var centre = NewObjectCentre();
         var offset = Beds.Count(b => b.IsStructure) * 120 % 600;
         double x = SnapValue(centre.X - w / 2 + offset), y = SnapValue(centre.Y - h / 2 + offset);
         var n = Beds.Count(b => b.Kind == kind) + 1;
         var name = $"{Loc.T("feat_" + kind)} {n}";
-        var geo = GeometryMath.RectCorners(x, y, w, h, 0).Select(_frame.ToGeo).ToList();
-        var feature = await _repo.SaveAsync(new PropertyFeature { GardenId = _garden.Id, Name = name, Kind = kind, PointsJson = GeoMath.ToJson(geo) });
-        var bed = await _repo.SaveAsync(new GardenBed { GardenId = _garden.Id, Name = name, Kind = kind, FeatureId = feature.Id, X = x, Y = y, Width = w, Height = h });
+        // With a map position the building is also a place on the property; without one it is just a plan object (it can be linked later).
+        int? featureId = null;
+        if (_frame is not null)
+        {
+            var geo = GeometryMath.RectCorners(x, y, w, h, 0).Select(_frame.ToGeo).ToList();
+            featureId = (await _repo.SaveAsync(new PropertyFeature { GardenId = _garden.Id, Name = name, Kind = kind, PointsJson = GeoMath.ToJson(geo) })).Id;
+        }
+        var bed = await _repo.SaveAsync(new GardenBed { GardenId = _garden.Id, Name = name, Kind = kind, FeatureId = featureId, X = x, Y = y, Width = w, Height = h });
         var item = Wrap(bed);
         Beds.Add(item); _snapshots[bed.Id] = Capture(bed); Selected = item;
         History.Push(new UndoEntry(Loc.F("design_undo_add", item.Name), () => RemoveAsync(item), async () => item = await RecreateAsync(item)));
@@ -584,7 +606,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     private Task AddObjectAsync(string kind) => RunAsync(async () =>
     {
         if (_garden is null) return;
-        var (w, h) = kind switch { "tree" => (300.0, 300.0), "pond" => (400.0, 300.0), "greenhouse" => (300.0, 400.0), "path" => (80.0, 600.0), "compost" => (100.0, 100.0), "structure" => (300.0, 300.0), _ => (120.0, 300.0) };
+        var (w, h) = kind == "structure" ? (300.0, 300.0) : PlanElements.SizeOf(kind);
         var offset = Beds.Count * 40 % 400;
         var centre = NewObjectCentre();
         var bed = await _repo.SaveAsync(new GardenBed
