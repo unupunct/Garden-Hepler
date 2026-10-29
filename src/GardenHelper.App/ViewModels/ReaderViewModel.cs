@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using GardenHelper.App.Infrastructure;
 using GardenHelper.Core.Domain;
 using GardenHelper.Core.Library;
+using GardenHelper.Core.Library.Reading;
 using Microsoft.Extensions.Logging;
 
 namespace GardenHelper.App.ViewModels;
@@ -12,15 +13,15 @@ namespace GardenHelper.App.ViewModels;
 public sealed partial class ReaderViewModel : PageViewModel
 {
     private readonly LibraryService _library;
-    private readonly ReaderPreparer _preparer;
+    private readonly ReaderContentBuilder _builder;
     private readonly INavigator _nav;
     private int _bookId, _startOrdinal = 1;
     private string? _startTerm;
     private List<BookSection> _allSections = new();
 
-    public ReaderViewModel(LibraryService library, ReaderPreparer preparer, INavigator nav, ILogger<ReaderViewModel> log) : base(log)
+    public ReaderViewModel(LibraryService library, ReaderContentBuilder builder, INavigator nav, ILogger<ReaderViewModel> log) : base(log)
     {
-        _library = library; _preparer = preparer; _nav = nav;
+        _library = library; _builder = builder; _nav = nav;
     }
 
     public ObservableCollection<BookSection> Sections { get; } = new();
@@ -28,9 +29,9 @@ public sealed partial class ReaderViewModel : PageViewModel
 
     [ObservableProperty] private Book? _book;
     [ObservableProperty] private BookSection? _current;
-    [ObservableProperty] private ReaderTarget? _target;
+    /// <summary>What the reader draws now: text blocks, a PDF page or a picture.</summary>
+    [ObservableProperty] private ReaderContent? _content;
     [ObservableProperty] private string? _highlight;
-    [ObservableProperty] private string? _fallbackText;
     [ObservableProperty] private double _zoom = 1.0;
     [ObservableProperty] private bool _night;
     [ObservableProperty] private bool _showToc = true;
@@ -39,8 +40,6 @@ public sealed partial class ReaderViewModel : PageViewModel
     [ObservableProperty] private string _positionText = "";
     [ObservableProperty] private bool _noHits;
     [ObservableProperty] private bool _showHits;
-    /// <summary>Set by the view when the WebView2 runtime is missing; the reader then shows plain text.</summary>
-    [ObservableProperty] private bool _webViewUnavailable;
 
     public void Open(int bookId, int ordinal, string? term)
     {
@@ -78,16 +77,14 @@ public sealed partial class ReaderViewModel : PageViewModel
         ErrorMessage = null;
         try
         {
-            var full = await _library.GetSectionAsync(Book.Id, ordinal);
-            FallbackText = full is null ? null : full.Title + "\n\n" + full.Text;
-            Target = await _preparer.PrepareAsync(Book, ordinal);
+            Content = await _builder.BuildAsync(Book, ordinal);
             await _library.MarkReadAsync(Book.Id, ordinal);
             _startOrdinal = ordinal;
         }
-        catch (Exception ex) when (ex is IOException or InvalidOperationException or InvalidDataException)
+        catch (Exception ex) when (ex is IOException or InvalidOperationException or InvalidDataException or UnauthorizedAccessException or FormatException)
         {
             ErrorMessage = Loc.F("err_generic", ex.Message);
-            Target = null;
+            Content = null;
         }
     }
 

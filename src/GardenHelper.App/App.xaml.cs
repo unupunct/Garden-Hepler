@@ -48,7 +48,7 @@ public partial class App : Application
             sc.AddSingleton<SettingsService>();
             sc.AddSingleton<BackupService>();
             sc.AddSingleton<LibraryService>();
-            sc.AddSingleton<ReaderPreparer>();
+            sc.AddSingleton<GardenHelper.Core.Library.Reading.ReaderContentBuilder>();
             sc.AddSingleton<GlobalSearchService>();
             sc.AddSingleton<Preferences>();
             sc.AddSingleton<AlertService>();

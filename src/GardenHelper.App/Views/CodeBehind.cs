@@ -1,3 +1,4 @@
+using GardenHelper.Core.Library.Reading;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Media;
@@ -10,7 +11,6 @@ using GardenHelper.App.ViewModels;
 using GardenHelper.Core.Data;
 using GardenHelper.Core.Library;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Web.WebView2.Wpf;
 
 namespace GardenHelper.App.Views;
 
@@ -462,17 +462,16 @@ public partial class LibraryView : UserControl
 public partial class ReaderView : UserControl
 {
     private ReaderViewModel? _vm;
-    private bool _webReady;
+    private readonly PdfPageRenderer _pdf = new();
+    private int _version;
+    private readonly System.Windows.Threading.DispatcherTimer _resize = new() { Interval = TimeSpan.FromMilliseconds(300) };
 
     public ReaderView()
     {
         InitializeComponent();
-        Web.CreationProperties = new CoreWebView2CreationProperties
-        {
-            UserDataFolder = App.Services.GetRequiredService<AppPaths>().WebViewDataDir,
-        };
         DataContextChanged += OnDataContextChanged;
-        Unloaded += (_, _) => { if (_vm is not null) _vm.PropertyChanged -= OnVmChanged; Web.Dispose(); };
+        _resize.Tick += (_, _) => { _resize.Stop(); if (_vm?.Content is { Kind: ReaderKind.Pdf }) _ = RenderAsync(); };
+        Unloaded += (_, _) => { if (_vm is not null) _vm.PropertyChanged -= OnVmChanged; _resize.Stop(); };
     }
 
     private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -481,62 +480,68 @@ public partial class ReaderView : UserControl
         _vm = DataContext as ReaderViewModel;
         if (_vm is null) return;
         _vm.PropertyChanged += OnVmChanged;
-        _ = ShowTargetAsync();
+        _ = RenderAsync();
     }
 
-    private async void OnVmChanged(object? sender, PropertyChangedEventArgs e)
+    private void OnVmChanged(object? sender, PropertyChangedEventArgs e)
     {
-        switch (e.PropertyName)
-        {
-            case nameof(ReaderViewModel.Target): await ShowTargetAsync(); break;
-            case nameof(ReaderViewModel.Zoom): if (_webReady) Web.ZoomFactor = _vm!.Zoom; break;
-            case nameof(ReaderViewModel.Night): await ApplyNightAsync(); break;
-        }
+        if (e.PropertyName is nameof(ReaderViewModel.Content) or nameof(ReaderViewModel.Zoom) or nameof(ReaderViewModel.Night)) _ = RenderAsync();
     }
 
-    private async Task<bool> EnsureWebAsync()
+    private void OnPageAreaSize(object sender, SizeChangedEventArgs e)
     {
-        if (_webReady) return true;
+        if (e.WidthChanged && _vm?.Content is { Kind: ReaderKind.Pdf }) { _resize.Stop(); _resize.Start(); }
+    }
+
+    /// <summary>Draws the current section: text blocks natively, a PDF page with the Windows PDF engine, or a comic page.</summary>
+    private async Task RenderAsync()
+    {
+        if (_vm?.Content is not { } content) return;
+        var version = ++_version;
         try
         {
-            await Web.EnsureCoreWebView2Async();
-            Web.NavigationCompleted += OnNavigationCompleted;
-            _webReady = true;
-            return true;
+            switch (content.Kind)
+            {
+                case ReaderKind.Blocks:
+                {
+                    Busy.Visibility = Visibility.Collapsed; PageScroll.Visibility = Visibility.Collapsed;
+                    var doc = FlowDocumentBuilder.Build(content.Blocks, _vm.Zoom, _vm.Night, _vm.Highlight, out var first);
+                    Doc.Document = doc; Doc.Visibility = Visibility.Visible;
+                    if (first is not null) _ = Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, () => first.BringIntoView());
+                    break;
+                }
+                case ReaderKind.Pdf:
+                {
+                    Busy.Visibility = Visibility.Visible;
+                    var dip = Math.Max(420, (PageScroll.ActualWidth > 0 ? PageScroll.ActualWidth : 900) - 48) * _vm.Zoom;
+                    var dpi = VisualTreeHelper.GetDpi(this).DpiScaleX;
+                    var image = await _pdf.RenderAsync(content.FilePath!, content.Page, (int)(dip * dpi), _vm.Night);
+                    if (version != _version) return;                       // the user moved on while this page was drawing
+                    PageImage.Source = image; PageImage.Width = dip;
+                    ShowPage();
+                    break;
+                }
+                case ReaderKind.Image:
+                {
+                    var image = PhotoImage.Load(content.FilePath, 1800);
+                    if (version != _version) return;
+                    PageImage.Source = image; PageImage.Width = Math.Max(420, (PageScroll.ActualWidth > 0 ? PageScroll.ActualWidth : 900) - 48) * _vm.Zoom;
+                    ShowPage();
+                    break;
+                }
+            }
         }
-        catch (Exception ex)
+        catch (PdfProblem ex)
         {
-            // Any failure to start the embedded browser (runtime missing, profile folder locked...) falls back to the text reader.
-            Serilog.Log.Warning(ex, "WebView2 is not available; using the plain-text reader");
-            if (_vm is not null) _vm.WebViewUnavailable = true;
-            return false;
+            Busy.Visibility = Visibility.Collapsed;
+            if (version == _version) _vm.ErrorMessage = Loc.T(ex.Reason == "locked" ? "reader_pdf_locked" : "reader_pdf_damaged");
         }
     }
 
-    private async Task ShowTargetAsync()
+    private void ShowPage()
     {
-        if (_vm?.Target is not { } target) return;
-        if (!await EnsureWebAsync()) return;
-        Web.CoreWebView2.Navigate(target.Uri.AbsoluteUri);
-    }
-
-    private async void OnNavigationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e)
-    {
-        if (_vm is null) return;
-        Web.ZoomFactor = _vm.Zoom;
-        await ApplyNightAsync();
-        if (_vm.Highlight is { Length: > 0 } term && _vm.Target is { CanHighlight: true })
-            await Web.ExecuteScriptAsync(HighlightScript.Replace("%TERM%", JsonSerializer.Serialize(term)));
-    }
-
-    private async Task ApplyNightAsync()
-    {
-        if (!_webReady || _vm is null) return;
-        var on = _vm.Night && _vm.Target is { IsPdf: false };
-        await Web.ExecuteScriptAsync(on
-            ? "document.documentElement.style.filter='invert(0.9) hue-rotate(180deg)';document.documentElement.style.background='#fff';" +
-              "document.querySelectorAll('img,video').forEach(e=>e.style.filter='invert(1) hue-rotate(180deg)');"
-            : "document.documentElement.style.filter='';document.querySelectorAll('img,video').forEach(e=>e.style.filter='');");
+        Busy.Visibility = Visibility.Collapsed; Doc.Visibility = Visibility.Collapsed; PageScroll.Visibility = Visibility.Visible;
+        PageScroll.ScrollToTop();
     }
 
     private void OnHitSelected(object sender, SelectionChangedEventArgs e)
@@ -545,29 +550,6 @@ public partial class ReaderView : UserControl
         ((ListBox)sender).SelectedItem = null;
         _vm.OpenHitCommand.Execute(hit);
     }
-
-    /// <summary>Highlights the search words in the page, ignoring diacritics, and scrolls to the first match.</summary>
-    private const string HighlightScript = """
-        (function(term){
-          var map={a:'aăâáàäå',e:'eéèêë',i:'iîíìï',o:'oóòôöő',u:'uúùûüű',s:'sșşś',t:'tțţ',c:'cçć',n:'nñń',z:'zźż'};
-          var words=term.split(/[^\p{L}\p{N}]+/u).filter(Boolean).map(function(w){
-            return Array.from(w.toLowerCase()).map(function(ch){
-              var base=ch.normalize('NFD').replace(/[̀-ͯ]/g,'');
-              var cls=map[base]; if(cls) return '['+cls+']';
-              return ch.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-            }).join('');
-          });
-          if(!words.length||!document.body) return;
-          var re=new RegExp('('+words.join('|')+')','gi'), test=new RegExp(re.source,'i');
-          var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null), nodes=[];
-          while(walker.nextNode()){var n=walker.currentNode,p=n.parentNode;
-            if(p&&!/^(SCRIPT|STYLE|MARK|NOSCRIPT)$/.test(p.nodeName)&&test.test(n.nodeValue)) nodes.push(n);}
-          nodes.forEach(function(n){var span=document.createElement('span');
-            span.innerHTML=n.nodeValue.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(re,'<mark style="background:#f3c969;color:#000">$1</mark>');
-            n.parentNode.replaceChild(span,n);});
-          var m=document.querySelector('mark'); if(m) m.scrollIntoView({block:'center'});
-        })(%TERM%);
-        """;
 }
 
 internal static class LabelPlacement

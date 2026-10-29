@@ -146,7 +146,7 @@ public sealed partial class AboutViewModel : PageViewModel
         new Notice("Entity Framework Core + SQLite", "MIT / public domain", "Local database and full-text search"),
         new Notice("PdfPig", "Apache-2.0", "Reading text from PDF files"),
         new Notice("HtmlAgilityPack", "MIT", "Reading text from HTML/EPUB"),
-        new Notice("Microsoft WebView2", "Microsoft (runtime) / BSD-3 (SDK)", "Displaying books"),
+        new Notice("Windows PDF engine (Windows.Data.Pdf)", "Part of Windows", "Showing PDF pages in the reader"),
         new Notice("Serilog", "Apache-2.0", "Local log files"),
     };
 

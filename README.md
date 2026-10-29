@@ -23,12 +23,12 @@ An offline Windows companion for growing your own food. Plan your beds on a scal
 
 ### Supported ebook and document formats
 
-EPUB, PDF (text-based), MOBI/AZW/PRC (uncompressed or PalmDOC-compressed), FB2, DOCX, ODT, RTF, HTML, TXT, Markdown, CBZ (readable, not searchable).
+EPUB, PDF, MOBI/AZW/PRC (uncompressed or PalmDOC-compressed), FB2, DOCX, ODT, RTF, HTML, TXT, Markdown and other text files (LOG, CSV, TSV, RST, ADOC, TEX, ORG), PowerPoint (PPTX), Excel (XLSX), OpenDocument slides and sheets (ODP, ODS), CBZ (readable, not searchable). Everything is read inside the app with its own reader: PDF pages are drawn with the PDF engine built into Windows, other formats as native text with pictures. No browser, PDF viewer or other program is needed.
 Not supported: DRM-protected files, scanned PDFs without a text layer (they open but cannot be searched), Huffman-compressed MOBI, KF8-only AZW3, DJVU, LIT. Convert those to EPUB or PDF first (for example with Calibre).
 
 ## Requirements
 
-Windows 10 or 11, 64-bit. The installer is self-contained: no .NET install needed. Books are displayed with the Microsoft WebView2 runtime (included with Windows 11 and current Windows 10); without it the reader falls back to plain text.
+Windows 10 or 11, 64-bit. The installer is self-contained: no .NET install needed. Books are read inside the app; nothing else needs to be installed.
 
 ## Install
 

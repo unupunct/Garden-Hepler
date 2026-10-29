@@ -9,7 +9,7 @@ src/GardenHelper.Core   (net10.0, no UI)
   Design/       WorldTransform, GeometryMath, PlantLayout, UndoStack   (pure, unit-tested)
   Site/         SolarCalculator, ClimateAnalyzer/ClimateService, SatelliteTileService, MapMath
   Services/     Repository, SettingsService, BackupService, GlobalSearchService, ActionAdvisor, RotationAdvisor, CalendarPlanner
-src/GardenHelper.App    (net10.0-windows, WPF, MVVM with CommunityToolkit.Mvvm)
+src/GardenHelper.App    (net10.0-windows10.0.19041.0, WPF, MVVM with CommunityToolkit.Mvvm)
   ViewModels/   one per page; PageViewModel gives busy/error handling
   Views/        XAML pages; code-behind only for pointer/drag/keyboard glue
   Infrastructure/  localization (Strings.cs en/ro), converters, dialogs, theme, preferences
