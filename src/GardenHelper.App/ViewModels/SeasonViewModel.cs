@@ -43,7 +43,7 @@ public sealed partial class SeasonViewModel : PageViewModel
         var beds = await _repo.ListAsync<GardenBed>(q => q.Include(b => b.Plantings));
         var journal = await _repo.ListAsync<JournalEntry>(null);
         var budget = await _repo.ListAsync<BudgetEntry>(null);
-        var groups = await _repo.ListAsync<AnimalGroup>(q => q.Include(g => g.Logs));
+        var groups = await _repo.ListAsync<AnimalGroup>(q => q.Include(g => g.Logs).Include(g => g.Rations));
         var tasks = await _repo.ListAsync<GardenTask>(null);
         var photos = await _repo.ListAsync<Photo>(null);
         var harvests = await _repo.ListAsync<Harvest>(null);
@@ -94,6 +94,14 @@ public sealed partial class SeasonViewModel : PageViewModel
         var animals = r.Animals.Where(a => a.Production > 0 || a.Treatments > 0 || a.Costs > 0)
             .Select(a => Loc.F("season_animal_line", a.Name, a.Production > 0 ? $"{a.Production.ToString("N0", culture)} {Loc.T(a.Species == "goat" ? "season_litres" : "season_eggs")}" : "–", a.PerDay is { } d ? d.ToString("0.#", culture) : "–", a.Treatments, Money(a.Costs))).ToList();
         if (animals.Count > 0) Sections.Add(new(Loc.T("season_s_animals"), animals));
+
+        var cost = new List<string>();
+        if (r.KgHarvested > 0 && r.InputsCost > 0) cost.Add(Loc.F("season_cost_kg", Money(r.InputsCost), r.KgHarvested.ToString("N0", culture), (r.InputsCost / (decimal)r.KgHarvested).ToString("N2", culture)));
+        foreach (var e in r.Economy)
+            cost.Add(e.CostPerUnit is { } cpu ? Loc.F("season_cost_unit", e.Name, Money(e.Total), e.Production.ToString("N0", culture), Loc.T(e.Species == "goat" ? "season_litre_one" : "season_egg_one"), cpu.ToString("N2", culture))
+                                              : Loc.F("season_cost_total", e.Name, Money(e.Total)));
+        if (r.Economy.Count > 0 && r.SalesIncome > 0) cost.Add(Loc.F("season_cost_vs_sales", Money(r.Economy.Sum(x => x.Total)), Money(r.SalesIncome)));
+        if (cost.Count > 0) { cost.Add(Loc.T("season_cost_note")); Sections.Add(new(Loc.T("season_s_cost"), cost)); }
 
         Sections.Add(new(Loc.T("season_s_work"), new[] { Loc.F("season_tasks_line", r.TasksDone, r.TasksLate), Loc.F("season_waterings_line", r.Waterings), Loc.F("season_photos_line", r.Photos) }));
 

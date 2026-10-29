@@ -61,6 +61,21 @@ public class SeasonReviewTests
     }
 
     [Fact]
+    public void Costs_per_kilogram_and_per_egg_are_worked_out_from_inputs_feed_and_production()
+    {
+        var bed = new GardenBed { Id = 1, Name = "A", Kind = "raised" };
+        var hens = new AnimalGroup { Id = 3, Name = "Hens", Species = "chicken", Count = 10, Rations = new() { new FeedRation { GramsPerAnimalPerDay = 100, PricePerKg = 2 } }, Logs = new()
+            { new AnimalLog { Date = new DateOnly(2026, 3, 1), Kind = "production", Quantity = 600 }, new AnimalLog { Date = new DateOnly(2026, 3, 2), Kind = "expense", Cost = 50 } } };
+        var budget = new[] { new BudgetEntry { Date = new DateOnly(2026, 2, 1), Amount = 80, Category = "seeds" }, new BudgetEntry { Date = new DateOnly(2026, 2, 2), Amount = 20, Category = "plants" }, new BudgetEntry { Date = new DateOnly(2026, 6, 1), Amount = 900, Category = "infrastructure" } };
+        var harvests = new[] { new Harvest { Date = new DateOnly(2026, 8, 1), PlantId = "tomato", BedId = 1, Quantity = 40, Unit = "kg" } };
+        var r = SeasonReviewBuilder.Build(2026, new[] { bed }, Kb, Array.Empty<JournalEntry>(), budget, new[] { hens }, Array.Empty<GardenTask>(), Array.Empty<Photo>(), new DateOnly(2026, 12, 31), harvests);
+        Assert.Equal(100, r.InputsCost); Assert.Equal(40, r.KgHarvested);
+        var e = Assert.Single(r.Economy);
+        Assert.Equal(10 * 0.1m * 2 * 365, e.FeedCost);                    // 1 kg a day at 2 per kg for the 365 days counted
+        Assert.Equal(50, e.OtherCosts); Assert.Equal((730m + 50m) / 600m, e.CostPerUnit);
+    }
+
+    [Fact]
     public void Rotation_cycle_goes_legume_brassica_fruit_root_and_back()
     {
         Assert.Equal("brassica", RotationGroups.Next("legume")); Assert.Equal("legume", RotationGroups.Next("root"));

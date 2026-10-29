@@ -9,6 +9,11 @@ public sealed record AnimalSeason(int GroupId, string Name, string Species, doub
 {
     public double? PerDay => ProductionDays > 0 ? Production / ProductionDays : null;
 }
+/// <summary>What an animal group cost over the year (feed estimated from today's rations plus logged expenses and treatments) and, where it produces, the cost of each egg or litre.</summary>
+public sealed record AnimalEconomy(int GroupId, string Name, string Species, decimal FeedCost, decimal OtherCosts, double Production, decimal? CostPerUnit)
+{
+    public decimal Total => FeedCost + OtherCosts;
+}
 public sealed record YieldLine(string PlantId, string Unit, double Total, int Harvests, string? BestBed, double BestBedTotal);
 public sealed record BedRotation(int BedId, string BedName, string ThisYear, IReadOnlyList<string> Crops, string Next, IReadOnlyList<string> Suggestions);
 
@@ -16,7 +21,7 @@ public sealed record SeasonReview(
     int Year, int Plantings, int BedsUsed, IReadOnlyList<CropCount> Crops,
     IReadOnlyDictionary<string, int> Harvests, IReadOnlyDictionary<string, int> Problems, int Waterings,
     decimal Income, decimal Expenses, IReadOnlyList<CategoryTotal> ExpenseByCategory,
-    IReadOnlyList<AnimalSeason> Animals, int TasksDone, int TasksLate, int Photos, IReadOnlyList<BedRotation> Rotation, IReadOnlyList<YieldLine> Yields, int HarvestCount)
+    IReadOnlyList<AnimalSeason> Animals, int TasksDone, int TasksLate, int Photos, IReadOnlyList<BedRotation> Rotation, IReadOnlyList<YieldLine> Yields, int HarvestCount, IReadOnlyList<AnimalEconomy> Economy, decimal InputsCost, double KgHarvested, decimal SalesIncome)
 {
     public decimal Net => Income - Expenses;
 }
@@ -94,9 +99,22 @@ public static class SeasonReviewBuilder
         }).OrderByDescending(y => y.Total).ToList();
         var harvestCount = harvestList.Count > 0 ? harvestList.Count : Count("harvest").Values.Sum();
 
+        var inputs = money.Where(e => !e.IsIncome && e.Category is "seeds" or "plants").Sum(e => e.Amount);
+        var kg = yields.Where(y => y.Unit == "kg").Sum(y => y.Total);
+        var sales = money.Where(e => e.IsIncome && e.Category == "sales").Sum(e => e.Amount);
+        var daysCounted = year == today.Year ? today.DayOfYear : (DateTime.IsLeapYear(year) ? 366 : 365);
+        var economy = groups.Select(g =>
+        {
+            var yearLogs = g.Logs.Where(l => l.Date.Year == year).ToList();
+            var other = yearLogs.Where(l => l.Kind is "expense" or "treatment" && l.Cost is not null).Sum(l => l.Cost!.Value);
+            var feed = AnimalRules.FeedCostPerDay(g.Count, g.Rations) * daysCounted;
+            var prod = yearLogs.Where(l => l.Kind == "production" && l.Quantity is not null).Sum(l => l.Quantity!.Value);
+            return new AnimalEconomy(g.Id, g.Name, g.Species, feed, other, prod, prod > 0 ? (feed + other) / (decimal)prod : null);
+        }).Where(e => e.Total > 0).ToList();
+
         return new SeasonReview(year, inYear.Count, inYear.Select(x => x.Bed.Id).Distinct().Count(), crops, Count("harvest"), Count("pests"),
             yearEntries.Count(j => Tagged(j, "watering")), income, byCat.Sum(c => c.Amount), byCat.OrderByDescending(c => c.Amount).ToList(), animals,
-            yearTasks.Count(t => t.Done), yearTasks.Count(t => !t.Done && t.DueDate < today), photos.Count(p => p.Date.Year == year), rotation, yields, harvestCount);
+            yearTasks.Count(t => t.Done), yearTasks.Count(t => !t.Done && t.DueDate < today), photos.Count(p => p.Date.Year == year), rotation, yields, harvestCount, economy, inputs, kg, sales);
     }
 
     /// <summary>Years that have anything recorded, newest first (always includes the current one).</summary>
