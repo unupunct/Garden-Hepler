@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0
+- **Welcome setup** on first start: name and place the homestead (optional online place search), frost dates, animals and crops; the crops become dated sowing to-dos.
+- **Photos**: a timeline of pictures of beds, plants, animals and places, with quick add from plant and animal cards on the plan.
+- **Reminders**: Windows notifications for urgent things and a daily summary while the app is open; settings and a test button.
+- **Season review**: what grew, harvests and problems logged, money, animals, work done, and a crop-rotation suggestion per bed for next year.
+- **Print or save as PDF**: the garden plan, building plans, the Today list and the season review.
+- **Undo and redo** for building plans (Ctrl+Z / Ctrl+Y) and for tracing, reshaping and deleting places.
+- The plan keeps every bed and camera on the ground when places change anywhere in the app.
+
 ## 0.2.1
 - Raspberry Pi guide opens as its own page from a How-to button in the Greenhouse page, with this PC's address, port, token and place number filled in; available in English and Romanian.
 - Plan frame stays aligned when places are traced or reshaped; the plan fits the window when it opens.
