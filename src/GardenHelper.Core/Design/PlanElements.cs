@@ -26,6 +26,24 @@ public static class PlanElements
         new("pen", "buildings", 500, 400, "#A89B6A", "▧", true), new("other_structure", "buildings", 400, 400, "#888888", "▢", true),
 
         new("path", "paths", 80, 600, "#C8BEA0", "┅"), new("driveway", "paths", 300, 800, "#B7B1A3", "═"),
+        new("coldframe", "growing", 120, 80, "#A9D6D9", "▭"),
+        new("herbspiral", "growing", 200, 200, "#9CB874", "◎"),
+        new("trellis", "growing", 200, 30, "#8A6B45", "▦"),
+        new("pergola", "growing", 300, 300, "#B9976A", "▥"),
+        new("flowerbed", "growing", 200, 100, "#D9A6C0", "✿"),
+        new("lawn", "growing", 500, 400, "#9BCB7B", "▒"),
+        new("barrel", "utilities", 60, 60, "#5B7FA6", "◍"),
+        new("tap", "utilities", 30, 30, "#4B9CD3", "✚"),
+        new("firepit", "utilities", 120, 120, "#8A5A44", "♨"),
+        new("lamp", "utilities", 30, 30, "#E6C34A", "☼"),
+        new("insecthotel", "utilities", 60, 40, "#B38B5D", "▤"),
+        new("birdhouse", "utilities", 30, 30, "#A47551", "⌂"),
+        new("scarecrow", "utilities", 50, 50, "#C69A55", "✥"),
+        new("mailbox", "utilities", 30, 25, "#7A7A7A", "✉"),
+        new("woodpile", "utilities", 200, 80, "#8B6240", "≡"),
+        new("patio", "paths", 400, 300, "#CFC6B4", "▦"),
+        new("stepping", "paths", 40, 40, "#B9B2A2", "◯"),
+        new("parking", "paths", 300, 500, "#A9A9A9", "▭"),
     };
 
     public static PlanElement? Get(string key) => All.FirstOrDefault(e => e.Key == key);

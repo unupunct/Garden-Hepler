@@ -109,31 +109,39 @@
                     <StackPanel>
                         <TextBlock Text="{loc:L gh_layout}" Style="{StaticResource H2}"/>
                         <TextBlock Text="{loc:L gh_layout_help}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"/>
-                        <Border Background="#FFF4F1E6" BorderBrush="#FF8A7A55" BorderThickness="2" CornerRadius="4" Margin="0,8,0,8" MaxHeight="420">
-                            <Viewbox Stretch="Uniform" StretchDirection="Both" MaxHeight="410">
-                                <ItemsControl ItemsSource="{Binding Items}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
-                                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemContainerStyle>
-                                        <Style TargetType="ContentPresenter">
-                                            <Setter Property="Canvas.Left" Value="{Binding X}"/>
-                                            <Setter Property="Canvas.Top" Value="{Binding Y}"/>
-                                        </Style>
-                                    </ItemsControl.ItemContainerStyle>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Width="{Binding Width}" Height="{Binding Height}" AutomationProperties.Name="{Binding Label}">
-                                                <Border Background="{Binding Fill}" BorderBrush="#FF2A3B26" BorderThickness="2" CornerRadius="4">
-                                                    <Border.Style>
-                                                        <Style TargetType="Border"><Style.Triggers><DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="BorderBrush" Value="#FFC0562B"/><Setter Property="BorderThickness" Value="5"/></DataTrigger></Style.Triggers></Style>
-                                                    </Border.Style>
-                                                </Border>
-                                                <TextBlock Text="{Binding Label}" HorizontalAlignment="Center" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="#FF1B2418" FontWeight="SemiBold"
-                                                           FontSize="{Binding DataContext.LabelSize, RelativeSource={RelativeSource AncestorType=UserControl}}" IsHitTestVisible="False"/>
-                                                <Thumb Opacity="0" Cursor="SizeAll" DragStarted="OnItemDragStart" DragDelta="OnItemDrag" DragCompleted="OnItemDragDone"/>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
+                        <Border Background="#FFF7F3E8" BorderBrush="#FFCDBF98" BorderThickness="1.5" CornerRadius="14" Margin="0,8,0,8" MaxHeight="420" Padding="10">
+                            <Viewbox Stretch="Uniform" StretchDirection="Both" MaxHeight="400">
+                                <Grid Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
+                                    <Border Background="#FFFFFDF6" BorderBrush="#FFB7A57A" BorderThickness="6" CornerRadius="10"/>
+                                    <ItemsControl ItemsSource="{Binding Items}">
+                                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemContainerStyle>
+                                            <Style TargetType="ContentPresenter">
+                                                <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                                                <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                                            </Style>
+                                        </ItemsControl.ItemContainerStyle>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Width="{Binding Width}" Height="{Binding Height}" AutomationProperties.Name="{Binding Label}" ToolTip="{Binding Label}">
+                                                    <Border Background="{Binding Fill}" BorderBrush="{Binding Edge}" BorderThickness="2" CornerRadius="9">
+                                                        <Border.Effect><DropShadowEffect BlurRadius="8" ShadowDepth="2" Opacity="0.22"/></Border.Effect>
+                                                        <Border.Style>
+                                                            <Style TargetType="Border"><Style.Triggers><DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="BorderBrush" Value="#FFC0562B"/><Setter Property="BorderThickness" Value="5"/></DataTrigger></Style.Triggers></Style>
+                                                        </Border.Style>
+                                                    </Border>
+                                                    <Viewbox Stretch="Uniform" Margin="6" IsHitTestVisible="False" MaxHeight="{Binding Width}">
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Glyph}" HorizontalAlignment="Center" FontSize="26" Foreground="#99405036"/>
+                                                            <TextBlock Text="{Binding Label}" HorizontalAlignment="Center" Foreground="#FF2E3A2A" FontWeight="SemiBold" FontSize="10" TextTrimming="CharacterEllipsis"/>
+                                                        </StackPanel>
+                                                    </Viewbox>
+                                                    <Thumb Opacity="0" Cursor="SizeAll" DragStarted="OnItemDragStart" DragDelta="OnItemDrag" DragCompleted="OnItemDragDone"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
                             </Viewbox>
                         </Border>
                         <WrapPanel>

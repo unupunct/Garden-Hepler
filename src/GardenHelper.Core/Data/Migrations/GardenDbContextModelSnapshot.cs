@@ -232,6 +232,54 @@ namespace GardenHelper.Core.Data.Migrations
                     b.ToTable("CameraEvents");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Design.InteriorItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FeatureId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Floor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Height")
+                        .HasColumnType("REAL");
+
+                    b.Property<int?>("InventoryPlantId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Rotation")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Width")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("X")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Y")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeatureId", "Floor");
+
+                    b.ToTable("InteriorItems");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.AppSetting", b =>
                 {
                     b.Property<string>("Key")

@@ -31,8 +31,21 @@ public sealed partial class LayoutItem : ObservableObject
     [ObservableProperty] private bool _isSelected;
     public Brush Fill => Item.Kind switch
     {
-        "growbed" => Frozen(0xCC, 0x6F, 0xA5, 0x5C), "channel" => Frozen(0xCC, 0x4F, 0xA3, 0xC7), "tank" => Frozen(0xCC, 0x2F, 0x7F, 0xB5), "sensor" => Frozen(0xFF, 0xD9, 0xA4, 0x00),
-        "vent" => Frozen(0xCC, 0xA0, 0xA8, 0xB0), "pump" => Frozen(0xCC, 0x7A, 0x6A, 0xB0), "other" => Frozen(0xCC, 0xB0, 0xA0, 0x90), _ => Frozen(0xCC, 0xC9, 0xA8, 0x6B),
+        "growbed" => Frozen(0xFF, 0xD3, 0xEA, 0xC2), "pots" => Frozen(0xFF, 0xE4, 0xCF, 0xB4), "seedtray" => Frozen(0xFF, 0xCF, 0xE6, 0xA8), "shelf" => Frozen(0xFF, 0xE6, 0xD6, 0xB4),
+        "channel" => Frozen(0xFF, 0xBD, 0xE0, 0xF0), "tank" => Frozen(0xFF, 0x9F, 0xCF, 0xEA), "sink" => Frozen(0xFF, 0xC9, 0xE4, 0xEE), "sensor" => Frozen(0xFF, 0xFF, 0xE3, 0x8A),
+        "light" => Frozen(0xFF, 0xFF, 0xF1, 0xA8), "fan" => Frozen(0xFF, 0xD8, 0xE2, 0xEA), "heater" => Frozen(0xFF, 0xF6, 0xC5, 0xB4), "mister" => Frozen(0xFF, 0xCF, 0xEA, 0xF2),
+        "vent" => Frozen(0xFF, 0xDD, 0xE3, 0xE8), "door" => Frozen(0xFF, 0xD9, 0xB9, 0x95), "pump" => Frozen(0xFF, 0xD9, 0xCF, 0xEE), "path" => Frozen(0xFF, 0xEC, 0xE4, 0xD0),
+        "other" => Frozen(0xFF, 0xE4, 0xDD, 0xD2), _ => Frozen(0xFF, 0xEB, 0xD7, 0xAE),
+    };
+    public Brush Edge => Item.Kind switch
+    {
+        "growbed" or "seedtray" => Frozen(0xFF, 0x7F, 0xA6, 0x66), "channel" or "tank" or "sink" or "mister" => Frozen(0xFF, 0x5F, 0x9F, 0xC4), "sensor" or "light" => Frozen(0xFF, 0xC9, 0xA2, 0x1F),
+        "door" => Frozen(0xFF, 0x9C, 0x6F, 0x3F), "heater" => Frozen(0xFF, 0xC9, 0x78, 0x5F), _ => Frozen(0xFF, 0xA8, 0x96, 0x78),
+    };
+    public string Glyph => Item.Kind switch
+    {
+        "growbed" => "❧", "pots" => "❀", "seedtray" => "⁘", "shelf" => "≡", "channel" => "≈", "tank" => "◍", "sink" => "☂", "sensor" => "◉",
+        "light" => "☀", "fan" => "✻", "heater" => "♨", "mister" => "∴", "vent" => "⬆", "door" => "◠", "pump" => "↻", "path" => "┅", "bench" => "▭", _ => "•",
     };
     private static Brush Frozen(byte a, byte r, byte g, byte b) { var br = new SolidColorBrush(Color.FromArgb(a, r, g, b)); br.Freeze(); return br; }
 }
@@ -224,7 +237,7 @@ public sealed partial class GreenhouseViewModel : PageViewModel
     private Task AddItemAsync() => RunAsync(async () =>
     {
         if (HouseId == 0) return;
-        var (w, h) = NewKind.Key switch { "bench" => (120.0, 50.0), "growbed" => (120.0, 60.0), "channel" => (200.0, 20.0), "tank" => (80.0, 80.0), _ => (30.0, 30.0) };
+        var (w, h) = NewKind.Key switch { "bench" => (120.0, 50.0), "growbed" => (120.0, 60.0), "pots" => (90.0, 40.0), "seedtray" => (60.0, 40.0), "shelf" => (100.0, 30.0), "channel" => (200.0, 20.0), "tank" => (80.0, 80.0), "sink" => (60.0, 45.0), "door" => (90.0, 12.0), "path" => (60.0, 200.0), "vent" => (80.0, 14.0), "light" => (80.0, 14.0), _ => (30.0, 30.0) };
         var item = await _repo.SaveAsync(new GreenhouseItem { FeatureId = HouseId, Kind = NewKind.Key, X = 20, Y = 20, Width = w, Height = h });
         var li = new LayoutItem(item); Items.Add(li); SelectedItem = li;
     }, busy: false);

@@ -17,6 +17,45 @@
     <Grid Margin="20,12,20,12">
         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
 
+        <Popup IsOpen="{Binding CardOpen, Mode=TwoWay}" Placement="MousePoint" StaysOpen="True" AllowsTransparency="True" PopupAnimation="Fade" HorizontalOffset="16" VerticalOffset="12">
+            <Border Background="White" CornerRadius="16" BorderBrush="#FFDCD3BC" BorderThickness="1" Padding="16,14" Margin="14" MinWidth="290" MaxWidth="360">
+                <Border.Effect><DropShadowEffect BlurRadius="18" ShadowDepth="4" Opacity="0.28"/></Border.Effect>
+                <StackPanel>
+                    <DockPanel>
+                        <Button DockPanel.Dock="Right" Content="✕" Command="{Binding CloseCardCommand}" Style="{StaticResource LinkButton}" VerticalAlignment="Top" AutomationProperties.Name="Close" ToolTip="Close"/>
+                        <TextBlock Text="{Binding Card.Title}" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="#FF1F2A1B"/>
+                    </DockPanel>
+                    <TextBlock Text="{Binding Card.Subtitle}" FontStyle="Italic" Foreground="#FF6C7A62" Margin="0,0,0,8"/>
+                    <ItemsControl ItemsSource="{Binding Card.Rows}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="92"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Label}" Foreground="#FF6C7A62" FontSize="12" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Value}" TextWrapping="Wrap" FontSize="13"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Border Background="#FFF1F6EA" CornerRadius="10" Padding="10,6" Margin="0,10,0,0">
+                        <StackPanel>
+                            <TextBlock Text="{loc:L card_sensors}" FontWeight="SemiBold" FontSize="12"/>
+                            <ItemsControl ItemsSource="{Binding Card.Sensors}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,1"><Grid.ColumnDefinitions><ColumnDefinition Width="110"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Label}" FontSize="12" Foreground="#FF6C7A62"/><TextBlock Grid.Column="1" Text="{Binding Value}" FontSize="13" FontWeight="SemiBold"/></Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Text="{Binding Card.SensorsNote}" FontSize="12" Foreground="#FF6C7A62" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                    <Button Style="{StaticResource PrimaryButton}" Content="{loc:L card_log_water}" Command="{Binding LogWateringCommand}" HorizontalAlignment="Left" Margin="0,12,0,0"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+
         <!-- Needs a garden -->
         <Border Grid.Row="2" Style="{StaticResource Card}" VerticalAlignment="Top" Visibility="{Binding HasGarden, Converter={StaticResource BoolToVis}, ConverterParameter=invert}">
             <StackPanel>
@@ -191,7 +230,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Width="{Binding Width}" Height="{Binding Height}" RenderTransformOrigin="0.5,0.5" AllowDrop="True"
-                                              PreviewMouseLeftButtonDown="OnBedDown" Drop="OnBedDrop" DragOver="OnBedDragOver" AutomationProperties.Name="{Binding Name}" ToolTip="{Binding TipText}">
+                                              PreviewMouseLeftButtonDown="OnBedDown" PreviewMouseMove="OnBedHover" Drop="OnBedDrop" DragOver="OnBedDragOver" AutomationProperties.Name="{Binding Name}" ToolTip="{Binding TipText}">
                                             <Grid.RenderTransform><RotateTransform Angle="{Binding Rotation}"/></Grid.RenderTransform>
                                             <Border Background="{Binding Fill}" BorderBrush="#FF2A3B26" BorderThickness="3" CornerRadius="8">
                                                 <Border.Style>
@@ -209,23 +248,57 @@
                                             </Border>
                                             <loc:BedPlantsLayer Markers="{Binding Markers}" Zoom="{Binding DataContext.Scale, RelativeSource={RelativeSource AncestorType=UserControl}}" ClipToBounds="True" IsHitTestVisible="False" Margin="3"/>
                                     <Thumb Opacity="0" Cursor="SizeAll" DragStarted="OnMoveStart" DragDelta="OnMove" DragCompleted="OnMoveDone"/>
-                                            <Border Background="#DDFFFFFF" CornerRadius="4" Padding="6,2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" IsHitTestVisible="False">
+                                            <Canvas IsHitTestVisible="False"><Border Canvas.Bottom="{Binding Height}" Canvas.Left="0" Background="#F2FFFFFF" BorderBrush="#33000000" BorderThickness="1" CornerRadius="10" Padding="8,3" IsHitTestVisible="False">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsSelected}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
                                                 <StackPanel>
                                                     <TextBlock Foreground="#FF1B2418" FontWeight="Bold" TextTrimming="CharacterEllipsis"
                                                                FontSize="{Binding DataContext.LabelSize, RelativeSource={RelativeSource AncestorType=UserControl}}">
                                                         <Run Text="{Binding Label, Mode=OneWay}"/>
                                                     </TextBlock>
-                                                    <TextBlock Text="{Binding PlantsText}" Foreground="#FF2F3B2B" TextWrapping="Wrap" MaxWidth="400"
+                                                    <TextBlock Text="{Binding PlantsText}" Foreground="#FF2F3B2B" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" MaxWidth="600"
                                                                FontSize="{Binding DataContext.LabelSize, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                                                 </StackPanel>
-                                            </Border>
-                                            <Thumb Background="#FFC0562B" HorizontalAlignment="Right" VerticalAlignment="Bottom" Cursor="SizeNWSE"
+                                            </Border></Canvas>
+                                            <Thumb Background="#FFC0562B" HorizontalAlignment="Right" VerticalAlignment="Bottom" Cursor="SizeNWSE" Visibility="{Binding IsSelected, Converter={StaticResource BoolToVis}}"
                                                    Width="{Binding DataContext.HandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                    Height="{Binding DataContext.HandleSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                    DragStarted="OnResizeStart" DragDelta="OnResize" DragCompleted="OnResizeDone" ToolTip="{loc:L design_resize}">
                                                 <Thumb.Template><ControlTemplate TargetType="Thumb"><Border Background="{TemplateBinding Background}" CornerRadius="3"/></ControlTemplate></Thumb.Template>
                                             </Thumb>
                                         </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <ItemsControl ItemsSource="{Binding Badges}" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
+                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><Canvas/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="ContentPresenter">
+                                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                                        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Click="OnBadgeClick" ToolTip="{Binding Tip}" AutomationProperties.Name="{Binding Tip}" Cursor="Hand"
+                                                Width="{Binding DataContext.BadgeSize, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="{Binding DataContext.BadgeSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Margin="{Binding DataContext.BadgeMargin, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Grid>
+                                                        <Ellipse Fill="#F2FFFFFF" Stroke="#FFB7A57A" StrokeThickness="2"><Ellipse.Effect><DropShadowEffect BlurRadius="6" ShadowDepth="1.5" Opacity="0.3"/></Ellipse.Effect></Ellipse>
+                                                        <Viewbox Margin="3"><TextBlock Text="{Binding Glyph}" FontFamily="Segoe UI Emoji"/></Viewbox>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

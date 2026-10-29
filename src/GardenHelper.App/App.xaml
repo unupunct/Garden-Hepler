@@ -39,6 +39,7 @@
             <DataTemplate DataType="{x:Type vm:AnimalsViewModel}"><v:AnimalsView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:ConnectViewModel}"><v:ConnectView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:GreenhouseViewModel}"><v:GreenhouseView/></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:InteriorViewModel}"><v:InteriorView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:InventoryViewModel}"><v:InventoryView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:ComingUpViewModel}"><v:ComingUpView/></DataTemplate>
             <DataTemplate DataType="{x:Type vm:BudgetViewModel}"><v:BudgetView/></DataTemplate>

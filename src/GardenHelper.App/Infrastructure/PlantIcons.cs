@@ -5,7 +5,7 @@ using GardenHelper.Core.Knowledge;
 namespace GardenHelper.App.Infrastructure;
 
 /// <summary>One plant drawn on a bed: where (cm, inside the bed), how big, and which icon and colour.</summary>
-public sealed record PlantMarker(double X, double Y, double Size, string Shape, Color Body);
+public sealed record PlantMarker(double X, double Y, double Size, string Shape, Color Body, int PlantingId = 0, string Tip = "");
 
 /// <summary>
 /// Original, simple plant icons drawn as vector shapes (24 x 24 design grid): a body in the plant's own colour and an

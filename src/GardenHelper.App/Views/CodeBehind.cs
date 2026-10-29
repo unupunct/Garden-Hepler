@@ -289,8 +289,18 @@ public partial class DesignerView : UserControl
     {
         if (Bed(sender) is not { } b || Vm is not { } vm) return;
         vm.Selected = b;
-        if (e.ClickCount == 2) { vm.ZoomToSelectedCommand.Execute(null); e.Handled = true; }   // double-click an element to zoom in on it
+        if (e.ClickCount == 2) { vm.ZoomToSelectedCommand.Execute(null); e.Handled = true; return; }   // double-click an element to zoom in on it
+        if (e.ClickCount == 1 && sender is FrameworkElement el) _ = vm.ProbePlantAsync(b, e.GetPosition(el));   // click on a plant: show its card
     }
+
+    /// <summary>Hovering a plant icon names just that plant; elsewhere on the bed the tip lists the whole bed.</summary>
+    private void OnBedHover(object sender, System.Windows.Input.MouseEventArgs e)
+    {
+        if (Bed(sender) is not { } b || Vm is not { } vm || sender is not FrameworkElement el) return;
+        el.ToolTip = vm.PlantTipAt(b, e.GetPosition(el)) ?? b.TipText;
+    }
+
+    private void OnBadgeClick(object sender, RoutedEventArgs e) { if ((sender as FrameworkElement)?.DataContext is FeatureBadge badge) Vm?.OpenBadgeCommand.Execute(badge); }
 
     private void OnMoveStart(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
     {
@@ -351,7 +361,7 @@ public partial class DesignerView : UserControl
 
     private void OnViewportSize(object sender, SizeChangedEventArgs e)
     {
-        if (Vm is { } vm) { vm.ViewportWidth = CanvasScroll.ViewportWidth > 0 ? CanvasScroll.ViewportWidth : e.NewSize.Width; vm.ViewportHeight = CanvasScroll.ViewportHeight > 0 ? CanvasScroll.ViewportHeight : e.NewSize.Height; }
+        if (Vm is { } vm) { vm.ViewportWidth = CanvasScroll.ViewportWidth > 0 ? CanvasScroll.ViewportWidth : e.NewSize.Width; vm.ViewportHeight = CanvasScroll.ViewportHeight > 0 ? CanvasScroll.ViewportHeight : e.NewSize.Height; vm.ViewportChanged(); }
     }
 
     /// <summary>Zooms by a factor, keeping the point under the pointer (or the middle of the window) where it is.</summary>
@@ -379,6 +389,7 @@ public partial class DesignerView : UserControl
 
     private void OnPanStart(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
+        if (Vm is { CardOpen: true } open) open.CardOpen = false;   // any click on the plan closes the plant card (clicking a plant opens it again)
         var middle = e.ChangedButton == System.Windows.Input.MouseButton.Middle;
         var background = e.ChangedButton == System.Windows.Input.MouseButton.Left && e.OriginalSource is DependencyObject src && IsInside(src, World)
                          && (src as FrameworkElement)?.DataContext is not BedItem;
@@ -593,5 +604,77 @@ internal static class LabelPlacement
         if (c is null) return;
         Canvas.SetLeft(el, c.Value.X - e.NewSize.Width / 2);
         Canvas.SetTop(el, c.Value.Y - e.NewSize.Height / 2);
+    }
+}
+public partial class InteriorView : UserControl
+{
+    private double _sx, _sy, _dx, _dy, _sw, _sh;
+    private Point? _wallStart;
+    public InteriorView() => InitializeComponent();
+    private ViewModels.InteriorViewModel? Vm => DataContext as ViewModels.InteriorViewModel;
+    private static ViewModels.InteriorShape? Shape(object sender) => (sender as FrameworkElement)?.DataContext as ViewModels.InteriorShape;
+
+    private void OnViewportSize(object sender, SizeChangedEventArgs e)
+    {
+        if (Vm is not { } vm) return;
+        var first = vm.ViewportWidth < 50;
+        vm.ViewportWidth = e.NewSize.Width; vm.ViewportHeight = e.NewSize.Height;
+        if (first) vm.FitView();
+    }
+
+    private void OnWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+    {
+        if (Vm is not { } vm) return;
+        var pos = e.GetPosition(PlanScroll);
+        var old = vm.Scale;
+        var cx = (PlanScroll.HorizontalOffset + pos.X) / old; var cy = (PlanScroll.VerticalOffset + pos.Y) / old;
+        vm.Scale = Math.Clamp(old * (e.Delta > 0 ? 1.15 : 1 / 1.15), 0.08, 4);
+        PlanScroll.UpdateLayout();
+        PlanScroll.ScrollToHorizontalOffset(cx * vm.Scale - pos.X); PlanScroll.ScrollToVerticalOffset(cy * vm.Scale - pos.Y);
+        e.Handled = true;
+    }
+
+    private void OnShapeDown(object sender, System.Windows.Input.MouseButtonEventArgs e) { if (Shape(sender) is { } s && Vm is { } vm) vm.Selected = s; }
+
+    private void OnMoveStart(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+    {
+        if (Shape(sender) is not { } s || Vm is not { } vm) return;
+        vm.Selected = s; _sx = s.X; _sy = s.Y; _dx = _dy = 0;
+    }
+    private void OnMove(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+    {
+        if (Shape(sender) is not { } s) return;
+        // the thumb is inside the item's rotation: turn the pointer movement back into plan axes
+        var r = s.Rotation * Math.PI / 180; var cos = Math.Cos(r); var sin = Math.Sin(r);
+        _dx += e.HorizontalChange * cos - e.VerticalChange * sin; _dy += e.HorizontalChange * sin + e.VerticalChange * cos;
+        s.X = _sx + _dx; s.Y = _sy + _dy;
+    }
+    private async void OnMoveDone(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) { if (Shape(sender) is { } s && Vm is { } vm) await vm.MovedAsync(s); }
+
+    private void OnResizeStart(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e) { if (Shape(sender) is { } s && Vm is { } vm) { vm.Selected = s; _sw = s.Width; _sh = s.Height; _dx = _dy = 0; } }
+    private void OnResize(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+    {
+        if (Shape(sender) is not { } s) return;
+        _dx += e.HorizontalChange; _dy += e.VerticalChange;
+        s.Width = Math.Max(10, ViewModels.InteriorShape.SnapSize(_sw + _dx)); if (!s.IsWall && !s.IsOpening) s.Height = Math.Max(10, ViewModels.InteriorShape.SnapSize(_sh + _dy));
+    }
+    private async void OnResizeDone(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) { if (Shape(sender) is { } s && Vm is { } vm) await vm.ResizedAsync(s); }
+
+    private void OnDrawDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        _wallStart = e.GetPosition(DrawLayer);
+        Rubber.X1 = Rubber.X2 = _wallStart.Value.X; Rubber.Y1 = Rubber.Y2 = _wallStart.Value.Y; Rubber.Visibility = Visibility.Visible;
+        DrawLayer.CaptureMouse();
+    }
+    private void OnDrawMove(object sender, System.Windows.Input.MouseEventArgs e)
+    {
+        if (_wallStart is null) return;
+        var p = e.GetPosition(DrawLayer); Rubber.X2 = p.X; Rubber.Y2 = p.Y;
+    }
+    private async void OnDrawUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (_wallStart is not { } a) return;
+        var b = e.GetPosition(DrawLayer); _wallStart = null; Rubber.Visibility = Visibility.Collapsed; DrawLayer.ReleaseMouseCapture();
+        if (Vm is { } vm) await vm.DrawWallAsync(a.X, a.Y, b.X, b.Y);
     }
 }

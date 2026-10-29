@@ -108,3 +108,15 @@ public static class Highlight
         if (pos < text.Length) tb.Inlines.Add(new Run(text[pos..]));
     }
 }
+
+public sealed class InteriorKindName : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) => Loc.T("int_k_" + value);
+    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) => throw new NotSupportedException();
+}
+
+public sealed class CountToVisibility : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) => value is int n && n > 0 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) => throw new NotSupportedException();
+}

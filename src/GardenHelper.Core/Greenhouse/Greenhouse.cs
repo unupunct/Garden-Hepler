@@ -64,7 +64,7 @@ public static class GreenhouseCatalog
 {
     public static readonly string[] Systems = { "soil", "hydroponic", "aquaponic" };
     public static readonly string[] ActuatorKeys = { "vent", "fan", "water", "pump", "light" };
-    public static readonly string[] ItemKinds = { "bench", "growbed", "channel", "tank", "sensor", "vent", "pump", "other" };
+    public static readonly string[] ItemKinds = { "bench", "growbed", "pots", "seedtray", "shelf", "channel", "tank", "sink", "sensor", "light", "fan", "heater", "mister", "vent", "door", "pump", "path", "other" };
 
     public static readonly MetricInfo[] Metrics =
     {

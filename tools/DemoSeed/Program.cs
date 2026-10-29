@@ -65,6 +65,7 @@ var frame = PlanFrame.Fit(allKnown, 500, out var planW, out var planH);
 var grid = TileGrid.ForBounds(allKnown);
 var tl = frame.ToPlan(grid.TopLeft);
 frame.Shift(tl.X < 0 ? -tl.X : 0, tl.Y < 0 ? -tl.Y : 0);
+if (File.Exists(Path.Combine(paths.SiteDir, $"backdrop-{garden.Id}.jpg"))) garden.BackdropFile = $"backdrop-{garden.Id}.jpg";   // picture loaded earlier from the app: reuse it
 garden.BackdropTopLat = grid.TopLeft.Lat; garden.BackdropTopLon = grid.TopLeft.Lon; garden.BackdropCmPerPixel = grid.CmPerPixel;   // the app rebuilds the picture itself
 garden = await repo.SaveAsync(garden);
 Pt Plan(double x, double y) => frame.ToPlan(G(x, y));
@@ -318,6 +319,101 @@ await Money(95, "plants", 120, "Lettuce and herb plugs for the aquaponics bench"
 await Money(45, "infrastructure", 190, "Barn window and hinges"); await Money(35, "other", 40, "Jars and lids for preserving"); await Money(20, "utilities", 98, "Firewood, 4 m³");
 for (var w = 0; w < 26; w++) await Money(7 * w + 3, "sales", 40 + rnd.Next(0, 25), "Eggs sold to neighbours and at the weekend market", true);
 await Money(70, "sales", 230, "Honey, 12 jars", true); await Money(32, "sales", 160, "Apple juice, 40 bottles", true); await Money(18, "sales", 120, "Surplus tomatoes, peppers and pumpkins at the market", true);
+
+// patio, pergola and the small things that make a place lived in
+await Bed("patio", "patio", "Patio", -12.5, 6.2, 300, 200, notes: "Gravel-set stone slabs; the family eats here from May to September.");
+await Bed("pergola", "pergola", "Pergola with grape", -12.5, 6.2, 300, 200, notes: "Table grape and a hop on the posts. Needs a coat of linseed oil every second spring.");
+await Bed("firepit", "firepit", "Fire pit", -12.5, 2.2, 120, 120); await Bed("barrel", "barrel", "Rain barrel (roof run-off)", -22.4, 6.4, 60, 60); await Bed("woodpile", "woodpile", "Firewood stack (drying)", -26, 10, 80, 300, notes: "4 m³ stacked in September: dry by next winter.");
+await Bed("mailbox", "mailbox", "Mailbox", -5.5, 20.5, 30, 25); await Bed("hotel", "insecthotel", "Insect hotel", 28.5, -4, 60, 40, notes: "Built from pallets, bamboo and pine cones. Leaf-cutter bees moved in this summer.");
+await Bed("lawn", "lawn", "Lawn (mown, for the children)", -10, -8, 500, 400); await Bed("flowers", "flowerbed", "Flower bed by the gate", -2, 18, 250, 100); await Bed("coldframe", "coldframe", "Cold frame", 9, 21, 120, 80, notes: "Winter lettuce and early radish. Open on sunny days.");
+
+// ---------------------------------------------------------------- around the house: foundation beds, planted over the years
+await Bed("house_s", "bed", "South border by the house", -18, 5.0, 800, 80, notes: "Sunny, dry and sheltered by the wall: the herbs and lavender love it. Bees all summer.");
+await Bed("house_w", "bed", "Grape wall (west)", -23.9, 10, 70, 600, notes: "Grapes trained on wires up the west wall; pruned every February.");
+await Bed("house_n", "bed", "Shade border (north of the house)", -18, 14.9, 800, 90, notes: "Damp and shady: rhubarb, chives and mint do well here, nothing that needs sun.");
+await Bed("house_e", "bed", "Pollinator corner (between house and garage)", -11.5, 9.5, 70, 300, notes: "Sown with flowers for bees and hoverflies. Self-seeds a lot: thin each spring.");
+await Plant("house_s", "lavender", 8, 1100, PlantingStatus.Growing, null, "Cut back after flowering in August. Replace the two oldest plants next spring.");
+await Plant("house_s", "rosemary", 2, 1100, PlantingStatus.Growing, null, "Survived two winters against the wall, wrapped in fleece."); await Plant("house_s", "thyme", 6, 1100, PlantingStatus.Growing); await Plant("house_s", "sage", 2, 1100, PlantingStatus.Growing);
+await Plant("house_w", "grape", 3, 1460, PlantingStatus.Growing, "Local table grape", "Good crop this year, 25 kg. Mildew late in August: improve the airflow with leaf removal.");
+await Plant("house_n", "rhubarb", 2, 1400, PlantingStatus.Growing, null, "Divide next spring."); await Plant("house_n", "chives", 6, 1100, PlantingStatus.Growing); await Plant("house_n", "mint", 2, 900, PlantingStatus.Growing, null, "Sunk in buckets.");
+await Plant("house_n", "guelder-rose", 2, 1000, PlantingStatus.Growing, null, "Berries for the birds in winter.");
+await Plant("house_e", "echinacea", 4, 800, PlantingStatus.Growing); await Plant("house_e", "borage", 6, 400, PlantingStatus.Finished); await Plant("house_e", "calendula", 8, 400, PlantingStatus.Growing); await Plant("house_e", "anise-hyssop", 3, 700, PlantingStatus.Growing);
+await Note("house", 1000, "note", "Bought the property. Roof good, chimney needs work, windows to replace one by one."); await Note("house", 720, "maintenance", "Replaced the kitchen and sunroom windows with double glazing.");
+await Note("house", 400, "maintenance", "Repainted the south wall; the lavender border was cut back to protect it."); await Note("house", 300, "maintenance", "New wood stove installed in the living room; chimney lined.");
+await Note("house", 3, "note", "NEXT: bleed the radiators, bring the lemon geranium cuttings indoors before frost, check the cellar for mice.");
+
+// ---------------------------------------------------------------- house plans: ground floor and cellar
+const double HX = 50, HY = 50;     // top-left corner of the house outline inside the plan (cm)
+var hid = features["house"].Id;
+async Task Wall(int floor, double x1, double y1, double x2, double y2) => await repo.SaveAsync(InteriorCatalog.WallBetween(hid, floor, HX + x1, HY + y1, HX + x2, HY + y2));
+async Task Room(string name, double x1, double y1, double x2, double y2, int floor = 0) =>
+    await repo.SaveAsync(new InteriorItem { FeatureId = hid, Floor = floor, Kind = "room", Name = name, X = HX + x1 + 8, Y = HY + y1 + 8, Width = x2 - x1 - 16, Height = y2 - y1 - 16 });
+async Task Opening(string kind, string name, double cx, double cy, double w, double rot, int floor = 0) =>
+    await repo.SaveAsync(new InteriorItem { FeatureId = hid, Floor = floor, Kind = kind, Name = name, Width = w, Height = 15, X = HX + cx - w / 2, Y = HY + cy - 7.5, Rotation = rot });
+async Task Thing(string kind, string name, double x, double y, double w, double h, double rot = 0, int floor = 0, string? notes = null, int? plant = null) =>
+    await repo.SaveAsync(new InteriorItem { FeatureId = hid, Floor = floor, Kind = kind, Name = name, X = HX + x, Y = HY + y, Width = w, Height = h, Rotation = rot, Notes = notes, InventoryPlantId = plant });
+
+await Room("Living room", 0, 0, 450, 430); await Room("Kitchen", 0, 430, 450, 800); await Room("Hall", 450, 0, 600, 800); await Room("Bedroom", 600, 0, 1000, 400);
+await Room("Bathroom", 600, 400, 800, 600); await Room("Pantry", 600, 600, 800, 800); await Room("Sunroom", 800, 400, 1000, 800);
+foreach (var (x1, y1, x2, y2) in new[] { (0.0, 0.0, 1000.0, 0.0), (1000.0, 0.0, 1000.0, 800.0), (1000.0, 800.0, 0.0, 800.0), (0.0, 800.0, 0.0, 0.0),
+    (450.0, 0.0, 450.0, 800.0), (600.0, 0.0, 600.0, 800.0), (0.0, 430.0, 450.0, 430.0), (600.0, 400.0, 1000.0, 400.0), (800.0, 400.0, 800.0, 800.0), (600.0, 600.0, 800.0, 600.0) })
+    await Wall(0, x1, y1, x2, y2);
+await Opening("door", "Front door", 525, 800, 100, 0); await Opening("door", "Back door (to the garden)", 525, 0, 100, 0);
+await Opening("window", "Living room window", 225, 0, 150, 0); await Opening("window", "Living room window (west)", 0, 215, 150, 90); await Opening("window", "Kitchen window", 225, 800, 130, 0);
+await Opening("window", "Kitchen window (west)", 0, 615, 110, 90); await Opening("window", "Bedroom window", 800, 0, 150, 0); await Opening("window", "Bedroom window (east)", 1000, 200, 140, 90);
+await Opening("window", "Bathroom window", 700, 400, 60, 0); await Opening("window", "Sunroom windows", 900, 800, 160, 0); await Opening("window", "Sunroom windows (east)", 1000, 600, 200, 90);
+await Opening("door", "Living room door", 450, 215, 90, 90); await Opening("door", "Kitchen door", 450, 615, 90, 90); await Opening("door", "Bedroom door", 600, 200, 90, 90);
+await Opening("door", "Bathroom door", 600, 500, 80, 90); await Opening("door", "Pantry door", 600, 700, 80, 90); await Opening("door", "Sunroom door", 800, 700, 80, 90);
+await Thing("stairs", "Cellar stairs", 475, 500, 100, 200, notes: "Down to the cellar: preserves, potatoes, apples and the wine barrel.");
+await Thing("woodstove", "Wood stove", 360, 20, 70, 70, notes: "Main heating in winter. Chimney swept in October."); await Thing("sofa", "Sofa", 80, 280, 200, 90); await Thing("shelf", "Bookshelf", 70, 15, 200, 30);
+await Thing("radiator", "Radiator", 8, 160, 100, 12, 90); await Thing("table", "Kitchen table", 130, 510, 160, 90); await Thing("counter", "Kitchen counter", 20, 735, 240, 60); await Thing("sink", "Sink", 270, 745, 80, 50);
+await Thing("stove", "Stove", 360, 735, 60, 60); await Thing("fridge", "Fridge", 375, 650, 65, 65); await Thing("bed", "Bed", 690, 60, 160, 200); await Thing("wardrobe", "Wardrobe", 840, 330, 120, 60);
+await Thing("radiator", "Radiator", 984, 130, 100, 12, 90); await Thing("sink", "Bathroom sink", 640, 415, 80, 50); await Thing("shelf", "Pantry shelf", 610, 610, 180, 30, notes: "Jars: tomato sauce, pickles, jam, compote.");
+await Thing("shelf", "Pantry shelf (drying)", 610, 755, 180, 30, notes: "Herbs and hot peppers drying on strings above."); await Thing("planter", "Sunroom planter (north)", 815, 415, 170, 40); await Thing("planter", "Sunroom planter (south)", 815, 745, 170, 40);
+// basement
+foreach (var (x1, y1, x2, y2) in new[] { (0.0, 400.0, 600.0, 400.0), (600.0, 400.0, 600.0, 800.0), (600.0, 800.0, 0.0, 800.0), (0.0, 800.0, 0.0, 400.0) }) await Wall(-1, x1, y1, x2, y2);
+await Room("Cellar", 0, 400, 600, 800, -1); await Opening("window", "Cellar window", 200, 800, 60, 0, -1); await Thing("stairs", "Stairs up", 475, 500, 100, 200, floor: -1);
+await Thing("shelf", "Preserves shelves", 20, 420, 300, 30, floor: -1, notes: "Tomato sauce, pickles, jam. Count the jars every November."); await Thing("shelf", "Apple racks", 20, 760, 300, 30, floor: -1, notes: "Reinette keeps until March. Check weekly for rot.");
+await Thing("planter", "Potato crates", 340, 420, 120, 60, floor: -1, notes: "Cool and dark. Check for sprouts in February."); await Thing("planter", "Carrots in damp sand", 340, 740, 120, 40, floor: -1);
+await Thing("table", "Work table", 200, 560, 160, 90, floor: -1); await Thing("shelf", "Wine barrel stand", 40, 600, 120, 60, floor: -1, notes: "Fruit wine from the plums and the grapes.");
+
+// indoor plants on the plan (some are in the sunroom; the parsley is still to be placed)
+await House("Basil (windowsill, winter)", "basil", PlantLocation.Indoor, "Sunroom", 4, 3, 2, "healthy", "Pinch the flower buds; best on the sunniest sill.", 40);
+await House("Rosemary (pot, overwintering)", "rosemary", PlantLocation.Indoor, "Sunroom", 1, 9, 4, "healthy", "Brought in before the first frost. Do not overwater.", 25);
+await House("Chives (pot)", "chives", PlantLocation.Indoor, "Sunroom", 1, 5, 6, "attention", "Watering is overdue; yellow tips.", 60);
+await House("Mint (pot)", "mint", PlantLocation.Indoor, "Pantry", 1, 4, 2, "healthy", "For tea in winter.", 70);
+await House("Parsley (pot)", "parsley", PlantLocation.Indoor, "Kitchen", 2, 4, 3, "healthy", "Not yet on the house plan.", 15);
+var indoor = await repo.ListAsync<InventoryPlant>(q => q.Where(p => !p.IsTree && p.Location == PlantLocation.Indoor));
+int? Inv(string name) => indoor.FirstOrDefault(p => p.Name.StartsWith(name))?.Id;
+await Thing("plant", "", 40, 190, 50, 50, plant: Inv("Monstera")); await Thing("plant", "", 190, 20, 50, 50, plant: Inv("Rubber plant")); await Thing("plant", "", 185, 740, 50, 50, plant: Inv("Pothos"));
+await Thing("plant", "", 80, 740, 50, 50, plant: Inv("Aloe")); await Thing("plant", "", 490, 30, 50, 50, plant: Inv("Snake plant")); await Thing("plant", "", 920, 130, 50, 50, plant: Inv("Peace lily"));
+await Thing("plant", "", 730, 420, 50, 50, plant: Inv("Spider plant")); await Thing("plant", "", 830, 420, 50, 50, plant: Inv("Basil")); await Thing("plant", "", 900, 420, 50, 50, plant: Inv("Rosemary"));
+await Thing("plant", "", 830, 750, 50, 50, plant: Inv("Chives")); await Thing("plant", "", 650, 760, 50, 50, plant: Inv("Mint"));
+
+// ---------------------------------------------------------------- years of history: older seasons, lessons learned, watering
+async Task Water(int daysAgo, string plant, string bed) => await repo.SaveAsync(new JournalEntry { Date = Ago(daysAgo), Title = $"Watered {plant} ({bed})", Text = "", Tags = "watering", PlantId = P(plant) });
+await Water(2, "lettuce", "Raised bed 3"); await Water(2, "spinach", "Raised bed 3"); await Water(3, "kale", "Cabbage family bed"); await Water(3, "cabbage", "Cabbage family bed"); await Water(3, "broccoli", "Cabbage family bed");
+await Water(6, "carrot", "Raised bed 4"); await Water(9, "leek", "Garlic and leek bed"); await Water(5, "beetroot", "Raised bed 4"); await Water(1, "lettuce", "Greenhouse"); await Water(15, "garlic", "Garlic and leek bed");
+await Entry(1090, "We bought the land", "First walk with the old owner. South slope, a spring-fed well, an old walnut and one apple tree (Reinette) that is older than the house. Soil looks good. Plan: house repairs first, garden second.", "history");
+await Entry(1040, "First fence posts", "Marked the boundary and set the first 40 posts along the road. Bears were seen on the ridge: electric fence on the list.", "history,fence");
+await Entry(980, "Dug the first beds", "Hand-dug 4 beds near the house, added manure from the neighbour. Planted potatoes, beans and pumpkins: a modest first year but the family ate well.", "history,beds");
+await Entry(720, "Planted the orchard", "Planted 2 apples, plum and pear, 5 m apart, staked, tubed against hares. Mulch with straw in a 1 m circle.", "history,trees");
+await Entry(700, "Greenhouse from old windows", "Built the 4 x 6 m greenhouse using old windows from the village. Concrete footing, polycarbonate roof, vent at the ridge.", "history,greenhouse");
+await Entry(540, "Hedge planted", "300 bare-root plants: hawthorn, hazel, elder, rose hips and sea-buckthorn along the west side. Watered all summer.", "history,hedge");
+await Entry(420, "First honey", "Two hives gave 35 kg. Learned: do not take too much; leave 15 kg for the winter.", "history,bees");
+await Entry(380, "Pond dug", "Dug and lined the pond for frogs and dragonflies. Planted marsh marigold and water mint. Slugs are fewer since the frogs came.", "history,pond");
+await Entry(365, "Lessons from last year", "Tomato blight in a wet August: grow in the greenhouse or under the roof overhang, space wider, remove lower leaves. Rotate the potatoes: scab on the old bed. Keep records of everything.", "history,lessons");
+await Entry(330, "Frost on the apricot (again)", "Second year in a row the blossom was lost on 17 April. Fleece next time, or plant a later variety.", "history,frost");
+await Entry(290, "Garlic and the first snow", "Planted garlic in October; snow came on 11 November and the bulbs overwintered perfectly under straw.", "history");
+foreach (var (b, plant, qty, ago, st) in new (string, string, int, int, PlantingStatus)[]
+{
+    ("rb1", "pepper", 6, 530, PlantingStatus.Finished), ("rb2", "tomato", 6, 530, PlantingStatus.Finished), ("rb3", "bean", 20, 530, PlantingStatus.Finished), ("rb4", "cabbage", 8, 520, PlantingStatus.Finished),
+    ("gb1", "bean", 30, 530, PlantingStatus.Finished), ("gb2", "potato", 40, 530, PlantingStatus.Finished), ("gb3", "potato", 30, 520, PlantingStatus.Finished), ("gb4", "sweetcorn", 12, 530, PlantingStatus.Finished),
+})
+    await Plant(b, plant, qty, ago, st, null, "Last year's crop here (for crop rotation).");
+await Money(1000, "infrastructure", 2200, "Roof repair and the chimney lining"); await Money(900, "tools", 420, "First tools: spade, rake, secateurs"); await Money(720, "plants", 600, "Orchard trees and stakes");
+await Money(700, "infrastructure", 1400, "Greenhouse: polycarbonate, concrete, hinges"); await Money(540, "plants", 380, "Hedge plants, 300 bare-root"); await Money(420, "sales", 520, "First honey and wax", true);
+await Money(380, "infrastructure", 350, "Pond liner and pump"); await Money(330, "sales", 1100, "Eggs, honey and vegetables over the year", true);
 
 // ---------------------------------------------------------------- settings: the demo knows it is demo data
 var settings = new SettingsService(new ContextFactory(paths));

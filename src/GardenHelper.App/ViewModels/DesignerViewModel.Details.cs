@@ -35,7 +35,7 @@ public sealed partial class DesignerViewModel
             for (var k = 0; k < take; k++)
             {
                 var at = pos[take == pos.Count ? k : (int)((long)k * pos.Count / take)];
-                markers.Add(new PlantMarker(at.X, i * strip + at.Y, size, shape, color));
+                markers.Add(new PlantMarker(at.X, i * strip + at.Y, size, shape, color, p.Id, $"{name}" + (p.PlantedDate is { } pdt ? $" · {pdt.ToString("d MMM", culture)}" : "") + $" · {Loc.T("status_" + p.Status)}"));
             }
         }
         if (active.Count == 0) tip.Add(Loc.T("design_tip_empty"));

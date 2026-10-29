@@ -41,7 +41,7 @@ public class LocalizationTests
             foreach (Match m in Regex.Matches(t, @"Loc\.[TF]\(""([A-Za-z0-9_]+)""")) used.Add(m.Groups[1].Value);
         }
         // Keys built from a prefix at run time (nav_, act_, task_, kind_, status_, sev_, search_kind_) are checked by their prefix.
-        var dynamicPrefixes = new[] { "nav_", "act_", "task_", "kind_", "status_", "sev_", "search_kind_", "rotv_", "feat_", "log_", "cam_kind_", "animal_", "alog_", "bcat_", "up_bucket_", "inv_f_", "inv_loc_", "inv_st_", "inv_log_", "tree_type_", "tact_", "gh_m_", "gh_act_", "gh_sys_", "gh_item_", "gh_alert_", "purpose_", "origin_", "edib_", "pal_", "cam_brand_", "cam_ev_" };
+        var dynamicPrefixes = new[] { "nav_", "act_", "task_", "kind_", "status_", "sev_", "search_kind_", "rotv_", "feat_", "log_", "cam_kind_", "animal_", "alog_", "bcat_", "up_bucket_", "inv_f_", "inv_loc_", "inv_st_", "inv_log_", "tree_type_", "tact_", "gh_m_", "gh_act_", "gh_sys_", "gh_item_", "int_k_", "int_g_", "int_floor_", "gh_alert_", "purpose_", "origin_", "edib_", "pal_", "cam_brand_", "cam_ev_" };
         var missing = used.Where(k => !known.Contains(k) && !dynamicPrefixes.Contains(k)).ToList();
         Assert.Empty(missing);
     }
@@ -80,6 +80,9 @@ public class LocalizationTests
             .Concat(GardenHelper.Core.Greenhouse.GreenhouseCatalog.ActuatorKeys.Select(k => "gh_act_" + k))
             .Concat(GardenHelper.Core.Greenhouse.GreenhouseCatalog.Systems.Select(k => "gh_sys_" + k))
             .Concat(GardenHelper.Core.Greenhouse.GreenhouseCatalog.ItemKinds.Select(k => "gh_item_" + k))
+            .Concat(GardenHelper.Core.Design.InteriorCatalog.All.Select(k => "int_k_" + k.Key))
+            .Concat(GardenHelper.Core.Design.InteriorCatalog.Floors.Select(f => "int_floor_" + GardenHelper.Core.Design.InteriorCatalog.FloorKey(f)))
+            .Concat(GardenHelper.Core.Design.InteriorCatalog.Groups.Select(g => "int_g_" + g))
             .Concat(new[] { "no_data", "stale", "frost", "cold", "hot", "humid", "dry", "water_hot", "water_hot_fish", "ph", "level" }.Select(k => "gh_alert_" + k))
             .Concat(GardenHelper.Core.Animals.AnimalCatalog.Species.Select(k => "animal_" + k))
             .Concat(GardenHelper.Core.Animals.AnimalCatalog.LogKinds.Select(k => "alog_" + k))

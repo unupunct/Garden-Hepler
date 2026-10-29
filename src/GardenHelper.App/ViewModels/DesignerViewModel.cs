@@ -103,6 +103,8 @@ public sealed partial class DesignerViewModel : PageViewModel
     private readonly AlertService _alerts;
     private readonly IDialogs _dialogs;
     private readonly INavigator _nav;
+    private readonly ILogger _logger;
+    private readonly GardenHelper.Core.Greenhouse.GreenhouseService _greenhouse;
     private Garden? _garden;
     private readonly Dictionary<int, BedState> _snapshots = new();
     private List<MonthActivity> _yearActivities = new();
@@ -112,9 +114,9 @@ public sealed partial class DesignerViewModel : PageViewModel
 
     private readonly BackdropService _backdrops;
 
-    public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, BackdropService backdrops, CameraFeed camFeed, ILogger<DesignerViewModel> log) : base(log)
+    public DesignerViewModel(Repository repo, KnowledgeBase kb, AppPaths paths, AlertService alerts, IDialogs dialogs, INavigator nav, BackdropService backdrops, CameraFeed camFeed, GardenHelper.Core.Greenhouse.GreenhouseService greenhouse, ILogger<DesignerViewModel> log) : base(log)
     {
-        _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
+        _logger = log; _greenhouse = greenhouse; _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
         Palette = PlanElements.Groups.Select(g => new PaletteGroup(Loc.T("pal_" + g),
             (g == "devices" ? new[] { new PaletteItem("camera", Loc.T("pal_camera"), "◉") }
                             : PlanElements.InGroup(g).Select(e => new PaletteItem(e.Key, Loc.T((e.IsStructure ? "feat_" : "kind_") + e.Key), e.Glyph)).ToArray()))).ToList();
@@ -180,7 +182,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     [ObservableProperty] private string _rotationWhy = "";
     [ObservableProperty] private bool _hasRotation;
     [ObservableProperty] private string _fitText = "";
-    [ObservableProperty] private bool _leftOpen = true;
+    [ObservableProperty] private bool _leftOpen;
 
     // ---- Property outline imported from the map page (3–20 pins) ----
     private List<Pt> _boundary = new();
@@ -283,6 +285,8 @@ public sealed partial class DesignerViewModel : PageViewModel
     public double HandleSize => 16 / Scale;
     public double CameraIconSize => 28 / Scale;
     public double CameraIconOffset => -14 / Scale;
+    public double BadgeSize => 36 / Scale;
+    public System.Windows.Thickness BadgeMargin => new(-18 / Scale, -18 / Scale, 0, 0);
     public double CameraHandleSize => 16 / Scale;
     public System.Windows.Thickness CameraHandleMargin => new(-8 / Scale);
     public bool HasSelection => Selected is not null;
@@ -295,7 +299,7 @@ public sealed partial class DesignerViewModel : PageViewModel
         : Loc.F("design_status_sel", Selected.Name, Selected.SizeText, Selected.AreaText, Selected.Rotation.ToString("0"),
             (Selected.X / 100).ToString("0.0", Loc.Instance.Culture), (Selected.Y / 100).ToString("0.0", Loc.Instance.Culture));
 
-    partial void OnScaleChanged(double value) { OnPropertyChanged(nameof(StrokeSize)); OnPropertyChanged(nameof(LabelSize)); OnPropertyChanged(nameof(HandleSize)); OnPropertyChanged(nameof(CameraIconSize)); OnPropertyChanged(nameof(CameraIconOffset)); OnPropertyChanged(nameof(CameraHandleSize)); OnPropertyChanged(nameof(CameraHandleMargin)); OnPropertyChanged(nameof(ScaleText)); }
+    partial void OnScaleChanged(double value) { if (!_fitting) _autoFit = false; OnPropertyChanged(nameof(StrokeSize)); OnPropertyChanged(nameof(LabelSize)); OnPropertyChanged(nameof(HandleSize)); OnPropertyChanged(nameof(CameraIconSize)); OnPropertyChanged(nameof(BadgeSize)); OnPropertyChanged(nameof(BadgeMargin)); OnPropertyChanged(nameof(CameraIconOffset)); OnPropertyChanged(nameof(CameraHandleSize)); OnPropertyChanged(nameof(CameraHandleMargin)); OnPropertyChanged(nameof(ScaleText)); }
     partial void OnLibrarySearchChanged(string value) => RefreshCards();
     partial void OnSelectedFilterChanged(LibraryFilter? value) => RefreshCards();
     partial void OnNewPlantChanged(PlantOption? value) => UpdatePlantAdvice();
@@ -332,6 +336,7 @@ public sealed partial class DesignerViewModel : PageViewModel
         FitView();      // open framed on the property, however large it is
         Beds.Clear(); _snapshots.Clear();
         foreach (var b in beds) { Beds.Add(Wrap(b)); _snapshots[b.Id] = Capture(b); }
+        await LoadBadgesAsync();
         Selected = Beds.FirstOrDefault(b => b.Id == keep);
         BuildCards();
         RebuildCalendar();
@@ -701,7 +706,16 @@ public sealed partial class DesignerViewModel : PageViewModel
     [RelayCommand] private void Fit() => FitView();
 
     /// <summary>Frames the property outline and everything drawn on it; with nothing drawn, frames the whole plan.</summary>
+    private bool _autoFit = true, _fitting;
+    /// <summary>The window got a different size: keep the whole property in view until the user zooms or pans on their own.</summary>
+    public void ViewportChanged() { if (_autoFit) FitView(); }
+
     private void FitView()
+    {
+        _fitting = true; try { FitCore(); } finally { _fitting = false; _autoFit = true; }
+    }
+
+    private void FitCore()
     {
         var pts = _planAll.Concat(Beds.SelectMany(b => b.Corners)).ToList();
         double minX = 0, minY = 0, maxX = CanvasWidth, maxY = CanvasHeight;

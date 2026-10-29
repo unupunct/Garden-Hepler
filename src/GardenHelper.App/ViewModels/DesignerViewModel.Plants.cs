@@ -1,0 +1,133 @@
+using System.Collections.ObjectModel;
+using System.Windows;
+using Microsoft.Extensions.Logging;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GardenHelper.App.Infrastructure;
+using GardenHelper.Core.Animals;
+using GardenHelper.Core.Domain;
+using GardenHelper.Core.Greenhouse;
+using GardenHelper.Core.Knowledge;
+using Microsoft.EntityFrameworkCore;
+
+namespace GardenHelper.App.ViewModels;
+
+public sealed record CardRow(string Label, string Value);
+
+/// <summary>What shows when you click a plant on the plan: when it went in, when it was last watered, how it is doing and what the sensors say.</summary>
+public sealed record PlantDetailCard(string Title, string Subtitle, string Glyph, IReadOnlyList<CardRow> Rows, IReadOnlyList<CardRow> Sensors, string SensorsNote, int PlantingId, string PlantId, string BedName);
+
+/// <summary>A small icon on a building or space for what lives there (chickens in the coop, goats in the barn…).</summary>
+public sealed record FeatureBadge(int FeatureId, double X, double Y, string Glyph, string Count, string Tip);
+
+public sealed partial class DesignerViewModel
+{
+    public ObservableCollection<FeatureBadge> Badges { get; } = new();
+    [ObservableProperty] private PlantDetailCard? _card;
+    [ObservableProperty] private bool _cardOpen;
+
+    private static string SpeciesGlyph(string species) => species switch { "chicken" => "🐔", "duck" => "🦆", "rabbit" => "🐇", "goat" => "🐐", "pig" => "🐖", _ => "🐾" };
+
+    private async Task LoadBadgesAsync()
+    {
+        Badges.Clear();
+        if (_garden is null) return;
+        var groups = await _repo.ListAsync<AnimalGroup>(q => q.Where(g => g.GardenId == _garden.Id && g.FeatureId != null).OrderBy(g => g.Id));
+        foreach (var byFeature in groups.GroupBy(g => g.FeatureId!.Value))
+        {
+            // a building drawn as a plan object has no outline shape of its own: use the object
+            var bed = Beds.FirstOrDefault(b => b.Bed.FeatureId == byFeature.Key && b.IsStructure);
+            var shape = FeatureShapes.FirstOrDefault(f => f.Id == byFeature.Key);
+            if (bed is null && shape is null) continue;
+            var (cx, cy, place) = bed is not null ? (bed.X + bed.Width / 2, bed.Y + bed.Height / 2, bed.Name) : (shape!.LabelX, shape.LabelY, shape.Name);
+            var n = byFeature.Count(); var i = 0;
+            foreach (var g in byFeature)
+            {
+                // side by side, centred on the building
+                var step = 90.0; var x = cx + (i - (n - 1) / 2.0) * step; i++;
+                Badges.Add(new FeatureBadge(byFeature.Key, x, cy, SpeciesGlyph(g.Species), g.Count.ToString(),
+                    $"{g.Name} ×{g.Count}" + (string.IsNullOrWhiteSpace(g.Breed) ? "" : $" ({g.Breed})") + $"\n{Loc.T("animal_" + g.Species)} · {place}"));
+            }
+        }
+    }
+
+    [RelayCommand] private void OpenBadge(FeatureBadge b) => _nav.GoTo<AnimalsViewModel>();
+
+    private const double LayerMargin = 3;      // the plant layer sits inside the bed's 3 px border
+
+    private static PlantMarker? MarkerAt(BedItem bed, Point local)
+    {
+        if (bed.Markers is not { Count: > 0 } markers) return null;
+        PlantMarker? best = null; var bestD = double.MaxValue;
+        foreach (var m in markers)
+        {
+            var dx = local.X - LayerMargin - m.X; var dy = local.Y - LayerMargin - m.Y;
+            var d = Math.Sqrt(dx * dx + dy * dy);
+            if (d <= Math.Max(m.Size * 0.65, 8) && d < bestD) { best = m; bestD = d; }
+        }
+        return best;
+    }
+
+    /// <summary>The name of the plant under the pointer (or null), for the hover tip.</summary>
+    public string? PlantTipAt(BedItem bed, Point local) => MarkerAt(bed, local)?.Tip;
+
+    /// <summary>Clicking a plant icon opens its card.</summary>
+    public async Task ProbePlantAsync(BedItem bed, Point local)
+    {
+        if (MarkerAt(bed, local) is not { PlantingId: > 0 } m) { CardOpen = false; return; }
+        var p = bed.Bed.Plantings.FirstOrDefault(x => x.Id == m.PlantingId); if (p is null) return;
+        try { Card = await BuildCardAsync(bed, p, m); CardOpen = true; }
+        catch (Exception ex) { _logger.LogWarning(ex, "Plant card failed"); }
+    }
+
+    private static string Ago(DateOnly d, DateOnly today) => (today.DayNumber - d.DayNumber) switch
+    {
+        0 => Loc.T("card_today"), 1 => Loc.T("card_yesterday"), < 0 => Loc.F("card_in_days", d.DayNumber - today.DayNumber), var n => Loc.F("card_days_ago", n),
+    };
+
+    private async Task<PlantDetailCard> BuildCardAsync(BedItem bed, BedPlanting p, PlantMarker m)
+    {
+        var lang = Loc.Instance.Language; var culture = Loc.Instance.Culture; var today = DateOnly.FromDateTime(DateTime.Today);
+        var plant = _kb.Get(p.PlantId);
+        var rows = new List<CardRow>();
+        rows.Add(new(Loc.T("card_planted"), p.PlantedDate is { } d ? $"{d.ToString("d MMM yyyy", culture)} · {Ago(d, today)}" : Loc.T("card_not_planted")));
+        rows.Add(new(Loc.T("card_status"), Loc.T("status_" + p.Status)));
+        rows.Add(new(Loc.T("card_count"), $"{p.Quantity}" + (string.IsNullOrWhiteSpace(p.Variety) ? "" : $" · {p.Variety}")));
+        if (p.PlantedDate is { } pd && plant?.DaysToMaturity is { } dm)
+            rows.Add(new(Loc.T("card_harvest"), $"{pd.AddDays(dm.Min).ToString("d MMM", culture)} – {pd.AddDays(dm.Max).ToString("d MMM", culture)}"));
+        var water = (await _repo.ListAsync<JournalEntry>(q => q.Where(j => j.PlantId == p.PlantId && j.Tags.Contains("watering")).OrderByDescending(j => j.Date).Take(1))).FirstOrDefault();
+        rows.Add(new(Loc.T("card_watered"), water is null ? Loc.T("card_not_logged") : $"{water.Date.ToString("d MMM", culture)} · {Ago(water.Date, today)}"));
+        var note = (await _repo.ListAsync<JournalEntry>(q => q.Where(j => j.PlantId == p.PlantId && !j.Tags.Contains("watering")).OrderByDescending(j => j.Date).Take(1))).FirstOrDefault();
+        if (note is not null) rows.Add(new(Loc.T("card_last_note"), $"{note.Date.ToString("d MMM", culture)} · {note.Title}"));
+        if (!string.IsNullOrWhiteSpace(p.Notes)) rows.Add(new(Loc.T("card_notes"), p.Notes!));
+        rows.Add(new(Loc.T("card_bed"), $"{bed.Name} · {bed.SizeText}"));
+
+        var sensors = new List<CardRow>(); var sensorNote = Loc.T("card_no_sensors");
+        if (bed.Bed.FeatureId is { } fid)
+        {
+            var latest = await _greenhouse.LatestAsync(fid);
+            foreach (var met in GreenhouseCatalog.Metrics)
+                if (latest.TryGetValue(met.Key, out var r))
+                {
+                    var age = (DateTime.UtcNow - r.AtUtc).TotalMinutes;
+                    sensors.Add(new(Loc.T("gh_m_" + met.Key), $"{r.Value.ToString(met.Key == "light" ? "0" : "0.#", culture)} {met.Unit}" + (age > 15 ? $" ({Loc.T("card_old")})" : "")));
+                }
+            if (sensors.Count > 0) sensorNote = "";
+        }
+        var (_, _) = (m.Shape, m.Body);
+        return new PlantDetailCard(plant?.DisplayName(lang) ?? p.PlantId, plant?.Scientific ?? "", "", rows, sensors, sensorNote, p.Id, p.PlantId, bed.Name);
+    }
+
+    [RelayCommand] private void CloseCard() => CardOpen = false;
+
+    /// <summary>Writes today's watering into the journal for the plant in the open card.</summary>
+    [RelayCommand]
+    private Task LogWateringAsync() => RunAsync(async () =>
+    {
+        if (Card is not { } c) return;
+        var name = _kb.Get(c.PlantId)?.DisplayName(Loc.Instance.Language) ?? c.PlantId;
+        await _repo.SaveAsync(new JournalEntry { Title = Loc.F("card_water_title", name, c.BedName), Text = "", Tags = "watering", PlantId = c.PlantId });
+        StatusMessage = Loc.F("card_water_done", name);
+        CardOpen = false;
+    }, busy: false);
+}
