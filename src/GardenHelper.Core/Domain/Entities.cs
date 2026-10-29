@@ -38,6 +38,20 @@ public class Garden
     public double? PlanAnchorLon { get; set; }
 }
 
+/// <summary>One harvest: when, what, from which bed, and how much (optional).</summary>
+public class Harvest
+{
+    public int Id { get; set; }
+    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+    public string PlantId { get; set; } = "";
+    public int? BedId { get; set; }
+    /// <summary>Amount in <see cref="Unit"/>; empty when only the fact of harvesting was noted.</summary>
+    public double? Quantity { get; set; }
+    /// <summary>kg or pcs.</summary>
+    public string Unit { get; set; } = "kg";
+    public string? Notes { get; set; }
+}
+
 /// <summary>A picture taken on the property: of a bed, a plant, an animal group, a place, or just the garden. The file is kept in the photo folder.</summary>
 public class Photo
 {

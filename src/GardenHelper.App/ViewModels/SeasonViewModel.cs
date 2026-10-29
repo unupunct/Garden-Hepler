@@ -44,14 +44,15 @@ public sealed partial class SeasonViewModel : PageViewModel
         var groups = await _repo.ListAsync<AnimalGroup>(q => q.Include(g => g.Logs));
         var tasks = await _repo.ListAsync<GardenTask>(null);
         var photos = await _repo.ListAsync<Photo>(null);
+        var harvests = await _repo.ListAsync<Harvest>(null);
 
         _loading = true;
-        var years = SeasonReviewBuilder.YearsWithData(beds, journal, budget, groups, DateTime.Today.Year);
+        var years = SeasonReviewBuilder.YearsWithData(beds, journal, budget, groups, DateTime.Today.Year, harvests);
         Years.Clear(); foreach (var y in years) Years.Add(y);
         if (!Years.Contains(SelectedYear)) SelectedYear = Years[0];
         _loading = false;
 
-        var r = SeasonReviewBuilder.Build(SelectedYear, beds, _kb, journal, budget, groups, tasks, photos, DateOnly.FromDateTime(DateTime.Today));
+        var r = SeasonReviewBuilder.Build(SelectedYear, beds, _kb, journal, budget, groups, tasks, photos, DateOnly.FromDateTime(DateTime.Today), harvests);
         Fill(r, garden?.Name);
     });
 
@@ -64,13 +65,16 @@ public sealed partial class SeasonViewModel : PageViewModel
         Title = Loc.F("season_title", r.Year) + (string.IsNullOrWhiteSpace(gardenName) ? "" : " · " + gardenName);
         Tiles.Clear(); Sections.Clear();
         Tiles.Add(new(r.Plantings.ToString(), Loc.T("season_t_plantings")));
-        Tiles.Add(new(r.Harvests.Values.Sum().ToString(), Loc.T("season_t_harvests")));
+        Tiles.Add(new(r.HarvestCount.ToString(), Loc.T("season_t_harvests")));
         Tiles.Add(new(Money(r.Net), Loc.T("season_t_net")));
         Tiles.Add(new(r.TasksDone.ToString(), Loc.T("season_t_tasks")));
-        IsEmpty = r.Plantings == 0 && r.Income == 0 && r.Expenses == 0 && r.Animals.All(a => a.Production == 0) && r.Harvests.Count == 0 && r.TasksDone == 0;
+        IsEmpty = r.Plantings == 0 && r.Yields.Count == 0 && r.Income == 0 && r.Expenses == 0 && r.Animals.All(a => a.Production == 0) && r.Harvests.Count == 0 && r.TasksDone == 0;
 
         if (r.Crops.Count > 0)
             Sections.Add(new(Loc.T("season_s_grew"), r.Crops.Take(12).Select(c => Loc.F("season_crop_line", Name(c.PlantId), c.Plants, string.Join(", ", c.Beds.Take(3)))).ToList()));
+
+        if (r.Yields.Count > 0)
+            Sections.Add(new(Loc.T("season_s_yield"), r.Yields.Take(14).Select(y => Loc.F(y.BestBed is null ? "season_yield_line" : "season_yield_best", Name(y.PlantId), y.Total.ToString("N1", culture) + " " + Loc.T("unit_" + y.Unit), y.Harvests, y.BestBed ?? "", y.BestBedTotal.ToString("N1", culture))).ToList()));
 
         var hp = new List<string>();
         foreach (var h in r.Harvests.OrderByDescending(x => x.Value).Take(8)) hp.Add(Loc.F("season_harvest_line", Name(h.Key), h.Value));

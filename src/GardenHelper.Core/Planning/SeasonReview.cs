@@ -9,13 +9,14 @@ public sealed record AnimalSeason(int GroupId, string Name, string Species, doub
 {
     public double? PerDay => ProductionDays > 0 ? Production / ProductionDays : null;
 }
+public sealed record YieldLine(string PlantId, string Unit, double Total, int Harvests, string? BestBed, double BestBedTotal);
 public sealed record BedRotation(int BedId, string BedName, string ThisYear, IReadOnlyList<string> Crops, string Next, IReadOnlyList<string> Suggestions);
 
 public sealed record SeasonReview(
     int Year, int Plantings, int BedsUsed, IReadOnlyList<CropCount> Crops,
     IReadOnlyDictionary<string, int> Harvests, IReadOnlyDictionary<string, int> Problems, int Waterings,
     decimal Income, decimal Expenses, IReadOnlyList<CategoryTotal> ExpenseByCategory,
-    IReadOnlyList<AnimalSeason> Animals, int TasksDone, int TasksLate, int Photos, IReadOnlyList<BedRotation> Rotation)
+    IReadOnlyList<AnimalSeason> Animals, int TasksDone, int TasksLate, int Photos, IReadOnlyList<BedRotation> Rotation, IReadOnlyList<YieldLine> Yields, int HarvestCount)
 {
     public decimal Net => Income - Expenses;
 }
@@ -42,7 +43,7 @@ public static class RotationGroups
 public static class SeasonReviewBuilder
 {
     public static SeasonReview Build(int year, IEnumerable<GardenBed> beds, KnowledgeBase kb, IEnumerable<JournalEntry> journal, IEnumerable<BudgetEntry> budget,
-        IEnumerable<AnimalGroup> groups, IEnumerable<GardenTask> tasks, IEnumerable<Photo> photos, DateOnly today)
+        IEnumerable<AnimalGroup> groups, IEnumerable<GardenTask> tasks, IEnumerable<Photo> photos, DateOnly today, IEnumerable<Harvest>? harvests = null)
     {
         var growing = beds.Where(b => !FeatureCatalog.IsStructure(b.Kind) && b.Kind is not ("path" or "pond" or "compost" or "driveway")).ToList();
         var inYear = growing.SelectMany(b => b.Plantings.Where(p => p.PlantedDate is { } d && d.Year == year).Select(p => (Bed: b, Planting: p))).ToList();
@@ -84,19 +85,29 @@ public static class SeasonReviewBuilder
             rotation.Add(new BedRotation(bed.Key.Id, bed.Key.Name, main, plants.Select(p => p.Id).Distinct().ToList(), next, suggestions));
         }
 
+        var harvestList = (harvests ?? Array.Empty<Harvest>()).Where(h => h.Date.Year == year).ToList();
+        var bedNames = beds.ToDictionary(b => b.Id, b => b.Name);
+        var yields = harvestList.Where(h => h.Quantity is > 0).GroupBy(h => (h.PlantId, h.Unit)).Select(g =>
+        {
+            var best = g.Where(h => h.BedId is not null).GroupBy(h => h.BedId!.Value).Select(b => (Bed: b.Key, Total: b.Sum(h => h.Quantity!.Value))).OrderByDescending(b => b.Total).FirstOrDefault();
+            return new YieldLine(g.Key.PlantId, g.Key.Unit, g.Sum(h => h.Quantity!.Value), g.Count(), best.Total > 0 && bedNames.TryGetValue(best.Bed, out var n) ? n : null, best.Total);
+        }).OrderByDescending(y => y.Total).ToList();
+        var harvestCount = harvestList.Count > 0 ? harvestList.Count : Count("harvest").Values.Sum();
+
         return new SeasonReview(year, inYear.Count, inYear.Select(x => x.Bed.Id).Distinct().Count(), crops, Count("harvest"), Count("pests"),
             yearEntries.Count(j => Tagged(j, "watering")), income, byCat.Sum(c => c.Amount), byCat.OrderByDescending(c => c.Amount).ToList(), animals,
-            yearTasks.Count(t => t.Done), yearTasks.Count(t => !t.Done && t.DueDate < today), photos.Count(p => p.Date.Year == year), rotation);
+            yearTasks.Count(t => t.Done), yearTasks.Count(t => !t.Done && t.DueDate < today), photos.Count(p => p.Date.Year == year), rotation, yields, harvestCount);
     }
 
     /// <summary>Years that have anything recorded, newest first (always includes the current one).</summary>
-    public static List<int> YearsWithData(IEnumerable<GardenBed> beds, IEnumerable<JournalEntry> journal, IEnumerable<BudgetEntry> budget, IEnumerable<AnimalGroup> groups, int currentYear)
+    public static List<int> YearsWithData(IEnumerable<GardenBed> beds, IEnumerable<JournalEntry> journal, IEnumerable<BudgetEntry> budget, IEnumerable<AnimalGroup> groups, int currentYear, IEnumerable<Harvest>? harvests = null)
     {
         var years = new HashSet<int> { currentYear };
         foreach (var d in beds.SelectMany(b => b.Plantings).Select(p => p.PlantedDate).Where(d => d is not null)) years.Add(d!.Value.Year);
         foreach (var j in journal) years.Add(j.Date.Year);
         foreach (var e in budget) years.Add(e.Date.Year);
         foreach (var l in groups.SelectMany(g => g.Logs)) years.Add(l.Date.Year);
+        foreach (var h in harvests ?? Array.Empty<Harvest>()) years.Add(h.Date.Year);
         return years.Where(y => y >= 1990 && y <= currentYear + 1).OrderByDescending(y => y).ToList();
     }
 }

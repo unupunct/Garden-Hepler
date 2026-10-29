@@ -54,7 +54,11 @@
                     <TextBox Text="{Binding CardNote, UpdateSourceTrigger=PropertyChanged}" Tag="{loc:L card_note_ph}" AutomationProperties.Name="{loc:L card_note_ph}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="40" Margin="0,12,0,0"/>
                     <WrapPanel Margin="0,8,0,0">
                         <Button Style="{StaticResource PrimaryButton}" Content="{loc:L card_log_water}" Command="{Binding LogCardCommand}" CommandParameter="water" Margin="0,0,6,6"/>
-                        <Button Content="{loc:L card_harvested}" Command="{Binding LogCardCommand}" CommandParameter="harvest" Margin="0,0,6,6"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,6,6">
+                            <TextBox Text="{Binding CardQty, UpdateSourceTrigger=PropertyChanged}" Width="58" ToolTip="{loc:L card_qty_tip}" AutomationProperties.Name="{loc:L card_qty_tip}" Margin="0,0,4,0"/>
+                            <ComboBox ItemsSource="{Binding HarvestUnits}" SelectedItem="{Binding CardUnit}" Width="62" Margin="0,0,4,0"/>
+                            <Button Content="{loc:L card_harvested}" Command="{Binding LogCardCommand}" CommandParameter="harvest"/>
+                        </StackPanel>
                         <Button Content="{loc:L card_problem}" Command="{Binding LogCardCommand}" CommandParameter="problem" Margin="0,0,6,6"/>
                         <Button Content="{loc:L card_add_note}" Command="{Binding LogCardCommand}" CommandParameter="note" Margin="0,0,6,6"/>
                         <Button Content="{loc:L photos_add_short}" Command="{Binding AddCardPhotoCommand}" Margin="0,0,6,6"/>

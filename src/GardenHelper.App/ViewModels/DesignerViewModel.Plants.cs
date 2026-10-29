@@ -120,6 +120,9 @@ public sealed partial class DesignerViewModel
     [RelayCommand] private void CloseCard() => CardOpen = false;
 
     [ObservableProperty] private string _cardNote = "";
+    [ObservableProperty] private string _cardQty = "";
+    public IReadOnlyList<AnimalOption> HarvestUnits { get; } = new[] { new AnimalOption("kg", Loc.T("unit_kg")), new AnimalOption("pcs", Loc.T("unit_pcs")) };
+    [ObservableProperty] private AnimalOption _cardUnit = new("kg", Loc.T("unit_kg"));
 
     /// <summary>Records what you did or saw about the plant in the open card: watering, harvest, a problem, or a note. It goes into the journal against that plant.</summary>
     [RelayCommand]
@@ -135,10 +138,18 @@ public sealed partial class DesignerViewModel
             "problem" => (Loc.F("card_problem_title", name, c.BedName), "pests"),
             _ => (Loc.F("card_note_title", name, c.BedName), "note"),
         };
-        await _repo.SaveAsync(new JournalEntry { Title = title, Text = CardNote.Trim(), Tags = tags, PlantId = c.PlantId });
+        double? amount = null;
+        if (kind == "harvest" && CardQty.Trim().Length > 0)
+        {
+            if (!double.TryParse(CardQty.Trim().Replace(',', '.'), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var q) || q <= 0 || q > 100000) { ErrorMessage = Loc.T("card_bad_qty"); return; }
+            amount = q;
+        }
+        var amountText = amount is { } a ? $" ({a.ToString("0.##", Loc.Instance.Culture)} {Loc.T("unit_" + CardUnit.Key)})" : "";
+        await _repo.SaveAsync(new JournalEntry { Title = title + amountText, Text = CardNote.Trim(), Tags = tags, PlantId = c.PlantId });
+        if (kind == "harvest") await _repo.SaveAsync(new Harvest { PlantId = c.PlantId, BedId = c.BedId > 0 ? c.BedId : null, Quantity = amount, Unit = CardUnit.Key, Notes = string.IsNullOrWhiteSpace(CardNote) ? null : CardNote.Trim() });
         if (kind == "harvest" && Beds.SelectMany(x => x.Bed.Plantings).FirstOrDefault(x => x.Id == c.PlantingId) is { } bp && bp.Status < PlantingStatus.Harvesting)
         { bp.Status = PlantingStatus.Harvesting; await _repo.SaveAsync(bp); }
-        CardNote = ""; CardOpen = false;
+        CardNote = ""; CardQty = ""; CardOpen = false;
         StatusMessage = Loc.F(kind == "water" ? "card_water_done" : "card_logged", name);
     }, busy: false);
 

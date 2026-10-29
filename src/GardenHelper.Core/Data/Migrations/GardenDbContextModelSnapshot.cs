@@ -654,6 +654,39 @@ namespace GardenHelper.Core.Data.Migrations
                     b.ToTable("Tasks");
                 });
 
+            modelBuilder.Entity("GardenHelper.Core.Domain.Harvest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("BedId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PlantId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("Quantity")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Date");
+
+                    b.ToTable("Harvests");
+                });
+
             modelBuilder.Entity("GardenHelper.Core.Domain.InventoryLog", b =>
                 {
                     b.Property<int>("Id")

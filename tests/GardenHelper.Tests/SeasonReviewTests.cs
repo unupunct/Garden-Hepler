@@ -46,6 +46,21 @@ public class SeasonReviewTests
     }
 
     [Fact]
+    public void Yields_add_up_per_crop_and_name_the_best_bed()
+    {
+        var b1 = new GardenBed { Id = 1, Name = "Bed A", Kind = "raised" }; var b2 = new GardenBed { Id = 2, Name = "Bed B", Kind = "raised" };
+        var harvests = new[]
+        {
+            new Harvest { Date = new DateOnly(2026, 8, 1), PlantId = "tomato", BedId = 1, Quantity = 5, Unit = "kg" }, new Harvest { Date = new DateOnly(2026, 8, 8), PlantId = "tomato", BedId = 2, Quantity = 9, Unit = "kg" },
+            new Harvest { Date = new DateOnly(2026, 8, 9), PlantId = "tomato", BedId = 2, Quantity = 4, Unit = "kg" }, new Harvest { Date = new DateOnly(2026, 8, 9), PlantId = "tomato", BedId = 1 },
+            new Harvest { Date = new DateOnly(2025, 8, 9), PlantId = "tomato", BedId = 1, Quantity = 50, Unit = "kg" },
+        };
+        var r = SeasonReviewBuilder.Build(2026, new[] { b1, b2 }, Kb, Array.Empty<JournalEntry>(), Array.Empty<BudgetEntry>(), Array.Empty<AnimalGroup>(), Array.Empty<GardenTask>(), Array.Empty<Photo>(), new DateOnly(2026, 10, 29), harvests);
+        var y = Assert.Single(r.Yields);
+        Assert.Equal(18, y.Total); Assert.Equal(3, y.Harvests); Assert.Equal("Bed B", y.BestBed); Assert.Equal(13, y.BestBedTotal); Assert.Equal(4, r.HarvestCount);
+    }
+
+    [Fact]
     public void Rotation_cycle_goes_legume_brassica_fruit_root_and_back()
     {
         Assert.Equal("brassica", RotationGroups.Next("legume")); Assert.Equal("legume", RotationGroups.Next("root"));

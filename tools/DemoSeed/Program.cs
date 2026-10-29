@@ -439,6 +439,17 @@ if (File.Exists(photoSource))
     }
 }
 
+// harvest amounts for the season review
+foreach (var (ago, plant, bed, qty, unit) in new (int, string, string, double, string)[]
+{
+    (128, "lettuce", "rb3", 1.2, "kg"), (120, "radish", "rb3", 0.8, "kg"), (112, "potato", "gb1", 18, "kg"), (100, "potato", "gb1", 22, "kg"), (96, "potato", "gb1", 22, "kg"),
+    (90, "tomato", "rb1", 6, "kg"), (84, "tomato", "rb1", 14, "kg"), (77, "tomato", "rb1", 19, "kg"), (70, "tomato", "greenhouse", 11, "kg"), (63, "tomato", "greenhouse", 16, "kg"),
+    (80, "pepper", "rb2", 7, "kg"), (66, "pepper", "rb2", 9, "kg"), (74, "cucumber", "greenhouse", 40, "pcs"), (60, "cucumber", "greenhouse", 28, "pcs"),
+    (55, "bean", "gb2", 4.5, "kg"), (50, "pumpkin", "gb2", 3, "pcs"), (42, "onion", "rb4", 9, "kg"), (38, "carrot", "rb4", 8, "kg"), (30, "apple", "t_apple1", 45, "kg"),
+    (30, "apple", "t_apple3", 70, "kg"), (26, "walnut", "t_walnut", 18, "kg"), (20, "cabbage", "gb3", 12, "kg"), (6, "kale", "gb3", 2.4, "kg"),
+})
+    await repo.SaveAsync(new Harvest { Date = Ago(ago), PlantId = P(plant), BedId = beds[bed].Id, Quantity = qty, Unit = unit });
+
 // ---------------------------------------------------------------- settings: the demo knows it is demo data
 var settings = new SettingsService(new ContextFactory(paths));
 await settings.SetAsync("language", "en");
