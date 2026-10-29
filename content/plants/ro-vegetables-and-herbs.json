@@ -1367,6 +1367,11 @@
     "heightCm": {
       "min": 30,
       "max": 60
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
     }
   },
   {
@@ -1669,7 +1674,8 @@
     "roles": [
       "food",
       "pollinator",
-      "ground-cover"
+      "ground-cover",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -1677,6 +1683,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -1694,6 +1704,24 @@
     "heightCm": {
       "min": 15,
       "max": 30
+    },
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves and flowering tops.",
+        "ro": "Frunzele și vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Tea or syrup traditionally used for coughs and sore throat; also a culinary herb.",
+        "ro": "Ceai sau sirop folosit tradițional pentru tuse și gât iritat; este și plantă culinară."
+      },
+      "safety": {
+        "en": "Safe in food amounts. Do not take the concentrated essential oil by mouth. Medicinal doses: not in pregnancy; allergy possible in people sensitive to the mint family.",
+        "ro": "Sigur în cantități alimentare. Nu lua uleiul esențial concentrat pe cale orală. Doze medicinale: nu în sarcină; alergie posibilă la persoane sensibile la familia mentei."
+      }
     }
   },
   {
@@ -1728,7 +1756,8 @@
     "rotationFamily": "Lamiaceae",
     "roles": [
       "food",
-      "pollinator"
+      "pollinator",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -1736,6 +1765,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -1753,6 +1786,24 @@
     "heightCm": {
       "min": 40,
       "max": 70
+    },
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves.",
+        "ro": "Frunzele."
+      },
+      "uses": {
+        "en": "Tea or gargle traditionally used for sore throat and for excessive sweating; also a culinary herb.",
+        "ro": "Ceai sau gargară folosit tradițional pentru dureri în gât și transpirație excesivă; este și plantă culinară."
+      },
+      "safety": {
+        "en": "Contains thujone: use only for a few weeks at a time. Avoid medicinal amounts in pregnancy, while breastfeeding (it can reduce milk) and with epilepsy.",
+        "ro": "Conține tujonă: folosește doar câteva săptămâni. Evită cantitățile medicinale în sarcină, în timpul alăptării (poate reduce laptele) și în epilepsie."
+      }
     }
   },
   {
@@ -1848,7 +1899,8 @@
     "roles": [
       "food",
       "pollinator",
-      "ground-cover"
+      "ground-cover",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -1856,6 +1908,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -1873,6 +1929,25 @@
     "heightCm": {
       "min": 30,
       "max": 60
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Aerial parts.",
+        "ro": "Părțile aeriene."
+      },
+      "uses": {
+        "en": "Tea traditionally taken for coughs and indigestion; also a culinary herb (sovârv).",
+        "ro": "Ceai luat tradițional pentru tuse și indigestie; este și plantă culinară (sovârv)."
+      },
+      "safety": {
+        "en": "Safe in food amounts. Avoid medicinal doses in pregnancy. The concentrated oil should not be taken by mouth without advice. Allergy possible in people sensitive to the mint family.",
+        "ro": "Sigur în cantități alimentare. Evită dozele medicinale în sarcină. Uleiul concentrat nu trebuie luat pe cale orală fără sfat. Alergie posibilă la persoane sensibile la familia mentei."
+      }
     }
   },
   {
@@ -1967,7 +2042,8 @@
     "roles": [
       "food",
       "pollinator",
-      "beneficial-insects"
+      "beneficial-insects",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -1975,6 +2051,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -1996,6 +2076,24 @@
     "heightCm": {
       "min": 40,
       "max": 80
+    },
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves.",
+        "ro": "Frunzele."
+      },
+      "uses": {
+        "en": "Tea traditionally taken to calm nerves, ease stress and help sleep.",
+        "ro": "Ceai luat tradițional pentru calmarea nervilor, reducerea stresului și ajutor la somn."
+      },
+      "safety": {
+        "en": "May cause drowsiness. Can affect thyroid medicines and sedatives. Avoid in pregnancy in medicinal amounts and if you have an underactive thyroid unless a doctor agrees.",
+        "ro": "Poate provoca somnolență. Poate afecta medicamentele pentru tiroidă și sedativele. Evită în sarcină în cantități medicinale și în hipotiroidism, dacă medicul nu este de acord."
+      }
     }
   },
   {
@@ -2031,7 +2129,8 @@
     "roles": [
       "food",
       "pollinator",
-      "beneficial-insects"
+      "beneficial-insects",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -2039,6 +2138,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -2056,6 +2159,24 @@
     "heightCm": {
       "min": 40,
       "max": 60
+    },
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves and flowering tops.",
+        "ro": "Frunzele și vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Tea traditionally used for coughs and chest colds.",
+        "ro": "Ceai folosit tradițional pentru tuse și răceli ale pieptului."
+      },
+      "safety": {
+        "en": "Do not use in epilepsy or pregnancy; the essential oil contains ketones that can trigger seizures. Use only small amounts of tea for short periods.",
+        "ro": "Nu o folosi în epilepsie sau sarcină; uleiul esențial conține cetone care pot declanșa convulsii. Folosește doar cantități mici de ceai pentru perioade scurte."
+      }
     }
   },
   {
@@ -2158,7 +2279,8 @@
     "roles": [
       "food",
       "pollinator",
-      "beneficial-insects"
+      "beneficial-insects",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -2166,6 +2288,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -2184,6 +2310,24 @@
     "heightCm": {
       "min": 100,
       "max": 200
+    },
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Seeds.",
+        "ro": "Semințele."
+      },
+      "uses": {
+        "en": "Seed tea traditionally used for bloating, wind and infant colic (under advice).",
+        "ro": "Ceai din semințe folosit tradițional pentru balonare, gaze și colici la sugari (cu sfat medical)."
+      },
+      "safety": {
+        "en": "Avoid medicinal amounts in pregnancy and with hormone-sensitive conditions; fennel contains estragole. Allergic reactions occur in people sensitive to celery or carrot family plants.",
+        "ro": "Evită cantitățile medicinale în sarcină și în afecțiuni sensibile la hormoni; feniculul conține estragol. Reacții alergice apar la persoane sensibile la plante din familia țelinei sau morcovului."
+      }
     }
   }
 ]

@@ -30,7 +30,7 @@ public sealed partial class InventoryViewModel : PageViewModel
     {
         _repo = repo; _kb = kb; _dialogs = dialogs; _nav = nav;
         var lang = Loc.Instance.Language;
-        Species = new[] { new PlantOption(null, Loc.T("none")) }.Concat(kb.Plants.OrderBy(p => p.DisplayName(lang)).Select(p => new PlantOption(p.Id, p.DisplayName(lang)))).ToList();
+        Species = new[] { new PlantOption(null, Loc.T("none")) }.Concat(kb.Plantable.OrderBy(p => p.DisplayName(lang)).Select(p => new PlantOption(p.Id, p.DisplayName(lang)))).ToList();
         Filters = new[] { "all", "Outdoor", "Greenhouse", "Indoor", "trees" }.Select(k => new AnimalOption(k, Loc.T("inv_f_" + k))).ToList();
         Locations = new[] { "Outdoor", "Greenhouse", "Indoor" }.Select(k => new AnimalOption(k, Loc.T("inv_loc_" + k))).ToList();
         Statuses = InventoryRules.Statuses.Select(k => new AnimalOption(k, Loc.T("inv_st_" + k))).ToList();

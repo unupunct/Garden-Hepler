@@ -36,9 +36,12 @@ public sealed partial class PlantsViewModel : PageViewModel
         Categories = new[] { new CategoryChip(null, Loc.T("all")) }
             .Concat(kb.Categories.Select(c => new CategoryChip(c, Loc.Enum("cat", c)))).ToList();
         SelectedCategory = Categories[0];
+        Purposes = new[] { new CategoryChip(null, Loc.T("all")) }.Concat(PlantPurpose.Keys.Select(k => new CategoryChip(k, Loc.T("purpose_" + k)))).ToList();
+        SelectedPurpose = Purposes[0];
     }
 
     public IReadOnlyList<CategoryChip> Categories { get; }
+    public IReadOnlyList<CategoryChip> Purposes { get; }
     public ObservableCollection<PlantItem> Results { get; } = new();
     public ObservableCollection<DetailLine> Growing { get; } = new();
     public ObservableCollection<WindowRow> Windows { get; } = new();
@@ -50,6 +53,16 @@ public sealed partial class PlantsViewModel : PageViewModel
 
     [ObservableProperty] private string _query = "";
     [ObservableProperty] private CategoryChip? _selectedCategory;
+    [ObservableProperty] private CategoryChip? _selectedPurpose;
+    [ObservableProperty] private string? _benefits;
+    [ObservableProperty] private bool _hasMedicinal;
+    [ObservableProperty] private string? _medParts;
+    [ObservableProperty] private string? _medUses;
+    [ObservableProperty] private string? _medSafety;
+    [ObservableProperty] private string? _edibilityText;
+    [ObservableProperty] private bool _edibilityDanger;
+    [ObservableProperty] private string? _protectedText;
+    [ObservableProperty] private string? _originText;
     [ObservableProperty] private PlantItem? _selected;
     [ObservableProperty] private int _shiftDays;
     [ObservableProperty] private string? _calendarNote;
@@ -63,6 +76,7 @@ public sealed partial class PlantsViewModel : PageViewModel
 
     partial void OnQueryChanged(string value) => Refresh();
     partial void OnSelectedCategoryChanged(CategoryChip? value) => Refresh();
+    partial void OnSelectedPurposeChanged(CategoryChip? value) => Refresh();
     partial void OnSelectedChanged(PlantItem? value) => ShowDetail();
     partial void OnShiftDaysChanged(int value) => ShowCalendar();
 
@@ -72,7 +86,7 @@ public sealed partial class PlantsViewModel : PageViewModel
         Refresh();
         if (PendingSelect is { } id)
         {
-            Query = ""; SelectedCategory = Categories[0];
+            Query = ""; SelectedCategory = Categories[0]; SelectedPurpose = Purposes[0];
             Selected = Results.FirstOrDefault(r => r.Plant.Id == id);
             PendingSelect = null;
         }
@@ -83,7 +97,7 @@ public sealed partial class PlantsViewModel : PageViewModel
         var lang = Loc.Instance.Language;
         var keep = Selected?.Plant.Id;
         Results.Clear();
-        foreach (var m in _kb.Search(Query, SelectedCategory?.Key))
+        foreach (var m in _kb.Search(Query, SelectedCategory?.Key, SelectedPurpose?.Key))
             Results.Add(new PlantItem(m.Plant, m.Plant.DisplayName(lang), m.Plant.Scientific, Loc.Enum("cat", m.Plant.Category)));
         if (keep is not null && Results.FirstOrDefault(r => r.Plant.Id == keep) is { } same) Selected = same;
     }
@@ -98,6 +112,22 @@ public sealed partial class PlantsViewModel : PageViewModel
         Caution = p.CautionText(lang);
         ConfidenceText = Loc.F("plant_confidence", Loc.Enum("conf", p.Confidence), p.Reviewed ?? "?");
         void Line(string key, string? value) { if (!string.IsNullOrWhiteSpace(value)) Growing.Add(new DetailLine(Loc.T(key), value)); }
+        Benefits = p.BenefitsText(lang);
+        HasMedicinal = p.Medicinal is not null;
+        MedParts = p.Medicinal?.Parts.GetValueOrDefault(lang) ?? p.Medicinal?.Parts.GetValueOrDefault("en");
+        MedUses = p.Medicinal?.Uses.GetValueOrDefault(lang) ?? p.Medicinal?.Uses.GetValueOrDefault("en");
+        MedSafety = p.Medicinal?.Safety.GetValueOrDefault(lang) ?? p.Medicinal?.Safety.GetValueOrDefault("en");
+        EdibilityText = p.Edibility is null ? null : Loc.Enum("edib", p.Edibility);
+        EdibilityDanger = p.Edibility is "toxic" or "deadly";
+        ProtectedText = p.Protected ? Loc.T("plant_protected") : null;
+        OriginText = p.Origin is null ? null : Loc.Enum("origin", p.Origin);
+        Line("f_origin", OriginText);
+        if (p.SeasonMonths is { } sm)
+        {
+            var months = System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat;
+            var wild = p.Category is "wild-mushroom" or "mushroom";
+            Line(wild ? "f_season_fruiting" : "f_season_flowering", sm.Min == sm.Max ? months.GetMonthName(sm.Min) : months.GetMonthName(sm.Min) + " – " + months.GetMonthName(sm.Max));
+        }
         Line("f_family", p.Family);
         Line("f_lifecycle", p.Lifecycle);
         Line("f_sun", Loc.Enum("sun", p.Sun));

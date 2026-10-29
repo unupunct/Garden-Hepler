@@ -1,0 +1,1428 @@
+[
+  {
+    "id": "tansy",
+    "names": {
+      "en": [
+        "Tansy"
+      ],
+      "ro": [
+        "Vetrice",
+        "Tanacetul"
+      ]
+    },
+    "scientific": "Tanacetum vulgare",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall native perennial with flat, button-yellow flower heads and strongly aromatic, fern-like leaves. Its scent deters many insects and its flowers feed beneficial ones.",
+      "ro": "Plantă perenă nativă înaltă, cu inflorescențe plate galbene ca niște butoni și frunze aromate, fin tăiate. Mirosul ei descurajează multe insecte, iar florile le hrănesc pe cele benefice."
+    },
+    "tips": {
+      "en": [
+        "Plant it at the edge of beds or in a pot: it spreads by roots and can take over.",
+        "Cut stems and lay them among brassicas, potatoes or under fruit trees as a pest-deterring mulch."
+      ],
+      "ro": [
+        "Plantează-o la marginea straturilor sau în ghiveci: se extinde prin rădăcini și poate invada.",
+        "Taie tulpini și așază-le printre varză, cartofi sau sub pomi fructiferi ca mulci care descurajează dăunătorii."
+      ]
+    },
+    "roles": [
+      "pest-repellent",
+      "beneficial-insects",
+      "pollinator",
+      "compost-activator"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Strong scent confuses egg-laying pests such as cabbage white butterflies and flea beetles; the flat flowers feed lacewings and parasitic wasps.",
+      "ro": "Mirosul puternic încurcă dăunătorii care își depun ouăle, cum sunt fluturii de varză și puricii de pământ; florile plate hrănesc crisope și viespi parazite."
+    },
+    "cautions": {
+      "en": "Toxic if eaten (it contains thujone). Do not use it as a tea or food, and keep it away from pregnant women, children and pets.",
+      "ro": "Toxică dacă este mâncată (conține tujonă). Nu o folosi ca ceai sau aliment și ține-o departe de gravide, copii și animale."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "wormwood",
+    "names": {
+      "en": [
+        "Wormwood",
+        "Absinthe wormwood"
+      ],
+      "ro": [
+        "Pelin",
+        "Pelinul-alb"
+      ]
+    },
+    "scientific": "Artemisia absinthium",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Silver-leaved, intensely bitter native perennial. Its smell repels many insects, and a cold-water spray made from it is a traditional garden pest deterrent.",
+      "ro": "Plantă perenă nativă cu frunze argintii și gust foarte amar. Mirosul ei alungă multe insecte, iar o macerație în apă rece este un remediu tradițional contra dăunătorilor."
+    },
+    "tips": {
+      "en": [
+        "Grow in full sun on poor, dry soil. Keep it away from beans, peas, fennel and young seedlings, which it can inhibit.",
+        "Make a spray by soaking 100 g of fresh leaves in 1 litre of cold water for 24 hours; test on a few leaves first."
+      ],
+      "ro": [
+        "Cultivă la soare pe sol sărac și uscat. Ține-o departe de fasole, mazăre, fenicul și răsaduri tinere, pe care le poate inhiba.",
+        "Fă o soluție înmuind 100 g de frunze proaspete în 1 litru de apă rece, 24 de ore; încearcă mai întâi pe câteva frunze."
+      ]
+    },
+    "roles": [
+      "pest-repellent",
+      "pollinator",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "The aroma deters aphids, flea beetles, codling moth and slugs; planted at the edge of the plot it also marks a boundary pests are reluctant to cross.",
+      "ro": "Aroma descurajează afidele, puricii de pământ, viermele merelor și melcii; plantată la marginea parcelei marchează o limită pe care dăunătorii o trec greu."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves and flowering tops.",
+        "ro": "Frunzele și vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Very bitter tea or tincture used traditionally for appetite and digestion, in small amounts and short courses.",
+        "ro": "Ceai sau tinctură foarte amară, folosite tradițional pentru poftă de mâncare și digestie, în cantități mici și cure scurte."
+      },
+      "safety": {
+        "en": "Contains thujone, which is toxic in larger doses or with long use. Not for pregnancy, breastfeeding, children, people with epilepsy or liver disease. Never use the essential oil.",
+        "ro": "Conține tujonă, toxică în doze mari sau la folosire îndelungată. Nu se folosește în sarcină, alăptare, la copii, epileptici sau în boli de ficat. Nu folosi niciodată uleiul esențial."
+      }
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 70
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "stinging-nettle",
+    "names": {
+      "en": [
+        "Stinging nettle",
+        "Common nettle"
+      ],
+      "ro": [
+        "Urzică",
+        "Urzica-mare"
+      ]
+    },
+    "scientific": "Urtica dioica",
+    "synonyms": [],
+    "family": "Urticaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native perennial that thrives where soil is rich in nitrogen. Young tops are a nutritious cooked vegetable, the plant feeds butterfly caterpillars, and nettle tea is a classic liquid feed and compost activator.",
+      "ro": "Plantă perenă nativă care crește unde solul este bogat în azot. Vârfurile tinere sunt o legumă hrănitoare gătită, planta hrănește omizi de fluturi, iar zeama de urzică este un îngrășământ lichid și un activator de compost clasic."
+    },
+    "tips": {
+      "en": [
+        "Wear gloves; boil or steam young spring tops for about two minutes and the sting disappears.",
+        "For liquid feed, steep 1 kg of fresh leaves in 10 litres of water for 1-2 weeks, then dilute 1:10 and water plants; it smells strongly."
+      ],
+      "ro": [
+        "Poartă mănuși; fierbe sau fierbe la aburi vârfurile tinere de primăvară circa două minute și înțepătura dispare.",
+        "Pentru îngrășământ lichid, macerează 1 kg de frunze proaspete în 10 litri de apă 1-2 săptămâni, apoi diluează 1:10 și udă plantele; miroase puternic."
+      ]
+    },
+    "roles": [
+      "wildlife",
+      "food",
+      "compost-activator",
+      "dynamic-accumulator",
+      "medicinal",
+      "biomass"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Host plant of the small tortoiseshell, peacock and red admiral butterflies; leaves are rich in nitrogen, iron and minerals and speed up composting.",
+      "ro": "Plantă-gazdă pentru fluturii mantaua-cerbului, ochiul-păunului și amiralul roșu; frunzele sunt bogate în azot, fier și minerale și grăbesc compostarea."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves, young tops, seeds and root.",
+        "ro": "Frunzele, vârfurile tinere, semințele și rădăcina."
+      },
+      "uses": {
+        "en": "Tea or cooked greens traditionally used as a spring tonic and to support urinary health; the root is used in some herbal products for prostate comfort.",
+        "ro": "Ceai sau verdeață gătită folosite tradițional ca tonic de primăvară și pentru sănătatea urinară; rădăcina se folosește în unele produse pe bază de plante pentru confortul prostatei."
+      },
+      "safety": {
+        "en": "Cook or dry the plant before eating. May lower blood pressure and blood sugar and increase urination; talk to a doctor if you take blood-pressure, blood-thinning, diabetes or diuretic medicines. Avoid in pregnancy.",
+        "ro": "Gătește sau usucă planta înainte de a o mânca. Poate scădea tensiunea și glicemia și crește urinarea; vorbește cu medicul dacă iei medicamente pentru tensiune, anticoagulante, antidiabetice sau diuretice. Evită în sarcină."
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 50
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "field-horsetail",
+    "names": {
+      "en": [
+        "Field horsetail",
+        "Common horsetail"
+      ],
+      "ro": [
+        "Coada-calului",
+        "Barba-ursului"
+      ]
+    },
+    "scientific": "Equisetum arvense",
+    "synonyms": [],
+    "family": "Equisetaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Ancient native plant rich in silica. A tea from the green summer shoots is a traditional spray to help prevent fungal diseases such as mildew; as a weed it is very hard to remove.",
+      "ro": "Plantă nativă străveche, bogată în siliciu. Un decoct din lăstarii verzi de vară este un tratament tradițional pentru prevenirea bolilor fungice, cum este mana; ca buruiană este foarte greu de eliminat."
+    },
+    "tips": {
+      "en": [
+        "Do not plant it in the garden: it spreads aggressively by deep rhizomes. Harvest it from a roadside-free wild site where you already know it grows, or buy it dried.",
+        "Spray: simmer 100 g fresh (or 15 g dried) in 1 litre of water for 30 minutes, cool, dilute 1:5 and spray in the evening."
+      ],
+      "ro": [
+        "Nu o planta în grădină: se extinde agresiv prin rizomi adânci. Recoltează-o dintr-un loc necontaminat, departe de drum, unde știi că crește, sau cumpără-o uscată.",
+        "Soluție: fierbe 100 g proaspete (sau 15 g uscate) în 1 litru de apă 30 de minute, răcește, diluează 1:5 și pulverizează seara."
+      ]
+    },
+    "roles": [
+      "pest-repellent",
+      "dynamic-accumulator",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "benefits": {
+      "en": "Silica-rich tea strengthens plant leaves against mildew and fungal spots and can discourage some sucking pests; a useful indicator of wet, acidic or compacted soil.",
+      "ro": "Ceaiul bogat în siliciu întărește frunzele plantelor împotriva manei și a petelor fungice și poate descuraja unii dăunători; indicator de sol umed, acid sau compactat."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Green, sterile summer shoots only.",
+        "ro": "Doar lăstarii verzi, sterili, de vară."
+      },
+      "uses": {
+        "en": "Tea traditionally used as a mild diuretic and for brittle nails and hair.",
+        "ro": "Ceai folosit tradițional ca diuretic ușor și pentru unghii și păr fragile."
+      },
+      "safety": {
+        "en": "Use only Equisetum arvense: other horsetails (such as marsh horsetail, E. palustre) are toxic to livestock and people. Not for pregnancy, heart or kidney disease, and not for long periods; it can lower vitamin B1.",
+        "ro": "Folosește doar Equisetum arvense: alte specii de coada-calului (de exemplu E. palustre) sunt toxice pentru animale și oameni. Nu în sarcină, boli de inimă sau de rinichi și nu perioade lungi; poate scădea vitamina B1."
+      }
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 60
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "pyrethrum",
+    "names": {
+      "en": [
+        "Dalmatian pyrethrum",
+        "Pyrethrum daisy"
+      ],
+      "ro": [
+        "Piretru",
+        "Piretru dalmatin"
+      ]
+    },
+    "scientific": "Tanacetum cinerariifolium",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "White daisy flowers that contain natural pyrethrins, the source of a well-known botanical insecticide. As a garden plant it needs sun and sharp drainage.",
+      "ro": "Flori albe de tip margaretă care conțin piretrine naturale, sursa unui cunoscut insecticid vegetal. Ca plantă de grădină are nevoie de soare și drenaj foarte bun."
+    },
+    "tips": {
+      "en": [
+        "Plant in full sun on poor, well-drained soil; it dislikes wet winters.",
+        "Even homemade flower extracts kill beneficial insects and bees, so do not spray open flowers or use it on crops in bloom."
+      ],
+      "ro": [
+        "Plantează la soare pe sol sărac și drenat; nu-i plac iernile umede.",
+        "Chiar și extractele din flori făcute acasă omoară insecte benefice și albine, așa că nu pulveriza flori deschise și nu o folosi pe culturi înflorite."
+      ]
+    },
+    "roles": [
+      "pest-repellent",
+      "pollinator",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "origin": "introduced",
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
+    },
+    "benefits": {
+      "en": "The flowers' pyrethrins knock down aphids and caterpillars, but also harm bees and fish: treat it as a last resort and spray only in the evening.",
+      "ro": "Piretrinele din flori distrug afide și omizi, dar dăunează și albinelor și peștilor: folosește-l ca ultimă soluție și pulverizează doar seara."
+    },
+    "cautions": {
+      "en": "Pyrethrum is poisonous to fish, bees and cats. Never spray near ponds or on flowering plants.",
+      "ro": "Piretrul este otrăvitor pentru pești, albine și pisici. Nu pulveriza lângă bălți sau pe plante înflorite."
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 70
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "feverfew",
+    "names": {
+      "en": [
+        "Feverfew"
+      ],
+      "ro": [
+        "Mătrice",
+        "Romaniță-de-grădină"
+      ]
+    },
+    "scientific": "Tanacetum parthenium",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Short-lived, daisy-like perennial with aromatic leaves. It self-seeds in the garden, draws hoverflies and may deter some pests.",
+      "ro": "Plantă perenă de scurtă durată, de tip margaretă, cu frunze aromate. Se reînsămânțează în grădină, atrage sirfide și poate descuraja unii dăunători."
+    },
+    "tips": {
+      "en": [
+        "Sow on the surface in spring; it self-seeds so thin seedlings to 25 cm.",
+        "Plant near roses and fruit trees for hoverflies."
+      ],
+      "ro": [
+        "Seamănă la suprafață primăvara; se reînsămânțează, deci rărește răsadurile la 25 cm.",
+        "Plantează lângă trandafiri și pomi fructiferi pentru sirfide."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "beneficial-insects",
+      "pest-repellent",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "naturalized",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "The small open flowers feed hoverflies and parasitic wasps; the bitter foliage is said to deter aphids.",
+      "ro": "Florile mici deschise hrănesc sirfide și viespi parazite; frunzișul amar ar descuraja afidele."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves.",
+        "ro": "Frunzele."
+      },
+      "uses": {
+        "en": "Traditionally taken as fresh leaves or tea to ease migraine-type headaches.",
+        "ro": "Luat tradițional ca frunze proaspete sau ceai pentru ameliorarea durerilor de cap de tip migrenă."
+      },
+      "safety": {
+        "en": "Not in pregnancy (it may stimulate the womb) or for children under 2. Stopping suddenly after long use can cause rebound headaches. Avoid with blood-thinning medicines and if allergic to the daisy family. Chewing leaves may cause mouth ulcers.",
+        "ro": "Nu în sarcină (poate stimula uterul) și nu la copii sub 2 ani. Oprirea bruscă după folosire îndelungată poate provoca dureri de cap de revenire. Evită cu anticoagulante și dacă ești alergic la familia margaretelor. Mestecarea frunzelor poate provoca afte."
+      }
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 70
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "rue",
+    "names": {
+      "en": [
+        "Rue",
+        "Herb of grace"
+      ],
+      "ro": [
+        "Virnanț",
+        "Ruta"
+      ]
+    },
+    "scientific": "Ruta graveolens",
+    "synonyms": [],
+    "family": "Rutaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Blue-green aromatic evergreen shrublet. Its strong scent is traditionally used to keep cats, flies and some beetles away, and its flowers attract bees.",
+      "ro": "Subarbust aromat veșnic verde, cu frunze albăstrui. Mirosul puternic este folosit tradițional pentru a ține pisicile, muștele și unii gândaci departe, iar florile atrag albinele."
+    },
+    "tips": {
+      "en": [
+        "Grow in full sun on well-drained, even poor soil.",
+        "Wear gloves and long sleeves when handling it in sun: the sap makes skin hypersensitive to light and can cause painful blisters."
+      ],
+      "ro": [
+        "Cultivă la soare pe sol drenat, chiar sărac.",
+        "Poartă mănuși și mâneci lungi când o atingi la soare: seva face pielea hipersensibilă la lumină și poate provoca bășici dureroase."
+      ]
+    },
+    "roles": [
+      "pest-repellent",
+      "pollinator",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "origin": "introduced",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Scent deters some flies and Japanese beetles; planted near roses and fruit trees it is a classic, though lightly evidenced, deterrent.",
+      "ro": "Mirosul descurajează unele muște și gândaci; plantată lângă trandafiri și pomi fructiferi este un clasic, deși cu dovezi puține."
+    },
+    "cautions": {
+      "en": "The sap causes severe phototoxic skin burns (phytophotodermatitis). All parts are toxic if eaten and dangerous in pregnancy. Not a food or home remedy.",
+      "ro": "Seva provoacă arsuri grave ale pielii la lumină (fitofotodermatită). Toate părțile sunt toxice dacă sunt mâncate și periculoase în sarcină. Nu este aliment sau remediu de casă."
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 80
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "wild-garlic",
+    "names": {
+      "en": [
+        "Wild garlic",
+        "Ramsons",
+        "Bear's garlic"
+      ],
+      "ro": [
+        "Leurdă",
+        "Usturoi-sălbatic"
+      ]
+    },
+    "scientific": "Allium ursinum",
+    "synonyms": [],
+    "family": "Amaryllidaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native woodland bulb that carpets shady, moist ground in spring. The leaves taste of garlic and are a prized wild vegetable; the white flowers feed early insects.",
+      "ro": "Bulbul nativ de pădure, care acoperă primăvara terenul umbrit și umed. Frunzele au gust de usturoi și sunt o legumă sălbatică apreciată; florile albe hrănesc insectele timpurii."
+    },
+    "tips": {
+      "en": [
+        "Plant bulbs or established clumps in shade under trees on moist, humus-rich soil; it spreads by seed and can be vigorous.",
+        "Pick a few leaves from each clump; confirm the garlic smell: its leaves are confused with the poisonous lily-of-the-valley and autumn crocus."
+      ],
+      "ro": [
+        "Plantează bulbi sau tufe instalate la umbră, sub arbori, pe sol umed și bogat în humus; se răspândește prin sămânță și poate fi viguroasă.",
+        "Culege câteva frunze din fiecare tufă; verifică mirosul de usturoi: frunzele pot fi confundate cu lăcrămioara și brândușa de toamnă, otrăvitoare."
+      ]
+    },
+    "roles": [
+      "food",
+      "pollinator",
+      "pest-repellent",
+      "wildlife",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 5
+    },
+    "benefits": {
+      "en": "Early nectar for bees and hoverflies; the garlic scent of the plant and its tea may deter some pests on nearby fruit trees.",
+      "ro": "Nectar timpuriu pentru albine și sirfide; mirosul de usturoi al plantei și ceaiul ei pot descuraja unii dăunători la pomii din apropiere."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves, bulbs and flowers.",
+        "ro": "Frunzele, bulbii și florile."
+      },
+      "uses": {
+        "en": "Eaten fresh or as a spring cure; traditionally taken for digestion and circulation.",
+        "ro": "Mâncată proaspătă sau ca cură de primăvară; luată tradițional pentru digestie și circulație."
+      },
+      "safety": {
+        "en": "Avoid large amounts with blood-thinning medicines or before surgery. Foragers have died after mistaking poisonous plants for it: always crush a leaf and smell garlic. Do not dig bulbs in the wild.",
+        "ro": "Evită cantități mari cu anticoagulante sau înainte de operații. Culegători au murit după ce au confundat-o cu plante otrăvitoare: strivește mereu o frunză și verifică mirosul de usturoi. Nu scoate bulbi din natură."
+      }
+    },
+    "cautions": {
+      "en": "Never eat a plant that does not smell strongly of garlic when crushed: lily-of-the-valley and autumn crocus are deadly look-alikes.",
+      "ro": "Nu mânca niciodată o plantă care nu miroase puternic a usturoi când este strivită: lăcrămioara și brândușa de toamnă sunt asemănătoare și mortale."
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 20
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 45
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "dandelion",
+    "names": {
+      "en": [
+        "Dandelion"
+      ],
+      "ro": [
+        "Păpădie",
+        "Rădăcina-lui-Dumnezeu"
+      ]
+    },
+    "scientific": "Taraxacum officinale",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native perennial with a deep taproot that breaks up compacted soil and brings up calcium and potassium. The flowers are among the first and most important spring nectar sources; leaves, flowers and roots are edible.",
+      "ro": "Plantă perenă nativă cu rădăcină pivotantă adâncă ce desface solul compactat și aduce calciu și potasiu. Florile sunt printre primele și cele mai importante surse de nectar de primăvară; frunzele, florile și rădăcinile sunt comestibile."
+    },
+    "tips": {
+      "en": [
+        "Let some dandelions flower in spring for bees before mowing; remove flower heads before seeds if you do not want spread.",
+        "Eat young leaves in salads, make flower syrup or roast the root as a coffee substitute."
+      ],
+      "ro": [
+        "Lasă câteva păpădii să înflorească primăvara pentru albine înainte de cosit; taie florile înainte de semințe dacă nu vrei să se răspândească.",
+        "Mănâncă frunzele tinere în salate, fă sirop din flori sau prăjește rădăcina ca înlocuitor de cafea."
+      ]
+    },
+    "roles": [
+      "food",
+      "pollinator",
+      "dynamic-accumulator",
+      "medicinal",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 3,
+      "max": 10
+    },
+    "benefits": {
+      "en": "Early spring pollen and nectar when little else flowers; the taproot aerates heavy soil, and cut leaves make a mineral-rich mulch or compost activator.",
+      "ro": "Polen și nectar timpuriu de primăvară, când aproape nimic altceva nu înflorește; rădăcina pivotantă aerisește solul greu, iar frunzele tăiate fac un mulci bogat în minerale."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves (diuretic, digestive), root (bitter, liver and bile), flowers.",
+        "ro": "Frunzele (diuretice, digestive), rădăcina (amară, pentru ficat și bilă), florile."
+      },
+      "uses": {
+        "en": "Tea or cooked greens traditionally used to support digestion and urine flow; root decoction as a bitter tonic.",
+        "ro": "Ceai sau verdeață gătită folosite tradițional pentru digestie și eliminarea urinei; decoct din rădăcină ca tonic amar."
+      },
+      "safety": {
+        "en": "Avoid with gallstones, bile-duct blockage, or if allergic to daisy-family plants. May interact with diuretics, lithium and blood-thinning medicines; its potassium can be an issue in kidney disease.",
+        "ro": "Evită în caz de calculi biliari, obstrucție a căilor biliare sau alergie la familia margaretelor. Poate interacționa cu diuretice, litiu și anticoagulante; potasiul poate fi o problemă în boli de rinichi."
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 10,
+      "max": 40
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "broadleaf-plantain",
+    "names": {
+      "en": [
+        "Broadleaf plantain",
+        "Greater plantain"
+      ],
+      "ro": [
+        "Pătlagină",
+        "Pătlagină lată"
+      ]
+    },
+    "scientific": "Plantago major",
+    "synonyms": [],
+    "family": "Plantaginaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Low native rosette plant of paths and trampled ground; its presence shows compacted soil. A crushed leaf is a classic folk first aid for nettle stings and insect bites.",
+      "ro": "Plantă nativă joasă, în rozetă, de pe cărări și terenuri bătătorite; prezența ei arată sol compactat. O frunză strivită este un prim ajutor popular clasic pentru înțepături de urzică și de insecte."
+    },
+    "tips": {
+      "en": [
+        "Tolerates trampling, so it is useful on paths; pull rosettes before seeds ripen if you want to limit it.",
+        "Eat only young, tender leaves."
+      ],
+      "ro": [
+        "Suportă călcatul, deci este utilă pe cărări; scoate rozetele înainte de coacerea semințelor dacă vrei să o limitezi.",
+        "Mănâncă doar frunzele tinere și fragede."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "wildlife",
+      "ground-cover"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Roots open compacted ground; seeds feed small birds; the plant is an indicator of heavy, trampled soil that needs aeration and organic matter.",
+      "ro": "Rădăcinile desfac solul compactat; semințele hrănesc păsări mici; planta indică sol greu, bătătorit, care are nevoie de aerisire și materie organică."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Fresh leaves, seeds.",
+        "ro": "Frunzele proaspete, semințele."
+      },
+      "uses": {
+        "en": "Crushed fresh leaf applied to minor stings, nettle rash and small skin scrapes; leaf tea or syrup traditionally for coughs and sore throat.",
+        "ro": "Frunza proaspătă strivită aplicată pe înțepături ușoare, urticarie de la urzică și mici julituri; ceai sau sirop din frunze, tradițional pentru tuse și gât iritat."
+      },
+      "safety": {
+        "en": "Do not use on deep wounds or infected skin. Rare allergy; stop if rash appears. Use only plants from clean places, away from roads and sprayed areas.",
+        "ro": "Nu o aplica pe răni adânci sau pe piele infectată. Alergie rară; oprește dacă apare erupție. Folosește doar plante din locuri curate, departe de drumuri și zone tratate."
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 10,
+      "max": 40
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "narrowleaf-plantain",
+    "names": {
+      "en": [
+        "Ribwort plantain",
+        "Narrowleaf plantain"
+      ],
+      "ro": [
+        "Pătlagină îngustă",
+        "Limba-oii"
+      ]
+    },
+    "scientific": "Plantago lanceolata",
+    "synonyms": [],
+    "family": "Plantaginaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native meadow rosette with ribbed spear-shaped leaves. Deep-rooted, drought-tolerant and a standard component of herb-rich lawns and pasture; the tea is a popular traditional cough remedy.",
+      "ro": "Rozetă nativă de pajiște, cu frunze lanceolate cu nervuri. Cu rădăcini adânci, rezistentă la secetă și componentă obișnuită a gazoanelor și pășunilor bogate în plante; ceaiul este un remediu tradițional popular pentru tuse."
+    },
+    "tips": {
+      "en": [
+        "Sow into lawns and meadow strips; mowing keeps it low.",
+        "Gather leaves before flowering for tea and dry them quickly in shade."
+      ],
+      "ro": [
+        "Seamănă în gazon și fâșii de pajiște; cositul o menține joasă.",
+        "Adună frunzele înainte de înflorire pentru ceai și usucă-le repede la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "wildlife",
+      "ground-cover",
+      "dynamic-accumulator",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Wind-pollinated but visited by bees for pollen; deep roots bring up minerals and improve soil structure under herb-rich lawns and orchard grass.",
+      "ro": "Polenizată de vânt, dar vizitată de albine pentru polen; rădăcinile adânci aduc minerale și îmbunătățesc structura solului sub gazon bogat în plante și iarba din livadă."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves.",
+        "ro": "Frunzele."
+      },
+      "uses": {
+        "en": "Tea, infusion or syrup traditionally used for dry cough and irritated throat; fresh leaf on small stings.",
+        "ro": "Ceai, infuzie sau sirop folosite tradițional pentru tuse uscată și gât iritat; frunză proaspătă pe înțepături mici."
+      },
+      "safety": {
+        "en": "Generally well tolerated; stop if you get a rash. Seek medical advice for a cough that lasts more than a week or in young children.",
+        "ro": "În general bine tolerată; oprește dacă apare erupție. Cere sfatul medicului pentru o tuse care durează mai mult de o săptămână sau la copii mici."
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 10,
+      "max": 40
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "white-lupin",
+    "names": {
+      "en": [
+        "White lupin",
+        "Lupin (sweet)"
+      ],
+      "ro": [
+        "Lupin alb",
+        "Lupin"
+      ]
+    },
+    "scientific": "Lupinus albus",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Deep-rooted annual legume that fixes large amounts of nitrogen and mobilises phosphorus from poor, acid, sandy soils; a top green manure for light ground.",
+      "ro": "Leguminoasă anuală cu rădăcini adânci care fixează mult azot și mobilizează fosforul în soluri sărace, acide, nisipoase; un îngrășământ verde de top pentru terenuri ușoare."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring after the last hard frost on acid to neutral soil; it does not tolerate lime-rich soil.",
+        "Dig in or chop at flowering. Use sweet (low-alkaloid) varieties if the seed could be eaten by people or livestock."
+      ],
+      "ro": [
+        "Seamănă primăvara după ultimul îngheț puternic pe sol acid până la neutru; nu suportă solul bogat în calcar.",
+        "Încorporează sau taie la înflorire. Folosește soiuri dulci (cu puțini alcaloizi) dacă sămânța ar putea fi mâncată de oameni sau animale."
+      ]
+    },
+    "roles": [
+      "green-manure",
+      "nitrogen-fixer",
+      "pollinator",
+      "biomass"
+    ],
+    "nitrogenFixing": true,
+    "origin": "introduced",
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
+    },
+    "benefits": {
+      "en": "Fixes nitrogen, brings phosphorus into reach of the next crop and breaks hardpan with its deep taproot.",
+      "ro": "Fixează azot, face fosforul accesibil culturii următoare și desface stratul dur cu rădăcina pivotantă."
+    },
+    "cautions": {
+      "en": "Bitter (wild-type) lupin seed is poisonous because of alkaloids. Do not eat seed unless it is a labelled sweet variety that has been properly prepared.",
+      "ro": "Sămânța amară de lupin este otrăvitoare din cauza alcaloizilor. Nu mânca sămânța decât dacă este un soi dulce, etichetat, pregătit corect."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -2,
+        "max": 3
+      }
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 25
+    },
+    "heightCm": {
+      "min": 50,
+      "max": 120
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "forage-pea",
+    "names": {
+      "en": [
+        "Field pea",
+        "Forage pea"
+      ],
+      "ro": [
+        "Mazăre furajeră",
+        "Mazăre de câmp"
+      ]
+    },
+    "scientific": "Pisum sativum subsp. arvense",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Cool-season legume sown as a green manure or with oats. Climbs its companion, covers the soil quickly and adds nitrogen.",
+      "ro": "Leguminoasă de sezon rece semănată ca îngrășământ verde sau împreună cu ovăz. Se agață de plantă însoțitoare, acoperă repede solul și adaugă azot."
+    },
+    "tips": {
+      "en": [
+        "Sow as early as the soil can be worked, or in late summer for a winter-killed cover.",
+        "Mix with oats to give it support and increase biomass."
+      ],
+      "ro": [
+        "Seamănă cât mai devreme când solul poate fi lucrat sau la sfârșitul verii pentru o acoperire distrusă de iarnă.",
+        "Amestecă cu ovăz pentru sprijin și mai multă biomasă."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "green-manure",
+      "nitrogen-fixer",
+      "pollinator",
+      "weed-suppression"
+    ],
+    "nitrogenFixing": true,
+    "origin": "introduced",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Fast, cheap nitrogen and ground cover; chopped plants break down quickly in the soil.",
+      "ro": "Azot rapid și ieftin și acoperire a solului; plantele tocate se descompun repede în sol."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -8,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 5,
+      "max": 10
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "fodder-radish",
+    "names": {
+      "en": [
+        "Fodder radish",
+        "Oilseed radish",
+        "Tillage radish"
+      ],
+      "ro": [
+        "Ridiche oleaginoasă",
+        "Ridiche furajeră"
+      ]
+    },
+    "scientific": "Raphanus sativus var. oleiformis",
+    "synonyms": [],
+    "family": "Brassicaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "half-hardy",
+    "summary": {
+      "en": "Fast-growing brassica with a thick taproot that drills through compacted soil, scavenges nutrients and suppresses weeds; winter frost kills it, leaving a mellow seedbed.",
+      "ro": "Brasicacee cu creștere rapidă și rădăcină groasă, care străpunge solul compactat, adună nutrienți și înăbușe buruienile; înghețul de iarnă o distruge, lăsând un pat germinativ afânat."
+    },
+    "tips": {
+      "en": [
+        "Sow from late July to early September; it flowers quickly if sown too early.",
+        "Do not sow before other brassicas: it shares their pests and clubroot."
+      ],
+      "ro": [
+        "Seamănă de la sfârșitul lui iulie până la începutul lui septembrie; înflorește repede dacă este semănată prea devreme.",
+        "Nu o semăna înaintea altor brasicacee: are aceiași dăunători și aceeași hernie a verzei."
+      ]
+    },
+    "rotationFamily": "Brassicaceae",
+    "roles": [
+      "green-manure",
+      "weed-suppression",
+      "pollinator",
+      "biomass"
+    ],
+    "nitrogenFixing": false,
+    "origin": "introduced",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Roots loosen compacted subsoil and the dying radish releases the nutrients it caught; a standard autumn cover before spring crops.",
+      "ro": "Rădăcinile afânează subsolul compactat, iar ridichea care moare eliberează nutrienții adunați; acoperire standard de toamnă înaintea culturilor de primăvară."
+    },
+    "sowing": {
+      "anchor": "firstFrost",
+      "direct": {
+        "min": -18,
+        "max": -10
+      }
+    },
+    "spacingCm": {
+      "min": 10,
+      "max": 20
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 120
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "oat",
+    "names": {
+      "en": [
+        "Oat",
+        "Oats"
+      ],
+      "ro": [
+        "Ovăz"
+      ]
+    },
+    "scientific": "Avena sativa",
+    "synonyms": [],
+    "family": "Poaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Quick cereal cover crop that holds nutrients over winter, suppresses weeds and gives bulky organic matter. Often sown with peas or vetch.",
+      "ro": "Cereală de acoperire cu creștere rapidă, care păstrează nutrienții peste iarnă, înăbușe buruienile și oferă materie organică voluminoasă. Se seamănă adesea cu mazăre sau măzăriche."
+    },
+    "tips": {
+      "en": [
+        "Sow in late summer to autumn; frost kills it, leaving a mulch.",
+        "Mix with legumes for a better balance of carbon and nitrogen."
+      ],
+      "ro": [
+        "Seamănă la sfârșitul verii sau toamna; înghețul o distruge, lăsând un mulci.",
+        "Amestec cu leguminoase pentru un echilibru mai bun de carbon și azot."
+      ]
+    },
+    "rotationFamily": "Poaceae",
+    "roles": [
+      "green-manure",
+      "weed-suppression",
+      "biomass"
+    ],
+    "nitrogenFixing": false,
+    "origin": "introduced",
+    "benefits": {
+      "en": "Fibrous roots build soil structure and hold nitrogen that might wash away; the straw mulch protects bare soil.",
+      "ro": "Rădăcinile fibroase construiesc structura solului și rețin azotul care s-ar spăla; mulciul de paie protejează solul gol."
+    },
+    "sowing": {
+      "anchor": "firstFrost",
+      "direct": {
+        "min": -18,
+        "max": -8
+      }
+    },
+    "spacingCm": {
+      "min": 3,
+      "max": 6
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "common-vetch",
+    "names": {
+      "en": [
+        "Common vetch",
+        "Spring vetch"
+      ],
+      "ro": [
+        "Măzăriche",
+        "Măzăriche de primăvară"
+      ]
+    },
+    "scientific": "Vicia sativa",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Scrambling annual legume used as a green manure, frequently sown with oats. Adds nitrogen and smothers weeds.",
+      "ro": "Leguminoasă anuală agățătoare folosită ca îngrășământ verde, adesea semănată cu ovăz. Adaugă azot și înăbușe buruienile."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring or late summer; incorporate before seed set.",
+        "Seed and pods can be poisonous to people and some animals: keep seed away from food."
+      ],
+      "ro": [
+        "Seamănă primăvara sau la sfârșitul verii; încorporează înainte de formarea semințelor.",
+        "Sămânța și păstăile pot fi otrăvitoare pentru oameni și unele animale: ține sămânța departe de alimente."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "green-manure",
+      "nitrogen-fixer",
+      "pollinator",
+      "weed-suppression"
+    ],
+    "nitrogenFixing": true,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
+    },
+    "benefits": {
+      "en": "Flowers feed bees; the plant fixes nitrogen and shades out weeds quickly.",
+      "ro": "Florile hrănesc albinele; planta fixează azot și umbrește repede buruienile."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -8,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 10,
+      "max": 15
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 100
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "alsike-clover",
+    "names": {
+      "en": [
+        "Alsike clover"
+      ],
+      "ro": [
+        "Trifoi hibrid",
+        "Trifoi suedez"
+      ]
+    },
+    "scientific": "Trifolium hybridum",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Perennial clover that tolerates wet, heavy and slightly acid soils better than red or white clover. Good for bees and for soil-building on cold, damp land.",
+      "ro": "Trifoi peren care tolerează solurile umede, grele și ușor acide mai bine decât trifoiul roșu sau alb. Bun pentru albine și pentru îmbunătățirea solurilor reci și umede."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring or late summer on moist ground; inoculate on new land.",
+        "Not for horses in large amounts: it can cause photosensitivity."
+      ],
+      "ro": [
+        "Seamănă primăvara sau la sfârșitul verii pe teren umed; inoculează pe teren nou.",
+        "Nu se dă cailor în cantități mari: poate provoca fotosensibilitate."
+      ]
+    },
+    "rotationFamily": "Fabaceae",
+    "roles": [
+      "green-manure",
+      "nitrogen-fixer",
+      "pollinator",
+      "ground-cover"
+    ],
+    "nitrogenFixing": true,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Fixes nitrogen where other clovers struggle and gives bees nectar on wet pasture and orchard grass.",
+      "ro": "Fixează azot unde alte trifoiuri se descurcă greu și dă nectar albinelor pe pășuni umede și în livezi."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 25
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 70
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "burdock",
+    "names": {
+      "en": [
+        "Greater burdock"
+      ],
+      "ro": [
+        "Brusture",
+        "Lipan"
+      ]
+    },
+    "scientific": "Arctium lappa",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "perennial-vegetable",
+    "lifecycle": "biennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Large native biennial with a very deep taproot that mines minerals from the subsoil. The root is eaten in Asia (gobo) and used in traditional herbal medicine; the burrs cling to clothing and animals.",
+      "ro": "Plantă bienală mare nativă, cu rădăcină pivotantă foarte adâncă ce extrage minerale din subsol. Rădăcina se mănâncă în Asia (gobo) și se folosește în medicina tradițională pe bază de plante; capitulele se agață de haine și animale."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring in deep, loose soil if you want long roots; cut flower heads before they brown to stop burrs.",
+        "Harvest roots in autumn of the first year."
+      ],
+      "ro": [
+        "Seamănă primăvara pe sol adânc și afânat dacă vrei rădăcini lungi; taie capitulele înainte să se brunifice, ca să nu mai fie scaieți.",
+        "Recoltează rădăcinile toamna primului an."
+      ]
+    },
+    "roles": [
+      "dynamic-accumulator",
+      "pollinator",
+      "wildlife",
+      "food",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Taproot opens subsoil and cycles minerals into leaves you can compost; bumblebees visit the flowers.",
+      "ro": "Rădăcina pivotantă desface subsolul și transferă minerale în frunze pe care le poți composta; bondarii vizitează florile."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Root (first-year), leaves, seeds.",
+        "ro": "Rădăcina (din primul an), frunzele, semințele."
+      },
+      "uses": {
+        "en": "Decoction of the root traditionally used for skin conditions and as a general 'blood purifier'; also eaten as a vegetable.",
+        "ro": "Decoct din rădăcină folosit tradițional pentru afecțiuni ale pielii și ca „purificator al sângelui”; se mănâncă și ca legumă."
+      },
+      "safety": {
+        "en": "Avoid in pregnancy and if allergic to the daisy family. May lower blood sugar and increase urination; talk to a doctor if you use diabetes or diuretic medicines. Do not confuse it with deadly nightshade roots.",
+        "ro": "Evită în sarcină și dacă ești alergic la familia margaretelor. Poate scădea glicemia și crește urinarea; vorbește cu medicul dacă iei antidiabetice sau diuretice. Nu o confunda cu rădăcinile de mătrăgună, mortale."
+      }
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 90
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 200
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  }
+]

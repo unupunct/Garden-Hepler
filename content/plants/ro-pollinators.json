@@ -1,0 +1,1574 @@
+[
+  {
+    "id": "cornflower",
+    "names": {
+      "en": [
+        "Cornflower",
+        "Bachelor's button"
+      ],
+      "ro": [
+        "Albăstrea",
+        "Floarea-grâului"
+      ]
+    },
+    "scientific": "Centaurea cyanus",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Blue annual of cereal fields, now rare in the wild. Easy to sow, it feeds bees, bumblebees and hoverflies from early summer.",
+      "ro": "Plantă anuală cu flori albastre, din lanurile de cereale, astăzi rară în natură. Se seamănă ușor și hrănește albinele, bondarii și musculițele sirfide din prima parte a verii."
+    },
+    "tips": {
+      "en": [
+        "Sow directly in early spring or autumn; it dislikes transplanting.",
+        "Deadhead to prolong flowering, or leave some heads so it re-seeds."
+      ],
+      "ro": [
+        "Seamănă direct la începutul primăverii sau toamna; nu-i place transplantarea.",
+        "Taie florile trecute pentru înflorire mai lungă sau lasă câteva capitule ca să se reînsămânțeze."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "beneficial-insects",
+      "edible-flower",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "origin": "naturalized",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Heavy nectar and pollen source; the open flowers attract hoverflies whose larvae eat aphids.",
+      "ro": "Sursă bogată de nectar și polen; florile deschise atrag sirfide ale căror larve mănâncă afide."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 90
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "corn-poppy",
+    "names": {
+      "en": [
+        "Corn poppy",
+        "Field poppy"
+      ],
+      "ro": [
+        "Mac de câmp",
+        "Mac roșu"
+      ]
+    },
+    "scientific": "Papaver rhoeas",
+    "synonyms": [],
+    "family": "Papaveraceae",
+    "category": "flower",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Red annual poppy of disturbed ground. Short-lived flowers give bees abundant pollen; it re-seeds freely where soil is turned.",
+      "ro": "Mac anual roșu, de pe terenuri răscolite. Florile scurte dau albinelor mult polen; se reînsămânțează ușor unde solul este lucrat."
+    },
+    "tips": {
+      "en": [
+        "Scatter seed on bare, raked soil in autumn or early spring and do not cover it: the seed needs light.",
+        "Thin lightly; it does not transplant."
+      ],
+      "ro": [
+        "Răspândește sămânța pe sol gol, greblat, toamna sau la începutul primăverii și nu o acoperi: are nevoie de lumină.",
+        "Rărește ușor; nu se transplantează."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "origin": "naturalized",
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
+    },
+    "benefits": {
+      "en": "Pollen-rich flowers for bees and hoverflies; seed heads feed finches.",
+      "ro": "Flori bogate în polen pentru albine și sirfide; capsulele hrănesc cinteze."
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 25
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 80
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "oxeye-daisy",
+    "names": {
+      "en": [
+        "Oxeye daisy"
+      ],
+      "ro": [
+        "Margaretă",
+        "Crăiță"
+      ]
+    },
+    "scientific": "Leucanthemum vulgare",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native meadow perennial with white daisy flowers. A reliable, undemanding plant for hoverflies, solitary bees and butterflies.",
+      "ro": "Plantă perenă nativă de pajiște, cu flori albe de tip margaretă. Plantă sigură și puțin pretențioasă pentru sirfide, albine solitare și fluturi."
+    },
+    "tips": {
+      "en": [
+        "Sow in autumn or spring on poor soil; rich soil makes it floppy.",
+        "Cut back after flowering to encourage a second flush."
+      ],
+      "ro": [
+        "Seamănă toamna sau primăvara pe sol sărac; solul bogat o face să se culce.",
+        "Taie după înflorire pentru o a doua înflorire."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "beneficial-insects",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Open flowers feed hoverflies and parasitic wasps, the natural enemies of aphids; a backbone of wildflower strips.",
+      "ro": "Florile deschise hrănesc sirfide și viespi parazite, dușmanii naturali ai afidelor; plantă de bază în fâșiile cu flori sălbatice."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 80
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "yarrow",
+    "names": {
+      "en": [
+        "Yarrow"
+      ],
+      "ro": [
+        "Coada-șoricelului",
+        "Ahileea"
+      ]
+    },
+    "scientific": "Achillea millefolium",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tough native perennial with flat white flower heads and feathery leaves. Draws in hoverflies, lacewings and ladybirds and tolerates drought and poor soil.",
+      "ro": "Plantă perenă nativă, rezistentă, cu inflorescențe plate albe și frunze fin tăiate. Atrage sirfide, crisope și buburuze și suportă seceta și solul sărac."
+    },
+    "tips": {
+      "en": [
+        "Plant divisions in spring; it spreads by runners, so give it room or edge it.",
+        "A handful of chopped leaves speeds up a compost heap."
+      ],
+      "ro": [
+        "Plantează diviziuni primăvara; se extinde prin stoloni, deci dă-i loc sau limitează-l.",
+        "O mână de frunze tocate grăbește compostul."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "beneficial-insects",
+      "compost-activator",
+      "dynamic-accumulator",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Flat flower heads are ideal landing pads for small beneficial insects; deep roots bring up minerals, and the leaves activate compost.",
+      "ro": "Inflorescențele plate sunt perfecte pentru insectele benefice mici; rădăcinile adânci aduc minerale, iar frunzele activează compostul."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowering tops and leaves.",
+        "ro": "Vârfurile înflorite și frunzele."
+      },
+      "uses": {
+        "en": "Traditional bitter tea for digestion and, externally, for minor skin irritation; also used in baths.",
+        "ro": "Ceai amar tradițional pentru digestie și, extern, pentru iritații ușoare ale pielii; folosit și în băi."
+      },
+      "safety": {
+        "en": "Avoid in pregnancy and if allergic to the daisy family (Asteraceae, including chamomile and ragweed). It can cause skin sensitivity. Do not use for long periods.",
+        "ro": "Evită în sarcină și dacă ești alergic la familia margaretelor (Asteraceae, inclusiv mușețelul și ambrozia). Poate provoca sensibilitate a pielii. Nu o folosi perioade lungi."
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 80
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "vipers-bugloss",
+    "names": {
+      "en": [
+        "Viper's bugloss",
+        "Blueweed"
+      ],
+      "ro": [
+        "Iarba-șarpelui",
+        "Capul-călugărului"
+      ]
+    },
+    "scientific": "Echium vulgare",
+    "synonyms": [],
+    "family": "Boraginaceae",
+    "category": "flower",
+    "lifecycle": "biennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Bristly native biennial with spikes of pink-to-blue flowers, a favourite of bumblebees and mason bees. Thrives on dry, stony, sunny ground.",
+      "ro": "Plantă nativă bienală, aspră la atingere, cu spice de flori roz-albastre, preferată de bondari și albine zidari. Crește pe sol uscat, pietros, însorit."
+    },
+    "tips": {
+      "en": [
+        "Sow on dry, poor soil in autumn; it flowers in its second year and then re-seeds.",
+        "Wear gloves: the bristly hairs can irritate skin."
+      ],
+      "ro": [
+        "Seamănă pe sol uscat și sărac toamna; înflorește în al doilea an și apoi se reînsămânțează.",
+        "Poartă mănuși: perii aspri pot irita pielea."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
+    },
+    "benefits": {
+      "en": "One of the best late-spring nectar plants for long-tongued bees; excellent on dry banks where little else grows.",
+      "ro": "Una dintre cele mai bune plante nectarifere de la sfârșit de primăvară pentru albinele cu limbă lungă; excelentă pe pante uscate."
+    },
+    "cautions": {
+      "en": "Contains pyrrolizidine alkaloids that can harm the liver: do not eat or use it as a herbal remedy.",
+      "ro": "Conține alcaloizi pirolizidinici care pot afecta ficatul: nu o consuma și nu o folosi ca remediu din plante."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 100
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "sainfoin",
+    "names": {
+      "en": [
+        "Sainfoin"
+      ],
+      "ro": [
+        "Sparcetă"
+      ]
+    },
+    "scientific": "Onobrychis viciifolia",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Deep-rooted perennial legume with pink flower spikes. Fixes nitrogen, breaks up compacted subsoil and is superb bee forage.",
+      "ro": "Leguminoasă perenă cu rădăcini adânci și spice roz. Fixează azotul, desface subsolul compactat și este o plantă meliferă excelentă."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring on well-drained, even chalky or stony soil; it dislikes waterlogging.",
+        "Cut once the flowers fade for green manure or mulch."
+      ],
+      "ro": [
+        "Seamănă primăvara pe sol bine drenat, chiar calcaros sau pietros; nu suportă băltirea.",
+        "Cosește după trecerea florilor pentru îngrășământ verde sau mulci."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "nitrogen-fixer",
+      "green-manure",
+      "ground-cover"
+    ],
+    "nitrogenFixing": true,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
+    },
+    "benefits": {
+      "en": "Honey-bee and bumblebee magnet; the roots reach deep, loosen heavy soil and leave nitrogen for the next crop.",
+      "ro": "Atrage albinele și bondarii; rădăcinile ajung adânc, afânează solul greu și lasă azot pentru cultura următoare."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 80
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "birds-foot-trefoil",
+    "names": {
+      "en": [
+        "Bird's-foot trefoil"
+      ],
+      "ro": [
+        "Ghizdei",
+        "Ghizdeiul"
+      ]
+    },
+    "scientific": "Lotus corniculatus",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Low yellow-flowered native legume. Feeds bumblebees, fixes nitrogen and makes a tough, flowering ground cover on poor or dry soil.",
+      "ro": "Leguminoasă nativă joasă, cu flori galbene. Hrănește bondarii, fixează azot și formează o acoperire rezistentă pe sol sărac sau uscat."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring on bare soil; it tolerates mowing, so it suits lawns left a little long.",
+        "Inoculation is rarely needed in soils where it grows wild."
+      ],
+      "ro": [
+        "Seamănă primăvara pe sol gol; suportă cositul, deci merge pe gazoane lăsate mai înalte.",
+        "Inocularea rareori este necesară pe soluri unde crește spontan."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "nitrogen-fixer",
+      "ground-cover",
+      "living-mulch"
+    ],
+    "nitrogenFixing": true,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
+    },
+    "benefits": {
+      "en": "A key plant for bumblebees and for common blue butterflies, whose caterpillars feed on it; builds nitrogen in the soil beneath.",
+      "ro": "Plantă-cheie pentru bondari și pentru fluturele albăstrel comun, ale cărui omizi se hrănesc cu ea; adaugă azot în sol."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 6
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 10,
+      "max": 40
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "yellow-melilot",
+    "names": {
+      "en": [
+        "Yellow sweet clover",
+        "Melilot"
+      ],
+      "ro": [
+        "Sulfină",
+        "Sulfină galbenă"
+      ]
+    },
+    "scientific": "Melilotus officinalis",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "cover-crop",
+    "lifecycle": "biennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall, deep-rooted biennial legume with honey-scented yellow flowers; a heavy nitrogen fixer and soil breaker, loved by honey bees.",
+      "ro": "Leguminoasă bienală înaltă, cu rădăcini adânci și flori galbene cu miros de miere; fixează mult azot, desface solul și este iubită de albine."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring; scarify or soak seed for faster germination.",
+        "Chop and drop before seed set for green manure, as it can self-sow widely."
+      ],
+      "ro": [
+        "Seamănă primăvara; zgârie sau înmoaie sămânța pentru germinare mai rapidă.",
+        "Taie și lasă pe loc înainte de coacerea semințelor, deoarece se poate înmulți mult prin autosămânță."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "nitrogen-fixer",
+      "green-manure",
+      "biomass"
+    ],
+    "nitrogenFixing": true,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Excellent honey plant; roots can penetrate compacted subsoil and the cut tops are a nitrogen-rich mulch.",
+      "ro": "Plantă meliferă excelentă; rădăcinile pot străbate subsolul compactat, iar vârfurile tăiate sunt un mulci bogat în azot."
+    },
+    "cautions": {
+      "en": "Spoiled (mouldy) hay of sweet clover can be harmful to livestock: do not feed it mouldy.",
+      "ro": "Fânul stricat (mucegăit) de sulfină poate face rău animalelor: nu-l da mucegăit."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 80,
+      "max": 200
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "field-scabious",
+    "names": {
+      "en": [
+        "Field scabious"
+      ],
+      "ro": [
+        "Scabioasă de câmp",
+        "Ochiul-șarpelui"
+      ]
+    },
+    "scientific": "Knautia arvensis",
+    "synonyms": [],
+    "family": "Caprifoliaceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native meadow perennial with lilac pincushion flowers; a prime nectar plant through summer for bees, butterflies and hoverflies.",
+      "ro": "Plantă perenă nativă de pajiște, cu flori liliachii în formă de pernuță; sursă importantă de nectar vara pentru albine, fluturi și sirfide."
+    },
+    "tips": {
+      "en": [
+        "Sow in autumn or spring on well-drained soil; it does best in full sun.",
+        "Leave the seed heads over winter for finches."
+      ],
+      "ro": [
+        "Seamănă toamna sau primăvara pe sol bine drenat; crește cel mai bine la soare.",
+        "Lasă capsulele peste iarnă pentru cinteze."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Long flowering season fills the summer nectar gap in the garden.",
+      "ro": "Perioada lungă de înflorire umple golul de nectar din timpul verii."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 100
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "meadow-sage",
+    "names": {
+      "en": [
+        "Meadow sage",
+        "Meadow clary"
+      ],
+      "ro": [
+        "Jaleș de livadă",
+        "Salvie de câmp"
+      ]
+    },
+    "scientific": "Salvia pratensis",
+    "synonyms": [],
+    "family": "Lamiaceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native sage with violet-blue whorled flower spikes; a spring and early-summer favourite of bumblebees and other long-tongued bees.",
+      "ro": "Salvie nativă cu spice violet-albastre; preferată primăvara și la începutul verii de bondari și alte albine cu limbă lungă."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring or autumn on well-drained, sunny ground; cut back after flowering for a second display.",
+        "It does not like wet winters."
+      ],
+      "ro": [
+        "Seamănă primăvara sau toamna pe sol drenat și însorit; taie după înflorire pentru o a doua înflorire.",
+        "Nu-i plac iernile umede."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Flowers shaped for bumblebees; a good early nectar source before the summer meadow plants open.",
+      "ro": "Flori potrivite pentru bondari; sursă bună de nectar timpuriu, înainte să se deschidă plantele de vară."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 80
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "chicory",
+    "names": {
+      "en": [
+        "Chicory"
+      ],
+      "ro": [
+        "Cicoare",
+        "Viorele-de-câmp"
+      ]
+    },
+    "scientific": "Cichorium intybus",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Deep-rooted native perennial with sky-blue flowers that open in the morning. Drought-tolerant, loosens soil and feeds bees; roots and leaves are edible.",
+      "ro": "Plantă perenă nativă cu rădăcini adânci și flori albastre ce se deschid dimineața. Rezistentă la secetă, afânează solul și hrănește albinele; rădăcinile și frunzele sunt comestibile."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring; the long taproot needs deep soil and does not transplant well.",
+        "Young leaves are bitter but good in salads or cooked; roasted root is a coffee substitute."
+      ],
+      "ro": [
+        "Seamănă primăvara; rădăcina lungă are nevoie de sol adânc și nu se transplantează bine.",
+        "Frunzele tinere sunt amare, dar bune în salate sau gătite; rădăcina prăjită înlocuiește cafeaua."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "dynamic-accumulator",
+      "food",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Taproot drills through hard layers and pulls up nutrients; flowers feed solitary bees and hoverflies.",
+      "ro": "Rădăcina pivotantă străpunge straturile dure și aduce nutrienți; florile hrănesc albine solitare și sirfide."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Root and leaves.",
+        "ro": "Rădăcina și frunzele."
+      },
+      "uses": {
+        "en": "Bitter tea or decoction traditionally taken to stimulate appetite and digestion.",
+        "ro": "Ceai amar sau decoct luat tradițional pentru stimularea poftei de mâncare și a digestiei."
+      },
+      "safety": {
+        "en": "Avoid with gallstones or bile-duct obstruction unless a doctor agrees; can cause allergy in people sensitive to the daisy family.",
+        "ro": "Evită în caz de calculi biliari sau obstrucție a căilor biliare, fără acordul medicului; poate provoca alergie la cei sensibili la familia margaretelor."
+      }
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "wild-carrot",
+    "names": {
+      "en": [
+        "Wild carrot",
+        "Queen Anne's lace"
+      ],
+      "ro": [
+        "Morcov sălbatic"
+      ]
+    },
+    "scientific": "Daucus carota",
+    "synonyms": [],
+    "family": "Apiaceae",
+    "category": "flower",
+    "lifecycle": "biennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native biennial whose lacy white umbels draw hoverflies, parasitic wasps and beetles. It is the wild ancestor of the garden carrot.",
+      "ro": "Plantă nativă bienală ale cărei umbele albe, ca o dantelă, atrag sirfide, viespi parazite și gândaci. Este strămoșul sălbatic al morcovului de grădină."
+    },
+    "tips": {
+      "en": [
+        "Sow in autumn or spring and let it flower in the second year.",
+        "Never eat any umbellifer you cannot identify with certainty: poison hemlock looks similar."
+      ],
+      "ro": [
+        "Seamănă toamna sau primăvara și lasă-l să înflorească în al doilea an.",
+        "Nu mânca niciodată o plantă din familia umbeliferelor pe care nu o recunoști cu certitudine: cucuta seamănă."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "beneficial-insects",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Umbels shelter and feed predators of aphids; the plant also attracts the swallowtail butterfly.",
+      "ro": "Umbelele adăpostesc și hrănesc prădători ai afidelor; planta atrage și fluturele coada-rândunicii."
+    },
+    "cautions": {
+      "en": "Dangerous look-alikes exist, especially poison hemlock (Conium maculatum) and other poisonous umbellifers. Do not forage it unless an expert has shown you the plant.",
+      "ro": "Există plante asemănătoare periculoase, mai ales cucuta (Conium maculatum) și alte umbelifere otrăvitoare. Nu o culege din natură decât dacă un specialist ți-a arătat planta."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 100
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "teasel",
+    "names": {
+      "en": [
+        "Teasel",
+        "Wild teasel"
+      ],
+      "ro": [
+        "Varga-ciobanului",
+        "Scai fuiorar"
+      ]
+    },
+    "scientific": "Dipsacus fullonum",
+    "synonyms": [],
+    "family": "Caprifoliaceae",
+    "category": "flower",
+    "lifecycle": "biennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall spiny biennial with lilac cone-shaped flower heads; bees love it in summer and goldfinches eat the seed in winter.",
+      "ro": "Plantă bienală înaltă și spinoasă, cu capitule conice liliachii; albinele o iubesc vara, iar sticleții mănâncă sămânța iarna."
+    },
+    "tips": {
+      "en": [
+        "Sow in autumn on heavy or damp soil; flowers in year two, then dies after seeding.",
+        "Plant at the back of the border or at the field edge: it self-seeds readily."
+      ],
+      "ro": [
+        "Seamănă toamna pe sol greu sau umed; înflorește în al doilea an, apoi moare după fructificare.",
+        "Plantează în fundul stratului sau la marginea câmpului: se reînsămânțează ușor."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 8
+    },
+    "benefits": {
+      "en": "A wildlife plant: nectar for bumblebees, then winter seed for finches; the rain-filled leaf cups hold water for insects.",
+      "ro": "Plantă pentru viața sălbatică: nectar pentru bondari, apoi sămânță iarna pentru cinteze."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 200
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "ivy",
+    "names": {
+      "en": [
+        "Common ivy",
+        "English ivy"
+      ],
+      "ro": [
+        "Iederă",
+        "Iedera-comună"
+      ]
+    },
+    "scientific": "Hedera helix",
+    "synonyms": [],
+    "family": "Araliaceae",
+    "category": "vine",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Evergreen native climber. Its late-autumn flowers are one of the last nectar sources of the year, and the berries feed birds in late winter.",
+      "ro": "Cățărătoare nativă veșnic verde. Florile de la sfârșit de toamnă sunt printre ultimele surse de nectar ale anului, iar fructele hrănesc păsările la sfârșit de iarnă."
+    },
+    "tips": {
+      "en": [
+        "Let it climb a wall or old tree; mature flowering stems only form on sunny, upright growth.",
+        "Keep it off roofs, gutters and young trees."
+      ],
+      "ro": [
+        "Lasă-o să urce pe un zid sau un copac bătrân; tulpinile mature care înfloresc apar doar pe creșterea verticală și însorită.",
+        "Ține-o departe de acoperișuri, jgheaburi și pomi tineri."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "ground-cover"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 9,
+      "max": 11
+    },
+    "benefits": {
+      "en": "Late nectar for bees, wasps and hoverflies when almost nothing else flowers; dense cover for roosting birds and hibernating insects.",
+      "ro": "Nectar târziu pentru albine, viespi și sirfide, când aproape nimic altceva nu mai înflorește; adăpost dens pentru păsări și insecte în hibernare."
+    },
+    "cautions": {
+      "en": "All parts are toxic if eaten, and the sap can irritate skin. Keep berries away from children and pets.",
+      "ro": "Toate părțile sunt toxice dacă sunt mâncate, iar seva poate irita pielea. Ține fructele departe de copii și animale."
+    },
+    "spacingCm": {
+      "min": 100,
+      "max": 200
+    },
+    "heightCm": {
+      "min": 500,
+      "max": 2000
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "catnip",
+    "names": {
+      "en": [
+        "Catnip",
+        "Catmint"
+      ],
+      "ro": [
+        "Cătușnică",
+        "Iarba-pisicii"
+      ]
+    },
+    "scientific": "Nepeta cataria",
+    "synonyms": [],
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Hardy aromatic herb whose long flowering season is popular with bees. Cats love it, and the scent may deter some insect pests.",
+      "ro": "Plantă aromatică rezistentă, a cărei înflorire lungă este populară printre albine. Pisicile o adoră, iar mirosul poate descuraja unii dăunători."
+    },
+    "tips": {
+      "en": [
+        "Plant in sun and well-drained soil; shear after the first flush for fresh growth and a second bloom.",
+        "Protect young plants from cats until they are established."
+      ],
+      "ro": [
+        "Plantează la soare și pe sol drenat; taie după prima înflorire pentru creștere nouă și a doua înflorire.",
+        "Protejează plantele tinere de pisici până se instalează."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "pest-repellent",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Bees and hoverflies visit it all summer; the volatile oil nepetalactone repels some aphids, flea beetles and ants in trials.",
+      "ro": "Albinele și sirfidele o vizitează toată vara; uleiul volatil nepetalactona repelă unii afide, purici de pământ și furnici în teste."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves and flowering tops.",
+        "ro": "Frunzele și vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Mild, traditional calming tea, also used for colds and digestion.",
+        "ro": "Ceai blând, tradițional, calmant, folosit și la răceli și pentru digestie."
+      },
+      "safety": {
+        "en": "Avoid in pregnancy. Use sparingly; large amounts may cause stomach upset.",
+        "ro": "Evită în sarcină. Folosește cu moderație; cantități mari pot provoca deranjament stomacal."
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 50
+    },
+    "heightCm": {
+      "min": 50,
+      "max": 100
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "anise-hyssop",
+    "names": {
+      "en": [
+        "Anise hyssop",
+        "Giant hyssop"
+      ],
+      "ro": [
+        "Isop-anasonat",
+        "Agastache"
+      ]
+    },
+    "scientific": "Agastache foeniculum",
+    "synonyms": [],
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Aniseed-scented perennial with violet flower spikes that bees and bumblebees visit constantly for months. Leaves and flowers make a pleasant tea or garnish.",
+      "ro": "Plantă perenă cu miros de anason și spice violete vizitate luni la rând de albine și bondari. Frunzele și florile fac un ceai plăcut sau o garnitură."
+    },
+    "tips": {
+      "en": [
+        "Start seed indoors in early spring or sow after the last frost; it flowers in its first year.",
+        "Cut back by half in midsummer to keep it compact."
+      ],
+      "ro": [
+        "Pornește sămânța în casă la începutul primăverii sau seamănă după ultimul îngheț; înflorește în primul an.",
+        "Taie la jumătate la mijlocul verii ca să rămână compactă."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "food",
+      "edible-flower"
+    ],
+    "nitrogenFixing": false,
+    "origin": "introduced",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Among the best garden plants for bee numbers per square metre; a long, late-summer nectar supply.",
+      "ro": "Printre cele mai bune plante de grădină pentru numărul de albine pe metru pătrat; nectar îndelungat la sfârșit de vară."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": 0,
+        "max": 3
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "echinacea",
+    "names": {
+      "en": [
+        "Purple coneflower",
+        "Echinacea"
+      ],
+      "ro": [
+        "Echinacea",
+        "Floarea-con"
+      ]
+    },
+    "scientific": "Echinacea purpurea",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Sturdy North American perennial with large purple daisy flowers on tall stems. Bees and butterflies visit all summer and goldfinches eat the seed in winter.",
+      "ro": "Plantă perenă robustă din America de Nord, cu flori mari violete pe tulpini înalte. Albinele și fluturii o vizitează toată vara, iar sticleții mănâncă sămânța iarna."
+    },
+    "tips": {
+      "en": [
+        "Plant in full sun in any reasonably drained soil; established clumps are drought tolerant.",
+        "Leave seed heads standing through winter."
+      ],
+      "ro": [
+        "Plantează la soare în orice sol rezonabil drenat; tufele instalate suportă seceta.",
+        "Lasă capitulele cu semințe în picioare peste iarnă."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "medicinal",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "origin": "introduced",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Reliable summer-to-autumn nectar and pollen when many natives are over; the seed is food for birds.",
+      "ro": "Nectar și polen sigure din vară până toamna, când multe plante native au trecut; sămânța hrănește păsările."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowering tops, leaves and roots.",
+        "ro": "Vârfurile înflorite, frunzele și rădăcinile."
+      },
+      "uses": {
+        "en": "Taken traditionally as a tea or tincture at the first signs of a cold.",
+        "ro": "Luată tradițional ca ceai sau tinctură la primele semne de răceală."
+      },
+      "safety": {
+        "en": "Do not use if allergic to the daisy family. Talk to a doctor first if you have an autoimmune disease or take immune-suppressing medicine. Short courses only.",
+        "ro": "Nu o folosi dacă ești alergic la familia margaretelor. Vorbește mai întâi cu medicul dacă ai o boală autoimună sau iei medicamente imunosupresoare. Doar cure scurte."
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 50
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "italian-aster",
+    "names": {
+      "en": [
+        "Italian aster",
+        "European Michaelmas daisy"
+      ],
+      "ro": [
+        "Steluță",
+        "Asteriscul"
+      ]
+    },
+    "scientific": "Aster amellus",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native perennial with violet daisy flowers in late summer and autumn, a vital late meal for bees and butterflies before winter.",
+      "ro": "Plantă perenă nativă, cu flori violete de tip margaretă la sfârșitul verii și toamna, o masă târzie importantă pentru albine și fluturi înainte de iarnă."
+    },
+    "tips": {
+      "en": [
+        "Plant in sun on well-drained, even dry soil; it dislikes wet winter ground.",
+        "Divide clumps every few years in spring."
+      ],
+      "ro": [
+        "Plantează la soare pe sol drenat, chiar uscat; nu-i place solul umed iarna.",
+        "Împarte tufele la câțiva ani, primăvara."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 8,
+      "max": 10
+    },
+    "benefits": {
+      "en": "Extends the nectar season into October when most meadow flowers are finished.",
+      "ro": "Prelungește sezonul de nectar până în octombrie, când majoritatea florilor de pajiște s-au terminat."
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "orpine",
+    "names": {
+      "en": [
+        "Orpine",
+        "Live-forever"
+      ],
+      "ro": [
+        "Iarba-grasă",
+        "Iarba-fiarelor"
+      ]
+    },
+    "scientific": "Hylotelephium telephium",
+    "synonyms": [],
+    "family": "Crassulaceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Succulent native perennial with flat pink flower heads in late summer. Butterflies, bees and hoverflies crowd the flowers, and it needs almost no care.",
+      "ro": "Plantă perenă suculentă nativă, cu inflorescențe plate roz la sfârșitul verii. Fluturii, albinele și sirfidele se adună pe flori, iar planta aproape nu cere îngrijire."
+    },
+    "tips": {
+      "en": [
+        "Plant in full sun and well-drained soil, including rockeries and dry banks.",
+        "Propagate by division or stem cuttings in spring."
+      ],
+      "ro": [
+        "Plantează la soare și pe sol drenat, inclusiv în rocării și pe pante uscate.",
+        "Înmulțește prin diviziune sau butași de tulpină, primăvara."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 8,
+      "max": 10
+    },
+    "benefits": {
+      "en": "Long-lasting late-summer nectar in the driest, poorest spots.",
+      "ro": "Nectar de lungă durată la sfârșitul verii, în cele mai uscate și sărace locuri."
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 60
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "purple-loosestrife",
+    "names": {
+      "en": [
+        "Purple loosestrife"
+      ],
+      "ro": [
+        "Răchițele",
+        "Dalbă"
+      ]
+    },
+    "scientific": "Lythrum salicaria",
+    "synonyms": [],
+    "family": "Lythraceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall native wetland perennial with magenta flower spires. Excellent for pond margins and damp ground, where bees, butterflies and hoverflies gather.",
+      "ro": "Plantă perenă nativă de zone umede, înaltă, cu spice magenta. Excelentă pe marginea bălților și pe sol umed, unde se adună albine, fluturi și sirfide."
+    },
+    "tips": {
+      "en": [
+        "Needs constantly moist soil or the edge of a pond.",
+        "Its home is Europe, but it is invasive in North America: do not give plants away to other countries."
+      ],
+      "ro": [
+        "Are nevoie de sol permanent umed sau de marginea unui iaz.",
+        "Este nativă în Europa, dar invazivă în America de Nord: nu trimite plante în alte țări."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "A mainstay of damp meadows and pond edges for late-summer insects; also filters runoff in wet areas.",
+      "ro": "Plantă de bază a pajiștilor umede și a malurilor pentru insectele de la sfârșit de vară; filtrează și apa scursă în zonele umede."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowering tops.",
+        "ro": "Vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Traditional astringent tea for mild diarrhoea and, externally, as a rinse.",
+        "ro": "Ceai astringent tradițional pentru diaree ușoară și, extern, ca clătire."
+      },
+      "safety": {
+        "en": "Not for infants or young children; see a doctor if diarrhoea lasts more than a day or two. Avoid in pregnancy.",
+        "ro": "Nu se dă sugarilor sau copiilor mici; mergi la medic dacă diareea durează mai mult de o zi-două. Evită în sarcină."
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 80,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "hemp-agrimony",
+    "names": {
+      "en": [
+        "Hemp agrimony"
+      ],
+      "ro": [
+        "Cânepa-codrului",
+        "Cânepa-apei"
+      ]
+    },
+    "scientific": "Eupatorium cannabinum",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "flower",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall native perennial of damp places with fluffy pink flower heads that butterflies and bees love in late summer.",
+      "ro": "Plantă perenă înaltă nativă din locuri umede, cu inflorescențe pufoase roz iubite de fluturi și albine la sfârșit de vară."
+    },
+    "tips": {
+      "en": [
+        "Grow in damp, partly shaded or sunny ground at the back of a wildlife border.",
+        "Cut back in late winter."
+      ],
+      "ro": [
+        "Cultivă pe sol umed, în semiumbră sau la soare, în spatele unui strat pentru viața sălbatică.",
+        "Taie la sfârșitul iernii."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "A top butterfly plant for damp ground, with nectar through late summer.",
+      "ro": "Plantă de top pentru fluturi pe sol umed, cu nectar până la sfârșitul verii."
+    },
+    "cautions": {
+      "en": "Contains pyrrolizidine alkaloids that can damage the liver: do not eat it or use it medicinally.",
+      "ro": "Conține alcaloizi pirolizidinici care pot afecta ficatul: nu o consuma și nu o folosi medicinal."
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 80
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 175
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  }
+]

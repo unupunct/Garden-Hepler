@@ -800,7 +800,8 @@
     "rotationFamily": "Amaryllidaceae",
     "roles": [
       "food",
-      "pest-confuser"
+      "pest-confuser",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -808,6 +809,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -837,6 +842,24 @@
     "heightCm": {
       "min": 40,
       "max": 80
+    },
+    "seasonMonths": {
+      "min": 6,
+      "max": 7
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Bulb (cloves).",
+        "ro": "Bulbul (căței)."
+      },
+      "uses": {
+        "en": "Fresh cloves traditionally eaten at the start of colds and for circulation.",
+        "ro": "Căței proaspeți mâncați tradițional la începutul răcelilor și pentru circulație."
+      },
+      "safety": {
+        "en": "Can add to the effect of blood thinners; stop high-dose supplements before surgery. May cause heartburn and stomach upset. Not a replacement for treating infection or high blood pressure.",
+        "ro": "Poate crește efectul anticoagulantelor; oprește suplimentele în doze mari înainte de operații. Poate provoca arsuri la stomac și deranjament stomacal. Nu înlocuiește tratamentul infecțiilor sau al tensiunii mari."
+      }
     }
   },
   {

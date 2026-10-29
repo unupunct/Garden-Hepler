@@ -805,7 +805,8 @@
       "food",
       "hedge",
       "pollinator",
-      "wildlife"
+      "wildlife",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -813,6 +814,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -834,6 +839,29 @@
     "heightCm": {
       "min": 300,
       "max": 600
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 2,
+      "max": 3
+    },
+    "benefits": {
+      "en": "One of the very first trees to flower, in February-March, giving bees pollen and nectar when almost nothing else is open; fruits feed birds.",
+      "ro": "Unul dintre primii arbori care înfloresc, în februarie-martie, oferind albinelor polen și nectar când aproape nimic altceva nu este deschis; fructele hrănesc păsările."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Ripe fruits.",
+        "ro": "Fructele coapte."
+      },
+      "uses": {
+        "en": "Traditionally eaten fresh or as jam, syrup or tea for mild digestion complaints and as a tonic.",
+        "ro": "Mâncate tradițional proaspete sau ca dulceață, sirop sau ceai pentru deranjamente digestive ușoare și ca tonic."
+      },
+      "safety": {
+        "en": "Safe as food in normal amounts. Stones are hard: do not chew them.",
+        "ro": "Sigure ca aliment în cantități obișnuite. Sâmburii sunt tari: nu-i mesteca."
+      }
     }
   },
   {
@@ -872,7 +900,8 @@
       "hedge",
       "nitrogen-fixer",
       "wildlife",
-      "windbreak"
+      "windbreak",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -880,6 +909,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -901,6 +934,25 @@
     "heightCm": {
       "min": 200,
       "max": 400
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 3,
+      "max": 4
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Ripe berries; the oil of berries and seeds.",
+        "ro": "Fructele coapte; uleiul din fructe și semințe."
+      },
+      "uses": {
+        "en": "Juice, syrup and oil traditionally used for vitamin C, mucous membranes and skin.",
+        "ro": "Suc, sirop și ulei folosite tradițional pentru vitamina C, mucoase și piele."
+      },
+      "safety": {
+        "en": "Generally safe as food. Can thin the blood slightly: ask a doctor before use if you take blood thinners or are about to have surgery. Seek advice in pregnancy and with gallbladder disease for the oil.",
+        "ro": "În general sigură ca aliment. Poate subția ușor sângele: întreabă medicul dacă iei anticoagulante sau urmează o operație. Cere sfat în sarcină și în boli ale vezicii biliare pentru ulei."
+      }
     }
   },
   {
@@ -937,7 +989,8 @@
       "food",
       "hedge",
       "pollinator",
-      "wildlife"
+      "wildlife",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -945,6 +998,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -970,6 +1027,29 @@
     "heightCm": {
       "min": 300,
       "max": 600
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Flat flower heads feed hoverflies and beetles; berries feed birds; a classic hedge and wildlife shrub.",
+      "ro": "Inflorescențele plate hrănesc sirfide și gândaci; fructele hrănesc păsările; arbust clasic de gard viu și pentru viața sălbatică."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowers and ripe, cooked berries.",
+        "ro": "Florile și fructele coapte, fierte."
+      },
+      "uses": {
+        "en": "Flower tea traditionally used for colds and fever; cooked berry syrup for the winter season; flower cordial and fritters are food.",
+        "ro": "Ceai din flori folosit tradițional la răceli și febră; sirop din fructe fierte pentru sezonul rece; socata și papanașii din flori sunt alimente."
+      },
+      "safety": {
+        "en": "Raw berries, leaves, bark, roots and seeds are toxic and cause vomiting: only ripe, fully cooked berries and the flowers are used. Do not use the wild-collected red elder.",
+        "ro": "Fructele crude, frunzele, scoarța, rădăcinile și semințele sunt toxice și provoacă vărsături: se folosesc doar fructele coapte, bine fierte, și florile. Nu folosi socul roșu culeseî din natură."
+      }
     }
   },
   {
@@ -1006,7 +1086,8 @@
       "food",
       "hedge",
       "pollinator",
-      "wildlife"
+      "wildlife",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -1014,6 +1095,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -1035,6 +1120,25 @@
     "heightCm": {
       "min": 200,
       "max": 300
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Ripe fruits (hips), with the hairy seeds removed.",
+        "ro": "Fructele coapte (măceșe), fără semințele păroase."
+      },
+      "uses": {
+        "en": "Tea, syrup or jam: a traditional source of vitamin C in winter.",
+        "ro": "Ceai, sirop sau dulceață: sursă tradițională de vitamina C iarna."
+      },
+      "safety": {
+        "en": "Remove the hairy seeds; they irritate the mouth and gut. Generally safe as food; large amounts may loosen stools. Vitamin C content falls with heat and storage.",
+        "ro": "Îndepărtează semințele păroase; irită gura și intestinul. În general sigure ca aliment; cantități mari pot înmuia scaunul. Vitamina C scade la căldură și depozitare."
+      }
     }
   },
   {

@@ -25,6 +25,46 @@ public sealed class Sowing
     public Dictionary<string, string>? Note { get; set; }
 }
 
+/// <summary>Traditional medicinal use of a plant. Always shown with its safety text; never presented as medical advice.</summary>
+public sealed class MedicinalInfo
+{
+    /// <summary>Which parts are used (flowers, leaves, root...).</summary>
+    public Dictionary<string, string> Parts { get; set; } = new();
+    /// <summary>Traditional uses and usual preparations.</summary>
+    public Dictionary<string, string> Uses { get; set; } = new();
+    /// <summary>Who should not use it, side effects, interactions, harvesting limits.</summary>
+    public Dictionary<string, string> Safety { get; set; } = new();
+}
+
+public static class PlantOrigin
+{
+    public static readonly string[] All = { "native-ro", "naturalized", "introduced", "invasive" };
+}
+
+public static class Edibility
+{
+    public static readonly string[] All = { "edible", "edible-cooked", "inedible", "toxic", "deadly" };
+}
+
+/// <summary>The garden jobs a plant can do. Used by the encyclopedia filter chips.</summary>
+public static class PlantPurpose
+{
+    public static readonly string[] Keys = { "native", "pollinator", "pest", "soil", "medicinal", "edible" };
+    private static readonly string[] PestRoles = { "beneficial-insects", "pest-confuser", "trap-crop", "pest-repellent" };
+    private static readonly string[] SoilRoles = { "nitrogen-fixer", "green-manure", "compost-activator", "biomass", "decomposer", "ground-cover", "living-mulch", "dynamic-accumulator", "weed-suppression" };
+
+    public static bool Matches(PlantRecord p, string purpose) => purpose switch
+    {
+        "native" => p.Origin == "native-ro",
+        "pollinator" => p.Roles.Contains("pollinator"),
+        "pest" => p.Roles.Any(r => PestRoles.Contains(r)),
+        "soil" => p.NitrogenFixing || p.Roles.Any(r => SoilRoles.Contains(r)),
+        "medicinal" => p.Medicinal is not null || p.Roles.Contains("medicinal"),
+        "edible" => p.Roles.Contains("food") || p.Roles.Contains("edible-flower") || p.Edibility is "edible" or "edible-cooked",
+        _ => true,
+    };
+}
+
 public sealed class PlantRecord
 {
     public string Id { get; set; } = "";
@@ -48,6 +88,17 @@ public sealed class PlantRecord
     public string? RotationFamily { get; set; }
     public string[] Roles { get; set; } = Array.Empty<string>();
     public bool NitrogenFixing { get; set; }
+    /// <summary>native-ro (grows wild in Romania), naturalized, introduced or invasive.</summary>
+    public string? Origin { get; set; }
+    /// <summary>Months (1-12) when it flowers, or for mushrooms when it fruits.</summary>
+    public IntRange? SeasonMonths { get; set; }
+    /// <summary>Mushrooms only: edible, edible-cooked, inedible, toxic or deadly.</summary>
+    public string? Edibility { get; set; }
+    /// <summary>Protected or regulated in Romania: do not pick it in the wild.</summary>
+    public bool Protected { get; set; }
+    /// <summary>What it does for the garden (pollinators, pests, soil).</summary>
+    public Dictionary<string, string>? Benefits { get; set; }
+    public MedicinalInfo? Medicinal { get; set; }
     public string Confidence { get; set; } = "moderate";
     public string? Reviewed { get; set; }
     public SourceRef[] Sources { get; set; } = Array.Empty<SourceRef>();
@@ -58,6 +109,7 @@ public sealed class PlantRecord
 
     public string SummaryText(string lang) => Summary.GetValueOrDefault(lang) ?? Summary.GetValueOrDefault("en") ?? "";
     public string[] TipList(string lang) => Tips.GetValueOrDefault(lang) ?? Tips.GetValueOrDefault("en") ?? Array.Empty<string>();
+    public string? BenefitsText(string lang) => Benefits?.GetValueOrDefault(lang) ?? Benefits?.GetValueOrDefault("en");
     public string? CautionText(string lang) => Cautions?.GetValueOrDefault(lang) ?? Cautions?.GetValueOrDefault("en");
 }
 

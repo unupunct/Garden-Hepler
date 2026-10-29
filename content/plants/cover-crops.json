@@ -59,6 +59,11 @@
     "heightCm": {
       "min": 5,
       "max": 20
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
     }
   },
   {
@@ -223,7 +228,8 @@
     "roles": [
       "biomass",
       "pollinator",
-      "compost-activator"
+      "compost-activator",
+      "medicinal"
     ],
     "nitrogenFixing": false,
     "confidence": "moderate",
@@ -231,6 +237,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance; figures are typical ranges for temperate climates and must be checked against local extension advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -252,6 +262,25 @@
     "heightCm": {
       "min": 60,
       "max": 120
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves and root, for the skin only.",
+        "ro": "Frunzele și rădăcina, doar pentru piele."
+      },
+      "uses": {
+        "en": "Poultice, ointment or compress traditionally used on bruises and sprains on unbroken skin.",
+        "ro": "Cataplasmă, unguent sau compresă folosite tradițional pe vânătăi și entorse, pe piele intactă."
+      },
+      "safety": {
+        "en": "Do not take it by mouth: it contains pyrrolizidine alkaloids that damage the liver. Never on broken skin or deep wounds; not in pregnancy or breastfeeding; limit to a few weeks a year.",
+        "ro": "Nu o lua pe gură: conține alcaloizi pirolizidinici care afectează ficatul. Niciodată pe piele lezată sau răni adânci; nu în sarcină sau alăptare; limitează la câteva săptămâni pe an."
+      }
     }
   }
 ]

@@ -1,0 +1,1276 @@
+[
+  {
+    "id": "small-leaved-lime",
+    "names": {
+      "en": [
+        "Small-leaved lime",
+        "Linden"
+      ],
+      "ro": [
+        "Tei",
+        "Tei pucios"
+      ]
+    },
+    "scientific": "Tilia cordata",
+    "synonyms": [],
+    "family": "Malvaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Large native tree whose June-July flowers are one of the most important honey sources in Romania. The flowers make a classic traditional tea. Needs space: it becomes a very large tree.",
+      "ro": "Arbore nativ mare ale cărui flori din iunie-iulie sunt printre cele mai importante surse de miere din România. Florile dau un ceai tradițional clasic. Are nevoie de loc: devine un arbore foarte mare."
+    },
+    "tips": {
+      "en": [
+        "Plant at least 8-10 m from buildings; it tolerates pruning and pollarding. Honeydew from aphids can make cars and benches sticky underneath.",
+        "Pick the flower clusters with their pale bract when just open, on a dry day, and dry them in shade."
+      ],
+      "ro": [
+        "Plantează la cel puțin 8-10 m de clădiri; suportă tăierea și capetele de salcie. Mierea de rouă de la afide poate lipi mașinile și băncile de dedesubt.",
+        "Culege inflorescențele cu bractea pală imediat ce se deschid, într-o zi uscată, și usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "canopy",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 7
+    },
+    "benefits": {
+      "en": "A single mature lime can feed thousands of bees; it is also a long-lived shade tree, with leaf litter that enriches the soil.",
+      "ro": "Un singur tei matur poate hrăni mii de albine; este și un arbore de umbră de lungă durată, cu litieră care îmbogățește solul."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowers with bract.",
+        "ro": "Florile cu bractee."
+      },
+      "uses": {
+        "en": "Warm infusion traditionally drunk for colds, to bring on sweating and to calm.",
+        "ro": "Infuzie caldă băută tradițional la răceli, pentru transpirație și ca liniștitor."
+      },
+      "safety": {
+        "en": "Do not use for long periods: very long, regular use of lime tea has been linked with heart problems in people with heart disease. Avoid if you have heart disease, and use only fresh, sound flowers (not mouldy ones).",
+        "ro": "Nu o folosi perioade lungi: folosirea foarte îndelungată și regulată a ceaiului de tei a fost asociată cu probleme de inimă la persoane cu boli cardiace. Evită-o dacă ai boli de inimă și folosește doar flori proaspete, sănătoase (nu mucegăite)."
+      }
+    },
+    "spacingCm": {
+      "min": 800,
+      "max": 1200
+    },
+    "heightCm": {
+      "min": 1500,
+      "max": 3000
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "hawthorn",
+    "names": {
+      "en": [
+        "Common hawthorn",
+        "Whitethorn"
+      ],
+      "ro": [
+        "Păducel",
+        "Gherghinar"
+      ]
+    },
+    "scientific": "Crataegus monogyna",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Thorny native shrub or small tree, the best stock-proof hedge. Massed white May blossom feeds insects, red haws feed birds, and the dense thorny growth gives them shelter.",
+      "ro": "Arbust sau arbore mic nativ, spinos, cel mai bun gard viu protector. Floarea albă de mai hrănește insectele, fructele roșii hrănesc păsările, iar creșterea deasă și spinoasă le oferă adăpost."
+    },
+    "tips": {
+      "en": [
+        "Plant bare-root whips in winter 30-40 cm apart in a double row; cut back hard in the first years to thicken the hedge.",
+        "Pick flowering tops in May and ripe berries in autumn if you want them for tea."
+      ],
+      "ro": [
+        "Plantează puieți cu rădăcina goală iarna la 30-40 cm, în rând dublu; taie sever în primii ani pentru a îndesi gardul.",
+        "Culege vârfurile înflorite în mai și fructele coapte toamna dacă le vrei pentru ceai."
+      ]
+    },
+    "roles": [
+      "hedge",
+      "pollinator",
+      "wildlife",
+      "shrub-layer",
+      "medicinal",
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Supports hundreds of insect species, including pollinators and the predators of garden pests; the thorns protect nesting birds.",
+      "ro": "Susține sute de specii de insecte, inclusiv polenizatori și prădători ai dăunătorilor din grădină; spinii protejează păsările care cuibăresc."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowers, leaves and ripe berries.",
+        "ro": "Florile, frunzele și fructele coapte."
+      },
+      "uses": {
+        "en": "Tea or tincture traditionally taken to support the heart and circulation and for mild nervousness.",
+        "ro": "Ceai sau tinctură luate tradițional pentru susținerea inimii și circulației și pentru nervozitate ușoară."
+      },
+      "safety": {
+        "en": "Do not self-medicate for any heart problem. It can interact with heart medicines (digoxin, beta-blockers, blood-pressure drugs). Ask a doctor first; stop and seek help if you get dizziness or palpitations.",
+        "ro": "Nu te trata singur pentru probleme de inimă. Poate interacționa cu medicamentele pentru inimă (digoxin, beta-blocante, antihipertensive). Întreabă mai întâi medicul; oprește-te și cere ajutor dacă ai amețeli sau palpitații."
+      }
+    },
+    "cautions": {
+      "en": "Thorns can cause deep scratches that fester. Keep it away from play areas.",
+      "ro": "Spinii pot provoca zgârieturi adânci care se infectează. Ține-l departe de locurile de joacă."
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 100
+    },
+    "heightCm": {
+      "min": 300,
+      "max": 800
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "blackthorn",
+    "names": {
+      "en": [
+        "Blackthorn",
+        "Sloe"
+      ],
+      "ro": [
+        "Porumbar",
+        "Mărăcine"
+      ]
+    },
+    "scientific": "Prunus spinosa",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Thorny native shrub whose white blossom opens on bare branches in March-April, long before leaves, giving early bees a vital feed. The blue-black sloes are edible after frost.",
+      "ro": "Arbust spinos nativ, ale cărui flori albe se deschid pe ramuri goale în martie-aprilie, cu mult înaintea frunzelor, oferind albinelor timpurii o hrană vitală. Fructele albastre-negre se pot mânca după îngheț."
+    },
+    "tips": {
+      "en": [
+        "Plant as a stock-proof hedge; it spreads by suckers, so edge it or mow around it.",
+        "Sloes are very sour: pick after the first frost and use in jam, liqueur or sauces."
+      ],
+      "ro": [
+        "Plantează ca gard viu protector; se extinde prin drajoni, deci limitează-l sau coase în jur.",
+        "Fructele sunt foarte acre: culege după primul îngheț și folosește-le în dulceață, lichior sau sosuri."
+      ]
+    },
+    "roles": [
+      "hedge",
+      "pollinator",
+      "wildlife",
+      "shrub-layer",
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 3,
+      "max": 4
+    },
+    "benefits": {
+      "en": "A key early-spring nectar source and the caterpillar food plant of the brown hairstreak butterfly; thorny cover for nesting birds.",
+      "ro": "Sursă-cheie de nectar la începutul primăverii și plantă-gazdă pentru omizile unor fluturi; adăpost spinos pentru păsările care cuibăresc."
+    },
+    "cautions": {
+      "en": "Seeds (stones) contain cyanogenic compounds: do not crush or eat them. The thorns are sharp and can cause infected wounds.",
+      "ro": "Sâmburii conțin compuși cianogenici: nu-i zdrobi și nu-i mânca. Spinii sunt ascuțiți și pot provoca răni infectate."
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 100
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 400
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "field-maple",
+    "names": {
+      "en": [
+        "Field maple"
+      ],
+      "ro": [
+        "Jugastru",
+        "Arțar de câmp"
+      ]
+    },
+    "scientific": "Acer campestre",
+    "synonyms": [],
+    "family": "Sapindaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Small native maple that makes an excellent, dense, clippable hedge or a modest tree with golden autumn colour. Its spring flowers are visited heavily by bees.",
+      "ro": "Arțar mic nativ care formează un gard viu excelent, des și tuns, sau un arbore modest cu culori aurii toamna. Florile de primăvară sunt vizitate intens de albine."
+    },
+    "tips": {
+      "en": [
+        "Plant as a hedge 40 cm apart; it tolerates clipping and drought once established.",
+        "Leave a hedgerow tree here and there to grow tall for wildlife."
+      ],
+      "ro": [
+        "Plantează ca gard viu la 40 cm; suportă tunsul și seceta odată instalat.",
+        "Lasă ici-colo un arbore în gardul viu să crească înalt pentru viața sălbatică."
+      ]
+    },
+    "roles": [
+      "hedge",
+      "pollinator",
+      "wildlife",
+      "canopy",
+      "windbreak"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 5
+    },
+    "benefits": {
+      "en": "Good, early bee forage and a tough, wind-resistant hedge that holds up against pollution and salt.",
+      "ro": "Furaj timpuriu bun pentru albine și gard viu rezistent la vânt, poluare și sare."
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 100
+    },
+    "heightCm": {
+      "min": 800,
+      "max": 1500
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "hornbeam",
+    "names": {
+      "en": [
+        "Hornbeam"
+      ],
+      "ro": [
+        "Carpen"
+      ]
+    },
+    "scientific": "Carpinus betulus",
+    "synonyms": [],
+    "family": "Betulaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native deciduous tree whose clipped hedges hold their golden leaves through winter, giving shelter to birds. Withstands heavy clay and wet soils better than beech.",
+      "ro": "Arbore nativ foios ale cărui garduri tunse își păstrează frunzele aurii peste iarnă, oferind adăpost păsărilor. Suportă mai bine decât fagul solurile argiloase și umede."
+    },
+    "tips": {
+      "en": [
+        "Plant as a hedge at 3 per metre in autumn or winter; clip in late summer.",
+        "Wind-pollinated, but the seeds feed finches and nuthatches."
+      ],
+      "ro": [
+        "Plantează ca gard viu, 3 pe metru, toamna sau iarna; tunde la sfârșitul verii.",
+        "Polenizat de vânt, dar semințele hrănesc cinteze și țigănuși."
+      ]
+    },
+    "roles": [
+      "hedge",
+      "wildlife",
+      "windbreak",
+      "canopy"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 5
+    },
+    "benefits": {
+      "en": "Dense winter-leaved hedge for roosting birds; tolerates compacted, poorly drained soil where other trees struggle.",
+      "ro": "Gard viu des, cu frunze iarna, pentru păsări; suportă sol compactat și prost drenat unde alți arbori se descurcă greu."
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 800,
+      "max": 2000
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "rowan",
+    "names": {
+      "en": [
+        "Rowan",
+        "Mountain ash"
+      ],
+      "ro": [
+        "Scoruș",
+        "Scoruș de munte"
+      ]
+    },
+    "scientific": "Sorbus aucuparia",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Small native tree with cream flower clusters in May and bright red berries in autumn that birds devour. Hardy and elegant for cooler, higher gardens.",
+      "ro": "Arbore nativ mic, cu inflorescențe crem în mai și fructe roșii vii toamna, devorate de păsări. Rezistent și elegant pentru grădinile mai răcoroase și mai înalte."
+    },
+    "tips": {
+      "en": [
+        "Plant in sun or part shade in moist, acid to neutral soil; it dislikes heavy drought.",
+        "Berries are bitter raw; cooked into jelly (with sugar) they go well with game."
+      ],
+      "ro": [
+        "Plantează la soare sau semiumbră pe sol umed, acid până la neutru; nu-i place seceta puternică.",
+        "Fructele sunt amare crude; fierte ca jeleu (cu zahăr) se potrivesc cu vânatul."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "food",
+      "canopy"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Flowers feed bees and hoverflies; berries feed thrushes and waxwings into winter.",
+      "ro": "Florile hrănesc albine și sirfide; fructele hrănesc sturzi până în iarnă."
+    },
+    "cautions": {
+      "en": "Raw berries contain parasorbic acid and can upset the stomach; always cook them.",
+      "ro": "Fructele crude conțin acid parasorbic și pot deranja stomacul; gătește-le mereu."
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 500,
+      "max": 1200
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "guelder-rose",
+    "names": {
+      "en": [
+        "Guelder rose"
+      ],
+      "ro": [
+        "Călin",
+        "Călinul"
+      ]
+    },
+    "scientific": "Viburnum opulus",
+    "synonyms": [],
+    "family": "Adoxaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native shrub of damp ground with lacy white flower heads in May-June, maple-like leaves and heavy clusters of glossy red berries in autumn. A national symbol in Romanian culture (călin).",
+      "ro": "Arbust nativ de teren umed, cu inflorescențe albe ca dantela în mai-iunie, frunze asemănătoare arțarului și ciorchini grei de fructe roșii lucioase toamna. Simbol important în cultura românească (călinul)."
+    },
+    "tips": {
+      "en": [
+        "Plant in moist or damp soil; prune after flowering. Choose the wild form (not the sterile 'snowball') for wildlife.",
+        "Berries are very bitter and mildly toxic raw; cooked, strained and sweetened they are used in jams and traditional remedies."
+      ],
+      "ro": [
+        "Plantează pe sol umed; taie după înflorire. Alege forma sălbatică (nu „bulgărele de zăpadă” steril) pentru viața sălbatică.",
+        "Fructele sunt foarte amare și ușor toxice crude; fierte, strecurate și îndulcite se folosesc în dulcețuri și remedii tradiționale."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "shrub-layer",
+      "food",
+      "medicinal",
+      "hedge"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Flat flowers for hoverflies and beetles; berries feed birds in winter; a good shrub for wet corners and streamsides.",
+      "ro": "Flori plate pentru sirfide și gândaci; fructele hrănesc păsările iarna; arbust bun pentru colțuri umede și maluri de ape."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Bark and cooked berries.",
+        "ro": "Scoarța și fructele fierte."
+      },
+      "uses": {
+        "en": "Traditionally used as a syrup or tea for coughs and colds, and the bark for cramps.",
+        "ro": "Folosit tradițional ca sirop sau ceai pentru tuse și răceli, iar scoarța pentru crampe."
+      },
+      "safety": {
+        "en": "Raw berries cause vomiting and diarrhoea in quantity. Avoid in pregnancy. Do not self-treat persistent cough or chest pain.",
+        "ro": "Fructele crude provoacă vărsături și diaree în cantitate. Evită în sarcină. Nu te trata singur pentru tuse persistentă sau durere în piept."
+      }
+    },
+    "spacingCm": {
+      "min": 150,
+      "max": 250
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 400
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "wild-crab-apple",
+    "names": {
+      "en": [
+        "European wild apple",
+        "Crab apple"
+      ],
+      "ro": [
+        "Măr pădureț",
+        "Mărul-pădureț"
+      ]
+    },
+    "scientific": "Malus sylvestris",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Small native thorny apple tree with pink-white blossom and small, sour, hard fruits. A superb pollinator tree for orchards and a source of tart fruit for jellies and cider.",
+      "ro": "Măr nativ mic, spinos, cu flori roz-albe și fructe mici, acre, tari. Arbore polenizator excelent pentru livezi și sursă de fructe acre pentru jeleuri și must."
+    },
+    "tips": {
+      "en": [
+        "Plant near orchard apples: its long blossom period helps cross-pollinate them.",
+        "Cut fruit in half and use in jelly; pick when fully ripe."
+      ],
+      "ro": [
+        "Plantează lângă merii din livadă: perioada lungă de înflorire ajută la polenizarea încrucișată.",
+        "Taie fructele în două și folosește-le în jeleu; culege-le când sunt complet coapte."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "food",
+      "canopy",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 5
+    },
+    "benefits": {
+      "en": "Flowers feed many bees; the fruit feeds birds and mammals in winter; improves pollination of cultivated apples.",
+      "ro": "Florile hrănesc multe albine; fructele hrănesc păsări și mamifere iarna; îmbunătățește polenizarea merilor cultivați."
+    },
+    "spacingCm": {
+      "min": 400,
+      "max": 600
+    },
+    "heightCm": {
+      "min": 400,
+      "max": 1000
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "black-locust",
+    "names": {
+      "en": [
+        "Black locust",
+        "False acacia"
+      ],
+      "ro": [
+        "Salcâm",
+        "Acacia albă"
+      ]
+    },
+    "scientific": "Robinia pseudoacacia",
+    "synonyms": [],
+    "family": "Fabaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "North American tree widely planted in Romania for its fragrant white flowers (the source of salcâm honey), fast growth, durable timber and nitrogen fixing. It is also invasive: it spreads by suckers and seed into natural grassland and woodland.",
+      "ro": "Arbore din America de Nord, plantat larg în România pentru florile albe parfumate (sursa mierii de salcâm), creșterea rapidă, lemnul durabil și fixarea azotului. Este și invaziv: se răspândește prin drajoni și semințe în pajiști și păduri naturale."
+    },
+    "tips": {
+      "en": [
+        "If you plant one, keep it away from meadows and natural habitats, and be ready to cut suckers every year; coppicing makes durable fence posts.",
+        "The flowers can be eaten as fritters; every other part is toxic."
+      ],
+      "ro": [
+        "Dacă plantezi unul, ține-l departe de pajiști și habitate naturale și fii gata să tai drajonii în fiecare an; tăiat la sol dă stâlpi de gard durabili.",
+        "Florile se pot mânca ca papanași; toate celelalte părți sunt toxice."
+      ]
+    },
+    "roles": [
+      "nitrogen-fixer",
+      "pollinator",
+      "windbreak",
+      "biomass",
+      "canopy"
+    ],
+    "nitrogenFixing": true,
+    "origin": "invasive",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Excellent honey tree and rot-resistant timber, and its nitrogen-fixing roots enrich poor soil; but its suckering habit and shade of native plants make it a problem outside managed land.",
+      "ro": "Arbore melifer excelent și lemn rezistent la putrezire, iar rădăcinile fixatoare de azot îmbogățesc solul sărac; dar drajonii și umbra asupra plantelor native îl fac o problemă în afara terenurilor gestionate."
+    },
+    "cautions": {
+      "en": "Bark, leaves and seeds are poisonous; the thorns are sharp. Invasive in Romania: avoid planting near natural sites and never dump cuttings in the wild.",
+      "ro": "Scoarța, frunzele și semințele sunt otrăvitoare; spinii sunt ascuțiți. Invaziv în România: evită plantarea lângă zone naturale și nu arunca niciodată resturile în natură."
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 600
+    },
+    "heightCm": {
+      "min": 1500,
+      "max": 2500
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "black-alder",
+    "names": {
+      "en": [
+        "Black alder",
+        "Common alder"
+      ],
+      "ro": [
+        "Anin negru",
+        "Arin negru"
+      ]
+    },
+    "scientific": "Alnus glutinosa",
+    "synonyms": [],
+    "family": "Betulaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native tree of wet ground that fixes nitrogen with root bacteria (actinorhizal), so it improves soil as it grows. Valuable for stream banks, wet meadows and poor, soggy plots.",
+      "ro": "Arbore nativ de teren umed care fixează azot prin bacterii din rădăcini (actinorizic), deci îmbunătățește solul pe măsură ce crește. Valoros pentru maluri de ape, pajiști umede și parcele sărace și îmbibate."
+    },
+    "tips": {
+      "en": [
+        "Plant in wet, even waterlogged soil; it cannot cope with drought. Coppice for fuel and mulch.",
+        "Do not plant over drains: roots seek water."
+      ],
+      "ro": [
+        "Plantează pe sol umed, chiar băltit; nu suportă seceta. Taie la sol pentru lemne de foc și mulci.",
+        "Nu-l planta deasupra canalizărilor: rădăcinile caută apa."
+      ]
+    },
+    "roles": [
+      "nitrogen-fixer",
+      "windbreak",
+      "wildlife",
+      "biomass",
+      "canopy"
+    ],
+    "nitrogenFixing": true,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 2,
+      "max": 3
+    },
+    "benefits": {
+      "en": "Fixes nitrogen on poor wet ground; early catkins give pollen to bees in late winter; its leaf litter is nutrient-rich.",
+      "ro": "Fixează azot pe teren sărac și umed; amenții timpurii dau polen albinelor la sfârșit de iarnă; litiera de frunze este bogată în nutrienți."
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 1500,
+      "max": 2500
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "goat-willow",
+    "names": {
+      "en": [
+        "Goat willow",
+        "Pussy willow"
+      ],
+      "ro": [
+        "Salcie căprească",
+        "Răchită"
+      ]
+    },
+    "scientific": "Salix caprea",
+    "synonyms": [],
+    "family": "Salicaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native shrubby willow with silver 'pussy' catkins that open in March, giving bees the earliest and one of the most valuable pollen and nectar flushes of the year.",
+      "ro": "Salcie nativă arbustivă, cu amenți argintii pufoși care se deschid în martie, oferind albinelor una dintre cele mai timpurii și valoroase surse de polen și nectar ale anului."
+    },
+    "tips": {
+      "en": [
+        "Plant in moist soil in sun; cuttings root easily in winter.",
+        "Cut stems after flowering for plant supports or weaving."
+      ],
+      "ro": [
+        "Plantează pe sol umed la soare; butașii prind ușor iarna.",
+        "Taie tulpini după înflorire pentru tutori sau împletituri."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "biomass",
+      "shrub-layer",
+      "windbreak"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 3,
+      "max": 4
+    },
+    "benefits": {
+      "en": "A lifeline for bees in early spring, the host of many moths and butterflies; its leaves make good compost and fodder.",
+      "ro": "Sursă vitală pentru albine la începutul primăverii, gazdă pentru multe molii și fluturi; frunzele fac compost bun și furaj."
+    },
+    "spacingCm": {
+      "min": 200,
+      "max": 400
+    },
+    "heightCm": {
+      "min": 400,
+      "max": 1000
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "white-willow",
+    "names": {
+      "en": [
+        "White willow"
+      ],
+      "ro": [
+        "Salcie albă",
+        "Salcie"
+      ]
+    },
+    "scientific": "Salix alba",
+    "synonyms": [],
+    "family": "Salicaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Large native willow of riversides with silvery leaves and flexible withies. The bark is the historic source of salicin, the forerunner of aspirin. Needs a lot of room and wet ground.",
+      "ro": "Salcie nativă mare de lângă râuri, cu frunze argintii și nuiele flexibile. Scoarța este sursa istorică a salicinei, precursorul aspirinei. Are nevoie de mult loc și de teren umed."
+    },
+    "tips": {
+      "en": [
+        "Plant only on large, wet sites: roots are aggressive near drains and foundations.",
+        "Cut withies in winter for basketry and plant supports; cuttings root easily in water."
+      ],
+      "ro": [
+        "Plantează doar pe terenuri mari și umede: rădăcinile sunt agresive lângă canalizări și fundații.",
+        "Taie nuiele iarna pentru împletituri și tutori; butașii prind ușor în apă."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "biomass",
+      "medicinal",
+      "windbreak"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 5
+    },
+    "benefits": {
+      "en": "Good spring forage for bees and a flexible source of withies and rooting hormone: willow water made from soaked cuttings helps other cuttings root.",
+      "ro": "Furaj de primăvară bun pentru albine și sursă de nuiele și de hormon de înrădăcinare: apa de salcie, din butași înmuiați, ajută alți butași să prindă."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Inner bark of young branches.",
+        "ro": "Scoarța interioară a ramurilor tinere."
+      },
+      "uses": {
+        "en": "Bark tea traditionally used for aches, fever and joint pain.",
+        "ro": "Ceai din scoarță folosit tradițional pentru dureri, febră și dureri articulare."
+      },
+      "safety": {
+        "en": "Do not use if allergic to aspirin or if you take blood thinners, have asthma triggered by aspirin, stomach ulcers or are pregnant. Not for children (Reye's syndrome).",
+        "ro": "Nu o folosi dacă ești alergic la aspirină sau iei anticoagulante, ai astm declanșat de aspirină, ulcer gastric sau ești însărcinată. Nu se dă copiilor (sindrom Reye)."
+      }
+    },
+    "spacingCm": {
+      "min": 500,
+      "max": 800
+    },
+    "heightCm": {
+      "min": 1500,
+      "max": 2500
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "bird-cherry",
+    "names": {
+      "en": [
+        "Bird cherry"
+      ],
+      "ro": [
+        "Mălin",
+        "Mălin de pădure"
+      ]
+    },
+    "scientific": "Prunus padus",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native tree with long, fragrant, almond-scented white flower racemes in April-May and small black cherries eaten by birds. Likes damp ground and tolerates cold.",
+      "ro": "Arbore nativ cu raceme lungi de flori albe parfumate, cu miros de migdale, în aprilie-mai și cireșe mici negre mâncate de păsări. Îi plac terenurile umede și suportă frigul."
+    },
+    "tips": {
+      "en": [
+        "Plant in moist soil; give it room as it suckers. Cut flowering branches for cut flowers: the scent is strong.",
+        "Fruit is bitter and not eaten raw; the seed is poisonous."
+      ],
+      "ro": [
+        "Plantează pe sol umed; dă-i loc, deoarece drajonează. Taie ramuri înflorite pentru vază: mirosul este puternic.",
+        "Fructele sunt amare și nu se mănâncă crude; sâmburele este otrăvitor."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "shrub-layer",
+      "hedge",
+      "canopy"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 5
+    },
+    "benefits": {
+      "en": "Early flowers for bees and hoverflies; the caterpillar host for ermine moths; a good screening tree.",
+      "ro": "Flori timpurii pentru albine și sirfide; plantă-gazdă pentru omizile unor molii; arbore bun pentru paravan."
+    },
+    "cautions": {
+      "en": "Seeds, leaves and bark contain cyanogenic compounds: do not eat the stones or use the plant medicinally.",
+      "ro": "Sâmburii, frunzele și scoarța conțin compuși cianogenici: nu mânca sâmburii și nu folosi planta medicinal."
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 500,
+      "max": 1200
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "common-dogwood",
+    "names": {
+      "en": [
+        "Common dogwood"
+      ],
+      "ro": [
+        "Sânger",
+        "Sângerul"
+      ]
+    },
+    "scientific": "Cornus sanguinea",
+    "synonyms": [],
+    "family": "Cornaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native hedge shrub with deep red winter stems, flat white flower heads in early summer and black berries that birds eat. Easy, tough and good on chalky soils.",
+      "ro": "Arbust nativ de gard viu, cu tulpini roșii intense iarna, inflorescențe plate albe la începutul verii și fructe negre mâncate de păsări. Ușor de crescut, rezistent și bun pe soluri calcaroase."
+    },
+    "tips": {
+      "en": [
+        "Plant in a mixed hedge 50 cm apart; cut a third of the oldest stems to the ground each year for brighter growth.",
+        "Berries are bitter: leave them for birds."
+      ],
+      "ro": [
+        "Plantează într-un gard viu mixt la 50 cm; taie o treime din cele mai vechi tulpini la sol în fiecare an pentru creștere mai viu colorată.",
+        "Fructele sunt amare: lasă-le păsărilor."
+      ]
+    },
+    "roles": [
+      "hedge",
+      "pollinator",
+      "wildlife",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
+    },
+    "benefits": {
+      "en": "Flat flowers feed beetles and hoverflies; the red stems brighten winter; a tough hedge filler.",
+      "ro": "Florile plate hrănesc gândaci și sirfide; tulpinile roșii însuflețesc iarna; completare rezistentă pentru gard viu."
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 100
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 400
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "alder-buckthorn",
+    "names": {
+      "en": [
+        "Alder buckthorn"
+      ],
+      "ro": [
+        "Crușin",
+        "Cruscuț"
+      ]
+    },
+    "scientific": "Frangula alnus",
+    "synonyms": [],
+    "family": "Rhamnaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native shrub of damp places with small greenish flowers that bees visit from May to September; the berries ripen from red to black. The brimstone butterfly lays its eggs on it.",
+      "ro": "Arbust nativ de locuri umede, cu flori mici verzui vizitate de albine din mai până în septembrie; fructele se coc de la roșu la negru. Fluturele galben de sulf își depune ouăle pe el."
+    },
+    "tips": {
+      "en": [
+        "Plant in damp ground; it tolerates shade and acid soils.",
+        "Do not use the bark or berries: they are strongly purgative."
+      ],
+      "ro": [
+        "Plantează pe sol umed; suportă umbra și solurile acide.",
+        "Nu folosi scoarța sau fructele: sunt puternic purgative."
+      ]
+    },
+    "roles": [
+      "pollinator",
+      "wildlife",
+      "shrub-layer",
+      "hedge",
+      "medicinal"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
+    },
+    "benefits": {
+      "en": "A long-flowering nectar plant and the larval food plant of the brimstone butterfly.",
+      "ro": "Plantă nectarieră cu înflorire lungă și plantă-gazdă pentru omizile fluturelui galben de sulf."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Aged bark only (traditional).",
+        "ro": "Doar scoarța învechită (tradițional)."
+      },
+      "uses": {
+        "en": "Dried, aged bark was a traditional laxative.",
+        "ro": "Scoarța uscată și învechită era un laxativ tradițional."
+      },
+      "safety": {
+        "en": "Fresh bark and the berries cause violent vomiting and cramps. Not safe for home use; do not use in pregnancy, for children, or for more than a few days. Mentioned for awareness only.",
+        "ro": "Scoarța proaspătă și fructele provoacă vărsături violente și crampe. Nu este sigură pentru uz casnic; nu o folosi în sarcină, la copii sau mai mult de câteva zile. Menționată doar pentru informare."
+      }
+    },
+    "spacingCm": {
+      "min": 150,
+      "max": 250
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 500
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "wild-privet",
+    "names": {
+      "en": [
+        "Wild privet"
+      ],
+      "ro": [
+        "Lemn-câinesc",
+        "Ligustru"
+      ]
+    },
+    "scientific": "Ligustrum vulgare",
+    "synonyms": [],
+    "family": "Oleaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native semi-evergreen shrub with creamy, scented flower clusters in early summer and shiny black berries. A traditional, easy clipped hedge that is good for wildlife if allowed to flower.",
+      "ro": "Arbust nativ semiveșnic verde, cu inflorescențe crem parfumate la începutul verii și fructe negre lucioase. Gard viu tradițional, ușor de tuns, bun pentru viața sălbatică dacă i se permite să înflorească."
+    },
+    "tips": {
+      "en": [
+        "Plant as a hedge 30-40 cm apart in sun or shade; clip in late summer, leaving some stretches unclipped to flower.",
+        "Berries are poisonous to people."
+      ],
+      "ro": [
+        "Plantează ca gard viu la 30-40 cm la soare sau umbră; tunde la sfârșitul verii, lăsând porțiuni netunse pentru înflorire.",
+        "Fructele sunt otrăvitoare pentru oameni."
+      ]
+    },
+    "roles": [
+      "hedge",
+      "pollinator",
+      "wildlife",
+      "shrub-layer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 7
+    },
+    "benefits": {
+      "en": "Heavily scented flowers for bees and moths; the larval food of privet hawkmoth; dense winter cover for birds.",
+      "ro": "Flori puternic parfumate pentru albine și molii; hrana omizilor unor sfinxi; adăpost dens iarna pentru păsări."
+    },
+    "cautions": {
+      "en": "Berries and leaves are poisonous if eaten. Keep children and pets away.",
+      "ro": "Fructele și frunzele sunt otrăvitoare dacă sunt mâncate. Ține copiii și animalele departe."
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 50
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 400
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "silver-birch",
+    "names": {
+      "en": [
+        "Silver birch"
+      ],
+      "ro": [
+        "Mesteacăn",
+        "Mesteacăn comun"
+      ]
+    },
+    "scientific": "Betula pendula",
+    "synonyms": [],
+    "family": "Betulaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Graceful native pioneer tree with white bark and light shade, ideal for acid, poor, sandy soils. Spring sap is tapped traditionally and the leaves are used in teas.",
+      "ro": "Arbore pionier nativ, grațios, cu scoarță albă și umbră ușoară, ideal pentru soluri acide, sărace și nisipoase. Seva de primăvară este recoltată tradițional, iar frunzele se folosesc în ceaiuri."
+    },
+    "tips": {
+      "en": [
+        "Plant in full sun; it dislikes heavy shade and waterlogging. Light shade lets lawn, bulbs and woodland plants grow beneath.",
+        "Tap sap only in early spring for a short time and plug the hole; take no more than a fraction of the tree's sap."
+      ],
+      "ro": [
+        "Plantează la soare plin; nu-i place umbra deasă și băltirea. Umbra ușoară permite gazonului, bulbilor și plantelor de pădure să crească dedesubt.",
+        "Recoltează seva doar la începutul primăverii, pentru scurt timp, și astupă gaura; ia doar o fracțiune din seva copacului."
+      ]
+    },
+    "roles": [
+      "wildlife",
+      "canopy",
+      "medicinal",
+      "biomass"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 5
+    },
+    "benefits": {
+      "en": "Light, dappled shade suits a woodland garden; home to hundreds of insect species and finches that eat the seed.",
+      "ro": "Umbra ușoară, pestriță, se potrivește unei grădini de pădure; găzduiește sute de specii de insecte și cinteze care mănâncă sămânța."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Young leaves, sap.",
+        "ro": "Frunzele tinere, seva."
+      },
+      "uses": {
+        "en": "Leaf tea traditionally used as a mild diuretic and for joint comfort; spring sap as a tonic drink.",
+        "ro": "Ceai din frunze folosit tradițional ca diuretic ușor și pentru confortul articulațiilor; seva de primăvară ca băutură tonică."
+      },
+      "safety": {
+        "en": "Avoid if allergic to birch pollen (cross-reaction with apples, hazelnuts). Avoid with diuretics or if you must limit fluid or potassium; not in pregnancy.",
+        "ro": "Evită-o dacă ești alergic la polenul de mesteacăn (reacție încrucișată cu mere și alune). Evită-o cu diuretice sau dacă trebuie să-ți limitezi lichidele sau potasiul; nu în sarcină."
+      }
+    },
+    "spacingCm": {
+      "min": 300,
+      "max": 500
+    },
+    "heightCm": {
+      "min": 1500,
+      "max": 2500
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  }
+]

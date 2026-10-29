@@ -1,0 +1,1909 @@
+[
+  {
+    "id": "german-chamomile",
+    "names": {
+      "en": [
+        "German chamomile",
+        "Wild chamomile"
+      ],
+      "ro": [
+        "Mușețel",
+        "Romaniță"
+      ]
+    },
+    "scientific": "Matricaria chamomilla",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Fragrant native annual with white-and-yellow daisy flowers. One of the best-known traditional herbal teas in Romania; it self-seeds easily and feeds hoverflies.",
+      "ro": "Plantă anuală nativă parfumată, cu flori albe cu centru galben. Unul dintre cele mai cunoscute ceaiuri tradiționale din România; se reînsămânțează ușor și hrănește sirfide."
+    },
+    "tips": {
+      "en": [
+        "Sow on the soil surface in spring or autumn; do not cover the seed.",
+        "Pick the flower heads when the white petals are fully open, on a dry morning, and dry them in shade."
+      ],
+      "ro": [
+        "Seamănă la suprafața solului primăvara sau toamna; nu acoperi sămânța.",
+        "Culege capitulele când petalele albe sunt complet deschise, într-o dimineață uscată, și usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "beneficial-insects"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Small flowers attract hoverflies and tiny parasitic wasps; planted among cabbages it is often said to improve their growth and flavour.",
+      "ro": "Florile mici atrag sirfide și viespi parazite minuscule; plantat printre verze se spune că le îmbunătățește creșterea și gustul."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flower heads.",
+        "ro": "Capitulele florale."
+      },
+      "uses": {
+        "en": "Infusion traditionally taken for upset stomach, cramps and to help sleep; cooled tea as a mouth rinse or compress for mild skin irritation.",
+        "ro": "Infuzie luată tradițional pentru stomac deranjat, crampe și ca ajutor la somn; ceai răcit ca gargară sau compresă pentru iritații ușoare ale pielii."
+      },
+      "safety": {
+        "en": "Avoid if allergic to the daisy family (ragweed, chrysanthemum, marigold). Can add to the effect of blood-thinning medicines; in pregnancy use only small amounts. Do not put strong tea in the eyes.",
+        "ro": "Evită dacă ești alergic la familia margaretelor (ambrozie, crizantemă, gălbenele). Poate crește efectul anticoagulantelor; în sarcină folosește doar cantități mici. Nu pune ceai concentrat în ochi."
+      }
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 15,
+      "max": 25
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 50
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "st-johns-wort",
+    "names": {
+      "en": [
+        "St John's wort",
+        "Common St John's wort"
+      ],
+      "ro": [
+        "Sunătoare",
+        "Pojarniță"
+      ]
+    },
+    "scientific": "Hypericum perforatum",
+    "synonyms": [],
+    "family": "Hypericaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native perennial with golden flowers that bloom around midsummer, dotted with translucent oil glands. A famous Romanian herbal plant, but one with serious medicine interactions.",
+      "ro": "Plantă perenă nativă cu flori aurii, care înfloresc în jurul miezului verii, cu glande de ulei translucide. O plantă medicinală foarte cunoscută în România, dar cu interacțiuni serioase cu medicamentele."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring on sunny, well-drained ground; it spreads by runners. It is a weed in pasture because it is toxic to livestock.",
+        "Pick flowering tops in full flower on a dry day; dry them in shade."
+      ],
+      "ro": [
+        "Seamănă primăvara pe sol însorit și drenat; se extinde prin stoloni. Este buruiană în pășuni pentru că este toxică pentru animale.",
+        "Culege vârfurile înflorite la floare plină, într-o zi uscată; usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Hoverflies and bees use the pollen; the plant tolerates dry, poor ground where little else flowers.",
+      "ro": "Sirfidele și albinele folosesc polenul; planta suportă sol uscat și sărac, unde altceva nu înflorește."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowering tops.",
+        "ro": "Vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Tea or oil traditionally used for mild low mood and nervous tension, and the red oil externally for minor burns and muscle aches.",
+        "ro": "Ceai sau ulei folosit tradițional pentru dispoziție scăzută ușoară și tensiune nervoasă, iar uleiul roșu extern pentru arsuri minore și dureri musculare."
+      },
+      "safety": {
+        "en": "DANGEROUS INTERACTIONS: it weakens contraceptive pills, antidepressants (risk of serotonin syndrome), anticoagulants, HIV and transplant drugs, and many others. Never combine it with prescription medicines without a doctor. It makes skin sensitive to sun. Not in pregnancy.",
+        "ro": "INTERACȚIUNI PERICULOASE: slăbește pilulele contraceptive, antidepresivele (risc de sindrom serotoninergic), anticoagulantele, medicamentele pentru HIV și transplant și multe altele. Nu o combina niciodată cu medicamente pe rețetă fără medic. Sensibilizează pielea la soare. Nu în sarcină."
+      }
+    },
+    "cautions": {
+      "en": "Toxic to grazing animals (skin burns in sunlight): do not let livestock graze it.",
+      "ro": "Toxică pentru animalele la pășune (arsuri ale pielii la soare): nu lăsa animalele să o pască."
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 80
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "valerian",
+    "names": {
+      "en": [
+        "Valerian",
+        "Common valerian"
+      ],
+      "ro": [
+        "Odolean",
+        "Valeriană"
+      ]
+    },
+    "scientific": "Valeriana officinalis",
+    "synonyms": [],
+    "family": "Caprifoliaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall native perennial of damp meadows with fragrant pink-white flower heads. Hoverflies and butterflies visit it, and its root is a classic traditional sleep aid.",
+      "ro": "Plantă perenă nativă înaltă din pajiști umede, cu inflorescențe roz-albe parfumate. Sirfidele și fluturii o vizitează, iar rădăcina ei este un ajutor clasic tradițional pentru somn."
+    },
+    "tips": {
+      "en": [
+        "Grow in moist, rich soil in sun or part shade; sow in autumn or divide clumps in spring.",
+        "Dig roots in the autumn of the second year, wash and dry them quickly at low heat; the smell is strong."
+      ],
+      "ro": [
+        "Cultivă pe sol umed și bogat, la soare sau semiumbră; seamănă toamna sau împarte tufele primăvara.",
+        "Scoate rădăcinile toamna celui de-al doilea an, spală-le și usucă-le repede la căldură mică; mirosul este puternic."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "dynamic-accumulator"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Deep roots mine phosphorus; the leaves are said to speed composting; the flowers draw hoverflies and butterflies.",
+      "ro": "Rădăcinile adânci extrag fosfor; frunzele ar grăbi compostarea; florile atrag sirfide și fluturi."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Root.",
+        "ro": "Rădăcina."
+      },
+      "uses": {
+        "en": "Tea, tincture or capsules traditionally taken for restlessness and difficulty falling asleep.",
+        "ro": "Ceai, tinctură sau capsule luate tradițional pentru neliniște, somn agitat și dificultăți la adormire."
+      },
+      "safety": {
+        "en": "Can cause drowsiness: do not drive or operate machinery after use. Do not combine with alcohol, sleeping pills or sedatives. Avoid in pregnancy and in children under 12; rare liver problems have been reported. Stop before surgery.",
+        "ro": "Poate provoca somnolență: nu conduce și nu folosi utilaje după consum. Nu o combina cu alcool, somnifere sau sedative. Evită în sarcină și la copii sub 12 ani; s-au raportat rar probleme hepatice. Oprește înainte de operații."
+      }
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -8,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 80,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "meadowsweet",
+    "names": {
+      "en": [
+        "Meadowsweet",
+        "Queen of the meadow"
+      ],
+      "ro": [
+        "Crețișoară",
+        "Reginuța-luncilor"
+      ]
+    },
+    "scientific": "Filipendula ulmaria",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall native perennial with foamy cream flowers and a sweet almond scent, typical of wet meadows and stream banks. Valued for pollinators and traditional teas.",
+      "ro": "Plantă perenă nativă înaltă, cu flori crem spumoase și miros dulce de migdale, tipică pentru pajiști umede și maluri de ape. Apreciată pentru polenizatori și ceaiuri tradiționale."
+    },
+    "tips": {
+      "en": [
+        "Grow in damp or wet soil and part shade; divide clumps in autumn.",
+        "Pick the flowering tops at midsummer and dry them in shade."
+      ],
+      "ro": [
+        "Cultivă pe sol umed sau ud și în semiumbră; împarte tufele toamna.",
+        "Culege vârfurile înflorite la mijlocul verii și usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Pollen-rich flowers for hoverflies and beetles; its moist-soil habit makes it a good rain-garden or pond-edge plant.",
+      "ro": "Flori bogate în polen pentru sirfide și gândaci; preferința pentru sol umed îl face potrivit pentru grădini de ploaie sau marginea iazurilor."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowering tops.",
+        "ro": "Vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Tea traditionally used for fever, aches and heartburn; it contains salicylates related to aspirin.",
+        "ro": "Ceai folosit tradițional pentru febră, dureri și arsuri la stomac; conține salicilați înrudiți cu aspirina."
+      },
+      "safety": {
+        "en": "Do not use if you are allergic to aspirin or salicylates, have asthma triggered by aspirin, take blood thinners, or are pregnant. Not for children with fever (risk of Reye's syndrome).",
+        "ro": "Nu o folosi dacă ești alergic la aspirină sau salicilați, ai astm declanșat de aspirină, iei anticoagulante sau ești însărcinată. Nu se dă copiilor cu febră (risc de sindrom Reye)."
+      }
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 70
+    },
+    "heightCm": {
+      "min": 80,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "coltsfoot",
+    "names": {
+      "en": [
+        "Coltsfoot"
+      ],
+      "ro": [
+        "Podbal",
+        "Brebenoc"
+      ]
+    },
+    "scientific": "Tussilago farfara",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native perennial whose yellow flowers appear on scaly stems in late winter before the leaves. An early food for bees; the plant is traditional in cough teas but now judged risky for internal use.",
+      "ro": "Plantă perenă nativă ale cărei flori galbene apar pe tulpini solzoase la sfârșitul iernii, înaintea frunzelor. Hrană timpurie pentru albine; planta este tradițională în ceaiurile pentru tuse, dar astăzi este considerată riscantă pentru uz intern."
+    },
+    "tips": {
+      "en": [
+        "Grows by itself on bare, damp, clay soil; it spreads by rhizomes, so do not introduce it into a bed.",
+        "Leave early flowers for bees."
+      ],
+      "ro": [
+        "Crește singură pe sol gol, umed, argilos; se extinde prin rizomi, deci nu o introduce într-un strat.",
+        "Lasă florile timpurii pentru albine."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 2,
+      "max": 4
+    },
+    "benefits": {
+      "en": "One of the earliest nectar and pollen sources of the year for queen bumblebees and honey bees.",
+      "ro": "Una dintre primele surse de nectar și polen ale anului pentru bondarii regină și albine."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves and flower buds.",
+        "ro": "Frunzele și mugurii florali."
+      },
+      "uses": {
+        "en": "Historically smoked or taken as tea for coughs and bronchitis.",
+        "ro": "Folosită istoric ca fum sau ceai pentru tuse și bronșită."
+      },
+      "safety": {
+        "en": "Contains pyrrolizidine alkaloids that can damage the liver and may cause cancer. Many countries restrict or ban internal use. Do not use it as tea; the information is given for awareness only.",
+        "ro": "Conține alcaloizi pirolizidinici care pot afecta ficatul și pot provoca cancer. Multe țări restricționează sau interzic uzul intern. Nu o folosi ca ceai; informația este dată doar pentru informare."
+      }
+    },
+    "heightCm": {
+      "min": 10,
+      "max": 30
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "great-mullein",
+    "names": {
+      "en": [
+        "Great mullein",
+        "Aaron's rod"
+      ],
+      "ro": [
+        "Lumânărică",
+        "Coada-vacii"
+      ]
+    },
+    "scientific": "Verbascum thapsus",
+    "synonyms": [],
+    "family": "Scrophulariaceae",
+    "category": "herb",
+    "lifecycle": "biennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall, velvety native biennial with a rosette of felt-like leaves in year one and a candle of yellow flowers in year two. Thrives on poor, dry ground and is good for pollen-collecting bees.",
+      "ro": "Plantă bienală nativă înaltă și catifelată, cu o rozetă de frunze ca de fetru în primul an și o lumânare de flori galbene în al doilea. Crește pe sol sărac și uscat și este bună pentru albinele care adună polen."
+    },
+    "tips": {
+      "en": [
+        "Sow on the surface in spring or autumn; it self-seeds in gravel and bare ground.",
+        "Pick flowers as they open each morning, dry quickly in shade."
+      ],
+      "ro": [
+        "Seamănă la suprafață primăvara sau toamna; se reînsămânțează în pietriș și pe sol gol.",
+        "Culege florile pe măsură ce se deschid dimineața și usucă-le repede la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Pollen for bees; winter seed for finches; the hairy rosette shelters insects over winter and makes a living mulch on bare ground.",
+      "ro": "Polen pentru albine; sămânță iarna pentru cinteze; rozeta păroasă adăpostește insecte peste iarnă."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowers and leaves.",
+        "ro": "Florile și frunzele."
+      },
+      "uses": {
+        "en": "Strained tea or syrup traditionally used for coughs and chest colds.",
+        "ro": "Ceai strecurat sau sirop folosit tradițional pentru tuse și răceli ale pieptului."
+      },
+      "safety": {
+        "en": "Always strain the tea through a fine cloth: the plant's tiny hairs irritate the throat. Seeds are toxic. Avoid in pregnancy and for young children.",
+        "ro": "Strecoară mereu ceaiul printr-o pânză deasă: perișorii plantei irită gâtul. Semințele sunt toxice. Evită în sarcină și la copii mici."
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 200
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "motherwort",
+    "names": {
+      "en": [
+        "Motherwort"
+      ],
+      "ro": [
+        "Talpa-gâștei",
+        "Inimioară"
+      ]
+    },
+    "scientific": "Leonurus cardiaca",
+    "synonyms": [],
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall native mint-family perennial with whorled pink flowers; attractive to bumblebees, and traditionally taken for nervous heart flutter.",
+      "ro": "Plantă perenă nativă înaltă din familia mentei, cu flori roz în verticile; atrage bondarii și este luată tradițional pentru palpitații de natură nervoasă."
+    },
+    "tips": {
+      "en": [
+        "Sow in autumn or spring in ordinary garden soil; it self-seeds.",
+        "Pick tops at the start of flowering and dry them in shade."
+      ],
+      "ro": [
+        "Seamănă toamna sau primăvara în sol obișnuit de grădină; se reînsămânțează.",
+        "Culege vârfurile la începutul înfloririi și usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "A good bumblebee plant in half-shade, and an easy border perennial.",
+      "ro": "Plantă bună pentru bondari în semiumbră și perenă ușor de crescut într-un strat."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowering tops.",
+        "ro": "Vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Very bitter tea traditionally used for nervous palpitations and to calm.",
+        "ro": "Ceai foarte amar folosit tradițional pentru palpitații nervoase și ca liniștitor."
+      },
+      "safety": {
+        "en": "Not in pregnancy (it may stimulate the womb). Can interact with heart, blood-thinning and sedative medicines. Palpitations or chest pain need a doctor first, not a herbal tea.",
+        "ro": "Nu în sarcină (poate stimula uterul). Poate interacționa cu medicamente pentru inimă, anticoagulante și sedative. Palpitațiile sau durerea în piept necesită mai întâi medic, nu ceai din plante."
+      }
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 4
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 50
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "ladys-mantle",
+    "names": {
+      "en": [
+        "Lady's mantle"
+      ],
+      "ro": [
+        "Mantaua-Maicii-Domnului",
+        "Crețișoară de munte"
+      ]
+    },
+    "scientific": "Alchemilla vulgaris",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native perennial with softly pleated, scalloped leaves that hold glittering dew drops, and lime-green flower sprays. A lovely edging plant that self-seeds gently.",
+      "ro": "Plantă perenă nativă cu frunze moi, încrețite, festonate, care rețin picături de rouă strălucitoare, și buchete de flori verzi-gălbui. Plantă frumoasă pentru borduri, care se reînsămânțează blând."
+    },
+    "tips": {
+      "en": [
+        "Grow in part shade in moist, humus-rich soil; cut back after flowering for fresh foliage.",
+        "Gather leaves before flowering and dry them in shade."
+      ],
+      "ro": [
+        "Cultivă la semiumbră pe sol umed, bogat în humus; taie după înflorire pentru frunziș proaspăt.",
+        "Adună frunzele înainte de înflorire și usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "ground-cover",
+      "ornamental"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Flowers draw hoverflies and small flies; the dense foliage is a good living mulch under shrubs and roses.",
+      "ro": "Florile atrag sirfide și mici muște; frunzișul des este un mulci viu bun sub arbuști și trandafiri."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves and flowering tops.",
+        "ro": "Frunzele și vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Tea traditionally used for menstrual comfort, mild diarrhoea and as a gargle.",
+        "ro": "Ceai folosit tradițional pentru confortul menstrual, diaree ușoară și ca gargară."
+      },
+      "safety": {
+        "en": "Avoid in pregnancy. Long use of strong tea may irritate the stomach because of tannins. See a doctor for heavy or painful periods.",
+        "ro": "Evită în sarcină. Folosirea îndelungată a ceaiului concentrat poate irita stomacul din cauza taninurilor. Mergi la medic pentru menstruații abundente sau dureroase."
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 50
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 50
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "wild-thyme",
+    "names": {
+      "en": [
+        "Wild thyme",
+        "Breckland thyme"
+      ],
+      "ro": [
+        "Cimbrișor",
+        "Cimbru de câmp"
+      ]
+    },
+    "scientific": "Thymus serpyllum",
+    "synonyms": [],
+    "family": "Lamiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Creeping native thyme that forms fragrant carpets on dry, sunny, stony ground. A brilliant plant for bees and a good lawn or path substitute.",
+      "ro": "Cimbru nativ târâtor care formează covoare parfumate pe sol uscat, însorit, pietros. Plantă strălucită pentru albine și un bun înlocuitor de gazon sau pentru cărări."
+    },
+    "tips": {
+      "en": [
+        "Plant in full sun on very free-draining soil; tolerates light foot traffic.",
+        "Cut flowering tops for tea in summer and dry in shade."
+      ],
+      "ro": [
+        "Plantează la soare pe sol foarte bine drenat; suportă călcatul ușor.",
+        "Taie vârfurile înflorite pentru ceai vara și usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "ground-cover",
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Dense carpet of nectar flowers in midsummer; the aroma deters some pests and the mat suppresses weeds.",
+      "ro": "Covor des de flori nectarifere în mijlocul verii; aroma descurajează unii dăunători, iar covorul înăbușe buruienile."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowering tops.",
+        "ro": "Vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Tea traditionally taken for coughs, sore throat and mild digestive upset; also a culinary herb.",
+        "ro": "Ceai luat tradițional pentru tuse, gât iritat și deranjamente digestive ușoare; este și plantă culinară."
+      },
+      "safety": {
+        "en": "In normal food or tea amounts it is generally safe. Avoid concentrated essential oil. Allergy is possible in people sensitive to the mint family; avoid medicinal doses in pregnancy.",
+        "ro": "În cantități obișnuite de aliment sau ceai este în general sigură. Evită uleiul esențial concentrat. Alergia este posibilă la persoanele sensibile la familia mentei; evită dozele medicinale în sarcină."
+      }
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -6,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 35
+    },
+    "heightCm": {
+      "min": 5,
+      "max": 15
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "milk-thistle",
+    "names": {
+      "en": [
+        "Milk thistle"
+      ],
+      "ro": [
+        "Armurariu",
+        "Ciulin-de-lapte"
+      ]
+    },
+    "scientific": "Silybum marianum",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "annual",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Bold, white-veined thistle with purple flowers; a bee and goldfinch favourite. Sometimes naturalised in Romania; the seeds are the medicinal part.",
+      "ro": "Ciulin impunător, cu nervuri albe și flori violete; preferat de albine și sticleți. Uneori naturalizat în România; semințele sunt partea folosită în medicină."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring in sun; it self-seeds heavily and has spiny leaves, so site it where it will not be touched.",
+        "Cut heads when the pappus begins to show and dry before the seed scatters."
+      ],
+      "ro": [
+        "Seamănă primăvara la soare; se reînsămânțează mult și are frunze spinoase, deci pune-l unde nu va fi atins.",
+        "Taie capitulele când începe să apară papusul și usucă-le înainte să se împrăștie sămânța."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "naturalized",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Big nectar-rich heads for bees; winter seed for goldfinches; the plant is a decorative statement in a wild corner.",
+      "ro": "Capitule mari bogate în nectar pentru albine; sămânță iarna pentru sticleți; plantă decorativă într-un colț sălbatic."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Seeds.",
+        "ro": "Semințele."
+      },
+      "uses": {
+        "en": "Ground seed or standardised extract (silymarin) traditionally taken to support liver function.",
+        "ro": "Semințe măcinate sau extract standardizat (silimarină) luat tradițional pentru susținerea funcției ficatului."
+      },
+      "safety": {
+        "en": "Rare allergic reactions, especially in people allergic to the daisy family. May have mild laxative effect. If you have liver disease, hormone-sensitive conditions or take regular medicines, ask a doctor first.",
+        "ro": "Reacții alergice rare, mai ales la persoanele alergice la familia margaretelor. Poate avea un ușor efect laxativ. Dacă ai boli de ficat, afecțiuni sensibile la hormoni sau iei medicamente zilnic, întreabă mai întâi medicul."
+      }
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -4,
+        "max": 2
+      }
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 80
+    },
+    "heightCm": {
+      "min": 80,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "caraway",
+    "names": {
+      "en": [
+        "Caraway"
+      ],
+      "ro": [
+        "Chimen",
+        "Chimion"
+      ]
+    },
+    "scientific": "Carum carvi",
+    "synonyms": [],
+    "family": "Apiaceae",
+    "category": "herb",
+    "lifecycle": "biennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native biennial umbellifer with feathery leaves and white flower heads; the seeds are a classic spice in Romanian and Central European cooking, and the flowers draw beneficial insects.",
+      "ro": "Plantă bienală nativă din familia umbeliferelor, cu frunze fin tăiate și inflorescențe albe; semințele sunt o condiment clasic în bucătăria românească și central-europeană, iar florile atrag insecte benefice."
+    },
+    "tips": {
+      "en": [
+        "Sow in autumn or early spring; it flowers in the second year, so do not disturb the plants.",
+        "Harvest seed heads when brown, in the morning, and dry them in paper bags."
+      ],
+      "ro": [
+        "Seamănă toamna sau la începutul primăverii; înflorește în al doilea an, deci nu deranja plantele.",
+        "Recoltează umbelele când sunt brune, dimineața, și usucă-le în pungi de hârtie."
+      ]
+    },
+    "roles": [
+      "food",
+      "medicinal",
+      "pollinator",
+      "beneficial-insects"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 7
+    },
+    "benefits": {
+      "en": "Umbels feed hoverflies and parasitic wasps; caraway is also a traditional companion for rows of peas and carrots in kitchen gardens.",
+      "ro": "Umbelele hrănesc sirfide și viespi parazite; chimenul este și un însoțitor tradițional pentru rândurile de mazăre și morcov."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Seeds.",
+        "ro": "Semințele."
+      },
+      "uses": {
+        "en": "Seeds chewed or as tea traditionally used for bloating, wind and colic.",
+        "ro": "Semințe mestecate sau ceai folosit tradițional pentru balonare, gaze și colici."
+      },
+      "safety": {
+        "en": "Safe in food amounts. Medicinal amounts: not in pregnancy; ask a doctor for infants.",
+        "ro": "Sigur în cantități alimentare. Cantități medicinale: nu în sarcină; întreabă medicul pentru sugari."
+      }
+    },
+    "sowing": {
+      "anchor": "lastFrost",
+      "direct": {
+        "min": -8,
+        "max": 0
+      }
+    },
+    "spacingCm": {
+      "min": 20,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 30,
+      "max": 80
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "angelica",
+    "names": {
+      "en": [
+        "Garden angelica",
+        "Wild celery"
+      ],
+      "ro": [
+        "Anghelică",
+        "Angelică"
+      ]
+    },
+    "scientific": "Angelica archangelica",
+    "synonyms": [],
+    "family": "Apiaceae",
+    "category": "herb",
+    "lifecycle": "biennial",
+    "sun": "partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Statuesque biennial with huge green-white globes of flowers; a magnet for hoverflies and parasitic wasps. Grows in damp semi-shade and self-seeds.",
+      "ro": "Plantă bienală impunătoare, cu mari globuri verzui-albe de flori; magnet pentru sirfide și viespi parazite. Crește în semiumbră umedă și se reînsămânțează."
+    },
+    "tips": {
+      "en": [
+        "Sow fresh seed in late summer to autumn; old seed rarely germinates.",
+        "Leave to self-seed or cut the heads in the first flowering year to prolong life."
+      ],
+      "ro": [
+        "Seamănă semințe proaspete la sfârșitul verii-toamna; semințele vechi rareori încolțesc.",
+        "Lasă-o să se reînsămânțeze sau taie capitulele în primul an de înflorire pentru a-i prelungi viața."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "beneficial-insects",
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Huge umbels are among the best plants for hoverflies and predatory wasps; a handsome plant for a shady, moist corner.",
+      "ro": "Umbelele uriașe sunt printre cele mai bune plante pentru sirfide și viespi prădătoare; plantă frumoasă pentru un colț umbros și umed."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Root, stems and seeds.",
+        "ro": "Rădăcina, tulpinile și semințele."
+      },
+      "uses": {
+        "en": "Root tea or tincture traditionally taken for poor appetite, digestion and wind; stems candied as a confection.",
+        "ro": "Ceai sau tinctură din rădăcină luat tradițional pentru lipsa poftei de mâncare, digestie și gaze; tulpinile se confiază ca dulceață."
+      },
+      "safety": {
+        "en": "The sap contains furanocoumarins that can cause skin blisters in sunlight. Avoid in pregnancy and with sun exposure after use. Do not confuse with poison hemlock or giant hogweed, whose sap burns skin.",
+        "ro": "Seva conține furanocumarine care pot provoca bășici la soare. Evită în sarcină și expunerea la soare după consum. Nu o confunda cu cucuta sau cu Heracleum mantegazzianum, a cărui sevă arde pielea."
+      }
+    },
+    "cautions": {
+      "en": "Dangerous look-alikes: poison hemlock (Conium maculatum) and giant hogweed (Heracleum mantegazzianum). Identify the plant with an expert before handling or eating any wild umbellifer.",
+      "ro": "Plante asemănătoare periculoase: cucuta (Conium maculatum) și Heracleum mantegazzianum. Identifică planta împreună cu un specialist înainte de a atinge sau mânca orice umbeliferă sălbatică."
+    },
+    "spacingCm": {
+      "min": 80,
+      "max": 100
+    },
+    "heightCm": {
+      "min": 120,
+      "max": 250
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "marshmallow",
+    "names": {
+      "en": [
+        "Marshmallow",
+        "Common marshmallow"
+      ],
+      "ro": [
+        "Nalbă mare",
+        "Nalbă-albă"
+      ]
+    },
+    "scientific": "Althaea officinalis",
+    "synonyms": [],
+    "family": "Malvaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "high",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Soft, velvety native perennial of damp meadows with pale pink flowers. The mucilage-rich root and leaves are a classic soothing remedy, and bees visit the flowers.",
+      "ro": "Plantă perenă nativă catifelată din pajiști umede, cu flori roz pale. Rădăcina și frunzele bogate în mucilagii sunt un remediu clasic calmant, iar albinele vizitează florile."
+    },
+    "tips": {
+      "en": [
+        "Grow in moist, heavy soil in sun; divide in spring.",
+        "Dig roots in autumn of the second year; peel and dry them."
+      ],
+      "ro": [
+        "Cultivă pe sol umed, greu, la soare; împarte primăvara.",
+        "Scoate rădăcinile toamna celui de-al doilea an; curăță-le de coajă și usucă-le."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "food"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Big soft flowers for bumblebees and solitary bees; a good plant for the damp corner.",
+      "ro": "Flori mari moi pentru bondari și albine solitare; plantă bună pentru colțul umed."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Root and leaves.",
+        "ro": "Rădăcina și frunzele."
+      },
+      "uses": {
+        "en": "Cold-water infusion of the root traditionally taken for dry cough and irritated throat; leaf tea for stomach lining comfort.",
+        "ro": "Infuzie la rece din rădăcină luată tradițional pentru tuse uscată și gât iritat; ceai din frunze pentru confortul mucoasei stomacului."
+      },
+      "safety": {
+        "en": "The mucilage can slow absorption of other medicines: take medicines at least an hour before or after it. May lower blood sugar. Generally well tolerated.",
+        "ro": "Mucilagiile pot încetini absorbția altor medicamente: ia medicamentele cu cel puțin o oră înainte sau după. Poate scădea glicemia. În general bine tolerată."
+      }
+    },
+    "spacingCm": {
+      "min": 50,
+      "max": 70
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 180
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "wild-mallow",
+    "names": {
+      "en": [
+        "Common mallow",
+        "Wild mallow"
+      ],
+      "ro": [
+        "Nalbă de pădure",
+        "Nalbă mică"
+      ]
+    },
+    "scientific": "Malva sylvestris",
+    "synonyms": [],
+    "family": "Malvaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native roadside perennial with pink-purple striped flowers; edible leaves and flowers, and a traditional soothing tea. Easy to grow, short-lived, and good for bees.",
+      "ro": "Plantă perenă nativă de pe marginea drumurilor, cu flori roz-violete dungate; frunzele și florile sunt comestibile, iar ceaiul este calmant tradițional. Ușor de cultivat, trăiește puțin și este bună pentru albine."
+    },
+    "tips": {
+      "en": [
+        "Sow in spring or autumn in sun; it self-seeds.",
+        "Pick flowers and young leaves on a dry day and dry in shade."
+      ],
+      "ro": [
+        "Seamănă primăvara sau toamna la soare; se reînsămânțează.",
+        "Culege florile și frunzele tinere într-o zi uscată și usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "food",
+      "edible-flower"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
+    },
+    "benefits": {
+      "en": "Open flowers give pollen and nectar to bees for months; leaves can be cooked like spinach.",
+      "ro": "Florile deschise oferă polen și nectar albinelor luni la rând; frunzele pot fi gătite ca spanacul."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowers and leaves.",
+        "ro": "Florile și frunzele."
+      },
+      "uses": {
+        "en": "Tea or gargle traditionally used for sore throat, dry cough and mild stomach irritation.",
+        "ro": "Ceai sau gargară folosit tradițional pentru dureri în gât, tuse uscată și iritații ușoare ale stomacului."
+      },
+      "safety": {
+        "en": "Mucilage can slow absorption of other medicines: space them an hour apart. Generally safe; stop if a rash appears.",
+        "ro": "Mucilagiile pot încetini absorbția altor medicamente: lasă o oră între ele. În general sigură; oprește dacă apare erupție."
+      }
+    },
+    "spacingCm": {
+      "min": 40,
+      "max": 60
+    },
+    "heightCm": {
+      "min": 60,
+      "max": 120
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "sweet-woodruff",
+    "names": {
+      "en": [
+        "Sweet woodruff"
+      ],
+      "ro": [
+        "Vinariță",
+        "Sânziene-de-pădure"
+      ]
+    },
+    "scientific": "Galium odoratum",
+    "synonyms": [],
+    "family": "Rubiaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "shade",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Low native woodland carpet with whorls of leaves and tiny white star flowers in spring. Smells of fresh hay when dried and is used to flavour May wine.",
+      "ro": "Covor nativ de pădure, cu verticile de frunze și mici flori albe în stea primăvara. Miroase a fân proaspăt când se usucă și se folosește pentru aromatizarea vinului de mai."
+    },
+    "tips": {
+      "en": [
+        "Plant in shade under trees in moist, humus-rich soil; it spreads steadily as a ground cover.",
+        "Wilt the cut stems for a day before using, as the scent develops on drying."
+      ],
+      "ro": [
+        "Plantează la umbră sub arbori pe sol umed, bogat în humus; se extinde constant ca acoperitor.",
+        "Lasă tulpinile tăiate să se ofilească o zi înainte de folosire, deoarece mirosul apare la uscare."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "ground-cover",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Beautiful shade ground cover that suppresses weeds and feeds small flies and early bees.",
+      "ro": "Acoperitor frumos pentru umbră care înăbușe buruienile și hrănește muște mici și albine timpurii."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Dried aerial parts.",
+        "ro": "Părțile aeriene uscate."
+      },
+      "uses": {
+        "en": "Used in small amounts to flavour drinks and traditionally as a mild calming tea.",
+        "ro": "Folosită în cantități mici pentru aromatizarea băuturilor și tradițional ca ceai calmant ușor."
+      },
+      "safety": {
+        "en": "Contains coumarin: large amounts can cause headache and, with regular use, liver damage; it can add to blood-thinning medicines. Keep to small amounts and avoid in pregnancy.",
+        "ro": "Conține cumarină: cantitățile mari pot provoca dureri de cap, iar folosirea regulată poate afecta ficatul; poate adăuga efect anticoagulantelor. Folosește cantități mici și evită în sarcină."
+      }
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 30
+    },
+    "heightCm": {
+      "min": 10,
+      "max": 30
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "agrimony",
+    "names": {
+      "en": [
+        "Common agrimony"
+      ],
+      "ro": [
+        "Turiță",
+        "Turița-mare"
+      ]
+    },
+    "scientific": "Agrimonia eupatoria",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native meadow perennial with slender spikes of small yellow flowers and burr-like fruits. Valued by bees and as a traditional astringent tea.",
+      "ro": "Plantă perenă nativă de pajiște, cu spice subțiri de flori mici galbene și fructe ca niște scaieți. Apreciată de albine și ca ceai astringent tradițional."
+    },
+    "tips": {
+      "en": [
+        "Sow in autumn or spring in sunny, well-drained ground.",
+        "Gather the flowering spikes in summer and dry in shade."
+      ],
+      "ro": [
+        "Seamănă toamna sau primăvara pe sol însorit și drenat.",
+        "Adună spicele înflorite vara și usucă-le la umbră."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "benefits": {
+      "en": "Slim spikes of pollen flowers for hoverflies and bees along hedge bottoms and field margins.",
+      "ro": "Spice subțiri cu flori cu polen pentru sirfide și albine la baza gardurilor vii și pe marginea câmpurilor."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flowering tops.",
+        "ro": "Vârfurile înflorite."
+      },
+      "uses": {
+        "en": "Tea traditionally used for mild diarrhoea and as a gargle for sore throat.",
+        "ro": "Ceai folosit tradițional pentru diaree ușoară și ca gargară pentru gât iritat."
+      },
+      "safety": {
+        "en": "Can interact with blood-thinning medicines; the tannins may reduce absorption of iron. Avoid in pregnancy. See a doctor if diarrhoea persists.",
+        "ro": "Poate interacționa cu anticoagulantele; taninurile pot reduce absorbția fierului. Evită în sarcină. Mergi la medic dacă diareea persistă."
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 40,
+      "max": 100
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "bilberry",
+    "names": {
+      "en": [
+        "Bilberry",
+        "European blueberry"
+      ],
+      "ro": [
+        "Afin",
+        "Afin de munte"
+      ]
+    },
+    "scientific": "Vaccinium myrtillus",
+    "synonyms": [],
+    "family": "Ericaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Low native shrub of Carpathian forests and acidic soils; the dark berries are a prized wild fruit. In the garden it needs acid, humus-rich soil and cool shade.",
+      "ro": "Arbust nativ jos din pădurile carpatine și solurile acide; fructele negre sunt un fruct sălbatic apreciat. În grădină are nevoie de sol acid, bogat în humus, și umbră răcoroasă."
+    },
+    "tips": {
+      "en": [
+        "Plant in acid soil (pH 4.5-5.5) with leaf mould or pine needles; keep it moist.",
+        "Pick berries when fully dark; leaves can be dried for tea but use sparingly."
+      ],
+      "ro": [
+        "Plantează în sol acid (pH 4,5-5,5) cu pământ de frunze sau ace de pin; ține-l umed.",
+        "Culege fructele când sunt complet negre; frunzele pot fi uscate pentru ceai, dar folosește-le cu moderație."
+      ]
+    },
+    "roles": [
+      "food",
+      "medicinal",
+      "pollinator",
+      "ground-cover",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Spring flowers feed bumblebees; berries feed birds and mammals; a natural carpet for acid woodland ground.",
+      "ro": "Florile de primăvară hrănesc bondarii; fructele hrănesc păsări și mamifere; covor natural pentru terenuri acide de pădure."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Ripe berries; leaves.",
+        "ro": "Fructele coapte; frunzele."
+      },
+      "uses": {
+        "en": "Dried berries or tea traditionally used for mild diarrhoea; leaf tea for blood sugar is folk use only.",
+        "ro": "Fructe uscate sau ceai folosite tradițional pentru diaree ușoară; ceaiul de frunze pentru glicemie este doar uz popular."
+      },
+      "safety": {
+        "en": "Berries are safe as food. Leaf tea in large amounts or long use may be harmful and can lower blood sugar; avoid with diabetes medicines and blood thinners.",
+        "ro": "Fructele sunt sigure ca aliment. Ceaiul de frunze în cantități mari sau folosit îndelung poate fi dăunător și poate scădea glicemia; evită cu antidiabetice și anticoagulante."
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 45
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 50
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "lingonberry",
+    "names": {
+      "en": [
+        "Lingonberry",
+        "Cowberry"
+      ],
+      "ro": [
+        "Merișor",
+        "Merișor de munte"
+      ]
+    },
+    "scientific": "Vaccinium vitis-idaea",
+    "synonyms": [],
+    "family": "Ericaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Evergreen native dwarf shrub of cool, acidic, humus-rich ground; bright red tart berries ripen in late summer and keep well. Hardy and slow-growing.",
+      "ro": "Arbust pitic nativ veșnic verde, de teren răcoros, acid și bogat în humus; fructele roșii acrișoare se coc la sfârșitul verii și se păstrează bine. Rezistent și cu creștere lentă."
+    },
+    "tips": {
+      "en": [
+        "Plant in acid, moist soil with plenty of organic matter and mulch with pine needles.",
+        "Fruits are best cooked into sauce or jam."
+      ],
+      "ro": [
+        "Plantează pe sol acid, umed, cu multă materie organică, și mulcește cu ace de pin.",
+        "Fructele sunt mai bune gătite ca sos sau dulceață."
+      ]
+    },
+    "roles": [
+      "food",
+      "medicinal",
+      "pollinator",
+      "ground-cover"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 6
+    },
+    "benefits": {
+      "en": "Bell flowers feed bumblebees; evergreen cover stays green through winter and protects acid soil.",
+      "ro": "Florile în clopoțel hrănesc bondarii; frunzișul veșnic verde protejează solul acid și iarna."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Fruits and leaves.",
+        "ro": "Fructele și frunzele."
+      },
+      "uses": {
+        "en": "Berries as a food; leaf tea traditionally for the urinary tract (limited evidence).",
+        "ro": "Fructele ca aliment; ceai din frunze tradițional pentru căile urinare (dovezi limitate)."
+      },
+      "safety": {
+        "en": "Leaf tea contains arbutin; do not use for more than a week or two, and avoid in pregnancy, breastfeeding and kidney disease. See a doctor for urinary infection symptoms.",
+        "ro": "Ceaiul de frunze conține arbutină; nu-l folosi mai mult de o-două săptămâni și evită în sarcină, alăptare și boli de rinichi. Mergi la medic pentru simptome de infecție urinară."
+      }
+    },
+    "spacingCm": {
+      "min": 30,
+      "max": 40
+    },
+    "heightCm": {
+      "min": 10,
+      "max": 30
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "wild-strawberry",
+    "names": {
+      "en": [
+        "Wild strawberry",
+        "Woodland strawberry"
+      ],
+      "ro": [
+        "Fragi de pădure",
+        "Căpșuni de pădure"
+      ]
+    },
+    "scientific": "Fragaria vesca",
+    "synonyms": [],
+    "family": "Rosaceae",
+    "category": "berry",
+    "lifecycle": "perennial",
+    "sun": "partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Small native strawberry with intensely flavoured fruit. It spreads by runners, makes a pretty edible ground cover in shade, and bees visit the white flowers.",
+      "ro": "Căpșun nativ mic, cu fructe cu aromă intensă. Se extinde prin stoloni, formează un acoperitor comestibil frumos la umbră, iar albinele vizitează florile albe."
+    },
+    "tips": {
+      "en": [
+        "Plant in part shade in humus-rich soil; remove excess runners if you want fewer plants.",
+        "Pick the berries as they ripen; they do not keep and are best eaten fresh."
+      ],
+      "ro": [
+        "Plantează la semiumbră pe sol bogat în humus; scoate stolonii în exces dacă vrei mai puține plante.",
+        "Culege fructele pe măsură ce se coc; nu se păstrează și sunt cele mai bune proaspete."
+      ]
+    },
+    "roles": [
+      "food",
+      "pollinator",
+      "ground-cover",
+      "medicinal",
+      "wildlife"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 7
+    },
+    "benefits": {
+      "en": "Fruits for people, birds and slugs; the spreading plants suppress weeds in semi-shade under fruit bushes and trees.",
+      "ro": "Fructe pentru oameni, păsări și melci; plantele care se extind înăbușe buruienile în semiumbră, sub arbuști fructiferi și pomi."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Leaves and fruits.",
+        "ro": "Frunzele și fructele."
+      },
+      "uses": {
+        "en": "Leaf tea traditionally used as a mild astringent for digestion; fruits as food.",
+        "ro": "Ceai din frunze folosit tradițional ca astringent ușor pentru digestie; fructele ca aliment."
+      },
+      "safety": {
+        "en": "Safe as food. Leaf tea is mild; avoid medicinal amounts in pregnancy. Some people are allergic to strawberries.",
+        "ro": "Sigură ca aliment. Ceaiul de frunze este blând; evită cantitățile medicinale în sarcină. Unele persoane sunt alergice la căpșuni."
+      }
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 35
+    },
+    "heightCm": {
+      "min": 10,
+      "max": 25
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "alpine-arnica",
+    "names": {
+      "en": [
+        "Arnica",
+        "Mountain arnica"
+      ],
+      "ro": [
+        "Arnică"
+      ]
+    },
+    "scientific": "Arnica montana",
+    "synonyms": [],
+    "family": "Asteraceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Protected mountain wildflower with orange-yellow daisies, found on acid mountain meadows. Picking it in the wild is restricted; grow it from nursery stock if you want it.",
+      "ro": "Floare de munte protejată, cu margarete galben-portocalii, din pajiștile montane acide. Culesul din natură este restricționat; cultivă-o din material de pepinieră dacă o vrei."
+    },
+    "tips": {
+      "en": [
+        "Needs acid, nutrient-poor, humus-rich soil and cool conditions; difficult at low altitude.",
+        "Never collect it in the wild: populations are declining."
+      ],
+      "ro": [
+        "Are nevoie de sol acid, sărac în nutrienți, bogat în humus, și de răcoare; dificilă la altitudini mici.",
+        "Nu o culege niciodată din natură: populațiile sunt în declin."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "protected": true,
+    "benefits": {
+      "en": "Late-spring flowers feed bumblebees and hoverflies in mountain meadows.",
+      "ro": "Florile de la sfârșitul primăverii hrănesc bondari și sirfide în pajiști de munte."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flower heads, used externally.",
+        "ro": "Capitulele florale, folosite extern."
+      },
+      "uses": {
+        "en": "Diluted tincture, gel or ointment traditionally applied to bruises and sprains on unbroken skin.",
+        "ro": "Tinctură diluată, gel sau unguent aplicat tradițional pe vânătăi și entorse, pe piele intactă."
+      },
+      "safety": {
+        "en": "For use on the skin only, never swallowed (poisonous). Do not apply to broken skin or near the eyes; may cause rash. Avoid if allergic to the daisy family.",
+        "ro": "Doar pentru uz extern, nu se înghite niciodată (otrăvitoare). Nu o aplica pe piele lezată sau lângă ochi; poate provoca erupții. Evită dacă ești alergic la familia margaretelor."
+      }
+    },
+    "cautions": {
+      "en": "Protected wild plant: do not pick it. Never take it internally.",
+      "ro": "Plantă sălbatică protejată: nu o culege. Nu o lua niciodată intern."
+    },
+    "spacingCm": {
+      "min": 25,
+      "max": 35
+    },
+    "heightCm": {
+      "min": 20,
+      "max": 60
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "yellow-gentian",
+    "names": {
+      "en": [
+        "Yellow gentian",
+        "Great yellow gentian"
+      ],
+      "ro": [
+        "Ghințură",
+        "Ghințura-galbenă"
+      ]
+    },
+    "scientific": "Gentiana lutea",
+    "synonyms": [],
+    "family": "Gentianaceae",
+    "category": "herb",
+    "lifecycle": "perennial",
+    "sun": "full-partial",
+    "water": "moderate",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Tall, striking mountain perennial with whorls of yellow flowers; its roots are the traditional source of a very bitter tonic. Strictly regulated and protected, and very slow to grow.",
+      "ro": "Plantă perenă de munte înaltă și spectaculoasă, cu verticile de flori galbene; rădăcinile sunt sursa tradițională a unui tonic foarte amar. Strict reglementată și protejată, cu creștere foarte lentă."
+    },
+    "tips": {
+      "en": [
+        "Plants take 7-10 years to flower; grow from nursery stock only.",
+        "Do not dig it in the wild: wild harvest has made it rare."
+      ],
+      "ro": [
+        "Plantele durează 7-10 ani până înfloresc; cultivă-o doar din material de pepinieră.",
+        "Nu o scoate din natură: recoltarea sălbatică a făcut-o rară."
+      ]
+    },
+    "roles": [
+      "medicinal",
+      "pollinator"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 8
+    },
+    "protected": true,
+    "benefits": {
+      "en": "Bumblebees visit the flowers; a stately plant for a cool, rich meadow garden.",
+      "ro": "Bondarii vizitează florile; plantă impunătoare pentru o grădină de pajiște răcoroasă și bogată."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Dried root, used in tiny amounts.",
+        "ro": "Rădăcina uscată, folosită în cantități mici."
+      },
+      "uses": {
+        "en": "Bitter extracts traditionally used before meals to stimulate appetite and digestion.",
+        "ro": "Extracte amare folosite tradițional înainte de mese pentru stimularea poftei de mâncare și a digestiei."
+      },
+      "safety": {
+        "en": "Not for people with stomach or duodenal ulcers, high blood pressure or pregnancy; can cause headache. Deadly look-alike: white false hellebore (Veratrum album) looks similar before flowering: never dig or use wild plants.",
+        "ro": "Nu pentru persoane cu ulcer gastric sau duodenal, tensiune mare sau în sarcină; poate provoca dureri de cap. Asemănător mortal: stirigoaia (Veratrum album) seamănă înainte de înflorire: nu scoate și nu folosi plante sălbatice."
+      }
+    },
+    "cautions": {
+      "en": "Protected: do not pick or dig. Its deadly look-alike Veratrum album grows in the same meadows.",
+      "ro": "Protejată: nu o culege și nu o scoate. Asemănătoarea ei mortală, Veratrum album, crește în aceleași pajiști."
+    },
+    "spacingCm": {
+      "min": 60,
+      "max": 80
+    },
+    "heightCm": {
+      "min": 100,
+      "max": 150
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "common-juniper",
+    "names": {
+      "en": [
+        "Common juniper"
+      ],
+      "ro": [
+        "Ienupăr",
+        "Jneapăn"
+      ]
+    },
+    "scientific": "Juniperus communis",
+    "synonyms": [],
+    "family": "Cupressaceae",
+    "category": "tree-shrub",
+    "lifecycle": "perennial",
+    "sun": "full",
+    "water": "low",
+    "frostTolerance": "hardy",
+    "summary": {
+      "en": "Native evergreen conifer shrub of dry heath and hills; the blue-black berry-like cones flavour game and sauerkraut. A sturdy hedge and shelter plant that birds use heavily.",
+      "ro": "Arbust conifer nativ veșnic verde de coline și terenuri uscate; conurile negre-albăstrui flavorează vânatul și varza murată. Plantă rezistentă de gard viu și adăpost, mult folosită de păsări."
+    },
+    "tips": {
+      "en": [
+        "Plant in sun on dry, lime-rich or stony soil; male and female plants are separate, so you need both for berries.",
+        "Never plant near pears (a rust disease alternates between them)."
+      ],
+      "ro": [
+        "Plantează la soare pe sol uscat, calcaros sau pietros; plantele mascule și femele sunt separate, deci ai nevoie de ambele pentru fructe.",
+        "Nu-l planta lângă pomi de păr (o boală de rugină alternează între ei)."
+      ]
+    },
+    "roles": [
+      "food",
+      "medicinal",
+      "hedge",
+      "wildlife",
+      "windbreak"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "benefits": {
+      "en": "Evergreen winter shelter and berries for thrushes; a good dry-ground windbreak and hedge plant.",
+      "ro": "Adăpost veșnic verde iarna și fructe pentru mierle; plantă bună pentru garduri vii și perdele pe sol uscat."
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Ripe dark cones ('berries'), used sparingly.",
+        "ro": "Conurile mature negre („boabe”), folosite cu moderație."
+      },
+      "uses": {
+        "en": "A few crushed berries are used in cooking and traditionally as a bitter digestive tea.",
+        "ro": "Câteva boabe zdrobite se folosesc în gătit și tradițional ca ceai amar digestiv."
+      },
+      "safety": {
+        "en": "Not in pregnancy or kidney disease; do not use for more than a few weeks. Only Juniperus communis: Juniperus sabina, thuja and other junipers are toxic.",
+        "ro": "Nu în sarcină sau boli de rinichi; nu folosi mai mult de câteva săptămâni. Doar Juniperus communis: Juniperus sabina, tuia și alți ienuperi sunt toxici."
+      }
+    },
+    "spacingCm": {
+      "min": 150,
+      "max": 250
+    },
+    "heightCm": {
+      "min": 200,
+      "max": 600
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from standard European botanical and gardening references (for example Flora Europaea, Flora of Romania, RHS and agricultural extension guidance). Heights, dates and spacings are typical ranges and must be checked against local advice.",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  }
+]

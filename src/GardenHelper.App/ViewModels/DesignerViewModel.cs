@@ -112,7 +112,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     {
         _repo = repo; _kb = kb; _paths = paths; _alerts = alerts; _dialogs = dialogs; _nav = nav; _backdrops = backdrops; _camFeed = camFeed;
         var lang = Loc.Instance.Language;
-        Plants = kb.Plants.OrderBy(p => p.DisplayName(lang)).Select(p => new PlantOption(p.Id, p.DisplayName(lang))).ToList();
+        Plants = kb.Plantable.OrderBy(p => p.DisplayName(lang)).Select(p => new PlantOption(p.Id, p.DisplayName(lang))).ToList();
         Kinds = new[] { "bed", "raised", "greenhouse", "tree", "pond", "compost", "path", "structure" }.Select(k => new KindOption(k, Loc.T("kind_" + k)))
             .Concat(FeatureCatalog.Structures.Select(k => new KindOption(k, Loc.T("feat_" + k)))).ToList();
         Filters = new[]
@@ -343,7 +343,7 @@ public sealed partial class DesignerViewModel : PageViewModel
     private void BuildCards()
     {
         var lang = Loc.Instance.Language;
-        _allCards = _kb.Plants.OrderBy(p => p.DisplayName(lang)).Select(p =>
+        _allCards = _kb.Plantable.OrderBy(p => p.DisplayName(lang)).Select(p =>
         {
             var first = PlantingCalculator.Calculate(p, _garden, DateTime.Today.Year).Windows.FirstOrDefault();
             var window = first is null ? "" : $"{Loc.T("act_" + first.Activity)}: {first.Start.ToString("d MMM", Loc.Instance.Culture)} – {first.End.ToString("d MMM", Loc.Instance.Culture)}";

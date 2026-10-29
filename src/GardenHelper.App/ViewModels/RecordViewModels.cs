@@ -146,7 +146,7 @@ public sealed partial class JournalViewModel : PageViewModel
     {
         _repo = repo; _kb = kb; _dialogs = dialogs;
         Plants = new[] { new PlantOption(null, Loc.T("none")) }
-            .Concat(kb.Plants.OrderBy(p => p.DisplayName(Loc.Instance.Language)).Select(p => new PlantOption(p.Id, p.DisplayName(Loc.Instance.Language)))).ToList();
+            .Concat(kb.Plantable.OrderBy(p => p.DisplayName(Loc.Instance.Language)).Select(p => new PlantOption(p.Id, p.DisplayName(Loc.Instance.Language)))).ToList();
         NewEntry();
     }
 
@@ -234,7 +234,7 @@ public sealed partial class SeedsViewModel : PageViewModel
     {
         _repo = repo; _kb = kb; _dialogs = dialogs; _photos = photos;
         Plants = new[] { new PlantOption(null, Loc.T("none")) }
-            .Concat(kb.Plants.OrderBy(p => p.DisplayName(Loc.Instance.Language)).Select(p => new PlantOption(p.Id, p.DisplayName(Loc.Instance.Language)))).ToList();
+            .Concat(kb.Plantable.OrderBy(p => p.DisplayName(Loc.Instance.Language)).Select(p => new PlantOption(p.Id, p.DisplayName(Loc.Instance.Language)))).ToList();
         NewItem();
     }
 

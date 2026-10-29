@@ -89,7 +89,8 @@
     "roles": [
       "green-manure",
       "nitrogen-fixer",
-      "pollinator"
+      "pollinator",
+      "medicinal"
     ],
     "nitrogenFixing": true,
     "confidence": "moderate",
@@ -97,6 +98,10 @@
     "sources": [
       {
         "title": "Starter record compiled from widely published horticultural guidance for temperate climates such as Romania's; figures are typical ranges and must be checked against local advice (for example the county agricultural extension office).",
+        "organization": "Garden Helper project"
+      },
+      {
+        "title": "Traditional use as summarised in general herbal references; for many of these plants the European Medicines Agency (HMPC) publishes herbal monographs. Traditional information only, not medical advice.",
         "organization": "Garden Helper project"
       }
     ],
@@ -110,6 +115,25 @@
     "heightCm": {
       "min": 30,
       "max": 80
+    },
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 5,
+      "max": 9
+    },
+    "medicinal": {
+      "parts": {
+        "en": "Flower heads.",
+        "ro": "Capitulele florale."
+      },
+      "uses": {
+        "en": "Tea traditionally used for coughs and, in modern use, for menopausal comfort.",
+        "ro": "Ceai folosit tradițional pentru tuse și, în uzul modern, pentru confortul la menopauză."
+      },
+      "safety": {
+        "en": "Contains plant oestrogens: avoid with hormone-sensitive conditions (some breast, ovarian or womb cancers), in pregnancy and with blood thinners. Not for long periods.",
+        "ro": "Conține estrogeni vegetali: evită în afecțiuni sensibile la hormoni (unele cancere de sân, ovar sau uter), în sarcină și cu anticoagulante. Nu perioade lungi."
+      }
     }
   },
   {
@@ -335,6 +359,11 @@
     "heightCm": {
       "min": 60,
       "max": 90
+    },
+    "origin": "naturalized",
+    "seasonMonths": {
+      "min": 6,
+      "max": 9
     }
   }
 ]

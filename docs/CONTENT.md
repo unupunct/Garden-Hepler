@@ -48,3 +48,32 @@ Allowed values: `sun` full | full-partial | partial | shade; `water` low | moder
 ## Validation
 
 `KnowledgeBase.Validate()` (run by the test suite on shipped content) reports: bad ids, missing scientific name or English text, no source, unknown companion plants, invalid evidence levels, reversed ranges, broken JSON. Fix everything it reports before sharing a file.
+
+## Origin, season, benefits, medicinal use and wild mushrooms
+
+Optional fields added for the Romanian and wild-plant content:
+
+```json
+{
+  "origin": "native-ro",                 // native-ro | naturalized | introduced | invasive
+  "seasonMonths": { "min": 5, "max": 8 }, // flowering months, or fruiting months for mushrooms (1-12, no wrap past December)
+  "protected": true,                     // protected or regulated in Romania: shown as "do not pick in the wild"
+  "benefits": { "en": "…", "ro": "…" },  // what it does in the garden: pollinators, pests, soil
+  "medicinal": {
+    "parts":  { "en": "…", "ro": "…" },
+    "uses":   { "en": "…", "ro": "…" },
+    "safety": { "en": "…", "ro": "…" }   // required in English and Romanian
+  },
+  "edibility": "deadly"                  // mushrooms: edible | edible-cooked | inedible | toxic | deadly
+}
+```
+
+New roles: `medicinal`, `pest-repellent`, `dynamic-accumulator`. New categories: `tree-shrub`, `wild-mushroom`.
+
+Rules the tests enforce:
+- A plant with `medicinal` needs `safety` text in English and Romanian, and the `medicinal` role. Medicinal text is traditional information, never advice: name the parts, say who must avoid it, and mention interactions.
+- A `wild-mushroom` needs an `edibility` rating, a `seasonMonths` range and a caution in both languages, and every edible one must name its dangerous look-alikes. Wild mushrooms never appear in planting lists. The app always shows the "never eat on the strength of an app" warning next to the rating.
+- `origin` is `native-ro` only for species that grow wild in Romania. Archaeophytes such as cornflower and corn poppy are `naturalized`. Plants that spread harmfully (black locust) are `invasive`.
+- Protected species (arnica, yellow gentian) must carry `protected: true`.
+
+The encyclopedia does not claim to list all ~3,700 native Romanian species. It covers plants useful to a garden or homestead: pollinators, pest control, soil improvement, medicinal and edible wild plants, hedgerow trees and shrubs, and mushrooms worth knowing.

@@ -1,0 +1,991 @@
+[
+  {
+    "id": "king-bolete",
+    "names": {
+      "en": [
+        "King bolete",
+        "Penny bun",
+        "Porcini"
+      ],
+      "ro": [
+        "Hrib",
+        "Ciuperca porcului"
+      ]
+    },
+    "scientific": "Boletus edulis",
+    "synonyms": [],
+    "family": "Boletaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Sturdy forest mushroom with a brown cap, white-to-olive pores (never red) and a thick stem with a fine white net at the top. Grows with beech, oak, spruce and pine; one of the most prized wild mushrooms in Romania.",
+      "ro": "Ciupercă de pădure robustă, cu pălărie brună, pori albi spre oliv (niciodată roșii) și picior gros cu o rețea albă fină în partea de sus. Crește cu fagul, stejarul, bradul și pinul; una dintre cele mai apreciate ciuperci sălbatice din România."
+    },
+    "tips": {
+      "en": [
+        "Lives in partnership (mycorrhiza) with tree roots, so it cannot be grown in a bed; it appears only where its host trees are healthy.",
+        "Pick only firm, clean young specimens; cut them open: the flesh stays white and does not turn blue."
+      ],
+      "ro": [
+        "Trăiește în simbioză (micoriză) cu rădăcinile copacilor, deci nu poate fi cultivată într-un strat; apare doar unde arborii gazdă sunt sănătoși.",
+        "Culege doar exemplare tinere, ferme și curate; taie-le: carnea rămâne albă și nu se albăstrește."
+      ]
+    },
+    "roles": [
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 10
+    },
+    "edibility": "edible",
+    "cautions": {
+      "en": "Look-alikes: the bitter bolete (Tylopilus felleus: pink pores, intensely bitter, ruins a whole dish) and Satan's bolete (Rubroboletus satanas: red pores, poisonous). Avoid any bolete with red or orange pores or flesh that quickly turns blue until an expert has identified it. Cook before eating.",
+      "ro": "Asemănătoare: hribul amar (Tylopilus felleus: pori roz, foarte amar, strică tot felul de mâncare) și hribul-dracului (Rubroboletus satanas: pori roșii, otrăvitor). Evită orice hrib cu pori roșii sau portocalii sau cu carne care se albăstrește repede, până când un specialist îl identifică. Gătește înainte de consum."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "chanterelle",
+    "names": {
+      "en": [
+        "Chanterelle",
+        "Golden chanterelle"
+      ],
+      "ro": [
+        "Gălbiori",
+        "Bureți galbeni"
+      ]
+    },
+    "scientific": "Cantharellus cibarius",
+    "synonyms": [],
+    "family": "Cantharellaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Egg-yolk yellow, funnel-shaped mushroom with blunt, forked ridges (false gills) that run down the stem and a faint apricot smell. Grows in beech, oak and spruce woods.",
+      "ro": "Ciupercă galben-gălbenuș, în formă de pâlnie, cu creste bifurcate, bășicate (pseudo-lamele) care coboară pe picior și cu un miros slab de caisă. Crește în păduri de fag, stejar și brad."
+    },
+    "tips": {
+      "en": [
+        "Also a mycorrhizal species: it cannot be cultivated reliably and depends on healthy forest.",
+        "Pick with a knife and leave the mycelium in the soil; do not over-collect."
+      ],
+      "ro": [
+        "Este tot o specie micorizică: nu poate fi cultivată sigur și depinde de pădure sănătoasă.",
+        "Culege cu cuțitul și lasă miceliul în sol; nu culege în exces."
+      ]
+    },
+    "roles": [
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 6,
+      "max": 10
+    },
+    "edibility": "edible",
+    "cautions": {
+      "en": "Dangerous look-alike: the jack-o'-lantern (Omphalotus olearius) has true thin gills, grows in dense clusters on wood and causes severe stomach illness. Chanterelle ridges are blunt and forked, not sharp gills. Cook before eating.",
+      "ro": "Asemănător periculos: Omphalotus olearius are lamele adevărate, subțiri, crește în mănunchiuri dese pe lemn și provoacă îmbolnăvire gravă a stomacului. Crestele gălbiorilor sunt boante și bifurcate, nu lamele ascuțite. Gătește înainte de consum."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "parasol-mushroom",
+    "names": {
+      "en": [
+        "Parasol mushroom"
+      ],
+      "ro": [
+        "Pălăria-șarpelui"
+      ]
+    },
+    "scientific": "Macrolepiota procera",
+    "synonyms": [],
+    "family": "Agaricaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Very tall mushroom (up to 40 cm) with a large scaly cap like an open parasol, a snake-patterned stem and a ring that slides up and down. Found on grassy woodland edges and meadows.",
+      "ro": "Ciupercă foarte înaltă (până la 40 cm) cu pălărie mare solzoasă ca o umbrelă deschisă, picior cu model de piele de șarpe și un inel mobil. Se găsește la marginea pădurilor și pe pajiști."
+    },
+    "tips": {
+      "en": [
+        "Eat only the cap; the stem is tough and fibrous. Eat only large, fully opened specimens with the snake-skin stem.",
+        "Always cook it well."
+      ],
+      "ro": [
+        "Mănâncă doar pălăria; piciorul este tare și fibros. Mănâncă doar exemplare mari, complet deschise, cu piciorul în model de piele de șarpe.",
+        "Gătește-o întotdeauna bine."
+      ]
+    },
+    "roles": [
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 10
+    },
+    "edibility": "edible",
+    "cautions": {
+      "en": "Small, young or look-alike parasol-shaped mushrooms (Lepiota species, such as the deadly Lepiota brunneoincarnata) can be fatal. Only a large specimen with the snake-pattern stem and a movable double ring qualifies, and even then an expert should confirm it. Some people react to it: try a small amount first.",
+      "ro": "Ciupercile mici sau tinere în formă de umbrelă (specii de Lepiota, precum mortala Lepiota brunneoincarnata) pot fi fatale. Doar un exemplar mare, cu piciorul în model de piele de șarpe și inel dublu mobil se califică, și chiar și atunci un specialist trebuie să confirme. Unele persoane reacționează la ea: încearcă mai întâi o cantitate mică."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "honey-fungus",
+    "names": {
+      "en": [
+        "Honey fungus"
+      ],
+      "ro": [
+        "Ghebe",
+        "Ghebe de toamnă"
+      ]
+    },
+    "scientific": "Armillaria mellea",
+    "synonyms": [],
+    "family": "Physalacriaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Clusters of honey-coloured mushrooms with a ring on the stem, growing on stumps and at the base of trees, with a white spore print. Popular in Romanian autumn cooking, but also the fungus that kills fruit trees and shrubs by root rot.",
+      "ro": "Mănunchiuri de ciuperci culoarea mierii, cu inel pe picior, crescând pe cioturi și la baza copacilor, cu spori albi. Populară în bucătăria românească de toamnă, dar și ciuperca ce ucide pomii fructiferi și arbuștii prin putregai radicular."
+    },
+    "tips": {
+      "en": [
+        "In the garden, a cluster at the base of a dying tree means honey fungus: black 'bootlace' strands in the soil spread to neighbouring trees. Remove the stump and roots and avoid replanting susceptible species for years.",
+        "Eat only young caps, boiled well (at least 15 minutes) and discard the water."
+      ],
+      "ro": [
+        "În grădină, un mănunchi la baza unui copac pe moarte înseamnă ghebe: filamentele negre ca niște șireturi din sol se extind la pomii vecini. Scoate cioatul și rădăcinile și evită replantarea speciilor sensibile ani la rând.",
+        "Mănâncă doar pălării tinere, fierte bine (cel puțin 15 minute), și aruncă apa."
+      ]
+    },
+    "roles": [
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 9,
+      "max": 11
+    },
+    "edibility": "edible-cooked",
+    "cautions": {
+      "en": "Must be well cooked: raw or undercooked it causes stomach upset, and some people react even to cooked ones. Deadly look-alike: funeral bell (Galerina marginata) grows on wood too but has a rusty-brown spore print and a small brown cap. Sulphur tuft (Hypholoma fasciculare) is bitter and poisonous. Take a spore print: honey fungus is white.",
+      "ro": "Trebuie gătită bine: crudă sau insuficient gătită provoacă deranjament stomacal, iar unele persoane reacționează chiar și la cea gătită. Asemănătoare mortală: Galerina marginata crește tot pe lemn, dar are spori brun-ruginii și pălărie mică brună. Hypholoma fasciculare este amară și otrăvitoare. Fă o amprentă de spori: la ghebe este albă."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "yellow-morel",
+    "names": {
+      "en": [
+        "Yellow morel",
+        "Common morel"
+      ],
+      "ro": [
+        "Zbârciog",
+        "Zbârciog comestibil"
+      ]
+    },
+    "scientific": "Morchella esculenta",
+    "synonyms": [],
+    "family": "Morchellaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Spring mushroom with a honeycomb-pitted, pale yellow-brown cap that is completely hollow inside, joined to a hollow stem. Found in orchards, woodland edges and old fruit-tree gardens.",
+      "ro": "Ciupercă de primăvară cu pălărie alveolată, ca un fagure, galben-brună, complet goală pe dinăuntru, unită cu un picior gol. Se găsește în livezi, la marginea pădurilor și în grădini cu pomi bătrâni."
+    },
+    "tips": {
+      "en": [
+        "Cut every specimen in half lengthways: a true morel is completely hollow from top to bottom.",
+        "Never eat it raw; cook thoroughly and do not drink alcohol with it."
+      ],
+      "ro": [
+        "Taie fiecare exemplar în două pe lungime: un zbârciog adevărat este complet gol de sus până jos.",
+        "Nu o mânca niciodată crudă; gătește-o bine și nu consuma alcool cu ea."
+      ]
+    },
+    "roles": [
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 3,
+      "max": 5
+    },
+    "edibility": "edible-cooked",
+    "cautions": {
+      "en": "Poisonous raw. Deadly look-alike: false morel (Gyromitra esculenta) has a brain-like, wrinkled cap and cottony (not hollow) flesh and can be fatal even after cooking. Not every pitted mushroom is a morel; always cut it open and have it checked by an expert.",
+      "ro": "Otrăvitoare crudă. Asemănătoare mortală: zbârciogul fals (Gyromitra esculenta) are pălărie ca un creier, încrețită, și carne vătoasă (nu goală) și poate fi mortal chiar și după gătire. Nu orice ciupercă alveolată este zbârciog; taie-o mereu și pune un specialist să o verifice."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "field-mushroom",
+    "names": {
+      "en": [
+        "Field mushroom",
+        "Meadow mushroom"
+      ],
+      "ro": [
+        "Ciuperca de câmp",
+        "Bureți de câmp"
+      ]
+    },
+    "scientific": "Agaricus campestris",
+    "synonyms": [],
+    "family": "Agaricaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "White mushroom of grazed meadows and lawns with pink gills that turn chocolate brown, a ring and no cup at the base. A close relative of the shop button mushroom.",
+      "ro": "Ciupercă albă de pajiști pășunate și gazoane, cu lamele roz care devin brun-ciocolatii, cu inel și fără cupă la bază. Rudă apropiată cu ciuperca de cultură."
+    },
+    "tips": {
+      "en": [
+        "Grows in unfertilised grassland; avoid sites sprayed with herbicides or beside roads.",
+        "Check the gills: never white in a mature specimen."
+      ],
+      "ro": [
+        "Crește în pajiști nefertilizate; evită locurile tratate cu erbicide sau de lângă drumuri.",
+        "Verifică lamelele: la un exemplar matur nu sunt niciodată albe."
+      ]
+    },
+    "roles": [
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 8,
+      "max": 10
+    },
+    "edibility": "edible",
+    "cautions": {
+      "en": "Deadly look-alikes: white Amanita species (death cap, destroying angel) have white gills and a cup at the base, sometimes buried: dig up the whole mushroom. The yellow stainer (Agaricus xanthodermus) smells of ink or hospital and stains bright yellow at the stem base; it causes stomach upset.",
+      "ro": "Asemănătoare mortale: Amanita albe (buretele viperei, Amanita virosa) au lamele albe și o cupă la bază, uneori îngropată: scoate toată ciuperca. Agaricus xanthodermus miroase a cerneală sau spital și se pătează galben la baza piciorului; provoacă deranjament stomacal."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "beefsteak-fungus",
+    "names": {
+      "en": [
+        "Beefsteak fungus",
+        "Ox tongue"
+      ],
+      "ro": [
+        "Limba-soacrei"
+      ]
+    },
+    "scientific": "Fistulina hepatica",
+    "synonyms": [],
+    "family": "Fistulinaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Tongue-shaped, reddish bracket that grows on living oak and sweet chestnut, with sticky red juice and a pale, meat-like cut surface. Sour taste; best sliced thin.",
+      "ro": "Burete în formă de limbă, roșiatic, care crește pe stejar și castan comestibil vii, cu suc roșu lipicios și suprafață de tăietură palidă, ca de carne. Gust acrișor; mai bun tăiat subțire."
+    },
+    "tips": {
+      "en": [
+        "It signals heart-rot in the host tree: a sign to check old oaks or chestnuts for stability.",
+        "Eat only young, firm, moist specimens, cooked."
+      ],
+      "ro": [
+        "Indică putregai de inimă în copacul gazdă: un semn să verifici stabilitatea stejarilor sau castanilor bătrâni.",
+        "Mănâncă doar exemplare tinere, ferme și umede, gătite."
+      ]
+    },
+    "roles": [
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 8,
+      "max": 10
+    },
+    "edibility": "edible",
+    "cautions": {
+      "en": "Few dangerous look-alikes, but other bracket fungi on oak can be bitter or poisonous, so any bracket must be identified by an expert before eating. Old, dry or insect-eaten specimens are not good to eat.",
+      "ro": "Are puține asemănătoare periculoase, dar alți bureți de lemn de pe stejar pot fi amari sau otrăvitori, deci orice burete de lemn trebuie identificat de un specialist înainte de a fi mâncat. Exemplarele bătrâne, uscate sau mâncate de insecte nu sunt bune de mâncat."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "st-georges-mushroom",
+    "names": {
+      "en": [
+        "St George's mushroom"
+      ],
+      "ro": [
+        "Ciuperca Sfântului Gheorghe",
+        "Ciuperca de mai"
+      ]
+    },
+    "scientific": "Calocybe gambosa",
+    "synonyms": [],
+    "family": "Lyophyllaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Cream-white, thick-fleshed spring mushroom that grows in rings on grassy ground, hedges and orchard edges around St George's Day. Smells strongly of fresh flour.",
+      "ro": "Ciupercă de primăvară crem-albă, cu carne groasă, care crește în cercuri pe pajiști, garduri vii și margini de livadă în jurul Sfântului Gheorghe. Miroase puternic a făină proaspătă."
+    },
+    "tips": {
+      "en": [
+        "Look for it in the same rings every spring; do not trample the ring.",
+        "Cook before eating."
+      ],
+      "ro": [
+        "Caută-o în aceleași cercuri în fiecare primăvară; nu călca cercul.",
+        "Gătește înainte de consum."
+      ]
+    },
+    "roles": [
+      "decomposer"
+    ],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 6
+    },
+    "edibility": "edible",
+    "cautions": {
+      "en": "Dangerous look-alikes also smell floury: the livid entoloma (Entoloma sinuatum, pink spores, severe poisoning) and fibrecaps (Inocybe species, muscarine poisoning). A spore print must be white or pale cream, never pink or brown. Have it checked by an expert.",
+      "ro": "Asemănătoare periculoase miros și ele a făină: Entoloma sinuatum (spori roz, otrăvire gravă) și specii de Inocybe (otrăvire cu muscarină). Amprenta de spori trebuie să fie albă sau crem-pal, niciodată roz sau brună. Pune un specialist să o verifice."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "death-cap",
+    "names": {
+      "en": [
+        "Death cap"
+      ],
+      "ro": [
+        "Buretele viperei",
+        "Ciuperca ucigașă"
+      ]
+    },
+    "scientific": "Amanita phalloides",
+    "synonyms": [],
+    "family": "Amanitaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "The cause of most fatal mushroom poisonings worldwide. Olive-green to yellowish cap, white gills, a ring on the stem and a sac-like cup at the base (often buried). Grows with oak, beech, chestnut and hazel, including in gardens and parks.",
+      "ro": "Cauza majorității otrăvirilor mortale cu ciuperci din lume. Pălărie verde-măslinie până la gălbuie, lamele albe, inel pe picior și o cupă ca un sac la bază (adesea îngropată). Crește cu stejarul, fagul, castanul și alunul, inclusiv în grădini și parcuri."
+    },
+    "tips": {
+      "en": [
+        "If one grows under a tree in your garden, remove it with gloves, bag it and wash your hands; keep children and pets away.",
+        "Learn it so that you never confuse it with a field mushroom, a green Russula or a young parasol."
+      ],
+      "ro": [
+        "Dacă una crește sub un copac din grădina ta, scoate-o cu mănuși, pune-o într-o pungă și spală-te pe mâini; ține copiii și animalele departe.",
+        "Învață-o ca să nu o confunzi cu ciuperca de câmp, cu o Russula verde sau cu o pălăria-șarpelui tânără."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 10
+    },
+    "edibility": "deadly",
+    "cautions": {
+      "en": "DEADLY. Half a cap can kill an adult. Symptoms start 6-24 hours later (severe vomiting and diarrhoea), then seem to improve before the liver and kidneys fail. Cooking, drying or freezing does not remove the poison, and there is no home test. If anyone may have eaten it: call 112 immediately, keep a sample, go to hospital without waiting for symptoms.",
+      "ro": "MORTALĂ. Jumătate de pălărie poate omorî un adult. Simptomele apar după 6-24 de ore (vărsături și diaree severe), apoi par să se amelioreze înainte ca ficatul și rinichii să cedeze. Gătirea, uscarea sau congelarea nu elimină otrava și nu există test casnic. Dacă cineva ar fi putut-o mânca: sună imediat la 112, păstrează o probă, mergi la spital fără să aștepți simptomele."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "destroying-angel",
+    "names": {
+      "en": [
+        "Destroying angel"
+      ],
+      "ro": [
+        "Amanita virosa (îngerul distrugător)"
+      ]
+    },
+    "scientific": "Amanita virosa",
+    "synonyms": [],
+    "family": "Amanitaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Pure-white, elegant mushroom with a ring and a cup at the base. Grows in damp woods, especially with spruce and birch and on acid soils. Contains the same deadly toxins as the death cap.",
+      "ro": "Ciupercă elegantă, complet albă, cu inel și cupă la bază. Crește în păduri umede, mai ales cu molid și mesteacăn și pe soluri acide. Conține aceleași toxine mortale ca buretele viperei."
+    },
+    "tips": {
+      "en": [
+        "Never collect white mushrooms with gills unless you are certain: dig up the whole base to look for the cup.",
+        "Learn it so that you can tell it from field mushrooms and parasols."
+      ],
+      "ro": [
+        "Nu culege niciodată ciuperci albe cu lamele dacă nu ești sigur: scoate toată baza pentru a vedea cupa.",
+        "Învață-o ca să o deosebești de ciupercile de câmp și de pălăria-șarpelui."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 10
+    },
+    "edibility": "deadly",
+    "cautions": {
+      "en": "DEADLY. Same poisoning as the death cap: a delayed onset of 6-24 hours, apparent recovery, then liver failure. Cooking does not help. Call 112 at once if any has been eaten.",
+      "ro": "MORTALĂ. Aceeași otrăvire ca la buretele viperei: debut întârziat de 6-24 de ore, ameliorare aparentă, apoi insuficiență hepatică. Gătitul nu ajută. Sună imediat la 112 dacă s-a mâncat."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "fly-agaric",
+    "names": {
+      "en": [
+        "Fly agaric"
+      ],
+      "ro": [
+        "Muscariță",
+        "Buretele muștelor"
+      ]
+    },
+    "scientific": "Amanita muscaria",
+    "synonyms": [],
+    "family": "Amanitaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "The fairy-tale toadstool: bright red cap with white warts, white gills and ring. Grows with birch, spruce and pine. Poisonous but rarely fatal.",
+      "ro": "Ciuperca din povești: pălărie roșie aprinsă cu negi albi, lamele albe și inel. Crește cu mesteacăn, molid și pin. Otrăvitoare, dar rareori mortală."
+    },
+    "tips": {
+      "en": [
+        "Beautiful and ecologically valuable as a tree partner; leave it where children and dogs cannot reach it.",
+        "Wash hands after touching."
+      ],
+      "ro": [
+        "Frumoasă și valoroasă ecologic ca partener al copacilor; lasă-o acolo unde copiii și câinii nu pot ajunge.",
+        "Spală-te pe mâini după ce o atingi."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 8,
+      "max": 11
+    },
+    "edibility": "toxic",
+    "cautions": {
+      "en": "TOXIC. Eating it causes confusion, drowsiness, vomiting, hallucinations and sometimes seizures. It can be dangerous to children and dogs. Do not experiment with it; call 112 if anyone has eaten it.",
+      "ro": "TOXICĂ. Consumul provoacă confuzie, somnolență, vărsături, halucinații și uneori convulsii. Poate fi periculoasă pentru copii și câini. Nu experimenta cu ea; sună la 112 dacă cineva a mâncat-o."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "panther-cap",
+    "names": {
+      "en": [
+        "Panther cap"
+      ],
+      "ro": [
+        "Amanită panterină"
+      ]
+    },
+    "scientific": "Amanita pantherina",
+    "synonyms": [],
+    "family": "Amanitaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Brown cap with white warts, white gills, a ring and a banded base. Similar in toxins to the fly agaric but often more dangerous. Easily mistaken for edible brown mushrooms.",
+      "ro": "Pălărie brună cu negi albi, lamele albe, inel și bază cu bandă. Toxine similare cu muscarița, dar adesea mai periculoasă. Ușor de confundat cu ciuperci comestibile brune."
+    },
+    "tips": {
+      "en": [
+        "Always check for white gills, a ring and a banded or bulbous base on any brown-capped mushroom with white flecks.",
+        "Never rely on peeling the cap or colour alone."
+      ],
+      "ro": [
+        "Verifică mereu prezența lamelelor albe, a inelului și a bazei cu bandă sau bulboasă la orice ciupercă cu pălărie brună cu pete albe.",
+        "Nu te baza pe decojirea pălăriei sau doar pe culoare."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 10
+    },
+    "edibility": "toxic",
+    "cautions": {
+      "en": "TOXIC and potentially dangerous. Causes confusion, agitation, vomiting, seizures. Call 112 for any suspected ingestion.",
+      "ro": "TOXICĂ și potențial periculoasă. Provoacă confuzie, agitație, vărsături, convulsii. Sună la 112 pentru orice suspiciune de consum."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "funeral-bell",
+    "names": {
+      "en": [
+        "Funeral bell",
+        "Deadly skullcap"
+      ],
+      "ro": [
+        "Galerină marginată"
+      ]
+    },
+    "scientific": "Galerina marginata",
+    "synonyms": [],
+    "family": "Hymenogastraceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Small, honey-brown mushroom with a ring, growing on rotting wood and wood chips (also in garden mulch). Contains the same deadly toxins as the death cap and is often confused with edible wood-growing mushrooms.",
+      "ro": "Ciupercă mică, brun-miere, cu inel, care crește pe lemn în descompunere și așchii de lemn (și în mulciul din grădină). Conține aceleași toxine mortale ca buretele viperei și este adesea confundată cu ciuperci comestibile de lemn."
+    },
+    "tips": {
+      "en": [
+        "If small brown mushrooms appear in wood-chip mulch, treat them as dangerous: do not let children or pets eat them.",
+        "Take a spore print: rusty brown, unlike the white print of honey fungus."
+      ],
+      "ro": [
+        "Dacă apar ciuperci mici brune în mulciul din așchii de lemn, consideră-le periculoase: nu lăsa copiii sau animalele să le mănânce.",
+        "Fă o amprentă de spori: brun-ruginie, spre deosebire de cea albă a ghebelor."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 4,
+      "max": 11
+    },
+    "edibility": "deadly",
+    "cautions": {
+      "en": "DEADLY. Delayed symptoms, then liver failure. Never collect small brown mushrooms growing on wood. Call 112 at once if eaten.",
+      "ro": "MORTALĂ. Simptome întârziate, apoi insuficiență hepatică. Nu culege niciodată ciuperci mici brune crescute pe lemn. Sună imediat la 112 dacă s-a mâncat."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "fools-webcap",
+    "names": {
+      "en": [
+        "Fool's webcap",
+        "Deadly webcap"
+      ],
+      "ro": [
+        "Cortinar orelanus"
+      ]
+    },
+    "scientific": "Cortinarius orellanus",
+    "synonyms": [],
+    "family": "Cortinariaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Orange-brown, dry, scaly-silky cap with rusty-orange gills and a cobweb-like veil when young. Grows under oak and beech. Looks harmless but destroys the kidneys.",
+      "ro": "Pălărie portocalie-brună, uscată, solzoasă-mătăsoasă, cu lamele portocalii-ruginii și voal ca pânza de păianjen la tineri. Crește sub stejar și fag. Pare inofensivă, dar distruge rinichii."
+    },
+    "tips": {
+      "en": [
+        "Never collect any orange-brown mushroom with rusty gills; the toxic effect appears days later, when it is hard to link to the meal.",
+        "Show every uncertain collection to an expert, not only suspicious ones."
+      ],
+      "ro": [
+        "Nu culege niciodată ciuperci portocalii-brune cu lamele ruginii; efectul toxic apare după zile, când este greu să-l legi de masă.",
+        "Arată fiecare recoltă nesigură unui specialist, nu doar pe cele suspecte."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 8,
+      "max": 10
+    },
+    "edibility": "deadly",
+    "cautions": {
+      "en": "DEADLY. Symptoms may begin 2-20 days after eating: thirst, nausea, back pain, then kidney failure. If any might have been eaten, call 112 and ask for hospital assessment even if you feel well.",
+      "ro": "MORTALĂ. Simptomele pot începe la 2-20 de zile după consum: sete, greață, dureri lombare, apoi insuficiență renală. Dacă s-a mâncat vreuna, sună la 112 și cere evaluare spitalicească chiar dacă te simți bine."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "false-morel",
+    "names": {
+      "en": [
+        "False morel",
+        "Brain mushroom"
+      ],
+      "ro": [
+        "Zbârciog fals"
+      ]
+    },
+    "scientific": "Gyromitra esculenta",
+    "synonyms": [],
+    "family": "Discinaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Spring mushroom with a reddish-brown, irregularly folded, brain-like cap on a short white stem, found under pines on sandy soils. Cottony, not hollow, inside.",
+      "ro": "Ciupercă de primăvară cu pălărie roșcată-brună, pliată neregulat, ca un creier, pe picior scurt alb, găsită sub pini pe soluri nisipoase. Vătoasă, nu goală, pe dinăuntru."
+    },
+    "tips": {
+      "en": [
+        "Always cut open anything that looks like a morel: false morels are never fully hollow.",
+        "Do not cook them indoors: the fumes of the toxin can also make people ill."
+      ],
+      "ro": [
+        "Taie întotdeauna orice seamănă cu zbârciogul: zbârciogii falși nu sunt niciodată complet goi.",
+        "Nu le găti în casă: vaporii toxinei pot îmbolnăvi și ei."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 3,
+      "max": 5
+    },
+    "edibility": "deadly",
+    "cautions": {
+      "en": "DEADLY. Contains gyromitrin, which is not reliably destroyed by cooking or drying; poisonings have been fatal. Symptoms (vomiting, headache, liver and kidney damage) appear after 6-12 hours. Do not eat it; call 112 if eaten.",
+      "ro": "MORTALĂ. Conține giromitrină, care nu este distrusă sigur de gătire sau uscare; otrăvirile au fost mortale. Simptomele (vărsături, dureri de cap, afectare hepatică și renală) apar după 6-12 ore. Nu o mânca; sună la 112 dacă s-a mâncat."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "livid-entoloma",
+    "names": {
+      "en": [
+        "Livid entoloma",
+        "Lead poisoner"
+      ],
+      "ro": [
+        "Entoloma otrăvitoare"
+      ]
+    },
+    "scientific": "Entoloma sinuatum",
+    "synonyms": [],
+    "family": "Entolomataceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Large, pale grey-ivory, fleshy mushroom with yellowish gills turning pink and a mealy smell. Grows in deciduous woods and parks. The most common cause of poisoning in Europe.",
+      "ro": "Ciupercă mare, cărnoasă, gri-fildeș, cu lamele gălbui care devin roz și miros făinos. Crește în păduri de foioase și parcuri. Cea mai frecventă cauză de otrăvire din Europa."
+    },
+    "tips": {
+      "en": [
+        "Easily mistaken for the St George's mushroom or field mushroom; check spore print colour: pink.",
+        "Leave pale, mealy-smelling mushrooms alone unless an expert has identified them."
+      ],
+      "ro": [
+        "Ușor de confundat cu ciuperca Sfântului Gheorghe sau cu ciuperca de câmp; verifică culoarea amprentei de spori: roz.",
+        "Lasă în pace ciupercile palide cu miros făinos dacă nu le-a identificat un specialist."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 7,
+      "max": 10
+    },
+    "edibility": "toxic",
+    "cautions": {
+      "en": "TOXIC. Causes severe vomiting, diarrhoea and dehydration within 15 minutes to 4 hours; hospital treatment may be needed. Call 112 if eaten.",
+      "ro": "TOXICĂ. Provoacă vărsături severe, diaree și deshidratare în 15 minute până la 4 ore; poate fi necesar tratament în spital. Sună la 112 dacă s-a mâncat."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "deadly-dapperling",
+    "names": {
+      "en": [
+        "Deadly dapperling",
+        "Brown-pink parasol"
+      ],
+      "ro": [
+        "Lepiotă otrăvitoare"
+      ]
+    },
+    "scientific": "Lepiota brunneoincarnata",
+    "synonyms": [],
+    "family": "Agaricaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Small parasol-shaped mushroom with a brown-pink scaly cap and a ring zone. Grows on lawns, parks, roadside verges and garden edges, where it is easily mistaken for a harmless or edible mushroom.",
+      "ro": "Ciupercă mică în formă de umbrelă, cu pălărie solzoasă brun-roz și zonă inelară. Crește pe gazoane, în parcuri, pe marginea drumurilor și la marginea grădinilor, unde se confundă ușor cu o ciupercă inofensivă sau comestibilă."
+    },
+    "tips": {
+      "en": [
+        "Be especially careful with children and dogs on lawns where small parasol-shaped mushrooms appear.",
+        "Never eat any small Lepiota-type mushroom."
+      ],
+      "ro": [
+        "Fii foarte atent cu copiii și câinii pe gazoane unde apar mici ciuperci în formă de umbrelă.",
+        "Nu mânca niciodată vreo ciupercă mică de tip Lepiota."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 8,
+      "max": 10
+    },
+    "edibility": "deadly",
+    "cautions": {
+      "en": "DEADLY. Contains amatoxins, like the death cap. Delayed symptoms followed by liver failure. Call 112 immediately if eaten.",
+      "ro": "MORTALĂ. Conține amatoxine, ca buretele viperei. Simptome întârziate, urmate de insuficiență hepatică. Sună imediat la 112 dacă s-a mâncat."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  },
+  {
+    "id": "jack-o-lantern",
+    "names": {
+      "en": [
+        "Jack-o'-lantern mushroom"
+      ],
+      "ro": [
+        "Omphalotus olearius"
+      ]
+    },
+    "scientific": "Omphalotus olearius",
+    "synonyms": [],
+    "family": "Omphalotaceae",
+    "category": "wild-mushroom",
+    "lifecycle": "perennial fungus",
+    "sun": null,
+    "water": null,
+    "frostTolerance": null,
+    "summary": {
+      "en": "Bright orange mushroom growing in dense clusters on stumps and at the base of trees, with true, thin, decurrent gills. The gills glow faintly in the dark. Often mistaken for chanterelles.",
+      "ro": "Ciupercă portocalie vie, care crește în mănunchiuri dese pe cioturi și la baza copacilor, cu lamele adevărate, subțiri, decurente. Lamelele strălucesc slab în întuneric. Adesea confundată cu gălbiorii."
+    },
+    "tips": {
+      "en": [
+        "A chanterelle grows singly or scattered on the ground; this grows in tufts on wood.",
+        "Check for sharp, true gills: chanterelles have blunt ridges."
+      ],
+      "ro": [
+        "Un gălbior crește izolat sau împrăștiat pe sol; aceasta crește în tufe pe lemn.",
+        "Verifică lamelele ascuțite, adevărate: gălbiorii au creste boante."
+      ]
+    },
+    "roles": [],
+    "nitrogenFixing": false,
+    "origin": "native-ro",
+    "seasonMonths": {
+      "min": 9,
+      "max": 11
+    },
+    "edibility": "toxic",
+    "cautions": {
+      "en": "TOXIC. Causes severe cramps, vomiting and diarrhoea for 1-2 days. Rarely fatal. Seek medical help if eaten.",
+      "ro": "TOXICĂ. Provoacă crampe severe, vărsături și diaree 1-2 zile. Rareori mortală. Cere ajutor medical dacă s-a mâncat."
+    },
+    "confidence": "moderate",
+    "reviewed": "2026-10-29",
+    "sources": [
+      {
+        "title": "Compiled from European field guides and mycological references. This entry supports recognition and safety awareness only; it is not an identification guide and must never replace a check by an authorised mushroom expert.",
+        "organization": "Garden Helper project"
+      }
+    ]
+  }
+]

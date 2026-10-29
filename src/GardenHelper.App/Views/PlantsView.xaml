@@ -11,6 +11,8 @@
 
         <DockPanel Grid.Row="2">
             <TextBox DockPanel.Dock="Top" Text="{Binding Query, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{loc:L plants_search}" Tag="{loc:L plants_search}" Margin="0,0,0,10"/>
+            <ListBox DockPanel.Dock="Top" Style="{StaticResource ChipList}" ItemsSource="{Binding Purposes}" SelectedItem="{Binding SelectedPurpose}" DisplayMemberPath="Label"
+                     AutomationProperties.Name="{loc:L plants_purpose}" Margin="0,0,0,6"/>
             <ListBox DockPanel.Dock="Top" Style="{StaticResource ChipList}" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" DisplayMemberPath="Label"
                      AutomationProperties.Name="{loc:L plants_category}"/>
             <TextBlock DockPanel.Dock="Top" Text="{loc:L plants_none}" Style="{StaticResource Muted}" Margin="2,4"
@@ -55,6 +57,29 @@
                                 <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate><DataTemplate><Border Style="{StaticResource Badge}" Margin="0,0,6,6"><TextBlock Text="{Binding}" FontSize="12"/></Border></DataTemplate></ItemsControl.ItemTemplate>
                             </ItemsControl>
+                            <Border Visibility="{Binding EdibilityText, Converter={StaticResource HasValueVis}}" BorderBrush="{DynamicResource WarnBrush}" BorderThickness="1" CornerRadius="8" Padding="12,8" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold"><Run Text="{loc:L edib_title}"/><Run Text=": "/><Run Text="{Binding EdibilityText, Mode=OneWay}"/></TextBlock>
+                                    <TextBlock Text="{loc:L wild_mushroom_rule}" TextWrapping="Wrap" MaxWidth="640" Margin="0,4,0,0" Visibility="{Binding EdibilityText, Converter={StaticResource HasValueVis}}"/>
+                                </StackPanel>
+                            </Border>
+                            <TextBlock Text="{Binding ProtectedText}" TextWrapping="Wrap" MaxWidth="640" FontWeight="SemiBold" Margin="0,0,0,10" Visibility="{Binding ProtectedText, Converter={StaticResource HasValueVis}}"/>
+                            <StackPanel Visibility="{Binding Benefits, Converter={StaticResource HasValueVis}}" Margin="0,0,0,10">
+                                <TextBlock Text="{loc:L plant_benefits}" Style="{StaticResource H2}" Margin="0,2,0,6"/>
+                                <TextBlock Text="{Binding Benefits}" TextWrapping="Wrap" MaxWidth="640" LineHeight="22"/>
+                            </StackPanel>
+                            <Border Visibility="{Binding HasMedicinal, Converter={StaticResource BoolToVis}}" Style="{StaticResource Card}" Padding="14" Margin="0,4,0,12">
+                                <StackPanel>
+                                    <TextBlock Text="{loc:L plant_medicinal}" Style="{StaticResource H2}"/>
+                                    <TextBlock Text="{loc:L med_disclaimer}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" MaxWidth="640" Margin="0,2,0,8"/>
+                                    <TextBlock Text="{loc:L med_parts}" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding MedParts}" TextWrapping="Wrap" MaxWidth="640" Margin="0,0,0,6"/>
+                                    <TextBlock Text="{loc:L med_uses}" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding MedUses}" TextWrapping="Wrap" MaxWidth="640" Margin="0,0,0,6"/>
+                                    <TextBlock Text="{loc:L med_safety}" FontWeight="SemiBold" Foreground="{DynamicResource WarnBrush}"/>
+                                    <TextBlock Text="{Binding MedSafety}" TextWrapping="Wrap" MaxWidth="640"/>
+                                </StackPanel>
+                            </Border>
                             <TextBlock Text="{loc:L plant_tips}" Style="{StaticResource H2}" Margin="0,12,0,6"/>
                             <ItemsControl ItemsSource="{Binding Tips}">
                                 <ItemsControl.ItemTemplate>
