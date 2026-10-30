@@ -727,7 +727,7 @@ public sealed partial class DesignerViewModel : PageViewModel
 
     private void FitCore()
     {
-        var pts = _planAll.Concat(Beds.SelectMany(b => b.Corners)).ToList();
+        var pts = FitFrame.Points(_planAll, Beds.SelectMany(b => b.Corners).ToList());
         double minX = 0, minY = 0, maxX = CanvasWidth, maxY = CanvasHeight;
         if (pts.Count > 0) { minX = pts.Min(p => p.X); maxX = pts.Max(p => p.X); minY = pts.Min(p => p.Y); maxY = pts.Max(p => p.Y); }
         var w = Math.Max(200, maxX - minX); var h = Math.Max(200, maxY - minY);
