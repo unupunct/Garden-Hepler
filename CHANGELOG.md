@@ -7,6 +7,7 @@
 - **Annotate the plan**: text labels, irrigation, path and cable lines, and a ruler that measures in metres.
 - **Sharing and safety**: optional password for opening the app (Ctrl+L locks it), the season review as a single web page to share, and an automatic weekly export to a folder you choose.
 - **Large properties**: pictures are shown a page at a time and their thumbnails load in the background; a stress test and a `--big` demo option cover hundreds of beds and thousands of records.
+- **Long lists on Today** show 25 rows per section with a "Show more" button.
 - **Dark mode** fixes on the newer pages (Today tiles, Photos, Season review, Settings and the password boxes).
 - **Fruit-tree care follows your frost dates** and tree kinds: stone fruit is pruned in summer, not winter.
 

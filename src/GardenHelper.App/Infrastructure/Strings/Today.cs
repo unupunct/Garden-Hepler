@@ -196,6 +196,7 @@ public static partial class Strings
         ("rem_urgent_title", "Garden Helper: needs you now", "Garden Helper: te cere acum"),
         ("rem_summary_title", "Today: {0} things, {1} urgent", "Azi: {0} lucruri, {1} urgente"),
         ("rem_more", "… and {0} more", "… și încă {0}"),
+        ("today_show_more", "Show more ({0} hidden)", "Arată mai multe ({0} ascunse)"),
         ("season_sub", "A look back at one year: what you grew, what you harvested, what went wrong, the money, the animals, and what to plant where next year.", "O privire înapoi la un an: ce ai cultivat, ce ai recoltat, ce a mers prost, banii, animalele și ce să plantezi unde anul viitor."),
         ("season_year", "Year", "An"),
         ("season_title", "Season {0}", "Sezonul {0}"),

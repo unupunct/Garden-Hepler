@@ -33,7 +33,25 @@ public sealed partial class TodayRow : ObservableObject
 public sealed record DayCard(string Label, string Glyph, string Range, string Rain);
 public sealed record RipeningRow(string Title, string When, bool Ready);
 
-public sealed record TodayGroup(string Title, ObservableCollection<TodayRow> Rows);
+/// <summary>One section of the list. A long section shows a page of rows and a button for the rest, so a property with hundreds of late tasks stays quick and readable.</summary>
+public sealed partial class TodayGroup : ObservableObject
+{
+    private const int PageSize = 25;
+    public TodayGroup(string title, IReadOnlyList<TodayRow> all)
+    {
+        Title = title; All = all;
+        foreach (var row in all.Take(PageSize)) Rows.Add(row);
+        Update();
+    }
+    public string Title { get; }
+    public IReadOnlyList<TodayRow> All { get; }
+    public ObservableCollection<TodayRow> Rows { get; } = new();
+    [ObservableProperty] private int _hidden;
+    public bool HasMore => Hidden > 0;
+    public string MoreText => Loc.F("today_show_more", Hidden);
+    private void Update() { Hidden = All.Count - Rows.Count; OnPropertyChanged(nameof(HasMore)); OnPropertyChanged(nameof(MoreText)); }
+    [RelayCommand] private void ShowMore() { foreach (var row in All.Skip(Rows.Count).Take(PageSize)) Rows.Add(row); Update(); }
+}
 
 /// <summary>The first screen of the day: everything that is late or due, with a button that does it.</summary>
 public sealed partial class TodayViewModel : PageViewModel
@@ -79,7 +97,7 @@ public sealed partial class TodayViewModel : PageViewModel
         foreach (var sec in TodayPlanner.Sections)
         {
             var rows = items.Where(i => i.Section == sec).Select(i => new TodayRow(i)).ToList();
-            if (rows.Count > 0) Groups.Add(new TodayGroup(Loc.T("today_s_" + sec), new ObservableCollection<TodayRow>(rows)));
+            if (rows.Count > 0) Groups.Add(new TodayGroup(Loc.T("today_s_" + sec), rows));
         }
         Refresh();
     });
@@ -154,7 +172,7 @@ public sealed partial class TodayViewModel : PageViewModel
 
     private void Refresh()
     {
-        var open = Groups.SelectMany(g => g.Rows).Where(r => !r.IsDone).ToList();
+        var open = Groups.SelectMany(g => g.All).Where(r => !r.IsDone).ToList();
         var urgent = open.Count(r => r.IsUrgent);
         IsCalm = open.Count == 0; UrgentCount = urgent; OpenCount = open.Count;
         WaterCount = open.Count(r => r.Item.Action == TodayAction.Watered); RipeningCount = Ripenings.Count(r => r.Ready);
